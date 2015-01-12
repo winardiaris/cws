@@ -1,0 +1,91 @@
+<?php
+include ("../inc/conf.php");
+include ("header.php");
+
+if(isset($_GET['a'])){
+	$a = $_GET['a'];
+	if($a == "add"){
+		$header = "User Add";
+		$button = '<button type="submit" name="user_save" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>';
+	}
+	elseif($a=="edit"){
+		$user_id = $_GET['user_id'];
+		$header = "Edit User";
+		$button = '<button type="submit" name="user_update" class="btn btn-primary"><i class="fa fa-refresh"></i> Update</button>';
+		
+		$qry = mysql_query("SELECT * FROM `user` WHERE `user_id`='$user_id'") or die(mysql_error());
+		$data = mysql_fetch_array($qry);
+		
+		//data
+		$group_id = $data['group_id'];
+		$user_name = $data['user_name'];
+		$user_real_name = $data['user_real_name'];
+		$user_mail = $data['user_mail'];
+		$user_info = $data['user_info'];
+		
+		
+	}
+}
+
+
+?>
+<div class="col-lg-12"><h1 class="page-header"><?php echo $header ?></h1></div>
+<div class="row col-lg-12">
+<form role="form" action="user-action.php" method="post">
+	<div class="col-lg-6 col-sm-6">
+		<div class="form-group">
+			<label>Group ID</label>
+			<select class="form-control" name="group_id">
+				<option value="0">-- select --</option>
+				<?php
+				$qry2 = mysql_query("SELECT * FROM `usergroup` order by `group_id` ASC") or die(mysql_error());
+				while($data2 = mysql_fetch_array($qry2)){
+					echo'
+					<option value="'.$data2['group_id'].'"';
+						if($group_id == $data2['group_id']){
+							echo "selected";
+						}					
+					echo'
+					>'.$data2['group_name'].'</option>
+					';
+				}
+				?>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>Username</label>
+			<input type="hidden" name="user_id" value="<?php echo $user_id;?>">
+			<input class="form-control" name="user_name" value="<?php echo $user_name; ?>">
+		</div>
+		<div class="form-group">
+			<label>User Real Name</label>
+			<input class="form-control" name="user_real_name" value="<?php echo $user_real_name; ?>">
+		</div>
+		<div class="form-group">
+			<label>User Password</label>
+			<input class="form-control" name="user_password" type="password">
+		</div>
+		<div class="form-group">
+			<label>Retype Password</label>
+			<input class="form-control" name="retype_password" type="password">
+		</div>		
+	</div>
+	<div class="col-lg-6 col-sm-6">
+		<div class="form-group">
+			<label>User Mail</label>
+			<input class="form-control" name="user_mail" type="mail" value="<?php echo $user_mail; ?>">
+		</div>
+		<div class="form-group">
+			<label>User Info</label>
+			<textarea class="form-control" name="user_info" rows="15"><?php echo $user_info; ?></textarea>
+		</div>
+		<?php echo $button ?>
+	</div>
+
+</form>
+
+</div>
+
+<?php
+include ("footer.php");
+?>
