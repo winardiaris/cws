@@ -1076,7 +1076,46 @@ include("form/navigasi.php");
 					<small>Please Tick (<input type="checkbox" checked>) as appropriate</small>
 				</div>
 				<div class="panel-body" id="col9db">
-				
+					<div class="well well-sm col-lg-5 checkbox">
+						<label><input type="checkbox" id="9d01">Fenced Accommodation</label><br>
+						<label><input type="checkbox" id="9d02">Secured Gate(s)</label><br>
+						<label><input type="checkbox" id="9d03">Health Facilities </label><br>
+						<label><input type="checkbox" id="9d04">Police station access</label><br>
+						<label><input type="checkbox" id="9d05">Secured Doors & Windows</label><br>
+						<label><input type="checkbox" id="9d06">Multiple Entry/Exit points in the building</label><br>
+						<label><input type="checkbox" id="9d07">Fire Extinguisher</label>
+					</div>
+					<div class="col-lg-7">
+						<div class="form-group">
+							<Label>Remarks:</Label>
+							<textarea class="form-control" id="9d08"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- e). Documentation & Security -->
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<span class="collapseme" id="col9ea">e). Documentation & Security</span>
+					<small>Please Tick (<input type="checkbox" checked>) as appropriate</small>
+				</div>
+				<div class="panel-body" id="col9eb">
+					<div class="col-lg-12">
+						<div class="form-group">
+							<label>Suggested Questions</label>
+							<textarea class="form-control" id="9e01" rows="5"></textarea>
+						</div>
+						<div class="checkbox">
+						<label><input type="checkbox" id="9e02">Registered to neighbourhood/local authorities </label><br>
+						<label><input type="checkbox" id="9e03">Attestation Letter</label><br>
+						<label><input type="checkbox" id="9e04">Valid Passports and/or other recognized travel documents</label>
+						</div>
+						<br><br>
+						<div class="form-group">
+							<Label>Remarks:</Label>
+							<textarea class="form-control" id="9d08"></textarea>
+						</div>
+					</div>
 				</div>
 			</div>
 
