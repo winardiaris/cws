@@ -1,5 +1,5 @@
 #!/bin/bash
-mysqldump -u root -p cws > cws_backup.sql
+mysqldump -u simabes -p cws > cws_backup.sql
 cp -rf * ~/Dropbox/cws/
 git add --all
 git commit -m "backup"
