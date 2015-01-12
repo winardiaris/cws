@@ -248,7 +248,7 @@ include("form/navigasi.php");
 		<div class="panel-body">
 			<div class="well well-small panel-green">
 				<label style="text-decoration:underline;">Instruction</label>
-			<p>Please Tick (<input type="checkbox" checked>) as appropriate- <span class="text-danger">Tick the one or several corresponding vulnerabilities</span>
+			<p>Please Tick (<input type="checkbox" checked>) as appropriate - <span class="text-danger">Tick the one or several corresponding vulnerabilities</span>
 <br><br>Staff may complete this section in the absence of the person of concern, based on the staff’s record of information previously collected in the personal study.
 <i><br>(CoO: Country of origin; CoA: Country of Asylum)</i></p>
 			</div>
@@ -908,7 +908,7 @@ include("form/navigasi.php");
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseLiving">9. Living conditions in place of residence</a>
 			</h4>
 		</div>
-		<div id="collapseLiving" class="panel-collapse collapse in">
+		<div id="collapseLiving" class="panel-collapse collapse">
 		<div class="panel-body">
 			
 			<!-- a). Suggested Questions: -->
@@ -1121,6 +1121,7 @@ include("form/navigasi.php");
 
 		</div>
 		</div>
+	
 		</div>
 		<!-- 10 - Financial Situation and Supporting System -->
 		<div class="panel panel-default">
@@ -1129,9 +1130,42 @@ include("form/navigasi.php");
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseFinancial">10. Financial Situation and Supporting System</a>
 			</h4>
 		</div>
-		<div id="collapseFinancial" class="panel-collapse collapse ">
+		<div id="collapseFinancial" class="panel-collapse collapse in">
 		<div class="panel-body">
-			
+			<div class="form-group">
+				<label>How the child survived from Date of Arrival to the date of Assessment</label>
+				<textarea class="form-control" id="101"></textarea>
+			</div>
+			<div class="col-lg-6">
+				<div class="well well-sm">
+					<h4>Expenses </h4><br>
+					<label>Amount (weekly in IDR)</label>
+					<input type="number" class="form-control" id="102"><br><br>
+					<label>Remarks</label>
+					<textarea class="form-control" id="103"></textarea>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="well well-sm">
+					<h4>Resources  </h4>
+					<small>Please Tick (<input type="checkbox" checked>) as appropriate</small>
+					<br><br>
+					<label>Source</label>
+					<div class="checkbox">
+						<label><input type="checkbox" id="104a"> Personal income</label><br> 
+						<label><input type="checkbox" id="104b"> CWS</label><br> 
+						<label><input type="checkbox" id="104c"> Employment Situationr</label><br> 
+						<label><input type="checkbox" id="104d"> Family abroad (where?)</label><br> 
+						<label><input type="checkbox" id="104e"> Assistance received (from?)</label><br> 
+						<label><input type="checkbox" id="104f"> Government</label><br> 
+						<label><input type="checkbox" id="104g"> Other</label><br> 
+					</div>
+					<label>Amount (weekly in IDR)</label>
+					<input type="number" class="form-control" id="105"><br><br>
+					<label>Remarks</label>
+					<textarea class="form-control" id="106"></textarea>
+				</div>
+			</div>
 		</div>
 		</div>
 		</div>
