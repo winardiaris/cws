@@ -1130,7 +1130,7 @@ include("form/navigasi.php");
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseFinancial">10. Financial Situation and Supporting System</a>
 			</h4>
 		</div>
-		<div id="collapseFinancial" class="panel-collapse collapse in">
+		<div id="collapseFinancial" class="panel-collapse collapse ">
 		<div class="panel-body">
 			<div class="form-group">
 				<label>How the child survived from Date of Arrival to the date of Assessment</label>
@@ -1169,16 +1169,208 @@ include("form/navigasi.php");
 		</div>
 		</div>
 		</div>
-		<!-- 11  - CWS - Analysis of information & conclusions by Caseworker -->
-		<div class="panel panel-default">
+		<!-- CWS - Analysis of information & conclusions by Caseworker -->
+		<div class="panel panel-danger">
 		<div class="panel-heading">
 			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseCWS">11. CWS - Analysis of information & conclusions by Caseworker</a>
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseCWS">CWS - Analysis of information & conclusions by Caseworker</a>
 			</h4>
 		</div>
-		<div id="collapseCWS" class="panel-collapse collapse ">
+		<div id="collapseCWS" class="panel-collapse collapse in ">
 		<div class="panel-body">
+			<label>Children at risk : Risk rating </label>
+			<div class="well well-sm">
+				<label>Instructions</label>
+				<p>
+					<b>Risk rating box:</b> After completing each risk category, staff will be asked to indicate whether the person of concern is believed to be at high (H), medium (M), or low (L) risk as defined below:
+					<ul>
+						<li><b>High:</b> reflects a need for immediate intervention by UNHCR or a partner agency. Staff should immediately refer the individual to the appropriate service provider, and follow up with the provider on a weekly basis until they confirm that they have taken action in connection with the individual at heightened risk. This will ensure that the individual’s situation is adequately addressed, and that the referral system is functioning efficiently. (FEW DAYS)</li><br>
+						<li><b>Medium:</b> indicates that intervention should be scheduled and occur, but that immediate intervention is not necessary. Note that cases placed in the medium risk category can move into the high-risk category if intervention does not take place. Therefore, staff should implement a structured monitoring system to ensure adequate and timely follow up. </li><br>
+						<li><b>Low:</b> denotes that the regular referral system applies. Additionally, staff should review the situation of individuals at low risk at regular intervals or implement another structured monitoring and follow-up mechanism to ensure that the case is handled adequately.</li>
+					</ul>
+				</p>
+			</div>
 			
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<tr class="warning">
+						<td colspan="3">Summary of risk categories  <small class="text-danger">Please Tick (<input type="checkbox" checked>) as appropriate</small></td>
+					</tr>
+					<tr>
+						<th width="200px">Categories</th>
+						<th width="250px">Risk rate</th>
+						<th>Needs</th>
+					</tr>
+					<tr>
+						<td>Boy at risk</td>
+						<td>
+							<div class="checkbox">
+								<label><input type="checkbox" id="cws1a">LOW</label>
+								<label><input type="checkbox" id="cws1b">MEDIUM</label>
+								<label><input type="checkbox" id="cws1c">HIGH</label>
+							</div>
+						</td>
+						<td><textarea class="form-control" id="cws1d"></textarea></td>
+					</tr>
+					<tr>
+						<td>Girl at risk</td>
+						<td>
+							<div class="checkbox">
+								<label><input type="checkbox" id="cws2a" >LOW</label>
+								<label><input type="checkbox" id="cws2b" >MEDIUM</label>
+								<label><input type="checkbox" id="cws2c" >HIGH</label>
+							</div>
+						</td>
+						<td><textarea class="form-control" id="cws2d"></textarea></td>
+					</tr>
+					<tr><td colspan="3"></td></tr>
+					<tr class="warning">
+						<td colspan="3">Referral areas as priority  <small class="text-danger">Please Tick (<input type="checkbox" checked>) as appropriate</small></td>
+					</tr>
+					<tr>
+						<th>Areas</th>
+						<th width="250px">Risk rate</th>
+						<th>Follow up actions / assistance (CWS, UNHCR, others), according to BiA& victim’s wishes</th>
+					</tr>
+					<tr>
+						<td>Legal protection <br><small>(including documentation)</small> </td>
+						<td>
+							<div class="checkbox">
+								<label><input type="checkbox" id="cws3a">LOW</label>
+								<label><input type="checkbox" id="cws3b">MEDIUM</label>
+								<label><input type="checkbox" id="cws3c" >HIGH</label>
+							</div>
+						</td>
+						<td><textarea class="form-control" id="cws3d"></textarea></td>
+					</tr>
+					<tr>
+						<td>RSD </td>
+						<td>
+							<div class="checkbox">
+								<label><input type="checkbox" id="cws4a">LOW</label>
+								<label><input type="checkbox" id="cws4b">MEDIUM</label>
+								<label><input type="checkbox" id="cws4c" >HIGH</label>
+							</div>
+						</td>
+						<td><textarea class="form-control" id="cws4d"></textarea></td>
+					</tr>
+					<tr>
+						<td>Basic needs <br><small>(food, water)</small> </td>
+						<td>
+							<div class="checkbox">
+								<label><input type="checkbox" id="cws5a">LOW</label>
+								<label><input type="checkbox" id="cws5b">MEDIUM</label>
+								<label><input type="checkbox" id="cws5c" >HIGH</label>
+							</div>
+						</td>
+						<td><textarea class="form-control" id="cws5d"></textarea></td>
+					</tr>
+					<tr>
+						<td>Education</td>
+						<td>
+							<div class="checkbox">
+								<label><input type="checkbox" id="cws6a">LOW</label>
+								<label><input type="checkbox" id="cws6b">MEDIUM</label>
+								<label><input type="checkbox" id="cws6c" >HIGH</label>
+							</div>
+						</td>
+						<td><textarea class="form-control" id="cws6d"></textarea></td>
+					</tr>
+					<tr>
+						<td>SGBVs</td>
+						<td>
+							<div class="checkbox">
+								<label><input type="checkbox" id="cws7a">LOW</label>
+								<label><input type="checkbox" id="cws7b">MEDIUM</label>
+								<label><input type="checkbox" id="cws7c" >HIGH</label>
+							</div>
+						</td>
+						<td><textarea class="form-control" id="cws7d"></textarea></td>
+					</tr>
+					<tr>
+						<td>Medical assitance</td>
+						<td>
+							<div class="checkbox">
+								<label><input type="checkbox" id="cws8a">LOW</label>
+								<label><input type="checkbox" id="cws8b">MEDIUM</label>
+								<label><input type="checkbox" id="cws8c" >HIGH</label>
+							</div>
+						</td>
+						<td><textarea class="form-control" id="cws8d"></textarea></td>
+					</tr>
+					<tr>
+						<td>Psychosocial</td>
+						<td>
+							<div class="checkbox">
+								<label><input type="checkbox" id="cws9a">LOW</label>
+								<label><input type="checkbox" id="cws9b">MEDIUM</label>
+								<label><input type="checkbox" id="cws9c" >HIGH</label>
+							</div>
+						</td>
+						<td><textarea class="form-control" id="cws9d"></textarea></td>
+					</tr>
+					<tr>
+						<td>Material assitance <br><small>(shelter, NFI, financial)</small></td>
+						<td>
+							<div class="checkbox">
+								<label><input type="checkbox" id="cws10a">LOW</label>
+								<label><input type="checkbox" id="cws10b">MEDIUM</label>
+								<label><input type="checkbox" id="cws10c" >HIGH</label>
+							</div>
+						</td>
+						<td><textarea class="form-control" id="cws10d"></textarea></td>
+					</tr>
+					<tr>
+						<td>Recreational activities / Community activities</td>
+						<td>
+							<div class="checkbox">
+								<label><input type="checkbox" id="cws11a">LOW</label>
+								<label><input type="checkbox" id="cws11b">MEDIUM</label>
+								<label><input type="checkbox" id="cws11c" >HIGH</label>
+							</div>
+						</td>
+						<td><textarea class="form-control" id="cws11d"></textarea></td>
+					</tr>
+					<tr>
+						<td>Regular Home visits</td>
+						<td>
+							<div class="checkbox">
+								<label><input type="checkbox" id="cws12a">LOW</label>
+								<label><input type="checkbox" id="cws12b">MEDIUM</label>
+								<label><input type="checkbox" id="cws12c" >HIGH</label>
+							</div>
+						</td>
+						<td><textarea class="form-control" id="cs12d"></textarea></td>
+					</tr>
+					<tr>
+						<td>Family tracing</td>
+						<td>
+							<div class="checkbox">
+								<label><input type="checkbox" id="cws13a">LOW</label>
+								<label><input type="checkbox" id="cws13b">MEDIUM</label>
+								<label><input type="checkbox" id="cws13c" >HIGH</label>
+							</div>
+						</td>
+						<td><textarea class="form-control" id="cws13d"></textarea></td>
+					</tr>
+					<tr>
+						<td>Durable solution</td>
+						<td>
+							<div class="checkbox">
+								<label><input type="checkbox" id="cws14a">LOW</label>
+								<label><input type="checkbox" id="cws14b">MEDIUM</label>
+								<label><input type="checkbox" id="cws14c" >HIGH</label>
+							</div>
+						</td>
+						<td><textarea class="form-control" id="cws14d"></textarea></td>
+					</tr>
+					<tr>
+						<td>Caseworker signature & date</td>
+						<td colspan="2"><textarea class="form-control" id="cws15"></textarea></td>
+					</tr>
+					
+				</table>
+			</div>
 		</div>
 		</div>
 		</div>

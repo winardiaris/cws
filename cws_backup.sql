@@ -203,7 +203,7 @@ CREATE TABLE `system_log` (
   `log_message` text NOT NULL,
   `log_time` datetime NOT NULL,
   PRIMARY KEY (`log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,7 +212,7 @@ CREATE TABLE `system_log` (
 
 LOCK TABLES `system_log` WRITE;
 /*!40000 ALTER TABLE `system_log` DISABLE KEYS */;
-INSERT INTO `system_log` VALUES (1,1,'login','Login success','2014-12-26 13:48:50'),(2,1,'User form','Edit user ','2014-12-26 13:49:06'),(3,1,'User form','Edit user ','2014-12-26 13:50:12'),(4,2,'login','Login success','2014-12-26 13:50:53'),(5,2,'login','Login success','2014-12-26 13:56:19'),(6,0,'User form','Edit user ','2014-12-31 12:03:13'),(7,0,'User form','Add new User','2014-12-31 12:04:02'),(8,2,'login','Login success','2015-01-02 17:22:47'),(9,2,'login','Login success','2015-01-03 21:54:10'),(10,2,'login','Login success','2015-01-04 10:47:39'),(11,2,'login','Login success','2015-01-04 15:53:03'),(12,2,'login','Login success','2015-01-04 20:37:27'),(13,0,'User form','Add new User','2015-01-04 20:56:57'),(14,2,'login','Login success','2015-01-04 20:58:01'),(15,2,'login','Login success','2015-01-05 09:48:04'),(16,2,'login','Login success','2015-01-05 11:13:41'),(17,2,'login','Login success','2015-01-05 12:07:40'),(18,0,'User form','Edit user ','2015-01-05 15:38:52'),(19,2,'login','Login success','2015-01-06 10:23:47'),(20,2,'login','Login success','2015-01-07 10:49:13'),(21,2,'login','Login success','2015-01-07 11:43:41'),(22,2,'login','Login success','2015-01-07 12:02:23'),(23,2,'login','Login success','2015-01-07 12:25:20'),(24,2,'login','Login success','2015-01-07 17:35:44'),(25,2,'login','Login success','2015-01-07 17:42:35'),(26,2,'login','Login success','2015-01-07 18:26:17'),(27,2,'login','Login success','2015-01-08 10:06:21'),(28,2,'login','Login success','2015-01-09 14:17:49'),(29,2,'login','Login success','2015-01-11 11:46:54'),(30,2,'login','Login success','2015-01-12 10:07:55'),(31,2,'login','Login success','2015-01-12 11:03:20'),(32,2,'login','Login success','2015-01-12 14:39:08');
+INSERT INTO `system_log` VALUES (1,1,'login','Login success','2014-12-26 13:48:50'),(2,1,'User form','Edit user ','2014-12-26 13:49:06'),(3,1,'User form','Edit user ','2014-12-26 13:50:12'),(4,2,'login','Login success','2014-12-26 13:50:53'),(5,2,'login','Login success','2014-12-26 13:56:19'),(6,0,'User form','Edit user ','2014-12-31 12:03:13'),(7,0,'User form','Add new User','2014-12-31 12:04:02'),(8,2,'login','Login success','2015-01-02 17:22:47'),(9,2,'login','Login success','2015-01-03 21:54:10'),(10,2,'login','Login success','2015-01-04 10:47:39'),(11,2,'login','Login success','2015-01-04 15:53:03'),(12,2,'login','Login success','2015-01-04 20:37:27'),(13,0,'User form','Add new User','2015-01-04 20:56:57'),(14,2,'login','Login success','2015-01-04 20:58:01'),(15,2,'login','Login success','2015-01-05 09:48:04'),(16,2,'login','Login success','2015-01-05 11:13:41'),(17,2,'login','Login success','2015-01-05 12:07:40'),(18,0,'User form','Edit user ','2015-01-05 15:38:52'),(19,2,'login','Login success','2015-01-06 10:23:47'),(20,2,'login','Login success','2015-01-07 10:49:13'),(21,2,'login','Login success','2015-01-07 11:43:41'),(22,2,'login','Login success','2015-01-07 12:02:23'),(23,2,'login','Login success','2015-01-07 12:25:20'),(24,2,'login','Login success','2015-01-07 17:35:44'),(25,2,'login','Login success','2015-01-07 17:42:35'),(26,2,'login','Login success','2015-01-07 18:26:17'),(27,2,'login','Login success','2015-01-08 10:06:21'),(28,2,'login','Login success','2015-01-09 14:17:49'),(29,2,'login','Login success','2015-01-11 11:46:54'),(30,2,'login','Login success','2015-01-12 10:07:55'),(31,2,'login','Login success','2015-01-12 11:03:20'),(32,2,'login','Login success','2015-01-12 14:39:08'),(33,2,'login','Login success','2015-01-13 11:09:31'),(34,2,'login','Login success','2015-01-13 11:13:09'),(35,2,'login','Login success','2015-01-13 11:18:43'),(36,2,'login','Login success','2015-01-13 14:00:43');
 /*!40000 ALTER TABLE `system_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -243,7 +243,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,1,'super','super admin','1b3231655cebb7a1f783eddf27d254ca','aris@tech4changes.org','--','2014-12-26 13:48:50','2015-01-05 15:38:52'),(2,2,'aris','aris winardi','288077f055be4fadc3804a69422dd4f8','aris@tech4changes.org','--','2015-01-12 14:39:08','2014-12-26 13:50:12'),(3,2,'test','test','098f6bcd4621d373cade4e832627b4f6','test','test',NULL,NULL),(4,0,'','','d41d8cd98f00b204e9800998ecf8427e','','',NULL,NULL);
+INSERT INTO `user` VALUES (1,1,'super','super admin','1b3231655cebb7a1f783eddf27d254ca','aris@tech4changes.org','--','2014-12-26 13:48:50','2015-01-05 15:38:52'),(2,2,'aris','aris winardi','288077f055be4fadc3804a69422dd4f8','aris@tech4changes.org','--','2015-01-13 14:00:43','2014-12-26 13:50:12'),(3,2,'test','test','098f6bcd4621d373cade4e832627b4f6','test','test',NULL,NULL),(4,0,'','','d41d8cd98f00b204e9800998ecf8427e','','',NULL,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -307,4 +307,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-12 17:10:42
+-- Dump completed on 2015-01-13 14:04:06

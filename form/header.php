@@ -32,7 +32,7 @@ include ("inc/conf.php");
 	<script src="js/plugins/dataTables/jquery.dataTables.js"></script>
     <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
 </head>
-<body>
+<body <?php if($_GET['page'] == "login"){ echo 'class="bg-login"';}?>>
 <?php echo $iframe ?>
 <div id="wrapper"><!-- /#wrapper -->
 	
