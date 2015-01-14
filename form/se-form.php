@@ -1,54 +1,43 @@
 <?php include("form/navigasi.php") ?>
 <script>
 	$(document).ready(function(){
-		var	col1a = $("#col1a"),
-			col1b = $("#col1b"),
-			col2a = $("#col2a"),
-			col2b = $("#col2b"),
-			col3a = $("#col3a"),
-			col3b = $("#col3b"),
-			col4a = $("#col4a"),
-			col4b = $("#col4b");
+		var	col1a = $("#col1a"),col1b = $("#col1b"),
+			col2a = $("#col2a"),col2b = $("#col2b"),
+			col3a = $("#col3a"),col3b = $("#col3b"),
+			col4a = $("#col4a"),col4b = $("#col4b");
 			
-		$(col1b).hide();$(col2b).hide();$(col3b).hide();$(col4b).hide();
+		$(col1b).slideUp();$(col2b).slideUp();$(col3b).slideUp();$(col4b).slideUp();
 		$(col1a).click(function(){
-			if (col1b.is(':visible')) {col1b.hide();}
+			if (col1b.is(':visible')) {col1b.slideUp();}
 			else {
-				if(col2b.is(':visible')){col2b.hide();col1b.show();window.location="#col1a";}
-				else{col1b.show();window.location="#col1a";}
+				if(col2b.is(':visible')){col2b.slideUp();col1b.slideDown();window.location="#col1a";}
+				else{col1b.slideDown();window.location="#col1a";}
 			}
 		});
 		$(col2a).click(function(){
-			if (col2b.is(':visible')) {col2b.hide();}
+			if (col2b.is(':visible')) {col2b.slideUp();}
 			else {
-				if(col1b.is(':visible')){col1b.hide();col2b.show();window.location="#col2a";}
-				else{col2b.show();window.location="#col2a";}
+				if(col1b.is(':visible')){col1b.slideUp();col2b.slideDown();window.location="#col2a";}
+				else{col2b.slideDown();window.location="#col2a";}
 			}
 		});
 			
 		$(col3a).click(function(){
-			if (col3b.is(':visible')) {col3b.hide();}
+			if (col3b.is(':visible')) {col3b.slideUp();}
 			else {
-				if(col4b.is(':visible')){col4b.hide();col3b.show();window.location="#col3a";}
-				else{col3b.show();window.location="#col3a";}
+				if(col4b.is(':visible')){col4b.slideUp();col3b.slideDown();window.location="#col3a";}
+				else{col3b.slideDown();window.location="#col3a";}
 			}
 		});
 		
 		$(col4a).click(function(){
-			if (col4b.is(':visible')) {col4b.hide();}
+			if (col4b.is(':visible')) {col4b.slideUp();}
 			else {
-				if(col3b.is(':visible')){col3b.hide();col4b.show();window.location="#col4a";}
-				else{col4b.show();window.location="#col4a";}
+				if(col3b.is(':visible')){col3b.slideUp();col4b.slideDown();window.location="#col4a";}
+				else{col4b.slideDown();window.location="#col4a";}
 			}
 		});
 		
-		function collapseme(b,a){
-			if ($(b).is(':visible')) {$(b).hide();}
-			else {
-				if($(a).is(':visible')){$(a).hide();$(b).show();window.location=$(this);}
-				else{$(b).show();window.location=$(this);}
-			}
-		}
 			
 	});
 </script>
@@ -76,7 +65,7 @@
 			<div class="col-lg-4">
 				<label>Date of Assessment: </label>
 				<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-					<input type="text" class="form-control" id="date_assessment" ><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					<input type="text" class="form-control" id="date_assessment" placeholder="yyyy-mm-dd"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -94,7 +83,7 @@
 			<div class="col-lg-4">
 				<label>Date of last assessment:</label>
 				<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-					<input type="text" class="form-control" id="last_assessment" ><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					<input type="text" class="form-control" id="last_assessment" placeholder="yyyy-mm-dd" ><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -112,13 +101,13 @@
 			<div class="col-lg-4">
 				<label># of home visit(s) and date:</label>
 				<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-					<input type="text" class="form-control" id="home_visit" ><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					<input type="text" class="form-control" id="home_visit" placeholder="yyyy-mm-dd"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 				</div>
 			</div>
 			<div class="col-lg-4">
 				<label>Date of last home visit:</label>
 				<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-					<input type="text" class="form-control" id="last_home_visit" ><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					<input type="text" class="form-control" id="last_home_visit" placeholder="yyyy-mm-dd"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 				</div>
 			</div>
 			<div class="col-lg-12">

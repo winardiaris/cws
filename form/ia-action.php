@@ -30,6 +30,14 @@ elseif($op == "addassessment"){
 	if($save){echo "success";}
 	else{echo "error";}
 }
+elseif($op == "updateassessment"){
+	$file_no = $_GET['file_no'];
+	$value = htmlspecialchars($_GET['value']);
+	$save = mysql_query("UPDATE  `ia` SET `assessment`='$value', `last_change`='$NOW' WHERE `file_no`='$file_no' ;") or die(mysql_error());
+	
+	if($save){echo "success";}
+	else{echo "error";}
+}
 elseif($op == "savelegaldoc"){
 	$file_no = $_GET['file_no'];
 	$value = htmlspecialchars($_GET['value']);

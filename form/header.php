@@ -25,6 +25,7 @@ include ("inc/conf.php");
 	
 	<script src="js/custom.js"></script>
 	<script src="js/jquery.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/bootstrap-datepicker.js"></script>
 	<script src="js/plugins/metisMenu/metisMenu.min.js"></script>
@@ -35,5 +36,8 @@ include ("inc/conf.php");
 <body <?php if($_GET['page'] == "login"){ echo 'class="bg-login"';}?>>
 <?php echo $iframe ?>
 <div id="wrapper"><!-- /#wrapper -->
-	
+
+<!-- test draggable div for history.back() -->
+<script>$(function() {$("#close").draggable();});</script>
+<div id="close"><button class="btn btn-default " onClick="history.back();"><i class="fa fa-chevron-left" ></i></button></div>
 		

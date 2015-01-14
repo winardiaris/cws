@@ -1,6 +1,41 @@
 <?php 
 include("form/navigasi.php");
 ?>
+<script>
+$(document).ready(function(){
+	var	aa = $("#col9aa"),ab = $("#col9ab"),
+		ba = $("#col9ba"),bb = $("#col9bb"),
+		ca = $("#col9ca"),cb = $("#col9cb"),
+		da = $("#col9da"),db = $("#col9db"),
+		ea = $("#col9ea"),eb = $("#col9eb");
+		
+		ab.slideUp();bb.slideUp();cb.slideUp(),db.slideUp();eb.slideUp();
+		
+		$(aa).click(function(){
+			if (ab.is(':visible')) {ab.slideUp(100);}
+			else {window.location="#col9aa";ab.slideDown();bb.slideUp();cb.slideUp();db.slideUp();eb.slideUp();}
+		});
+		$(ba).click(function(){
+			if (bb.is(':visible')) {bb.slideUp(100);}
+			else {window.location="#col9ba";bb.slideDown();ab.slideUp();cb.slideUp();db.slideUp();eb.slideUp();}
+		});
+		$(ca).click(function(){
+			if (cb.is(':visible')) {cb.slideUp(100);}
+			else {window.location="#col9ca";cb.slideDown();ab.slideUp();bb.slideUp();db.slideUp();eb.slideUp();}
+		});
+		$(da).click(function(){
+			if (db.is(':visible')) {db.slideUp(100);}
+			else {window.location="#col9da";db.slideDown();ab.slideUp();bb.slideUp();cb.slideUp();eb.slideUp();}
+		});
+		$(ea).click(function(){
+			if (eb.is(':visible')) {eb.slideUp(100);}
+			else {window.location="#col9ea";eb.slideDown();ab.slideUp();bb.slideUp();cb.slideUp();db.slideUp();}
+		});
+	
+});
+</script>
+
+
 <div id="page-wrapper"><!-- page-wrapper -->
 <div class="row">
 <div class="col-lg-12"><h3 class="page-header">Best Interest Assessment Report for Temporary Care</h3></div>
@@ -24,7 +59,7 @@ include("form/navigasi.php");
 			<div class="col-lg-4">
 				<label>Date of Assessment: </label>
 				<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-					<input type="text" class="form-control" id="date_assessment" ><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					<input type="text" class="form-control" id="date_assessment" placeholder="yyyy-mm-dd"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -716,7 +751,7 @@ include("form/navigasi.php");
 				<label>Date of Face-to-Face interview</label><br>
 				<i>(If different from BIA date)</i>
 				<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-					<input type="text" class="form-control" id="801" value=""><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					<input type="text" class="form-control" id="801" value="" placeholder="yyyy-mm-dd"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 				</div>
 			</div>
 			<div class="col-lg-12"></div><br>
@@ -913,7 +948,7 @@ include("form/navigasi.php");
 			
 			<!-- a). Suggested Questions: -->
 			<div class="panel panel-primary">
-				<div class="panel-heading"><span class="collapseme" id="col9aa">a). Suggested Questions:</span></div>
+				<div class="panel-heading"><span class="collapseme" id="col9aa" >a). Suggested Questions:</span></div>
 				<div class="panel-body" id="col9ab">
 					<div class="form-group">
 						<ul>
@@ -993,79 +1028,89 @@ include("form/navigasi.php");
 					<small>Please Tick (<input type="checkbox" checked>) as appropriate</small>
 				</div>
 				<div class="panel-body" id="col9cb">
-					<div class="table-responsive checkbox">
-						<table class="table table-bordered">
-							<tr>
-								<td><label><input type="checkbox" id="9c01a">Fan</label></td>
-								<td><label><input type="checkbox" id="9c01b">Private</label>
-									<label><input type="checkbox" id="9c01c">House owner</label>
-								</td>
-								<!-- -->
-								<td><label><input type="checkbox" id="9c02a">Satellite/Cable TV</label></td>
-								<td><label><input type="checkbox" id="9c02b">Private</label>
-									<label><input type="checkbox" id="9c02c">House owner</label>
-								</td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="9c03a">TV set</label></td>
-								<td><label><input type="checkbox" id="9c03b">Private</label>
-									<label><input type="checkbox" id="9c03c">House owner</label>
-								</td>
-								<!-- -->
-								<td><label><input type="checkbox" id="9c04a">Washing machine</label></td>
-								<td><label><input type="checkbox" id="9c04b">Private</label>
-									<label><input type="checkbox" id="9c04c">House owner</label>
-								</td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="9c05a">Telephone (mobile)</label></td>
-								<td><label><input type="checkbox" id="9c05b">Private</label>
-									<label><input type="checkbox" id="9c05c">House owner</label>
-								</td>
-								<!-- -->
-								<td><label><input type="checkbox" id="9c06a">Computer</label></td>
-								<td><label><input type="checkbox" id="9c06b">Private</label>
-									<label><input type="checkbox" id="9c06c">House owner</label>
-								</td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="9c07a">Radio</label></td>
-								<td><label><input type="checkbox" id="9c07b">Private</label>
-									<label><input type="checkbox" id="9c07c">House owner</label>
-								</td>
-								<!-- -->
-								<td><label><input type="checkbox" id="9c08a">Internet connection</label></td>
-								<td><label><input type="checkbox" id="9c08b">Private</label>
-									<label><input type="checkbox" id="9c08c">House owner</label>
-								</td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" id="9c09a">Furniture</label></td>
-								<td><label><input type="checkbox" id="9c09b">Private</label>
-									<label><input type="checkbox" id="9c09c">House owner</label>
-								</td>
-								<!-- -->
-								<td><label><input type="checkbox" id="9c10a">Kitchen Utensils</label></td>
-								<td><label><input type="checkbox" id="9c10b">Private</label>
-									<label><input type="checkbox" id="9c10c">House owner</label>
-								</td>
-							<tr>
-								<td><label><input type="checkbox" id="9c11a">Refrigerator</label></td>
-								<td><label><input type="checkbox" id="9c11b">Private</label>
-									<label><input type="checkbox" id="9c11c">House owner</label>
-								</td>
-								<!-- -->
-								<td><label><input type="checkbox" id="9c12a">Other</label></td>
-								<td><label><input type="checkbox" id="9c12b">Private</label>
-									<label><input type="checkbox" id="9c12c">House owner</label>
-								</td>
-							</tr>
-							
-							
-							
-							
-							
-						</table>
+					<div class="col-lg-6">
+						<div class="table-responsive checkbox">
+							<table class="table table-bordered">
+								<tr>
+									<td><label><input type="checkbox" id="9c01a">Fan</label></td>
+									<td><label><input type="checkbox" id="9c01b">Private</label>
+										<label><input type="checkbox" id="9c01c">House owner</label>
+									</td>
+								</tr>
+								<tr>
+									<td><label><input type="checkbox" id="9c03a">TV set</label></td>
+									<td><label><input type="checkbox" id="9c03b">Private</label>
+										<label><input type="checkbox" id="9c03c">House owner</label>
+									</td>
+								</tr>
+								<tr>
+									<td><label><input type="checkbox" id="9c05a">Telephone (mobile)</label></td>
+									<td><label><input type="checkbox" id="9c05b">Private</label>
+										<label><input type="checkbox" id="9c05c">House owner</label>
+									</td>
+								</tr>
+								<tr>
+									<td><label><input type="checkbox" id="9c07a">Radio</label></td>
+									<td><label><input type="checkbox" id="9c07b">Private</label>
+										<label><input type="checkbox" id="9c07c">House owner</label>
+									</td>
+								</tr>
+								<tr>
+									<td><label><input type="checkbox" id="9c09a">Furniture</label></td>
+									<td><label><input type="checkbox" id="9c09b">Private</label>
+										<label><input type="checkbox" id="9c09c">House owner</label>
+									</td>
+								</tr>
+								<tr>
+									<td><label><input type="checkbox" id="9c11a">Refrigerator</label></td>
+									<td><label><input type="checkbox" id="9c11b">Private</label>
+										<label><input type="checkbox" id="9c11c">House owner</label>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="table-responsive checkbox">
+							<table class="table table-bordered">
+								<tr>
+									<td><label><input type="checkbox" id="9c02a">Satellite/Cable TV</label></td>
+									<td><label><input type="checkbox" id="9c02b">Private</label>
+										<label><input type="checkbox" id="9c02c">House owner</label>
+									</td>
+								</tr>
+								<tr>
+									<td><label><input type="checkbox" id="9c04a">Washing machine</label></td>
+									<td><label><input type="checkbox" id="9c04b">Private</label>
+										<label><input type="checkbox" id="9c04c">House owner</label>
+									</td>
+								</tr>
+								<tr>
+									<td><label><input type="checkbox" id="9c06a">Computer</label></td>
+									<td><label><input type="checkbox" id="9c06b">Private</label>
+										<label><input type="checkbox" id="9c06c">House owner</label>
+									</td>
+								</tr>
+								<tr>
+									<td><label><input type="checkbox" id="9c08a">Internet connection</label></td>
+									<td><label><input type="checkbox" id="9c08b">Private</label>
+										<label><input type="checkbox" id="9c08c">House owner</label>
+									</td>
+								</tr>
+								<tr>
+									<td><label><input type="checkbox" id="9c10a">Kitchen Utensils</label></td>
+									<td><label><input type="checkbox" id="9c10b">Private</label>
+										<label><input type="checkbox" id="9c10c">House owner</label>
+									</td>
+								</tr>
+								<tr>
+									<td><label><input type="checkbox" id="9c12a">Other</label></td>
+									<td><label><input type="checkbox" id="9c12b">Private</label>
+										<label><input type="checkbox" id="9c12c">House owner</label>
+									</td>
+								</tr>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -1118,7 +1163,7 @@ include("form/navigasi.php");
 					</div>
 				</div>
 			</div>
-
+			<br><button class="btn btn-success" id="save_9"><i class="fa fa-save"></i> Save</button>
 		</div>
 		</div>
 	
@@ -1166,6 +1211,7 @@ include("form/navigasi.php");
 					<textarea class="form-control" id="106"></textarea>
 				</div>
 			</div>
+			<br><button class="btn btn-success" id="save_10"><i class="fa fa-save"></i> Save</button>
 		</div>
 		</div>
 		</div>
@@ -1176,7 +1222,7 @@ include("form/navigasi.php");
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseCWS">CWS - Analysis of information & conclusions by Caseworker</a>
 			</h4>
 		</div>
-		<div id="collapseCWS" class="panel-collapse collapse in ">
+		<div id="collapseCWS" class="panel-collapse collapse ">
 		<div class="panel-body">
 			<label>Children at risk : Risk rating </label>
 			<div class="well well-sm">
@@ -1189,8 +1235,7 @@ include("form/navigasi.php");
 						<li><b>Low:</b> denotes that the regular referral system applies. Additionally, staff should review the situation of individuals at low risk at regular intervals or implement another structured monitoring and follow-up mechanism to ensure that the case is handled adequately.</li>
 					</ul>
 				</p>
-			</div>
-			
+			</div>	
 			<div class="table-responsive">
 				<table class="table table-bordered">
 					<tr class="warning">
@@ -1371,6 +1416,41 @@ include("form/navigasi.php");
 					
 				</table>
 			</div>
+			<br><button class="btn btn-success" id="save_10"><i class="fa fa-save"></i> Save</button>
+		</div>
+		</div>
+		</div>
+		<!-- UNHCR Child Protection officer or Community Services -  Follow up & Conclusions -->
+		<div class="panel panel-danger">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseUNHCR">UNHCR Child Protection officer or Community Services -  Follow up & Conclusions</a>
+			</h4>
+		</div>
+		<div id="collapseUNHCR" class="panel-collapse collapse ">
+		<div class="panel-body">
+			<label>Conclusions </label>
+			<textarea class="form-control" id="unhcr1"></textarea><br>
+			<label>CSO or CP signature & date</label>
+			<textarea class="form-control" id="unhcr2"></textarea><br>
+			<button class="btn btn-success" id="save_unhcr"><i class="fa fa-save"></i> Save</button>
+		</div>
+		</div>
+		</div>
+		<!-- Panel conclusion (Optional –for complicated cases, only if necessary) -->
+		<div class="panel panel-danger">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseopt">Panel conclusion (Optional –for complicated cases, only if necessary)</a>
+			</h4>
+		</div>
+		<div id="collapseopt" class="panel-collapse collapse in ">
+		<div class="panel-body">
+			<label>Final conclusions</label>
+			<textarea class="form-control" id="opt1"></textarea><br>
+			<label>CSO or CP signature & date</label>
+			<textarea class="form-control" id="opt2"></textarea>
+			<br><button class="btn btn-success" id="save_opt"><i class="fa fa-save"></i> Save</button>
 		</div>
 		</div>
 		</div>

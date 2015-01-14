@@ -57,16 +57,13 @@ else{
 			$.ajax({url: "form/ia-action.php",data: "op=check"+datanya,cache: false,
 				success: function(msg){
 					if(msg=="inuse"){
-						$("#a").addClass("text-warning").removeClass("text-success text-danger");
-						$("#a").html("<i class='fa fa-warning'></i> In use");
+						$("#a").addClass("text-warning").removeClass("text-success text-danger").html("<i class='fa fa-warning'></i> In use");
 					}
 					else if(msg=="avail"){
-						$("#a").addClass("text-success").removeClass("text-danger text-warning");
-						$("#a").html("<i class='fa fa-check'></i> Available");
+						$("#a").addClass("text-success").removeClass("text-danger text-warning").html("<i class='fa fa-check'></i> Available");
 					}
 					else{
-						$("#a").addClass("text-danger").removeClass("text-success text-warning");
-						$("#a").html("<i class='fa fa-warning'></i> No Data");
+						$("#a").addClass("text-danger").removeClass("text-success text-warning").html("<i class='fa fa-warning'></i> No Data");
 					}
 				}
 			});
@@ -93,6 +90,40 @@ else{
 					by = $("#ia_assessment_by").val();
 				var datanya = "&file_no="+file_no+"&value="+date_+";"+location+";"+by;
 				$.ajax({url: "form/ia-action.php",data: "op=addassessment"+datanya,cache: false,
+					success: function(msg){
+						if(msg=="success"){
+							alert("berhasil");
+							$("#collapseTwo").addClass("in");
+							$("#file_no").attr("disabled",true);
+							$("#a").html("");
+						}
+						else{alert("gagal");}
+					}
+				});
+			}
+		});
+		
+		//update assessment
+		$("#update_assessment").click(function(){
+			if(file_no == ""){
+				alert("Please insert File No");
+				$("#file_no").val("").focus();
+			}
+			else if($("#a").hasClass("text-warning")){
+				alert("File Number in use");
+				$("#file_no").val("").focus();
+			}
+			else if($("#a").hasClass("text-danger")){
+				var r = confirm("No Data for ["+file_no+"], Add new Data?");
+				if (r == true) {window.location="?page=person-form";} 
+				else {$("#file_no").val("").focus();}
+			}
+			else{
+				var date_ = $("#ia_date_assessment").val(),
+					location = $("#ia_location_assessment").val(),
+					by = $("#ia_assessment_by").val();
+				var datanya = "&file_no="+file_no+"&value="+date_+";"+location+";"+by;
+				$.ajax({url: "form/ia-action.php",data: "op=updateassessment"+datanya,cache: false,
 					success: function(msg){
 						if(msg=="success"){
 							alert("berhasil");
@@ -202,7 +233,7 @@ else{
 	<div class="col-lg-2  ">
 		<label>Date of Assessment:</label>
 		<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-			<input type="text" class="form-control" id="ia_date_assessment" value="<?php if($edit==1){echo $assessment[0];} ?>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+			<input type="text" class="form-control" id="ia_date_assessment" placeholder="yyyy-mm-dd" value="<?php if($edit==1){echo $assessment[0];} ?>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 		</div>
 	</div>
 	<div class="col-lg-3  ">
@@ -294,7 +325,7 @@ else{
 							<td><label>Date of Birth/age</label></td>
 							<td>
 								<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-									<input type="text" class="form-control" id="uam_living_dob"  onchange="CalAge(uam_living_dob,uam_living_age);" ><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+									<input type="text" class="form-control" id="uam_living_dob"  placeholder="yyyy-mm-dd" onchange="CalAge(uam_living_dob,uam_living_age);" ><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 								</div>
 								<label>Age</label> <input class="form-control" id="uam_living_age" type="number">
 							</td>

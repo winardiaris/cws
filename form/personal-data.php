@@ -1,4 +1,6 @@
-<?php include("form/navigasi.php") ;
+<?php 
+	include("form/navigasi.php") ;
+	include("form/function.php") ;
 
 	if(isset($_GET['active'])){
 		$active = $_GET['active'];
@@ -59,7 +61,7 @@
 						elseif($data['active'] == "3"){
 							$actives = "<p class='text-danger'><i class='fa fa-close'></i> Deleted</p>";
 						}
-						
+				
 						echo'
 							<tr>
 								<td width="10px" align="right">'.$no.'.</td>
@@ -67,7 +69,7 @@
 								<td>'.$data['name'].'</td>
 								<td>'.$data['country_name'].'</td>
 								<td>'.$data['sex'].'</td>
-								<td>'.$data['address'].'</td>
+								<td>'.getAddress($data['address']).'. </td>
 								<td>'.$data['phone'].'</td>
 								<td>'.$actives.'</td>
 								<td width="10px" align="center">

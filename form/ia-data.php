@@ -37,10 +37,10 @@
 								<td>'.$assessment[1].'</td>
 								<td>'.$assessment[2].'</td>
 								<td width="10px">
-									<a  href="?page=ia-form&op=edit&file_no='.$data['file_no'].'" class="btn btn-primary btn-sm"  title="Edit '.$data['name'].'"><i class="fa fa-edit"></i></a>
+									<a  href="?page=ia-form&op=edit&file_no='.$data['file_no'].'" class="btn btn-circle btn-primary btn-sm"  title="Edit '.$data['name'].'"><i class="fa fa-edit"></i></a>
 								</td>
 								<td width="10px">
-									<button class="btn btn-danger btn-sm" id="'.$data['file_no'].'" title="Delete '.$data['name'].'"><i class="fa fa-close"></i></button>
+									<button class="btn btn-circle btn-danger btn-sm" id="'.$data['file_no'].'" title="Delete '.$data['name'].'"><i class="fa fa-close"></i></button>
 								</td>
 							</tr>
 							

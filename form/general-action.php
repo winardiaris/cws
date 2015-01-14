@@ -2,8 +2,21 @@
 include ("../inc/conf.php");
 $op = $_GET['op'];
 
-
-if($op == "getcountry"){
+if($op == "check"){
+	$file_no = $_GET['file_no'];
+	$qry = mysql_query("SELECT COUNT(*) AS `ada` FROM `person` WHERE `file_no`='$file_no';") or die(mysql_error());
+	$person = mysql_fetch_array($qry);
+	
+	if($person['ada'] > 0){
+		echo "inuse";
+	}
+	else{
+		echo "avail";
+	}
+	
+	
+}
+elseif($op == "getcountry"){
 	$country = $_GET['country'];
 	$get = mysql_query("SELECT * FROM `master_country` ");
 	echo '<option value="0">-- select --</option>';
@@ -28,6 +41,38 @@ elseif($op == "getrelation"){
 	echo '<option value="0">-- select --</option>';
 	while ($data = mysql_fetch_array($b)){
 		echo '<option>'.$data['relation'].'</option>';
+	}
+}
+elseif($op == "getprov"){
+	$kode = $_GET['kode'];
+	$prov = mysql_query("SELECT * FROM `data_wilayah` WHERE LENGTH(`kode`)<=2 ORDER BY `nama` ASC;") or die(mysql_error());
+	echo '<option value="0">-- Provinsi --</option>';
+	while ($data = mysql_fetch_array($prov)){
+		echo '<option value="'.$data['kode'].'" ';
+			if($kode == $data['kode']){echo 'selected';}
+		echo'>'.$data['nama'].'</option>';
+	}
+}
+elseif($op == "getkab"){
+	$kode = $_GET['kode'];
+	$prov = $_GET['prov'];
+	$kab = mysql_query("SELECT * FROM `data_wilayah` WHERE `kode` LIKE '$prov%' AND LENGTH(`kode`)>2 AND LENGTH(`kode`)<=5 ORDER BY `nama` ASC;") or die(mysql_error());
+	echo '<option value="0">-- Kabupaten/Kota --</option>';
+	while ($data = mysql_fetch_array($kab)){
+		echo '<option value="'.$data['kode'].'" ';
+			if($kode == $data['kode']){echo 'selected';}
+		echo'>'.$data['nama'].'</option>';
+	}
+}
+elseif($op == "getkec"){
+	$kode = $_GET['kode'];
+	$kab = $_GET['kab'];
+	$kec = mysql_query("SELECT * FROM `data_wilayah` WHERE `kode` LIKE '$kab%' AND LENGTH(`kode`)>5 AND LENGTH(`kode`)<=8 ORDER BY `nama` ASC;") or die(mysql_error());
+	echo '<option value="0">-- Kecamatan/Kelurahan --</option>';
+	while ($data = mysql_fetch_array($kec)){
+		echo '<option value="'.$data['kode'].'" ';
+			if($kode == $data['kode']){echo 'selected';}
+		echo'>'.$data['nama'].'</option>';
 	}
 }
 ?>
