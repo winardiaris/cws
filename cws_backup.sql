@@ -93,7 +93,7 @@ CREATE TABLE `ia` (
 
 LOCK TABLES `ia` WRITE;
 /*!40000 ALTER TABLE `ia` DISABLE KEYS */;
-INSERT INTO `ia` VALUES ('1','2014-12-30;jakarta;akaa','1a;2b;3c','3;1,0,0,1,1,0,0,0,1,0,0,0;1,0,0,0,1,1',';;300000','1;2','3;4','5;6','7;8','REMARKS','2015-01-13 15:35:59','2015-01-13 15:34:24'),('10','2014-11-10;jakarta;dadang','yes;no;yes he have','','','','','','','','2015-01-07 11:04:48','2015-01-13 16:31:49'),('12','2013-12-12;jakarta;diding','no;no;yes i have','3;1,1,0,0,1,0,1,0,0,0,1,0;0,0,1,0,1,1','-;4x6;500.000','1;2','3;4','5;6','7;8','remarks','2015-01-07 13:05:01',NULL),('13','2012-10-12;jakarta;-','1;2;3','3;0,0,0,0,0,0,0,0,0,0,0,0;0,0,0,0,0,0',';;',';',';',';',';','','2015-01-07 18:18:53',NULL),('5','2015-01-15;jakarta;-','no;no;yes','','','','','','','','2015-01-07 11:45:40',NULL),('88','2014-12-02;jakarta;--','no;no;ye he have','','','','','','','','2015-01-05 11:50:25',NULL);
+INSERT INTO `ia` VALUES ('1','2014-12-30;jakarta;akaa','1a;2b;3c','3;1,0,0,1,1,0,0,0,1,0,0,0;1,0,0,0,1,1',';;300000','1;2','3;4','5;6','7;8','REMARKS','2015-01-13 15:35:59','2015-01-13 15:34:24'),('10','2014-11-10;jakarta;dadang','yes;no;yes he have','','','','','','','','2015-01-07 11:04:48','2015-01-13 16:31:49'),('12','2013-12-12;jakarta;diding','no;no;yes i have','3;1,1,0,0,1,0,1,0,0,0,1,0;0,0,1,0,1,1','-;4x6;500.000','1;2','3;4','5;6','7;8','remarks','2015-01-07 13:05:01',NULL),('123','2014-10-23;Jakarta;aris','1;2;3','1;1,1,0,0,0,0,0,0,0,0,0,0;1,0,0,0,0,0','yes;5x4;500000','1;2','3;4','5;6','7;8','remarks','2015-01-15 20:08:49',NULL),('13','2012-10-12;jakarta;-','1;2;3','3;0,0,0,0,0,0,0,0,0,0,0,0;0,0,0,0,0,0',';;',';',';',';',';','','2015-01-07 18:18:53',NULL),('5','2015-01-15;jakarta;-','no;no;yes','','','','','','','','2015-01-07 11:45:40',NULL),('88','2014-12-02;jakarta;--','no;no;ye he have','','','','','','','','2015-01-05 11:50:25',NULL);
 /*!40000 ALTER TABLE `ia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,7 +183,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES ('098','test','1','1993-03-07','M','SI','13.02.18;jl . merpati no. 1111','097','','Refugee',',','','','','','','','0000-00-00','1','2015-01-07 17:44:49','2015-01-14 15:38:09'),('1','dadang','1','1979-10-24','M','SI','-','-','','Refugee','Jakarta,2009-01-27','-','-','-','-','-','-','2014-12-24','1','2015-01-04 10:59:30','0000-00-00 00:00:00'),('10','entin','107','1989-06-20','F','MA','tangerang','-','','Refugee','Bogor,2010-02-09','-','-','-','-','-','-','2012-07-11','1','2015-01-04 20:39:45','0000-00-00 00:00:00'),('12','astri','15','1979-10-23','F','MA','address','-','','Asylum Seeker','Jakarta,2014-11-04','-','-','-','-','-','-','2015-01-01','1',NULL,'2015-01-04 19:54:08'),('1223','','0','0000-00-00','u','0','','','','0',',','','','','','','','0000-00-00','1','2015-01-14 13:08:01','0000-00-00 00:00:00'),('12344','dudung','1','1989-06-15','M','MA','18.08.04;Perumahan. bla bla bla','098888','','Refugee','Jakarta,2011-02-10','-','-','-','-','-','-','2014-11-13','1','2015-01-14 13:26:49','2015-01-14 14:14:30'),('13','aris','107','1993-02-02','M','SI','51.01.02;asdasda','087870870412','','Refugee','Bogor,2014-10-06','-','-','Bahasa Indonesia','English','-','-','2015-01-01','1',NULL,'2015-01-14 15:04:50'),('134','','0','0000-00-00','u','0','','','','0',',','','','','','','','0000-00-00','1','2015-01-14 13:05:49','0000-00-00 00:00:00'),('14','asuna','1','2009-02-03','F','SI','','-','','Refugee','Bogor,2015-01-01','-','-','-','-','-','-','2015-01-02','3',NULL,'2015-01-04 18:36:20'),('19028','dudung suherman','107','1992-03-29','M','SI','14.02.02;jl. pacet','09888','','0',',','','','','','','','2014-10-21','1','2015-01-12 11:52:25','2015-01-14 15:35:14'),('5','diana','105','1993-02-02','F','SI','','','','Refugee',',','','','','','','','0000-00-00','3','2015-01-07 11:44:20','2015-01-12 11:53:33'),('88','diding','1','1989-04-24','M','SI','33.12.16;asdsadasdas','0987777','','Refugee','Jakarta,2012-10-23','-','-','-','-','-','-','2013-06-19','2','2015-01-05 10:17:43','2015-01-14 15:50:08'),('90','kaka','107','1989-10-10','M','SI','-','098','','Refugee','Jakarta,2014-06-17','-','-','-','-','-','-','2015-01-01','1','2015-01-05 15:10:15','0000-00-00 00:00:00'),('qwe','amelia','1','1993-03-04','M','SI','31.75.07;jl. tomang','','','Refugee',',','','','','','','','0000-00-00','1','2015-01-14 16:09:33','0000-00-00 00:00:00');
+INSERT INTO `person` VALUES ('098','test','1','1993-03-07','M','SI','13.02.18;jl . merpati no. 1111','097','','Refugee',',','','','','','','','0000-00-00','1','2015-01-07 17:44:49','2015-01-14 15:38:09'),('123','dadang','1','1993-10-13','M','SI','31.71.04;jl. zzzzzzz','0988777','photo/123.png','Refugee','Jakarta,2013-12-12','-','-','-','-','-','-','2014-09-30','1','2015-01-14 18:16:39','2015-01-14 18:48:13'),('1234','dadang','1','1993-10-11','M','SI','31.73.02;jl....aaa a','098888','photo/1234.png','Refugee',',','','','','','','','0000-00-00','1','2015-01-14 18:25:49','0000-00-00 00:00:00'),('12344','dudung','1','1989-06-15','M','MA','18.08.04;Perumahan. bla bla bla','098888','','Refugee','Jakarta,2011-02-10','-','-','-','-','-','-','2014-11-13','1','2015-01-14 13:26:49','2015-01-14 14:14:30'),('13','aris','107','1993-02-02','M','SI','51.01.02;asdasda','087870870412','','Refugee','Bogor,2014-10-06','-','-','Bahasa Indonesia','English','-','-','2015-01-01','1',NULL,'2015-01-14 15:04:50'),('19028','dudung suherman','107','1992-03-29','M','SI','14.02.02;jl. pacet','09888','','0',',','','','','','','','2014-10-21','1','2015-01-12 11:52:25','2015-01-14 15:35:14'),('88','diding','1','1989-04-24','M','SI','33.12.16;asdsadasdas','0987777','','Refugee','Jakarta,2012-10-23','-','-','-','-','-','-','2013-06-19','2','2015-01-05 10:17:43','2015-01-14 15:50:08'),('qwe','amelia','1','1993-03-04','M','SI','31.75.07;jl. tomang','','','Refugee',',','','','','','','','0000-00-00','1','2015-01-14 16:09:33','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,7 +200,7 @@ CREATE TABLE `reported_family` (
   `value` text,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -209,8 +209,40 @@ CREATE TABLE `reported_family` (
 
 LOCK TABLES `reported_family` WRITE;
 /*!40000 ALTER TABLE `reported_family` DISABLE KEYS */;
-INSERT INTO `reported_family` VALUES (2,'13','aris;21;M;Son;-;-;-','0000-00-00 00:00:00'),(3,'13','asd;12;F;Daughter;-;-;-','0000-00-00 00:00:00'),(4,'14','asuna;12;F;Sister;-;-;-','2015-01-04 10:46:29'),(5,'1','adul;12;M;Brother;-;-;-','2015-01-04 10:59:49'),(6,'12','astri;12;M;Sister;-;-;-','2015-01-04 19:51:14'),(7,'10','nanang;16;M;Brother;-;-;-','2015-01-04 20:40:06'),(8,'88','test;12;M;Father;-;-;-','2015-01-05 11:15:29'),(9,'90','adik;21;M;Brother;-;-;-','2015-01-05 15:10:37'),(10,'098','test;16;F;Sister;;;','2015-01-07 17:45:25'),(11,'',';;M;0;;;','2015-01-14 13:04:20'),(12,'134','ad;;M;0;;;','2015-01-14 13:05:55'),(13,'12344','dewi;17;M;Sister;-;-;-','2015-01-14 14:24:12');
+INSERT INTO `reported_family` VALUES (2,'13','aris;21;M;Son;-;-;-','0000-00-00 00:00:00'),(3,'13','asd;12;F;Daughter;-;-;-','0000-00-00 00:00:00'),(4,'14','asuna;12;F;Sister;-;-;-','2015-01-04 10:46:29'),(5,'1','adul;12;M;Brother;-;-;-','2015-01-04 10:59:49'),(6,'12','astri;12;M;Sister;-;-;-','2015-01-04 19:51:14'),(7,'10','nanang;16;M;Brother;-;-;-','2015-01-04 20:40:06'),(8,'88','test;12;M;Father;-;-;-','2015-01-05 11:15:29'),(9,'90','adik;21;M;Brother;-;-;-','2015-01-05 15:10:37'),(10,'098','test;16;F;Sister;;;','2015-01-07 17:45:25'),(11,'',';;M;0;;;','2015-01-14 13:04:20'),(12,'134','ad;;M;0;;;','2015-01-14 13:05:55'),(13,'12344','dewi;17;M;Sister;-;-;-','2015-01-14 14:24:12'),(14,'123','adul;12;M;Brother;-;-;-','2015-01-14 18:41:34');
 /*!40000 ALTER TABLE `reported_family` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `se`
+--
+
+DROP TABLE IF EXISTS `se`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `se` (
+  `file_no` varchar(50) NOT NULL,
+  `doa` date NOT NULL,
+  `assessment_data` text NOT NULL,
+  `background_info` text NOT NULL,
+  `living_env` text,
+  `living_cond` text,
+  `sec_neigh` text,
+  `phnn` text,
+  `created` datetime NOT NULL,
+  `last_change` datetime DEFAULT NULL,
+  PRIMARY KEY (`file_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `se`
+--
+
+LOCK TABLES `se` WRITE;
+/*!40000 ALTER TABLE `se` DISABLE KEYS */;
+INSERT INTO `se` VALUES ('123','2015-01-01','aris;Jakarta;2014-12-31;-;-;2014-12-31;2014-12-31','back1a;back2a','1,0,1,0,1,0,0,0,0,0,0;0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,1,1,1,0,0,1','3;4x5;500;notesa','1,1,1,0,1;1,0,1,0,1','police;hospital;nptesb;Number of person living in same house: ','2015-01-15 21:13:40','2015-01-15 23:44:17'),('1234','2015-01-01','aris;undefined;2014-12-01;-;-;2015-01-01;2014-12-01','',NULL,NULL,NULL,NULL,'2015-01-15 21:09:44',NULL);
+/*!40000 ALTER TABLE `se` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -227,7 +259,7 @@ CREATE TABLE `system_log` (
   `log_message` text NOT NULL,
   `log_time` datetime NOT NULL,
   PRIMARY KEY (`log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -236,7 +268,7 @@ CREATE TABLE `system_log` (
 
 LOCK TABLES `system_log` WRITE;
 /*!40000 ALTER TABLE `system_log` DISABLE KEYS */;
-INSERT INTO `system_log` VALUES (1,1,'login','Login success','2014-12-26 13:48:50'),(2,1,'User form','Edit user ','2014-12-26 13:49:06'),(3,1,'User form','Edit user ','2014-12-26 13:50:12'),(4,2,'login','Login success','2014-12-26 13:50:53'),(5,2,'login','Login success','2014-12-26 13:56:19'),(6,0,'User form','Edit user ','2014-12-31 12:03:13'),(7,0,'User form','Add new User','2014-12-31 12:04:02'),(8,2,'login','Login success','2015-01-02 17:22:47'),(9,2,'login','Login success','2015-01-03 21:54:10'),(10,2,'login','Login success','2015-01-04 10:47:39'),(11,2,'login','Login success','2015-01-04 15:53:03'),(12,2,'login','Login success','2015-01-04 20:37:27'),(13,0,'User form','Add new User','2015-01-04 20:56:57'),(14,2,'login','Login success','2015-01-04 20:58:01'),(15,2,'login','Login success','2015-01-05 09:48:04'),(16,2,'login','Login success','2015-01-05 11:13:41'),(17,2,'login','Login success','2015-01-05 12:07:40'),(18,0,'User form','Edit user ','2015-01-05 15:38:52'),(19,2,'login','Login success','2015-01-06 10:23:47'),(20,2,'login','Login success','2015-01-07 10:49:13'),(21,2,'login','Login success','2015-01-07 11:43:41'),(22,2,'login','Login success','2015-01-07 12:02:23'),(23,2,'login','Login success','2015-01-07 12:25:20'),(24,2,'login','Login success','2015-01-07 17:35:44'),(25,2,'login','Login success','2015-01-07 17:42:35'),(26,2,'login','Login success','2015-01-07 18:26:17'),(27,2,'login','Login success','2015-01-08 10:06:21'),(28,2,'login','Login success','2015-01-09 14:17:49'),(29,2,'login','Login success','2015-01-11 11:46:54'),(30,2,'login','Login success','2015-01-12 10:07:55'),(31,2,'login','Login success','2015-01-12 11:03:20'),(32,2,'login','Login success','2015-01-12 14:39:08'),(33,2,'login','Login success','2015-01-13 11:09:31'),(34,2,'login','Login success','2015-01-13 11:13:09'),(35,2,'login','Login success','2015-01-13 11:18:43'),(36,2,'login','Login success','2015-01-13 14:00:43'),(37,2,'login','Login success','2015-01-13 14:05:13'),(38,2,'login','Login success','2015-01-13 18:49:21'),(39,2,'login','Login success','2015-01-14 15:57:26');
+INSERT INTO `system_log` VALUES (1,1,'login','Login success','2014-12-26 13:48:50'),(2,1,'User form','Edit user ','2014-12-26 13:49:06'),(3,1,'User form','Edit user ','2014-12-26 13:50:12'),(4,2,'login','Login success','2014-12-26 13:50:53'),(5,2,'login','Login success','2014-12-26 13:56:19'),(6,0,'User form','Edit user ','2014-12-31 12:03:13'),(7,0,'User form','Add new User','2014-12-31 12:04:02'),(8,2,'login','Login success','2015-01-02 17:22:47'),(9,2,'login','Login success','2015-01-03 21:54:10'),(10,2,'login','Login success','2015-01-04 10:47:39'),(11,2,'login','Login success','2015-01-04 15:53:03'),(12,2,'login','Login success','2015-01-04 20:37:27'),(13,0,'User form','Add new User','2015-01-04 20:56:57'),(14,2,'login','Login success','2015-01-04 20:58:01'),(15,2,'login','Login success','2015-01-05 09:48:04'),(16,2,'login','Login success','2015-01-05 11:13:41'),(17,2,'login','Login success','2015-01-05 12:07:40'),(18,0,'User form','Edit user ','2015-01-05 15:38:52'),(19,2,'login','Login success','2015-01-06 10:23:47'),(20,2,'login','Login success','2015-01-07 10:49:13'),(21,2,'login','Login success','2015-01-07 11:43:41'),(22,2,'login','Login success','2015-01-07 12:02:23'),(23,2,'login','Login success','2015-01-07 12:25:20'),(24,2,'login','Login success','2015-01-07 17:35:44'),(25,2,'login','Login success','2015-01-07 17:42:35'),(26,2,'login','Login success','2015-01-07 18:26:17'),(27,2,'login','Login success','2015-01-08 10:06:21'),(28,2,'login','Login success','2015-01-09 14:17:49'),(29,2,'login','Login success','2015-01-11 11:46:54'),(30,2,'login','Login success','2015-01-12 10:07:55'),(31,2,'login','Login success','2015-01-12 11:03:20'),(32,2,'login','Login success','2015-01-12 14:39:08'),(33,2,'login','Login success','2015-01-13 11:09:31'),(34,2,'login','Login success','2015-01-13 11:13:09'),(35,2,'login','Login success','2015-01-13 11:18:43'),(36,2,'login','Login success','2015-01-13 14:00:43'),(37,2,'login','Login success','2015-01-13 14:05:13'),(38,2,'login','Login success','2015-01-13 18:49:21'),(39,2,'login','Login success','2015-01-14 15:57:26'),(40,2,'login','Login success','2015-01-15 19:39:24');
 /*!40000 ALTER TABLE `system_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,7 +299,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,1,'super','super admin','1b3231655cebb7a1f783eddf27d254ca','aris@tech4changes.org','--','2014-12-26 13:48:50','2015-01-05 15:38:52'),(2,2,'aris','aris winardi','288077f055be4fadc3804a69422dd4f8','aris@tech4changes.org','--','2015-01-14 15:57:26','2014-12-26 13:50:12'),(3,2,'test','test','098f6bcd4621d373cade4e832627b4f6','test','test',NULL,NULL),(4,0,'','','d41d8cd98f00b204e9800998ecf8427e','','',NULL,NULL);
+INSERT INTO `user` VALUES (1,1,'super','super admin','1b3231655cebb7a1f783eddf27d254ca','aris@tech4changes.org','--','2014-12-26 13:48:50','2015-01-05 15:38:52'),(2,2,'aris','aris winardi','288077f055be4fadc3804a69422dd4f8','aris@tech4changes.org','--','2015-01-15 19:39:24','2014-12-26 13:50:12'),(3,2,'test','test','098f6bcd4621d373cade4e832627b4f6','test','test',NULL,NULL),(4,0,'','','d41d8cd98f00b204e9800998ecf8427e','','',NULL,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -331,4 +363,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-14 17:01:03
+-- Dump completed on 2015-01-16  0:36:40

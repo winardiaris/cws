@@ -51,8 +51,8 @@ else{
 		if(file_no != ""){$("#whom_living").load("form/ia-whom-living.php?file_no="+file_no);}
 		
 		//check available
-		$("#file_no").blur(function(){
-			var datanya = "&file_no="+file_no;
+		$("#file_no").change(function(){
+			var datanya = "&file_no="+$(this).val();
 			
 			$.ajax({url: "form/ia-action.php",data: "op=check"+datanya,cache: false,
 				success: function(msg){

@@ -16,11 +16,9 @@ if($op == "check"){
 	elseif($person['ada'] > 0 AND $ia['ada'] == 0){
 		echo "avail";
 	}
-	elseif($person['ada'] = 0 AND $ia['ada'] == 0){
+	elseif($person['ada'] == 0 AND $ia['ada'] == 0){
 		echo "nodata";
 	}
-	
-	
 }
 elseif($op == "addassessment"){
 	$file_no = $_GET['file_no'];

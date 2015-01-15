@@ -18,33 +18,6 @@ if($op == "saveperson"){
 	if($save){echo "success";}
 	else{echo "error";}
 }
-elseif($op == "savepersonphoto"){
-	if ( 0 < $_FILES['file']['error'] ) {
-        echo 'Error: ' . $_FILES['file']['error'] . '<br>';
-    }
-    else {
-        move_uploaded_file($_FILES['file']['tmp_name'], 'photo/' . $_FILES['file']['name']);
-        //$file_no = $_POST['file_no'];
-        
-        //if(!empty($_FILES["file"]["tmp_name"])){
-		//$folder="photo/";
-		//$file_type=$_FILES['photo']['type'];
-			//if($file_type=="image/jpeg" || $file_type=="image/jpg" || $file_type=="image/gif"  || $file_type=="image/png"){
-				//if($_FILES["photo"]["size"] < 512000){
-					//$name_file = md5($file_no);
-					//$photo = $folder.$name_file.".".end(explode(".",$_FILES["photo"]["name"]));
-					//move_uploaded_file($_FILES["photo"]["tmp_name"],$photo);
-				//}
-				//else{echo "<script type='text/javascript'> alert('ukuran gambar terlalu besar');history.back();</script>";	return false;}
-			//}
-			//else{echo "<script type='text/javascript'> alert('jenis Gambar yang anda kirim salah. Harus .jpg .gif .png');history.back();</script>";return false;}
-		//}
-		//else{$photo="photo/default.png";}
-		
-		//$qry = mysql_query("UPDATE `person` SET `photo`='$photo' WHERE `file_no`='$file_no' ") or die(mysql_error());
-        
-    }
-}
 elseif($op == "updateperson"){
 	$file_no = $_GET['file_no'];$name = $_GET['name'];$coo = $_GET['coo'];$dob=$_GET['dob'];$sex = $_GET['sex'];
 	$marital = $_GET['marital'];$address = $_GET['address'];$phone = $_GET['phone']; $status = $_GET['status'];
@@ -63,6 +36,7 @@ elseif($op == "updateperson"){
 	`marital`='$marital',
 	`address`='$address',
 	`phone`='$phone',
+	`photo`='$photo',
 	`status`='$status',
 	`arrival`='$arrival2',
 	`education`='$education',
