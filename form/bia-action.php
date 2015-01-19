@@ -53,4 +53,28 @@ elseif($op == "saveedu"){
 	if($save){echo "success";}
 	else{echo "error";}
 }
+elseif($op == "savehealth"){
+	$file_no = $_GET['file_no'];;
+	$value = htmlspecialchars($_GET['value']);
+	$save = mysql_query(" UPDATE `bia` SET `health`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no';") or die(mysql_error());
+	
+	if($save){echo "success";}
+	else{echo "error";}
+}
+elseif($op == "savepsy"){
+	$file_no = $_GET['file_no'];;
+	$value = htmlspecialchars($_GET['value']);
+	$save = mysql_query(" UPDATE `bia` SET `psy`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no';") or die(mysql_error());
+	
+	if($save){echo "success";}
+	else{echo "error";}
+}
+elseif($op == "saveinter"){
+	$file_no = $_GET['file_no'];;
+	$value = htmlspecialchars($_GET['value']);
+	$save = mysql_query(" UPDATE `bia` SET `interaction`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no';") or die(mysql_error());
+	
+	if($save){echo "success";}
+	else{echo "error";}
+}
 ?>

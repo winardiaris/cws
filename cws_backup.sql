@@ -29,6 +29,9 @@ CREATE TABLE `bia` (
   `personal_history` text,
   `toiv` longtext,
   `edu` text,
+  `health` text,
+  `psy` text,
+  `interaction` text,
   `created` datetime DEFAULT NULL,
   `last_change` datetime DEFAULT NULL,
   PRIMARY KEY (`file_no`)
@@ -41,7 +44,7 @@ CREATE TABLE `bia` (
 
 LOCK TABLES `bia` WRITE;
 /*!40000 ALTER TABLE `bia` DISABLE KEYS */;
-INSERT INTO `bia` VALUES ('123','2014-12-31','jakarta;case;org;inorg;other;name','In the Country of Origin;During the flight;In the country of Asylum','0,0,0,Observa;0,0,0,Observa;0,0,0,Observa;0,0,0,Observa;0,0,0,;0,0,0,Observa;0,0,0,;0,0,0,;0,0,0,;0,0,0,;0,0,0,;0,0,0,;0,0,0,;0,0,0,;0,0,0,;0,0,0,;0,0,0,;0,0,0,;0,0,0,;0,0,0,;0,0,0,;0,0,0,;0,0,0,;0,0,0,;0,0,0,;0,0,0,;0,0,0,;0,0,0,;0,0,0,','edu1;edu2;edu3;edu4;edu5;edu6;edu7','2015-01-19 15:21:28','2015-01-19 16:22:28');
+INSERT INTO `bia` VALUES ('123','2014-12-31','jakarta;case;org;inorg;other;name','In the Country of Origin;During the flight;In the country of Asylum','0;0;0;observation;0;0;0;observation;0;0;0;observation;0;0;0;observation;0;0;0;;0;0;0;;0;0;0;;0;0;0;observation;0;0;0;;0;0;0;observation;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;','edu1;edu2;edu3;edu4;edu5;edu6;edu7',';;undefined;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;','2014-12-29;;;;;;;0;;0;;0;;0;;0;;0;;0;;0;;0;;0;;0;;0;','Mood, attitude, appearance, speech, affect, thought consent','2015-01-19 15:21:28','2015-01-19 17:41:31');
 /*!40000 ALTER TABLE `bia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -398,4 +401,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-19 16:49:44
+-- Dump completed on 2015-01-19 17:51:45
