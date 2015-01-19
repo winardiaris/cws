@@ -19,15 +19,15 @@
 	<div class="col-lg-12">
 		<div class="navbar">
 			<div class="btn-group">
-				<a href="?page=person-data&active=1"  class="btn btn-sm btn-success"> Active</a>
-				<a href="?page=person-data&active=2"  class="btn btn-sm btn-warning"> Terminated</a>
-				<a href="?page=person-data&active=3"  class="btn btn-sm btn-danger"> Deleted</a>
+				<a href="?page=person-data&active=1"  class="btn btn-sm btn-primary <?php if($_GET['active']==1){ echo "active";}?> "> Active</a>
+				<a href="?page=person-data&active=2"  class="btn btn-sm btn-primary <?php if($_GET['active']==2){ echo "active";}?>"> Terminated</a>
+				<a href="?page=person-data&active=3"  class="btn btn-sm btn-primary <?php if($_GET['active']==3){ echo "active";}?>"> Deleted</a>
 			
 		</div>
 	</div>
 	<div class="col-lg-12">
 		<div class="table-responsive">
-		<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+		<table class="table table-striped table-bordered table-hover" id="dataTables">
 			<thead>
 				<tr>
 				<th width"10px">No.</th>
@@ -47,7 +47,7 @@
 					$qry = mysql_query("
 					SELECT `person`.`file_no`,`person`.`name`,`master_country`.`country_name` ,`person`.`sex`,`person`.`address`,`person`.`phone`,`person`.`active` FROM `person`
 					INNER JOIN `master_country` ON `person`.`coo` = `master_country`.`country_id` 
-					WHERE `person`.`active` = '$active'
+					WHERE `person`.`active` = '$active';
 					
 					") or die(mysql_error());
 					while($data = mysql_fetch_array($qry)){
@@ -63,7 +63,7 @@
 						}
 				
 						echo'
-							<tr>
+							<tr >
 								<td width="10px" align="right">'.$no.'.</td>
 								<td>'.$data['file_no'].'</td>
 								<td>'.$data['name'].'</td>
@@ -73,7 +73,7 @@
 								<td>'.$data['phone'].'</td>
 								<td>'.$actives.'</td>
 								<td width="10px" align="center">
-									<a href="?page=person-form&op=edit&file_no='.$data['file_no'].'" class="btn btn-primary btn-circle" title="Edit '.$data['file_no'].'"><i class="fa fa-edit"></i></a>
+									<a href="?page=person-form&op=edit&file_no='.$data['file_no'].'" class="btn btn-primary btn-sm" title="Edit '.$data['file_no'].'"><i class="fa fa-edit"></i></a>
 								</td>
 							</tr>
 						';
@@ -87,3 +87,4 @@
 	
 </div><!-- row -->
 </div><!-- page-wrapper -->
+<script>$(document).ready(function() {$('#dataTables').dataTable();});</script>

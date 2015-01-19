@@ -92,12 +92,12 @@ else{
 				$.ajax({url: "form/ia-action.php",data: "op=addassessment"+datanya,cache: false,
 					success: function(msg){
 						if(msg=="success"){
-							alert("berhasil");
+							alert("Data has been saved !!");
 							$("#collapseTwo").addClass("in");
 							$("#file_no").attr("disabled",true);
 							$("#a").html("");
 						}
-						else{alert("gagal");}
+						else{alert("Data not saved !!");}
 					}
 				});
 			}
@@ -126,12 +126,12 @@ else{
 				$.ajax({url: "form/ia-action.php",data: "op=updateassessment"+datanya,cache: false,
 					success: function(msg){
 						if(msg=="success"){
-							alert("berhasil");
+							alert("Data has been saved !!");
 							$("#collapseTwo").addClass("in");
 							$("#file_no").attr("disabled",true);
 							$("#a").html("");
 						}
-						else{alert("gagal");}
+						else{alert("Data not saved !!");}
 					}
 				});
 			}
@@ -144,8 +144,8 @@ else{
 			$.ajax({url: "form/ia-action.php",data: "op=savelegaldoc"+datanya,cache: false,
 				success: function(msg){
 					if(msg=="success"){
-						alert("berhasil");$("#collapseTwo").removeClass("in");$("#collapseThree").addClass("in");}
-					else{alert("gagal");}
+						alert("Data has been saved !!");$("#collapseTwo").removeClass("in");$("#collapseThree").addClass("in");}
+					else{alert("Data not saved !!");}
 				}
 			});
 			
@@ -161,9 +161,9 @@ else{
 			$.ajax({url: "form/ia-action.php",data: "op=addwhomliving"+datanya,cache: false,
 				success: function(msg){
 					if(msg=="success"){
-						alert("berhasil");$("#whom_living").load("form/ia-whom-living.php?file_no="+file_no);	$(".ia-living .form-control").val("");$(".ia-living select").val("0");	
+						alert("Data has been saved !!");$("#whom_living").load("form/ia-whom-living.php?file_no="+file_no);	$(".ia-living .form-control").val("");$(".ia-living select").val("0");	
 					}
-					else{alert("gagal");}
+					else{alert("Data not saved !!");}
 				}
 			});
 		});
@@ -204,11 +204,11 @@ else{
 			$.ajax({url: "form/ia-action.php",data: "op=saveiadoc"+datanya, cache: false,
 				success: function(msg){
 					if(msg=="success"){
-						alert("berhasil");
+						alert("Data has been saved !!");
 						$("#collapseTwo").removeClass("in");
 						$("#collapseThree").removeClass("in");
 					}
-					else{alert("gagal");}
+					else{alert("Data not saved !!");}
 				}
 			});
 			

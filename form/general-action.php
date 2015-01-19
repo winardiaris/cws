@@ -13,8 +13,7 @@ if($op == "check"){
 	else{
 		echo "avail";
 	}
-	
-	
+
 }
 elseif($op == "getcountry"){
 	$country = $_GET['country'];

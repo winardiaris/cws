@@ -1,4 +1,40 @@
-<?php include("form/navigasi.php") ?>
+<?php 
+	include("form/navigasi.php");
+
+if(isset($_GET['op'])){
+	if(isset($_GET['file_no'])){
+		$qry = mysql_query("SELECT * FROM `se` WHERE `file_no`='".$_GET['file_no']."'") or die(mysql_error());
+		$data = mysql_fetch_array($qry);
+		$assessment = explode(";",$data['assessment_data']);
+		$background = explode(";",$data['background_info']);
+		$living_env = explode(";",$data['living_env']);
+		$house=explode(",",$living_env[0]);
+		$fur=explode(",",$living_env[1]);
+		$living_cond = explode(";",$data['living_cond']);
+		$sec_neigh=explode(";",$data['sec_neigh']);
+		$sec=explode(",",$sec_neigh[0]);
+		$neigh=explode(",",$sec_neigh[1]);
+		$phnn = explode(";",$data['phnn']);
+		$child_protect = explode(";",$data['child_protect']);
+		$child = explode(",",$child_protect[0]);
+		$support_system = explode(";",$data['support_system']);
+		$household=explode(",",$support_system[0]);
+		$expe=explode(",",$support_system[1]);
+		$com=explode(",",$support_system[2]);
+		$recommend=explode(";",$data['recommend']);
+		$verification=explode(";",$data['verification']);
+		
+		//
+		$disable = "disabled";
+		$button = '<button type="submit" class="btn btn-primary" id="update_assessment" ><i class="fa fa-refresh"></i> Update </button>';
+		$edit = 1;
+	}
+}
+else{
+	$button = '<button type="submit" class="btn btn-success" id="save_assessment" ><i class="fa fa-save"></i> Save </button>';
+	$edit = 0;
+}
+?>
 <script>
 (function($) {
 	$(document).ready(function(){
@@ -58,7 +94,7 @@
 			});
 		});
 		
-		//save date of assessment
+		//save  of assessment
 		$("#save_assessment").click(function(){
 			var file_no = $("#file_no").val();
 			
@@ -76,30 +112,59 @@
 				else {$("#file_no").val("").focus();}
 			}
 			else{
-				var doa = $("#doa").val(),
-					by = $("#interviewer").val(),
-					location = $("#location").val(),
-					last = $("#last_assessment").val(),
-					asst = $("#assistance").val(),
-					inter = $("#interpreter").val(),
-					home = $("#home_visit").val(),
-					last_visit = $("#last_home_visit").val();
+				var doa = $("#doa").val(),by = $("#interviewer").val(),location = $("#location").val(),last = $("#last_assessment").val(),asst = $("#assistance").val(),inter = $("#interpreter").val(),home = $("#home_visit").val(),last_visit = $("#last_home_visit").val();
 					
 				var datanya = "&file_no="+file_no+"&doa="+doa+"&value="+by+";"+location+";"+last+";"+asst+";"+inter+";"+home+";"+last_visit;
 				$.ajax({url: "form/se-action.php",data: "op=addassessment"+datanya,cache: false,
 					success: function(msg){
 						if(msg=="success"){
-							alert("berhasil");
+							alert("Data has been saved !!");
 							$("#collapseDate").removeClass("in");
 							$("#collapseOne").addClass("in");
 							$("#file_no").attr("disabled",true);
 							$("#a").html("");
 						}
-						else{alert("gagal");}
+						else{alert("Data not saved !!");}
 					}
 				});
 			}
 		});
+		//update  of assessment
+		$("#update_assessment").click(function(){
+			var file_no = $("#file_no").val();
+			
+			if(file_no == ""){
+				alert("Please insert File No");
+				$("#file_no").val("").focus();
+			}
+			else if($("#a").hasClass("text-warning")){
+				alert("File Number in use");
+				$("#file_no").val("").focus();
+			}
+			else if($("#a").hasClass("text-danger")){
+				var r = confirm("No Data for ["+file_no+"], Add new Data?");
+				if (r == true) {window.location="?page=person-form";} 
+				else {$("#file_no").val("").focus();}
+			}
+			else{
+				var doa = $("#doa").val(),by = $("#interviewer").val(),location = $("#location").val(),last = $("#last_assessment").val(),asst = $("#assistance").val(),inter = $("#interpreter").val(),home = $("#home_visit").val(),last_visit = $("#last_home_visit").val();
+					
+				var datanya = "&file_no="+file_no+"&doa="+doa+"&value="+by+";"+location+";"+last+";"+asst+";"+inter+";"+home+";"+last_visit;
+				$.ajax({url: "form/se-action.php",data: "op=updateassessment"+datanya,cache: false,
+					success: function(msg){
+						if(msg=="success"){
+							alert("Data has been update !!");
+							$("#collapseDate").removeClass("in");
+							$("#collapseOne").addClass("in");
+							$("#file_no").attr("disabled",true);
+							$("#a").html("");
+						}
+						else{alert("Data not update !!");}
+					}
+				});
+			}
+		});
+		
 		//save background information
 		$("#save_back").click(function(){
 				var file_no = $("#file_no").val(),
@@ -110,11 +175,11 @@
 				$.ajax({url: "form/se-action.php",data: "op=saveback"+datanya,cache: false,
 					success: function(msg){
 						if(msg=="success"){
-							alert("berhasil");
+							alert("Data has been saved !!");
 							$("#collapseOne").removeClass("in");
 							$("#collapseTwo").addClass("in");
 						}
-						else{alert("gagal");}
+						else{alert("Data not saved !!");}
 					}
 				});
 		});
@@ -152,24 +217,134 @@
 				$.ajax({url: "form/se-action.php",data: "op=savelivinga"+datanya,cache: false,
 					success: function(msg){
 						if(msg=="success"){
-							alert("berhasil");
+							alert("Data has been saved !!");
 							$("#col1b").slideUp();
 							$("#col2b").slideDown().trigger("click");
 						}
-						else{alert("gagal");}
+						else{alert("Data not saved !!");}
 					}
 				});
 			
 			
 		});
-	
+		
+		//save living condition B. PERSON WITH SPECIFIC NEEDS
+		$("#save_living_b").click(function(){
+			var file_no = $("#file_no").val(),
+				vulne = $("#vulne").val(),
+				u_minor = $('input:radio[name=unaccompanied_minors]:checked').val(),
+				u_minor_text = $("#unaccompanied_minors_text").val(),
+				separated = $('input:radio[name=separated_children]:checked').val(),
+				separated_text = $("#separated_children_text").val(),
+				remarks_child = $("#remarks_child").val(),
+				child_1 = $("#child_1").val(),
+				child_2 = $("#child_2").val(),
+				child_3 = $("#child_3").val(),
+				protect = $("#protect").val();
+			var child = u_minor+","+u_minor_text+","+separated+","+separated_text+","+remarks_child+","+child_1+","+child_2+","+child_3;
+			var child_protect = child+";"+protect;
+			var datanya = "&file_no="+file_no+"&vulne="+vulne+"&child_protect="+child_protect;
+			
+			
+				$.ajax({url: "form/se-action.php",data: "op=savelivingb"+datanya,cache: false,
+					success: function(msg){
+						if(msg=="success"){
+							alert("Data has been saved !!");
+							$("#col2b").slideUp();
+							$("#collapseTwo").removeClass("in");
+							$("#collapseThree").addClass("in");
+							$("#col3b").slideDown().trigger("click");
+							
+							
+						}
+						else{alert("Data not saved !!");}
+					}
+				});
+		});
+		
+		//Financial And Other Support System Available To The Person Of Concern
+		//Support System
+		$("#save_support").click(function(){
+			var file_no = $("#file_no").val(),
+				house_1 = $("#house_1").val(),
+				house_2 = $("#house_2").val(),
+				house_3 = $("#house_3").val(),
+				house_4 = $("#house_4").val(),
+				house = house_1+","+house_2+","+house_3+","+house_4,
+				expe_1 = $("#expe_1").val(),
+				expe_2 = $("#expe_2").val(),
+				expe_3 = $("#expe_3").val(),
+				expe_4 = $("#expe_4").val(),
+				expe_5 = $("#expe_5").val(),
+				expe= expe_1+","+expe_2+","+expe_3+","+expe_4+","+expe_5,
+				com1 = $("#support_comment_1").val(),
+				com2 = $("#support_comment_2").val(),
+				com = com1+","+com2,
+				datanya = "&file_no="+file_no+"&support="+house+";"+expe+";"+com;
+				
+				$.ajax({url: "form/se-action.php",data: "op=savefinanciala"+datanya,cache: false,
+					success: function(msg){
+						if(msg=="success"){
+							alert("Data has been saved !!");
+							$("#col3b").slideUp();
+							$("#col4b").slideDown().trigger("click");
+							
+							
+						}
+						else{alert("Data not saved !!");}
+					}
+				});
+		});
+		//recommend
+		$("#save_recommend").click(function(){
+			var	file_no = $("#file_no").val(),
+				ahr = $('input:radio[name=radioahr]:checked').val(),
+				ar = $('input:radio[name=radioar]:checked').val(),
+				anr = $('input:radio[name=radioanr]:checked').val(),
+				final_remarks = $("#final_remarks").val(),
+				datanya = "&file_no="+file_no+"&recommend="+ahr+";"+ar+";"+anr+";"+final_remarks;
+				
+				$.ajax({url: "form/se-action.php",data: "op=savefinancialb"+datanya,cache: false,
+					success: function(msg){
+						if(msg=="success"){
+							alert("Data has been saved !!");
+							$("#col4b").slideUp();
+							$("#collapseThree").removeClass("in");
+							$("#collapseFour").addClass("in");
+						}
+						else{alert("Data not saved !!");}
+					}
+				});
+		});
+		
+		//verified
+		$("#save_verification").click(function(){
+			var	file_no = $("#file_no").val(),
+				ver_name = $("#ver_name").val(),
+				ver_sig = $("#ver_sig").val(),
+				ver_date = $("#ver_date").val(),
+				ver_remarks = $("#ver_remarks").val(),
+				datanya = "&file_no="+file_no+"&verification="+ver_name+";"+ver_sig+";"+ver_date+";"+ver_remarks;
+				$.ajax({url: "form/se-action.php",data: "op=saveverification"+datanya,cache: false,
+					success: function(msg){
+						if(msg=="success"){
+							alert("Data has been saved !!");
+							$("#collapseFour").removeClass("in");
+						}
+						else{alert("Data not saved !!");}
+					}
+				});
+				
+				
+		});
+		
 	});
 }) (jQuery);
 </script>
 
 <div id="page-wrapper">
 <div class="row">
-<div class="col-lg-12"><h1 class="page-header">SOCIO-ECONOMIC ASSESSMENT REPORT</h1></div>
+<div class="col-lg-12"><h3 class="page-header">Socio Economic Assessment Report  </h3></div>
 <div class="col-lg-12">
 	<div class="panel-group" id="accordion">
 		<!-- date assessment -->
@@ -184,61 +359,61 @@
 			<div class="col-lg-4">
 				<div class="form-group">
 					<label>File No: <span  id="a"></span></label>
-					<input class="form-control" id="file_no">
+					<input class="form-control" id="file_no" <?php if($edit==1){echo 'value="'.$data['file_no'].'" '.$disable;}?>>
 				</div>
 			</div>
 			<div class="col-lg-4">
 				<label>Date of Assessment: </label>
 				<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-					<input type="text" class="form-control" id="doa" placeholder="yyyy-mm-dd"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					<input type="text" class="form-control" id="doa" placeholder="yyyy-mm-dd" value="<?php if($edit==1){echo $data['doa'];} ?>" ><span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
 				</div>
 			</div>
 			<div class="col-lg-4">
 				<div class="form-group">
 					<label>Interviewer:</label>
-					<input class="form-control" id="interviewer">
+					<input class="form-control" id="interviewer" value="<?php if($edit==1){echo $assessment[0];} ?>">
 				</div>
 			</div>
 			<div class="col-lg-4">
 				<div class="form-group">
 					<label>Location: </label>
-					<input class="form-control" id="location">
+					<input class="form-control" id="location" value="<?php if($edit==1){echo $assessment[1];} ?>">
 				</div>
 			</div>
 			<div class="col-lg-4">
 				<label>Date of last assessment:</label>
 				<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-					<input type="text" class="form-control" id="last_assessment" placeholder="yyyy-mm-dd" ><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					<input type="text" class="form-control" id="last_assessment" placeholder="yyyy-mm-dd" value="<?php if($edit==1){echo $assessment[2];} ?>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 				</div>
 			</div>
 			<div class="col-lg-4">
 				<div class="form-group">
 					<label>Assistance receiving since <i>(if any)</i>:</label>
-					<input class="form-control" id="assistance">
+					<input class="form-control" id="assistance" value="<?php if($edit==1){echo $assessment[3];} ?>">
 				</div>
 			</div>			 
 			<div class="col-lg-4">
 				<div class="form-group">
 					<label>Interpreter:</label>
-					<input class="form-control" id="interpreter">
+					<input class="form-control" id="interpreter" value="<?php if($edit==1){echo $assessment[4];} ?>">
 				</div>
 			</div>
 			<div class="col-lg-4">
 				<label># of home visit(s) and date:</label>
 				<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-					<input type="text" class="form-control" id="home_visit" placeholder="yyyy-mm-dd"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					<input type="text" class="form-control" id="home_visit" placeholder="yyyy-mm-dd" value="<?php if($edit==1){echo $assessment[5];} ?>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 				</div>
 			</div>
 			<div class="col-lg-4">
 				<label>Date of last home visit:</label>
 				<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-					<input type="text" class="form-control" id="last_home_visit" placeholder="yyyy-mm-dd"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					<input type="text" class="form-control" id="last_home_visit" placeholder="yyyy-mm-dd" value="<?php if($edit==1){echo $assessment[6];} ?>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 				</div>
 			</div>
 			<div class="col-lg-12">
 				<div class="form-group">
-					<label></label><br>
-					<button type="submit" class="btn btn-primary" id="save_assessment" ><i class="fa fa-save"></i> Save </button>
+					<br>
+					<?php echo $button; ?>
 				</div>
 			</div>
 
@@ -260,13 +435,13 @@
 			<li>
 				<div class="form-group">
 				<label>How PoC (and family) survived from date of arrival to the date of assessment?</label>
-				<textarea class="form-control" id="back1" rows="10"></textarea>
+				<textarea class="form-control" id="back1" rows="10"><?php if($edit==1){echo $background[0];} ?></textarea>
 				</div>
 			</li>
 			<li>
 				<div class="form-group">
 				<label>Current Situation (Socio-economic):</label>
-				<textarea class="form-control" id="back2" rows="10"></textarea><br>
+				<textarea class="form-control" id="back2" rows="10"><?php if($edit==1){echo $background[1];} ?></textarea><br>
 				<button class="btn btn-success" id="save_back"><i class="fa fa-save"></i> Save</button>
 				</div>
 			</li>
@@ -282,7 +457,7 @@
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Living Condition <small>(to be filled in after home visits)</small></a>
 			</h4>
 		</div>
-		<div id="collapseTwo" class="panel-collapse collapse in">
+		<div id="collapseTwo" class="panel-collapse collapse">
 		<div class="panel-body">
 			<!-- A. GENERAL -->
 			<div class="panel panel-primary">
@@ -292,17 +467,17 @@
 					<div class="well well-sm">
 						<h4>House/Room condition:</h4>
 						<div class="checkbox">
-							<label><input type="checkbox" id="room_1" value="1" > No repair</label><br>
-							<label><input type="checkbox" id="room_2" value="1" > Medium repair</label><br>
-							<label><input type="checkbox" id="room_3" value="1" > Leaking ceiling</label><br>
-							<label><input type="checkbox" id="room_4" value="1" > Shared toilet/bathroom</label><br>
-							<label><input type="checkbox" id="room_5" value="1" > No toilet/bathroom</label><br>
-							<label><input type="checkbox" id="room_6" value="1" > Air ventilation (windows, etc)</label><br>
-							<label><input type="checkbox" id="room_7" value="1" > No air ventilation</label><br>
-							<label><input type="checkbox" id="room_8" value="1" > Shared kitchen</label><br>
-							<label><input type="checkbox" id="room_9" value="1" > No kitchen</label><br>
-							<label><input type="checkbox" id="room_10" value="1" > Dampness </label><br>
-							<label><input type="checkbox" id="room_11" value="1" > Smell</label><br>
+							<label><input type="checkbox" id="room_1" value="1" <?php if($edit==1){if($house[0]==1){echo "checked";}} ?> > No repair</label><br>
+							<label><input type="checkbox" id="room_2" value="1" <?php if($edit==1){if($house[1]==1){echo "checked";}} ?>> Medium repair</label><br>
+							<label><input type="checkbox" id="room_3" value="1" <?php if($edit==1){if($house[2]==1){echo "checked";}} ?>> Leaking ceiling</label><br>
+							<label><input type="checkbox" id="room_4" value="1" <?php if($edit==1){if($house[3]==1){echo "checked";}} ?>> Shared toilet/bathroom</label><br>
+							<label><input type="checkbox" id="room_5" value="1" <?php if($edit==1){if($house[4]==1){echo "checked";}} ?>> No toilet/bathroom</label><br>
+							<label><input type="checkbox" id="room_6" value="1" <?php if($edit==1){if($house[5]==1){echo "checked";}} ?>> Air ventilation (windows, etc)</label><br>
+							<label><input type="checkbox" id="room_7" value="1" <?php if($edit==1){if($house[6]==1){echo "checked";}} ?>> No air ventilation</label><br>
+							<label><input type="checkbox" id="room_8" value="1" <?php if($edit==1){if($house[7]==1){echo "checked";}} ?>> Shared kitchen</label><br>
+							<label><input type="checkbox" id="room_9" value="1" <?php if($edit==1){if($house[8]==1){echo "checked";}} ?>> No kitchen</label><br>
+							<label><input type="checkbox" id="room_10" value="1" <?php if($edit==1){if($house[9]==1){echo "checked";}} ?>> Dampness </label><br>
+							<label><input type="checkbox" id="room_11" value="1" <?php if($edit==1){if($house[10]==1){echo "checked";}} ?>> Smell</label><br>
 						</div>
 					</div>
 				</div>
@@ -310,33 +485,33 @@
 					<div class="well well-sm">
 						<h4>Furniture / Equipment: <small>(tick as appropriate)</small></h4>
 						<div class="checkbox">
-							<label><input type="checkbox" id="furni_1" value="1" > Bed</label><br>
-							<label><input type="checkbox" id="furni_2" value="1" > Sofa</label><br>
-							<label><input type="checkbox" id="furni_3" value="1" > Wardrobe/Cupboard</label><br>
-							<label><input type="checkbox" id="furni_4" value="1" > Table</label><br>
-							<label><input type="checkbox" id="furni_5" value="1" > Chairs</label><br>
-							<label><input type="checkbox" id="furni_6" value="1" > Rice cooker</label><br>
-							<label><input type="checkbox" id="furni_7" value="1" > Refrigerator</label><br>
-							<label><input type="checkbox" id="furni_8" value="1" > Gas stove</label><br>
-							<label><input type="checkbox" id="furni_9" value="1" > Washing machine</label><br>
-							<label><input type="checkbox" id="furni_10" value="1" > TV set </label><br>
-							<label><input type="checkbox" id="furni_12" value="1" > Iron</label><br>
+							<label><input type="checkbox" id="furni_1" value="1"  <?php if($edit==1){if($fur[0]==1){echo "checked";}} ?>> Bed</label><br>
+							<label><input type="checkbox" id="furni_2" value="1" <?php if($edit==1){if($fur[1]==1){echo "checked";}} ?>> Sofa</label><br>
+							<label><input type="checkbox" id="furni_3" value="1" <?php if($edit==1){if($fur[2]==1){echo "checked";}} ?>> Wardrobe/Cupboard</label><br>
+							<label><input type="checkbox" id="furni_4" value="1" <?php if($edit==1){if($fur[3]==1){echo "checked";}} ?>> Table</label><br>
+							<label><input type="checkbox" id="furni_5" value="1" <?php if($edit==1){if($fur[4]==1){echo "checked";}} ?>> Chairs</label><br>
+							<label><input type="checkbox" id="furni_6" value="1" <?php if($edit==1){if($fur[5]==1){echo "checked";}} ?>> Rice cooker</label><br>
+							<label><input type="checkbox" id="furni_7" value="1" <?php if($edit==1){if($fur[6]==1){echo "checked";}} ?>> Refrigerator</label><br>
+							<label><input type="checkbox" id="furni_8" value="1" <?php if($edit==1){if($fur[7]==1){echo "checked";}} ?>> Gas stove</label><br>
+							<label><input type="checkbox" id="furni_9" value="1" <?php if($edit==1){if($fur[8]==1){echo "checked";}} ?>> Washing machine</label><br>
+							<label><input type="checkbox" id="furni_10" value="1" <?php if($edit==1){if($fur[9]==1){echo "checked";}} ?>> TV set </label><br>
+							<label><input type="checkbox" id="furni_12" value="1" <?php if($edit==1){if($fur[10]==1){echo "checked";}} ?>> Iron</label><br>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="well well-sm">
 						<div class="checkbox">
-							<label><input type="checkbox" id="furni_12" value="1" > Computer (laptop, tablet)</label><br>
-							<label><input type="checkbox" id="furni_13" value="1" > DVD player</label><br>
-							<label><input type="checkbox" id="furni_14" value="1" > AC</label><br>
-							<label><input type="checkbox" id="furni_15" value="1" > Fan</label><br>
-							<label><input type="checkbox" id="furni_16" value="1" > Internet Connection</label><br>
-							<label><input type="checkbox" id="furni_17" value="1" > TV Cable</label><br>
-							<label><input type="checkbox" id="furni_18" value="1" > Piped Clean & Safe Water</label><br>
-							<label><input type="checkbox" id="furni_19" value="1" > Motorcycle</label><br>
-							<label><input type="checkbox" id="furni_20" value="1" > Mobile phone</label><br>
-							<label><input type="checkbox" id="furni_21" value="1" > Others</label><br>
+							<label><input type="checkbox" id="furni_12" value="1" <?php if($edit==1){if($fur[11]==1){echo "checked";}} ?>> Computer (laptop, tablet)</label><br>
+							<label><input type="checkbox" id="furni_13" value="1" <?php if($edit==1){if($fur[12]==1){echo "checked";}} ?>> DVD player</label><br>
+							<label><input type="checkbox" id="furni_14" value="1" <?php if($edit==1){if($fur[13]==1){echo "checked";}} ?>> AC</label><br>
+							<label><input type="checkbox" id="furni_15" value="1" <?php if($edit==1){if($fur[14]==1){echo "checked";}} ?>> Fan</label><br>
+							<label><input type="checkbox" id="furni_16" value="1" <?php if($edit==1){if($fur[15]==1){echo "checked";}} ?>> Internet Connection</label><br>
+							<label><input type="checkbox" id="furni_17" value="1" <?php if($edit==1){if($fur[16]==1){echo "checked";}} ?>> TV Cable</label><br>
+							<label><input type="checkbox" id="furni_18" value="1" <?php if($edit==1){if($fur[17]==1){echo "checked";}} ?>> Piped Clean & Safe Water</label><br>
+							<label><input type="checkbox" id="furni_19" value="1" <?php if($edit==1){if($fur[18]==1){echo "checked";}} ?>> Motorcycle</label><br>
+							<label><input type="checkbox" id="furni_20" value="1" <?php if($edit==1){if($fur[19]==1){echo "checked";}} ?>> Mobile phone</label><br>
+							<label><input type="checkbox" id="furni_21" value="1" <?php if($edit==1){if($fur[20]==1){echo "checked";}} ?>> Others</label><br>
 						</div>
 					</div>
 				</div>
@@ -344,36 +519,36 @@
 				<div class="col-lg-4">
 					<div class="form-group">
 						<label>Number of rooms: </label>
-						<input class="form-control" id="living_cond1" placeholder="type here" value="">
+						<input class="form-control" id="living_cond1" placeholder="type here" value="<?php if($edit==1){echo $living_cond[0];}?>">
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="form-group">
 						<label>Living space in M2:</label>
-						<input class="form-control" id="living_cond2" placeholder="type here" value="">
+						<input class="form-control" id="living_cond2" placeholder="type here" value="<?php if($edit==1){echo $living_cond[1];}?>">
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="form-group">
 						<label>Monthly rent fee:</label>
-						<input class="form-control" id="living_cond3" placeholder="type here" value="">
+						<input class="form-control" id="living_cond3" placeholder="type here" value="<?php if($edit==1){echo $living_cond[2];}?>">
 					</div>
 				</div>
 				<div class="col-lg-12">
 					<div class="form-group">
 						<label>Notes/comments on general condition: </label>
-						<textarea class="form-control" rows="5" id="notes"></textarea>
+						<textarea class="form-control" rows="5" id="notes"><?php if($edit==1){echo $living_cond[3];}?></textarea>
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="well well-sm">
 						<h4>Security and Safety Measures:</h4>
 						<div class="checkbox">
-							<label><input type="checkbox" id="sec_1" value="1" > Fenced accommodation</label><br>
-							<label><input type="checkbox" id="sec_2" value="1" > Secure gate</label><br>
-							<label><input type="checkbox" id="sec_3" value="1" > Secure doors & windows</label><br>
-							<label><input type="checkbox" id="sec_4" value="1" > Multiple Entry/Exit points in the building</label><br>
-							<label><input type="checkbox" id="sec_5" value="1" > Fire Extinguisher</label><br>
+							<label><input type="checkbox" id="sec_1" value="1" <?php if($edit==1){if($sec[0]==1){echo "checked";}} ?>> Fenced accommodation</label><br>
+							<label><input type="checkbox" id="sec_2" value="1" <?php if($edit==1){if($sec[1]==1){echo "checked";}} ?>> Secure gate</label><br>
+							<label><input type="checkbox" id="sec_3" value="1" <?php if($edit==1){if($sec[2]==1){echo "checked";}} ?>> Secure doors & windows</label><br>
+							<label><input type="checkbox" id="sec_4" value="1" <?php if($edit==1){if($sec[3]==1){echo "checked";}} ?>> Multiple Entry/Exit points in the building</label><br>
+							<label><input type="checkbox" id="sec_5" value="1" <?php if($edit==1){if($sec[4]==1){echo "checked";}} ?>> Fire Extinguisher</label><br>
 						</div>
 					</div>
 				</div>
@@ -381,34 +556,34 @@
 					<div class="well well-sm">
 						<h4>Neighbourhood/Relationship with Around People:</h4>
 						<div class="checkbox">
-							<label><input type="checkbox" id="neig_1" value="1" > Clean & healthy area</label><br>
-							<label><input type="checkbox" id="neig_2" value="1" > Dense populated area</label><br>
-							<label><input type="checkbox" id="neig_3" value="1" > Slum area</label><br>
-							<label><input type="checkbox" id="neig_4" value="1" > Trading area</label><br>
-							<label><input type="checkbox" id="neig_5" value="1" > Others</label><br>
+							<label><input type="checkbox" id="neig_1" value="1" <?php if($edit==1){if($neigh[0]==1){echo "checked";}} ?>> Clean & healthy area</label><br>
+							<label><input type="checkbox" id="neig_2" value="1" <?php if($edit==1){if($neigh[1]==1){echo "checked";}} ?>> Dense populated area</label><br>
+							<label><input type="checkbox" id="neig_3" value="1" <?php if($edit==1){if($neigh[2]==1){echo "checked";}} ?>> Slum area</label><br>
+							<label><input type="checkbox" id="neig_4" value="1" <?php if($edit==1){if($neigh[3]==1){echo "checked";}} ?>> Trading area</label><br>
+							<label><input type="checkbox" id="neig_5" value="1" <?php if($edit==1){if($neigh[4]==1){echo "checked";}} ?>> Others</label><br>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="form-group">
 						<label>Police station:</label>
-						<input class="form-control" id="police">
+						<input class="form-control" id="police" value="<?php if($edit==1){echo $phnn[0];}?>">
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="form-group">
 						<label>Health facilities:</label>
-						<input class="form-control" id="health">
+						<input class="form-control" id="health" value="<?php if($edit==1){echo $phnn[1];}?>">
 					</div>
 				</div>
 				<div class="col-lg-12">
 					<div class="form-group">
 						<label>Notes: </label>
-						<textarea class="form-control" id="notes2"></textarea>
+						<textarea class="form-control" id="notes2"><?php if($edit==1){echo $phnn[2];}?></textarea>
 					</div>
 					<div class="form-group">
 						<label>Number of person living in same house:  </label>
-						<textarea class="form-control" id="person_living" rows="6"></textarea>
+						<textarea class="form-control" id="person_living" rows="6"><?php if($edit==1){echo $phnn[3];}?></textarea>
 						<br>
 						<button id="save_living_a" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
 						<br> <p id="test"></p>
@@ -422,7 +597,7 @@
 			<div class="panel-body" id="col2b">
 				<div class="form-group">
 					<label>Please specify more about the vulnerabilities: </label><br><small>(Type of vulnerability and how it has affected functioning in his/her daily life and special attention needs to be paid on)</small>
-					<textarea class="form-control" id="specify" rows="15"></textarea>
+					<textarea class="form-control" rows="15" id="vulne" ><?php if($edit==1){echo $data['vulnerabilities'];}; ?></textarea>
 				</div>
 				<label>1. CHILDREN </label>
 				<div class="table-responsive">
@@ -432,42 +607,42 @@
 								<td width="300px">Unaccompanied minors:  </td>
 								<td width="50px" align="left">
 									<div class="form-group">
-									<label class="radio-inline"><input type="radio" name="unaccompanied-minors"  value="1" checked>Yes</label><br>
-									<label class="radio-inline"><input type="radio" name="unaccompanied-minors"  value="0">No</label>
+									<label class="radio-inline"><input type="radio" name="unaccompanied_minors"  value="1" <?php if($edit==1){if($child[0]==1){echo "checked"; }} ?>  >Yes</label><br>
+									<label class="radio-inline"><input type="radio" name="unaccompanied_minors"  value="0" <?php if($edit==1){if($child[0]==0){echo "checked"; }} ?>>No</label>
 								</div>
 								</td>
 								<td width="90px" align="center">
-									<label>#</label><input class="form-control" >
+									<label>#</label><input class="form-control" id="unaccompanied_minors_text" value="<?php if($edit==1){echo $child[1];}?>" >
 								</td>
 								<!-- -->
 								<td rowspan="2">
 									<label>Remarks:</label>
-									<textarea class="form-control" rows="5" ></textarea>
+									<textarea class="form-control" rows="5" id="remarks_child"><?php if($edit==1){echo $child[4];}?></textarea>
 								</td>
 							</tr>
 							<tr>
 								<td>Separated children:</td>
 								<td width="20px">
 									<div class="form-group">
-									<label class="radio-inline"><input type="radio" name="separated_children"  value="1" checked>Yes</label><br>
-									<label class="radio-inline"><input type="radio" name="separated_children"  value="0">No</label>
+									<label class="radio-inline"><input type="radio" name="separated_children"  value="1" <?php if($edit==1){if($child[2]==1){echo "checked"; }} ?>>Yes</label><br>
+									<label class="radio-inline"><input type="radio" name="separated_children"  value="0" <?php if($edit==1){if($child[2]==0){echo "checked"; }} ?>>No</label>
 								</div>
 								</td>
 								<td width="90px" align="center">
-									<label>#</label><input class="form-control" >
+									<label>#</label><input class="form-control" id="separated_children_text" value="<?php if($edit==1){echo $child[3];}?>">
 								</td>
 							</tr>
 							<tr>
 								<td># of children attending school:</td>
-								<td colspan="3"><textarea class="form-control"  id="child_school" placeholder="Comments"></textarea></td>
+								<td colspan="3"><textarea class="form-control"  id="child_1" placeholder="Comments"><?php if($edit==1){echo $child[5];}?></textarea></td>
 							</tr>
 							<tr>
 								<td># of children not attending school:</td>
-								<td colspan="3"><textarea class="form-control"  id="child_not_school" placeholder="Comments"></textarea></td>
+								<td colspan="3"><textarea class="form-control"  id="child_2" placeholder="Comments"><?php if($edit==1){echo $child[6];}?></textarea></td>
 							</tr>
 							<tr>
 								<td># of children with specific education needs:</td>
-								<td colspan="3"><textarea class="form-control"  id="child_spec_school" placeholder="Comments"></textarea></td>
+								<td colspan="3"><textarea class="form-control"  id="child_3" placeholder="Comments"><?php if($edit==1){echo $child[7];}?></textarea></td>
 							</tr>
 						</tbody>
 					</table>
@@ -475,9 +650,9 @@
 				<br>
 				<label>2. PROTECTION NEEDS:</label><br><small>[e. g. SGBV, spouse in detention, etc. Please describe if any]</small>
 				<div class="form-cgroup">
-					<textarea class="form-control" rows="5"></textarea>
+					<textarea class="form-control" rows="5" id="protect"><?php if($edit==1){echo $child_protect[1];}?></textarea>
 					<br>
-					<button class="btn btn-success" id="save_person"><i class="fa fa-save"></i> Save</button>
+					<button class="btn btn-success" id="save_living_b"><i class="fa fa-save"></i> Save</button>
 				</div>
 			</div>
 			</div>
@@ -500,34 +675,34 @@
 					<div class="col-lg-6">
 					<div class="well well-sm ">
 						<h4>Approximate monthly household income</h4><br>
-						<label>CWS/UNHCR cash assistance:</label><input class="form-control">
-						<label>Non-CWS/UNHCR assistance:</label><input class="form-control">
-						<label>Other sources of income: <small>(e.g. IOM/JRS, etc)</small></label><input class="form-control">
+						<label>CWS/UNHCR cash assistance:</label><input class="form-control" id="house_1" value="<?php if($edit==1){echo $household[0];} ?>">
+						<label>Non-CWS/UNHCR assistance:</label><input class="form-control" id="house_2" value="<?php if($edit==1){echo $household[1];} ?>">
+						<label>Other sources of income: <small>(e.g. IOM/JRS, etc)</small></label><input class="form-control" id="house_3" value="<?php if($edit==1){echo $household[2];} ?>">
 						<label>Other sources of income: <small>(e.g. from relative in CoO/CoA/Abroad, etc.)</small></label>
-						<textarea class="form-control" rows="5"></textarea>
+						<textarea class="form-control" rows="5" id="house_4"><?php if($edit==1){echo $household[3];} ?></textarea>
 					</div>
 					</div>
 					
 					<div class="col-lg-6">
 					<div class="well well-sm ">
 						<h4>Approximate monthly expenditure</h4><br>
-						<label>Rent fee:</label><input class="form-control">
-						<label>Food:</label><input class="form-control">
-						<label>Clothes:</label><input class="form-control">
-						<label>Transport:</label><input class="form-control">
-						<label>Other:</label><input class="form-control">
+						<label>Rent fee:</label><input class="form-control" id="expe_1" value="<?php if($edit==1){echo $expe[0];} ?>">
+						<label>Food:</label><input class="form-control" id="expe_2" value="<?php if($edit==1){echo $expe[1];} ?>">
+						<label>Clothes:</label><input class="form-control" id="expe_3" value="<?php if($edit==1){echo $expe[2];} ?>">
+						<label>Transport:</label><input class="form-control" id="expe_4" value="<?php if($edit==1){echo $expe[3];} ?>">
+						<label>Other:</label><input class="form-control" id="expe_5" value="<?php if($edit==1){echo $expe[4];} ?>">
 					</div>
 					</div>
 					<br>
 					<div class="col-lg-12">
 						<div class="form-group">
 							<label>Comments on available financial support system (cash): </label>
-							<textarea class="form-control"></textarea>
+							<textarea class="form-control" id="support_comment_1"><?php if($edit==1){echo $com[0];} ?></textarea>
 						</div>
 						<div class="form-group">
 							<label>Comments on available other support system (in kind): </label>
-							<textarea class="form-control"></textarea><br>
-							<button class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+							<textarea class="form-control" id="support_comment_2" ><?php if($edit==1){echo $com[1];} ?></textarea><br>
+							<button id="save_support"class="btn btn-success"><i class="fa fa-save"></i> Save</button>
 						</div>
 					</div>
 					
@@ -541,8 +716,8 @@
 							<td width="300px"><label>Assistance Highly Recommended:  </label></td>
 							<td>
 								<div class="form-group">
-									<label class="radio-inline"><input type="radio" name="AHR" value="1"> YES</label>
-									<label class="radio-inline"><input type="radio" name="AHR" value="0"> NO</label>
+									<label class="radio-inline"><input type="radio" name="radioahr" value="1" <?php if($edit==1){if($recomend[0]==1){echo "checked";}}?>> YES</label>
+									<label class="radio-inline"><input type="radio" name="radioahr" value="0" <?php if($edit==1){if($recomend[0]==0){echo "checked";}}?>> NO</label>
 								</div>
 							</td>
 						</tr>
@@ -550,8 +725,8 @@
 							<td><label>Assistance Recommended:  </label></td>
 							<td>
 								<div class="form-group">
-									<label class="radio-inline"><input type="radio" name="AR" value="1"> YES</label>
-									<label class="radio-inline"><input type="radio" name="AR" value="0"> NO</label>
+									<label class="radio-inline"><input type="radio" name="radioar" value="1" <?php if($edit==1){if($recomend[1]==1){echo "checked";}}?>> YES</label>
+									<label class="radio-inline"><input type="radio" name="radioar" value="0" <?php if($edit==1){if($recomend[1]==0){echo "checked";}}?>> NO</label>
 								</div>
 							</td>
 						</tr>
@@ -559,8 +734,8 @@
 							<td><label>Assistance Not Recommended:  </label></td>
 							<td>
 								<div class="form-group">
-									<label class="radio-inline"><input type="radio" name="ANR" value="1"> YES</label>
-									<label class="radio-inline"><input type="radio" name="ANR" value="0"> NO</label>
+									<label class="radio-inline"><input type="radio" name="radioanr" value="1" <?php if($edit==1){if($recomend[2]==1){echo "checked";}}?>> YES</label>
+									<label class="radio-inline"><input type="radio" name="radioanr" value="0" <?php if($edit==1){if($recomend[2]==0){echo "checked";}}?>> NO</label>
 								</div>
 							</td>
 						</tr>
@@ -568,9 +743,9 @@
 					<br><br>
 					<div class="form-group">
 						<label>Final remarks, including recommendation on cash, non-cash or other form of assistance</label><br><small>(if applicable):</small>
-						<textarea class="form-control" rows="20"></textarea>
+						<textarea class="form-control" rows="20" id="final_remarks"><?php if($edit==1){echo $recommend[3];}?></textarea>
 						<br>
-						<button class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+						<button class="btn btn-success" id="save_recommend"><i class="fa fa-save" ></i> Save</button>
 					</div>
 					
 				</div>
@@ -590,24 +765,28 @@
 				<div class="col-lg-4">
 					<div class="form-group">
 						<label>Name:</label>
-						<input class="form-control" id="ver_name">
+						<input class="form-control" id="ver_name" value="<?php if($edit==1){echo $verification[0];} ?>">
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="form-group">
 						<label>Signature:</label>
-						<input class="form-control" id="ver_signature">
+						<input class="form-control" id="ver_sig" value="<?php if($edit==1){echo $verification[1];} ?>">
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="form-group">
 						<label>Date:</label>
-						<input class="form-control" id="ver_date">
+						<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+							<input type="text" class="form-control" id="ver_date" placeholder="yyyy-mm-dd" value="<?php if($edit==1){echo $verification[2];} ?>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label>Remarks by reviewing officer: </label>
-					<textarea class="form-control" rows="5" id="ver_remarks"></textarea>
+					<textarea class="form-control" rows="5" id="ver_remarks"><?php if($edit==1){echo $verification[3];} ?></textarea>
+					<br>
+					<button class="btn btn-success" id="save_verification"><i class="fa fa-save"></i> Save</button>
 				</div>
 			</div>
 		</div>

@@ -10,10 +10,17 @@ include("form/navigasi.php");
 		</div>
 		<div class="col-lg-12">
 			<div class="navbar">
-				<div class="btn-group">
-				<a href="form/user-form.php?a=add" target="framepopup"  onClick="setdisplay(divpopup,1)" class="btn btn-sm btn-success"><i class="fa fa-plus" ></i> Add new</a>
+			<div class="btn-group">
+				<a href="form/user-form.php?a=add" target="framepopup"  onClick="setdisplay(divpopup,1)" class="btn btn-sm btn-primary"><i class="fa fa-plus" ></i> Add new</a>
 				<a href="" target="framepopup"  onClick="setdisplay(divpopup,1)" class="btn btn-sm btn-primary"><i class="fa fa-user" ></i> User Group</a>
-				
+<!--
+				<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" id="modalbtn">Launch Demo Modal</button>
+				<script>
+					$("#modal").ready(function(){
+						$("#modal").load("form/user-form.php?a=add");
+					});
+				</script>
+-->
 			</div>
 			</div>
 		
@@ -53,8 +60,7 @@ include("form/navigasi.php");
 								<td>'.$data['last_login'].'</td>
 								<td>'.$data['last_change'].'</td>
 								
-								<td align="center" width="10px"><a href="form/user-form.php?a=edit&user_id='.$data['user_id'].'" class="btn btn-sm btn-warning" title="edit" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-edit"></i></a></td>
-								<td align="center" width="10px"><a href="form/user-action.php?a=del&user_id='.$data['user_id'].'" class="btn btn-sm btn-danger" title="delete"><i class="fa fa-close"></i></a></td>
+								<td align="center" ><a href="form/user-form.php?a=edit&user_id='.$data['user_id'].'" class="btn btn-sm btn-primary" title="edit" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-edit"></i></a> <a href="form/user-action.php?a=del&user_id='.$data['user_id'].'" class="btn btn-sm btn-danger" title="delete"><i class="fa fa-close"></i></a></td>
 							</tr>
 							
 							';

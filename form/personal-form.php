@@ -97,13 +97,13 @@ else{
 				
 				$.ajax({url:"form/personal-action.php",data:"op=saveperson"+datanya,cache:false,success: function(msg){
 						if(msg=="success"){
-							alert("berhasil");
+							alert("Data has been saved !!");
 							$("#collapseOne").removeClass("in");
 							$("#collapseTwo").addClass("in");
 							if(file_no !=""){
 								$("#file_no").attr("disabled", true);
 							}
-							}else{alert("gagal");}}
+							}else{alert("Data not saved !!");}}
 				});
 			}
 		});
@@ -116,11 +116,11 @@ else{
 			
 			$.ajax({url:"form/personal-action.php",data:"op=updateperson"+datanya,cache:false,success: function(msg){
 					if(msg=="success"){
-						alert("berhasil update");
+						alert("Data has been saved !! update");
 						//location.reload();
 						$("#collapseOne").removeClass("in");
 						$("#collapseTwo").addClass("in");
-					}else{alert("gagal");}}});
+					}else{alert("Data not saved !!");}}});
 		});
 		
 		//add family
@@ -129,13 +129,22 @@ else{
 			var datanya = "&file_no="+file_no+"&value="+name+";"+age+";"+sex+";"+relation+";"+location+";"+remarks+";"+contact;
 			
 			$.ajax({url: "form/personal-action.php",data: "op=addfamily"+datanya,cache: false,
-				success: function(msg){if(msg=="success"){alert("berhasil");}else{alert("gagal");}
+				success: function(msg){if(msg=="success"){alert("Data has been saved !!");}else{alert("Data not saved !!");}
 					$("#family").load("form/personal-family-data.php?file_no="+file_no);
 					$(".family .form-control").val("");
 					$(".family select").val("0");
 				}
 			});
 		});
+		
+		$("#uphoto").submit(function(){
+			var file_no = $("#file_no");
+			if(file_no.val() = ""){
+				alert("Please insert file number");
+				file_no.focus();
+				
+			}
+		})
 	});
 }) (jQuery);
 </script>
@@ -228,9 +237,9 @@ else{
 						<td>
 							<span id="upload">
 							<iframe name="iframe" width="0" height="0" style="display:none;width:0;height:0;"></iframe>
-							<form enctype="multipart/form-data" action="form/upload.php" method="POST" target="iframe">
-								<input type="file" name="userfile" class="form-control">
-								<input id="file_no2" name="file_no" <?php if($edit==1){echo 'value="'.$data['file_no'].'" ';}?>>
+							<form enctype="multipart/form-data" action="form/upload.php" method="POST" target="iframe" id="uphoto">
+								<input type="file" name="userfile">
+								<input id="file_no2" name="file_no" type="hidden" <?php if($edit==1){echo 'value="'.$data['file_no'].'" ';}?>>
 								<br><button type="submit" class="btn btn-sm btn-primary" value="Upload" name="upload" ><i class="fa fa-upload"></i> Upload</button>
 								
 									<?php if($edit==1){echo '<input type="hidden" class="form-control" id="photo" value="'.$data['photo'].'" ><br><small class="text-success"> ';}?>

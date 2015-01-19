@@ -3,7 +3,8 @@ include("form/navigasi.php");
 ?>
 <script>
 $(document).ready(function(){
-	var	aa = $("#col9aa"),ab = $("#col9ab"),
+	var	file_no = $("#file_no").val(),
+		aa = $("#col9aa"),ab = $("#col9ab"),
 		ba = $("#col9ba"),bb = $("#col9bb"),
 		ca = $("#col9ca"),cb = $("#col9cb"),
 		da = $("#col9da"),db = $("#col9db"),
@@ -31,7 +32,115 @@ $(document).ready(function(){
 			if (eb.is(':visible')) {eb.slideUp(100);}
 			else {window.location="#col9ea";eb.slideDown();ab.slideUp();bb.slideUp();cb.slideUp();db.slideUp();}
 		});
-	
+		
+		//check available
+		$("#file_no").change(function(){
+			var datanya = "&file_no="+$(this).val();
+			
+			$.ajax({url: "form/bia-action.php",data: "op=check"+datanya,cache: false,
+				success: function(msg){
+					if(msg=="inuse"){
+						$("#a").addClass("text-warning").removeClass("text-success text-danger").html("<i class='fa fa-warning'></i> In use");
+					}
+					else if(msg=="avail"){
+						$("#a").addClass("text-success").removeClass("text-danger text-warning").html("<i class='fa fa-check'></i> Available");
+					}
+					else{
+						$("#a").addClass("text-danger").removeClass("text-success text-warning").html("<i class='fa fa-warning'></i> No Data");
+					}
+				}
+			});
+		});
+		
+		//Date of Assessment
+		$("#save_1").click(function(){
+			var	file_no = $("#file_no").val();
+			if(file_no == ""){
+				alert("Please insert File No");
+				$("#file_no").val("").focus();
+			}
+			else if($("#a").hasClass("text-warning")){
+				alert("File Number in use");
+				$("#file_no").val("").focus();
+			}
+			else if($("#a").hasClass("text-danger")){
+				var r = confirm("No Data for ["+file_no+"], Add new Data?");
+				if (r == true) {window.location="?page=person-form";} 
+				else {$("#file_no").val("").focus();}
+			}
+			else{	
+				var	doa = $("#date_assessment").val(),
+					location = $("#location_assessment").val(),
+					cworker = $("#case_worker").val(),
+					org = $("#org").val(),
+					inorg = $("#inorg").val(),
+					ioc = $('input:radio[name=ioc]:checked').val();
+					
+					if(ioc == "other"){
+						var others = $("#others").val();
+						var datanya = "&file_no="+file_no+"&doa="+doa+"&value="+location+";"+cworker+";"+org+";"+inorg+";"+ioc+";"+others;
+					}
+					
+					else{
+						var datanya = "&file_no="+file_no+"&doa="+doa+"&value="+location+";"+cworker+";"+org+";"+inorg+";"+ioc;
+					}
+					$.ajax({url:"form/bia-action.php",data:"op=saveassessment"+datanya,cache:false,success: function(msg){
+							if(msg=="success"){
+								alert("Data has been saved !!");
+								$("#collapseDate").removeClass("in");
+								$("#collapsePersonal").addClass("in");
+								if(file_no !=""){
+									$("#file_no").attr("disabled", true);
+								}
+								}else{alert("Data not saved !!");}}
+					});
+			}
+		})
+		//Personal history
+		$("#save_2").click(function(){
+			var	file_no = $("#file_no").val(),
+				person1 = $("#person1").val(),
+				person2 = $("#person2").val(),
+				person3 = $("#person3").val(),
+				datanya = "&file_no="+file_no+"&value="+person1+";"+person2+";"+person3;
+				$.ajax({url:"form/bia-action.php",data:"op=savehistory"+datanya,cache:false,success: function(msg){
+					if(msg=="success"){
+						alert("Data has been saved !!");
+						$("#collapsePersonal").removeClass("in");
+						$("#collapseIdentified").addClass("in");
+					}else{alert("Data not saved !!");}}
+				});
+		});
+		//save Types of identified vulnerabilities
+		$("#save_3").click(function(){
+			var	file_no = $("#file_no").val(),
+				toiv1a = $("#toiv1a:checked").length, toiv1b = $("#toiv1b:checked").length, toiv1c = $("#toiv1c:checked").length, toiv1d = $("#toiv1d").val(), toiv2a = $("#toiv2a:checked").length, toiv2b = $("#toiv2b:checked").length, toiv2c = $("#toiv2c:checked").length, toiv2d = $("#toiv2d").val(), toiv3a = $("#toiv3a:checked").length, toiv3b = $("#toiv3b:checked").length, toiv3c = $("#toiv3c:checked").length, toiv3d = $("#toiv3d").val(), toiv4a = $("#toiv4a:checked").length, toiv4b = $("#toiv4b:checked").length, toiv4c = $("#toiv4c:checked").length, toiv4d = $("#toiv4d").val(), toiv5a = $("#toiv5a:checked").length, toiv5b = $("#toiv5b:checked").length, toiv5c = $("#toiv5c:checked").length, toiv5d = $("#toiv5d").val(), toiv6a = $("#toiv6a:checked").length, toiv6b = $("#toiv6b:checked").length, toiv6c = $("#toiv6c:checked").length, toiv6d = $("#toiv6d").val(), toiv7a = $("#toiv7a:checked").length, toiv7b = $("#toiv7b:checked").length, toiv7c = $("#toiv7c:checked").length, toiv7d = $("#toiv7d").val(), toiv8a = $("#toiv8a:checked").length, toiv8b = $("#toiv8b:checked").length, toiv8c = $("#toiv8c:checked").length, toiv8d = $("#toiv8d").val(), toiv9a = $("#toiv9a:checked").length, toiv9b = $("#toiv9b:checked").length, toiv9c = $("#toiv9c:checked").length, toiv9d = $("#toiv9d").val(), toiv10a = $("#toiv10a:checked").length, toiv10b = $("#toiv10b:checked").length, toiv10c = $("#toiv10c:checked").length, toiv10d = $("#toiv10d").val(), toiv11a = $("#toiv11a:checked").length, toiv11b = $("#toiv11b:checked").length, toiv11c = $("#toiv11c:checked").length, toiv11d = $("#toiv11d").val(), toiv12a = $("#toiv12a:checked").length, toiv12b = $("#toiv12b:checked").length, toiv12c = $("#toiv12c:checked").length, toiv12d = $("#toiv12d").val(), toiv13a = $("#toiv13a:checked").length, toiv13b = $("#toiv13b:checked").length, toiv13c = $("#toiv13c:checked").length, toiv13d = $("#toiv13d").val(), toiv14a = $("#toiv14a:checked").length, toiv14b = $("#toiv14b:checked").length, toiv14c = $("#toiv14c:checked").length, toiv14d = $("#toiv14d").val(), toiv15a = $("#toiv15a:checked").length, toiv15b = $("#toiv15b:checked").length, toiv15c = $("#toiv15c:checked").length, toiv15d = $("#toiv15d").val(), toiv16a = $("#toiv16a:checked").length, toiv16b = $("#toiv16b:checked").length, toiv16c = $("#toiv16c:checked").length, toiv16d = $("#toiv16d").val(), toiv17a = $("#toiv17a:checked").length, toiv17b = $("#toiv17b:checked").length, toiv17c = $("#toiv17c:checked").length, toiv17d = $("#toiv17d").val(), toiv18a = $("#toiv18a:checked").length, toiv18b = $("#toiv18b:checked").length, toiv18c = $("#toiv18c:checked").length, toiv18d = $("#toiv18d").val(), toiv19a = $("#toiv19a:checked").length, toiv19b = $("#toiv19b:checked").length, toiv19c = $("#toiv19c:checked").length, toiv19d = $("#toiv19d").val(), toiv20a = $("#toiv20a:checked").length, toiv20b = $("#toiv20b:checked").length, toiv20c = $("#toiv20c:checked").length, toiv20d = $("#toiv20d").val(), toiv21a = $("#toiv21a:checked").length, toiv21b = $("#toiv21b:checked").length, toiv21c = $("#toiv21c:checked").length, toiv21d = $("#toiv21d").val(), toiv22a = $("#toiv22a:checked").length, toiv22b = $("#toiv22b:checked").length, toiv22c = $("#toiv22c:checked").length, toiv22d = $("#toiv22d").val(), toiv23a = $("#toiv23a:checked").length, toiv23b = $("#toiv23b:checked").length, toiv23c = $("#toiv23c:checked").length, toiv23d = $("#toiv23d").val(), toiv24a = $("#toiv24a:checked").length, toiv24b = $("#toiv24b:checked").length, toiv24c = $("#toiv24c:checked").length, toiv24d = $("#toiv24d").val(), toiv25a = $("#toiv25a:checked").length, toiv25b = $("#toiv25b:checked").length, toiv25c = $("#toiv25c:checked").length, toiv25d = $("#toiv25d").val(), toiv26a = $("#toiv26a:checked").length, toiv26b = $("#toiv26b:checked").length, toiv26c = $("#toiv26c:checked").length, toiv26d = $("#toiv26d").val(), toiv27a = $("#toiv27a:checked").length, toiv27b = $("#toiv27b:checked").length, toiv27c = $("#toiv27c:checked").length, toiv27d = $("#toiv27d").val(), toiv28a = $("#toiv28a:checked").length, toiv28b = $("#toiv28b:checked").length, toiv28c = $("#toiv28c:checked").length, toiv28d = $("#toiv28d").val(), toiv29a = $("#toiv29a:checked").length, toiv29b = $("#toiv29b:checked").length, toiv29c = $("#toiv29c:checked").length, toiv29d = $("#toiv29d").val();
+				
+			var datanya = "&file_no="+file_no+"&value="+toiv1a+","+toiv1b+","+toiv1c+","+toiv1d+";"+toiv2a+","+toiv2b+","+toiv2c+","+toiv2d+";"+toiv3a+","+toiv3b+","+toiv3c+","+toiv3d+";"+toiv4a+","+toiv4b+","+toiv4c+","+toiv4d+";"+toiv5a+","+toiv5b+","+toiv5c+","+toiv5d+";"+toiv6a+","+toiv6b+","+toiv6c+","+toiv6d+";"+toiv7a+","+toiv7b+","+toiv7c+","+toiv7d+";"+toiv8a+","+toiv8b+","+toiv8c+","+toiv8d+";"+toiv9a+","+toiv9b+","+toiv9c+","+toiv9d+";"+toiv10a+","+toiv10b+","+toiv10c+","+toiv10d+";"+toiv11a+","+toiv11b+","+toiv11c+","+toiv11d+";"+toiv12a+","+toiv12b+","+toiv12c+","+toiv12d+";"+toiv13a+","+toiv13b+","+toiv13c+","+toiv13d+";"+toiv14a+","+toiv14b+","+toiv14c+","+toiv14d+";"+toiv15a+","+toiv15b+","+toiv15c+","+toiv15d+";"+toiv16a+","+toiv16b+","+toiv16c+","+toiv16d+";"+toiv17a+","+toiv17b+","+toiv17c+","+toiv17d+";"+toiv18a+","+toiv18b+","+toiv18c+","+toiv18d+";"+toiv19a+","+toiv19b+","+toiv19c+","+toiv19d+";"+toiv20a+","+toiv20b+","+toiv20c+","+toiv20d+";"+toiv21a+","+toiv21b+","+toiv21c+","+toiv21d+";"+toiv22a+","+toiv22b+","+toiv22c+","+toiv22d+";"+toiv23a+","+toiv23b+","+toiv23c+","+toiv23d+";"+toiv24a+","+toiv24b+","+toiv24c+","+toiv24d+";"+toiv25a+","+toiv25b+","+toiv25c+","+toiv25d+";"+toiv26a+","+toiv26b+","+toiv26c+","+toiv26d+";"+toiv27a+","+toiv27b+","+toiv27c+","+toiv27d+";"+toiv28a+","+toiv28b+","+toiv28c+","+toiv28d+";"+toiv29a+","+toiv29b+","+toiv29c+","+toiv29d;
+			
+				$.ajax({url:"form/bia-action.php",data:"op=savetoiv"+datanya,cache:false,success: function(msg){
+					if(msg=="success"){
+						alert("Data has been saved !!");
+						$("#collapseIdentified").removeClass("in");
+						$("#collapseEdu").addClass("in");
+					}else{alert("Data not saved !!");}}
+				});
+		});
+		//save education
+		$("#save_4").click(function(){
+			var	file_no = $("#file_no").val(),
+				edu1 = $("#edu1").val(),edu2 = $("#edu2").val(),edu3 = $("#edu3").val(),edu4 = $("#edu4").val(),
+				edu5 = $("#edu5").val(),edu6 = $("#edu6").val(),edu7 = $("#edu7").val();
+			var datanya = "&file_no="+file_no+"&value="+edu1+";"+edu2+";"+edu3+";"+edu4+";"+edu5+";"+edu6+";"+edu7;
+				$.ajax({url:"form/bia-action.php",data:"op=saveedu"+datanya,cache:false,success: function(msg){
+					if(msg=="success"){
+						alert("Data has been saved !!");
+						$("#collapseEdu").removeClass("in");
+						$("#collapseHealth").addClass("in");
+					}else{alert("Data not saved !!");}}
+				});
+		});
+		
 });
 </script>
 
@@ -45,14 +154,14 @@ $(document).ready(function(){
 		<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseDate">1. Date of Assessment</a>
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseDate">Date of Assessment</a>
 			</h4>
 		</div>
 		<div id="collapseDate" class="panel-collapse collapse">
 		<div class="panel-body">
 			<div class="col-lg-4">
 				<div class="form-group">
-					<label>File No: </label>
+					<label>File No: <span  id="a"></span> </label>
 					<input class="form-control" id="file_no">
 				</div>
 			</div>
@@ -64,8 +173,8 @@ $(document).ready(function(){
 			</div>
 			<div class="col-lg-4">
 				<div class="form-group">
-					<label>Place</label>
-					<input class="form-control" id="place_assessment">
+					<label>Location</label>
+					<input class="form-control" id="location_assessment">
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -91,7 +200,7 @@ $(document).ready(function(){
 					<label>Identification of child</label><br>
 					<label class="radio-inline"><input type="radio" name="ioc"  value="UNHCR" checked>UNHCR</label><br>
 					<label class="radio-inline"><input type="radio" name="ioc"  value="CWS" >CWS</label><br>
-					<label class="radio-inline"><input type="radio" name="ioc"  id="other" >Other</label>
+					<label class="radio-inline"><input type="radio" name="ioc"  value="other" id="other" >Other</label>
 					<input class="form-control" style="padding:5px;height:25px;width:150px;" placeholder="(Name, if other)" id="others">
 					<br><button class="btn btn-success" id="save_1"><i class="fa fa-save"></i> Save</button>
 				</div>
@@ -245,11 +354,11 @@ $(document).ready(function(){
 		</div>
 		</div>
 		</div> -->
-		<!-- 4 – Personal history  ( Background(Brief history describing hardships or trauma experienced)) -->
+		<!-- Personal history  ( Background(Brief history describing hardships or trauma experienced)) -->
 		<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapsePersonal">4. Personal history</a><br><small>( Background(Brief history describing hardships or trauma experienced))</small>
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapsePersonal">Personal history</a><br><small>( Background(Brief history describing hardships or trauma experienced))</small>
 			</h4>
 		</div>
 		<div id="collapsePersonal" class="panel-collapse collapse ">
@@ -257,26 +366,26 @@ $(document).ready(function(){
 			<ol>
 				<li>
 					<label>In the Country of Origin</label>
-					<textarea class="form-control"></textarea>
+					<textarea class="form-control" id="person1"></textarea>
 				</li>
 				<li>
 					<label>During the flight</label>
-					<textarea class="form-control" rows="15"></textarea>
+					<textarea class="form-control" rows="15" id="person2"></textarea>
 				</li>
 				<li>
 					<label>In the country of Asylum</label>
-					<textarea class="form-control"></textarea>
+					<textarea class="form-control" id="person3"></textarea>
 				</li>
 			</ol>
-			<br><button class="btn btn-success" id="save_4"><i class="fa fa-save"></i> Save</button>
+			<br><button class="btn btn-success" id="save_2"><i class="fa fa-save"></i> Save</button>
 		</div>
 		</div>
 		</div>
-		<!-- 5 - Types of identified vulnerabilities -->
+		<!-- Types of identified vulnerabilities -->
 		<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseIdentified">5. Types of identified vulnerabilities</a>
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseIdentified">Types of identified vulnerabilities</a>
 			</h4>
 		</div>
 		<div id="collapseIdentified" class="panel-collapse collapse">
@@ -292,222 +401,222 @@ $(document).ready(function(){
 					<tr>
 						<td width="300px"><label>Child at risk of deportation</label></td>
 						<td width="200px">
-							<label><input type="checkbox" id="501a"> CoO</label>
-							<label><input type="checkbox" id="501b"> During flight </label>
-							<label><input type="checkbox" id="501c"> CoA</label>
+							<label><input type="checkbox" name="toiv1a"> CoO</label>
+							<label><input type="checkbox" name="toiv1b"> During flight </label>
+							<label><input type="checkbox" name="toiv1c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="501d"></textarea></td>
+							<textarea class="form-control" id="toiv1d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Child without legal documentation</label></td>
 						<td>
-							<label><input type="checkbox" id="502a"> CoO</label>
-							<label><input type="checkbox" id="502b"> During flight </label>
-							<label><input type="checkbox" id="502c"> CoA</label>
+							<label><input type="checkbox" name="toiv2a"> CoO</label>
+							<label><input type="checkbox" name="toiv2b"> During flight </label>
+							<label><input type="checkbox" name="toiv2c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="502d"></textarea></td>
+							<textarea class="form-control" id="toiv2d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Street Children</label></td>
 						<td>
-							<label><input type="checkbox" id="503a"> CoO</label>
-							<label><input type="checkbox" id="503b"> During flight </label>
-							<label><input type="checkbox" id="503c"> CoA</label>
+							<label><input type="checkbox" name="toiv3a"> CoO</label>
+							<label><input type="checkbox" name="toiv3b"> During flight </label>
+							<label><input type="checkbox" name="toiv3c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="503d"></textarea></td>
+							<textarea class="form-control" id="toiv3d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Medical Case</label></td>
 						<td>
-							<label><input type="checkbox" id="504a"> CoO</label>
-							<label><input type="checkbox" id="504b"> During flight </label>
-							<label><input type="checkbox" id="504c"> CoA</label>
+							<label><input type="checkbox" name="toiv4a"> CoO</label>
+							<label><input type="checkbox" name="toiv4b"> During flight </label>
+							<label><input type="checkbox" name="toiv4c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="504d"></textarea></td>
+							<textarea class="form-control" id="toiv4d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Disabled child</label></td>
 						<td>
-							<label><input type="checkbox" id="505a"> CoO</label>
-							<label><input type="checkbox" id="505b"> During flight </label>
-							<label><input type="checkbox" id="505c"> CoA</label>
+							<label><input type="checkbox" name="toiv5a"> CoO</label>
+							<label><input type="checkbox" name="toiv5b"> During flight </label>
+							<label><input type="checkbox" name="toiv5c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="505d"></textarea></td>
+							<textarea class="form-control" id="toiv5d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Victim of violence</label></td>
 						<td>
-							<label><input type="checkbox" id="506a"> CoO</label>
-							<label><input type="checkbox" id="506b"> During flight </label>
-							<label><input type="checkbox" id="506c"> CoA</label>
+							<label><input type="checkbox" name="toiv6a"> CoO</label>
+							<label><input type="checkbox" name="toiv6b"> During flight </label>
+							<label><input type="checkbox" name="toiv6c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="506d"></textarea></td>
+							<textarea class="form-control" id="toiv6d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Victim of sexual violence</label></td>
 						<td>
-							<label><input type="checkbox" id="507a"> CoO</label>
-							<label><input type="checkbox" id="507b"> During flight </label>
-							<label><input type="checkbox" id="507c"> CoA</label>
+							<label><input type="checkbox" name="toiv7a"> CoO</label>
+							<label><input type="checkbox" name="toiv7b"> During flight </label>
+							<label><input type="checkbox" name="toiv7c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="507d"></textarea></td>
+							<textarea class="form-control" id="toiv7d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Victim of trafficking</label></td>
 						<td>
-							<label><input type="checkbox" id="508a"> CoO</label>
-							<label><input type="checkbox" id="508b"> During flight </label>
-							<label><input type="checkbox" id="508c"> CoA</label>
+							<label><input type="checkbox" name="toiv8a"> CoO</label>
+							<label><input type="checkbox" name="toiv8b"> During flight </label>
+							<label><input type="checkbox" name="toiv8c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="508d"></textarea></td>
+							<textarea class="form-control" id="toiv8d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Victim of Child Labour</label></td>
 						<td>
-							<label><input type="checkbox" id="509a"> CoO</label>
-							<label><input type="checkbox" id="509b"> During flight </label>
-							<label><input type="checkbox" id="509c"> CoA</label>
+							<label><input type="checkbox" name="toiv9a"> CoO</label>
+							<label><input type="checkbox" name="toiv9b"> During flight </label>
+							<label><input type="checkbox" name="toiv9c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="509d"></textarea></td>
+							<textarea class="form-control" id="toiv9d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Victim of forced Labour</label></td>
 						<td>
-							<label><input type="checkbox" id="510a"> CoO</label>
-							<label><input type="checkbox" id="510b"> During flight </label>
-							<label><input type="checkbox" id="510c"> CoA</label>
+							<label><input type="checkbox" name="toiv10a"> CoO</label>
+							<label><input type="checkbox" name="toiv10b"> During flight </label>
+							<label><input type="checkbox" name="toiv10c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="510d"></textarea></td>
+							<textarea class="form-control" id="toiv10d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Victim of exploitation</label></td>
 						<td>
-							<label><input type="checkbox" id="511a"> CoO</label>
-							<label><input type="checkbox" id="511b"> During flight </label>
-							<label><input type="checkbox" id="511c"> CoA</label>
+							<label><input type="checkbox" name="toiv11a"> CoO</label>
+							<label><input type="checkbox" name="toiv11b"> During flight </label>
+							<label><input type="checkbox" name="toiv11c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="511d"></textarea></td>
+							<textarea class="form-control" id="toiv11d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Victim of prostitution</label></td>
 						<td>
-							<label><input type="checkbox" id="512a"> CoO</label>
-							<label><input type="checkbox" id="512b"> During flight </label>
-							<label><input type="checkbox" id="512c"> CoA</label>
+							<label><input type="checkbox" name="toiv12a"> CoO</label>
+							<label><input type="checkbox" name="toiv12b"> During flight </label>
+							<label><input type="checkbox" name="toiv12c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="512d"></textarea></td>
+							<textarea class="form-control" id="toiv12d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Minor victim used or recruited by smugglers</label></td>
 						<td>
-							<label><input type="checkbox" id="513a"> CoO</label>
-							<label><input type="checkbox" id="513b"> During flight </label>
-							<label><input type="checkbox" id="513c"> CoA</label>
+							<label><input type="checkbox" name="toiv13a"> CoO</label>
+							<label><input type="checkbox" name="toiv13b"> During flight </label>
+							<label><input type="checkbox" name="toiv13c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="513d"></textarea></td>
+							<textarea class="form-control" id="toiv13d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Minor in conflict with the Law</label></td>
 						<td>
-							<label><input type="checkbox" id="514a"> CoO</label>
-							<label><input type="checkbox" id="514b"> During flight </label>
-							<label><input type="checkbox" id="514c"> CoA</label>
+							<label><input type="checkbox" name="toiv14a"> CoO</label>
+							<label><input type="checkbox" name="toiv14b"> During flight </label>
+							<label><input type="checkbox" name="toiv14c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="514d"></textarea></td>
+							<textarea class="form-control" id="toiv14d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>In hiding <small>(e.g. fear of being identified or found)</small></label></td>
 						<td>
-							<label><input type="checkbox" id="515a"> CoO</label>
-							<label><input type="checkbox" id="515b"> During flight </label>
-							<label><input type="checkbox" id="515c"> CoA</label>
+							<label><input type="checkbox" name="toiv15a"> CoO</label>
+							<label><input type="checkbox" name="toiv15b"> During flight </label>
+							<label><input type="checkbox" name="toiv15c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="515d"></textarea></td>
+							<textarea class="form-control" id="toiv15d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Experiencing rejection by community</label></td>
 						<td>
-							<label><input type="checkbox" id="516a"> CoO</label>
-							<label><input type="checkbox" id="516b"> During flight </label>
-							<label><input type="checkbox" id="516c"> CoA</label>
+							<label><input type="checkbox" name="toiv16a"> CoO</label>
+							<label><input type="checkbox" name="toiv16b"> During flight </label>
+							<label><input type="checkbox" name="toiv16c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="516d"></textarea></td>
+							<textarea class="form-control" id="toiv16d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Bodily injured</label></td>
 						<td>
-							<label><input type="checkbox" id="517a"> CoO</label>
-							<label><input type="checkbox" id="517b"> During flight </label>
-							<label><input type="checkbox" id="517c"> CoA</label>
+							<label><input type="checkbox" name="toiv17a"> CoO</label>
+							<label><input type="checkbox" name="toiv17b"> During flight </label>
+							<label><input type="checkbox" name="toiv17c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="517d"></textarea></td>
+							<textarea class="form-control" id="toiv17d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Victim of severe beatings</label></td>
 						<td>
-							<label><input type="checkbox" id="518a"> CoO</label>
-							<label><input type="checkbox" id="518b"> During flight </label>
-							<label><input type="checkbox" id="518c"> CoA</label>
+							<label><input type="checkbox" name="toiv18a"> CoO</label>
+							<label><input type="checkbox" name="toiv18b"> During flight </label>
+							<label><input type="checkbox" name="toiv18c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="518d"></textarea></td>
+							<textarea class="form-control" id="toiv18d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Lack of basic needs <small>(food, water, shelter)</small></label></td>
 						<td>
-							<label><input type="checkbox" id="519a"> CoO</label>
-							<label><input type="checkbox" id="519b"> During flight </label>
-							<label><input type="checkbox" id="519c"> CoA</label>
+							<label><input type="checkbox" name="toiv19a"> CoO</label>
+							<label><input type="checkbox" name="toiv19b"> During flight </label>
+							<label><input type="checkbox" name="toiv19c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="519d"></textarea></td>
+							<textarea class="form-control" id="toiv19d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Victim of rape / sexual abuses</label></td>
 						<td>
-							<label><input type="checkbox" id="520a"> CoO</label>
-							<label><input type="checkbox" id="520b"> During flight </label>
-							<label><input type="checkbox" id="520c"> CoA</label>
+							<label><input type="checkbox" name="toiv20a"> CoO</label>
+							<label><input type="checkbox" name="toiv20b"> During flight </label>
+							<label><input type="checkbox" name="toiv20c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="520d"></textarea></td>
+							<textarea class="form-control" id="toiv20d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Unsafe in community <br><small>(a.g. abuse by family or community, domestic violence)</small></label></td>
 						<td>
-							<label><input type="checkbox" id="521a"> CoO</label>
-							<label><input type="checkbox" id="521b"> During flight </label>
-							<label><input type="checkbox" id="521c"> CoA</label>
+							<label><input type="checkbox" name="toiv21a"> CoO</label>
+							<label><input type="checkbox" name="toiv21b"> During flight </label>
+							<label><input type="checkbox" name="toiv21c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="521d"></textarea></td>
+							<textarea class="form-control" id="toiv21d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Other <small>(explain)</small></label></td>
 						<td>
-							<label><input type="checkbox" id="522a"> CoO</label>
-							<label><input type="checkbox" id="522b"> During flight </label>
-							<label><input type="checkbox" id="522c"> CoA</label>
+							<label><input type="checkbox" name="toiv22a"> CoO</label>
+							<label><input type="checkbox" name="toiv22b"> During flight </label>
+							<label><input type="checkbox" name="toiv22c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="522d"></textarea></td>
+							<textarea class="form-control" id="toiv22d"></textarea></td>
 					</tr>
 					<tr>
 						<td colspan="3" class="info" ><p>Special attention: Girls at risk <small>(can be cumulated with previous section)</small></p></td>
@@ -515,129 +624,129 @@ $(document).ready(function(){
 					<tr>
 						<td><label>Girl without protection</label></td>
 						<td>
-							<label><input type="checkbox" id="523a"> CoO</label>
-							<label><input type="checkbox" id="523b"> During flight </label>
-							<label><input type="checkbox" id="523c"> CoA</label>
+							<label><input type="checkbox" name="toiv23a"> CoO</label>
+							<label><input type="checkbox" name="toiv23b"> During flight </label>
+							<label><input type="checkbox" name="toiv23c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="523d"></textarea></td>
+							<textarea class="form-control" id="toiv23d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Pregnant girl</label></td>
 						<td>
-							<label><input type="checkbox" id="524a"> CoO</label>
-							<label><input type="checkbox" id="524b"> During flight </label>
-							<label><input type="checkbox" id="524c"> CoA</label>
+							<label><input type="checkbox" name="toiv24a"> CoO</label>
+							<label><input type="checkbox" name="toiv24b"> During flight </label>
+							<label><input type="checkbox" name="toiv24c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="524d"></textarea></td>
+							<textarea class="form-control" id="toiv24d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Adolescent parent</label></td>
 						<td>
-							<label><input type="checkbox" id="525a"> CoO</label>
-							<label><input type="checkbox" id="525b"> During flight </label>
-							<label><input type="checkbox" id="525c"> CoA</label>
+							<label><input type="checkbox" name="toiv25a"> CoO</label>
+							<label><input type="checkbox" name="toiv25b"> During flight </label>
+							<label><input type="checkbox" name="toiv25c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="525d"></textarea></td>
+							<textarea class="form-control" id="toiv25d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Victim of rape / sexual abuses</label></td>
 						<td>
-							<label><input type="checkbox" id="526a"> CoO</label>
-							<label><input type="checkbox" id="526b"> During flight </label>
-							<label><input type="checkbox" id="526c"> CoA</label>
+							<label><input type="checkbox" name="toiv26a"> CoO</label>
+							<label><input type="checkbox" name="toiv26b"> During flight </label>
+							<label><input type="checkbox" name="toiv26c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="526d"></textarea></td>
+							<textarea class="form-control" id="toiv26d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Engaging in survival sex</label></td>
 						<td>
-							<label><input type="checkbox" id="527a"> CoO</label>
-							<label><input type="checkbox" id="527b"> During flight </label>
-							<label><input type="checkbox" id="527c"> CoA</label>
+							<label><input type="checkbox" name="toiv27a"> CoO</label>
+							<label><input type="checkbox" name="toiv27b"> During flight </label>
+							<label><input type="checkbox" name="toiv27c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="527d"></textarea></td>
+							<textarea class="form-control" id="toiv27d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Other forms of GBVs</label></td>
 						<td>
-							<label><input type="checkbox" id="528a"> CoO</label>
-							<label><input type="checkbox" id="528b"> During flight </label>
-							<label><input type="checkbox" id="528c"> CoA</label>
+							<label><input type="checkbox" name="toiv28a"> CoO</label>
+							<label><input type="checkbox" name="toiv28b"> During flight </label>
+							<label><input type="checkbox" name="toiv28c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="528d"></textarea></td>
+							<textarea class="form-control" id="toiv28d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Victim of forced marriage</label></td>
-						<td>
-							<label><input type="checkbox" id="529a"> CoO</label>
-							<label><input type="checkbox" id="529b"> During flight </label>
-							<label><input type="checkbox" id="529c"> CoA</label>
+						<<td>
+							<label><input type="checkbox" name="toiv29a"> CoO</label>
+							<label><input type="checkbox" name="toiv29b"> During flight </label>
+							<label><input type="checkbox" name="toiv29c"> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="529d"></textarea></td>
+							<textarea class="form-control" id="toiv29d"></textarea></td>
 					</tr>
 					
 				</table>
 			</div>
-			<br><button class="btn btn-success" id="save_5"><i class="fa fa-save"></i> Save</button>
+			<br><button class="btn btn-success" id="save_3"><i class="fa fa-save"></i> Save</button>
 		</div>
 		</div>
 		</div>
-		<!-- 6 – Education -->
+		<!-- Education -->
 		<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseEdu">6. Education</a>
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseEdu"> Education</a>
 			</h4>
 		</div>
-		<div id="collapseEdu" class="panel-collapse collapse">
+		<div id="collapseEdu" class="panel-collapse collapse in">
 		<div class="panel-body">
 			<div class="table-responsive">
 				<table class="table table-bordered">
 					<tr>
 						<td><label>Suggested questions</label></td>
 						<td><label>*Did you go to school prior to the separation?</label>
-							<textarea class="form-control" id="61a"></textarea>
+							<textarea class="form-control" id="edu1"></textarea>
 							<br>
 							<label>	*Do you like to go to school?</label>
-							<textarea class="form-control" id="61b"></textarea>
+							<textarea class="form-control" id="edu2"></textarea>
 							<br>
 							<label>	*How do you spend your time? What do you like to do? <small>(Language, Computer, etc.)</small> </label>
-							<textarea class="form-control" id="61c"></textarea>
+							<textarea class="form-control" id="edu3"></textarea>
 							<br>
 							<label>	Observations</label>
-							<textarea class="form-control" id="61d"></textarea>
+							<textarea class="form-control" id="edu4"></textarea>
 						</td>
 					</tr>
 					<tr>
 						<td><label>Level of education / grade</label></td>
-						<td><textarea class="form-control" id="62"></textarea></td>
+						<td><textarea class="form-control" id="edu5"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Skills & Occupation</label></td>
-						<td><textarea class="form-control" id="63"></textarea></td>
+						<td><textarea class="form-control" id="edu6"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Previous occupation, if any</label></td>
-						<td><textarea class="form-control" id="64"></textarea></td>
+						<td><textarea class="form-control" id="edu7"></textarea></td>
 					</tr>
 				</table>
 			</div>
-			<br><button class="btn btn-success" id="save_6"><i class="fa fa-save"></i> Save</button>
+			<br><button class="btn btn-success" id="save_4"><i class="fa fa-save"></i> Save</button>
 		</div>
 		</div>
 		</div>
-		<!-- 7 – Health  -->
+		<!-- Health  -->
 		<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseHealth">7. Health </a>
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseHealth"> Health </a>
 			</h4>
 		</div>
 		<div id="collapseHealth" class="panel-collapse collapse ">
@@ -652,89 +761,90 @@ $(document).ready(function(){
 					<tr>
 						<td colspan="3">
 							<label>Suggested questions:</label>
-							<textarea class="form-control" id="71a"></textarea>
+							<textarea class="form-control" id="health1"></textarea>
 							<label>Observation:</label>
-							<textarea class="form-control" id="71a"></textarea>
+							<textarea class="form-control" id="health2"></textarea>
 						</td>
 					</tr>
 					<tr>
 						<td width="300px">
 							<Label>Whether medical attention is being</Label><br>
-							<label class="checkbox-inline"><input type="checkbox" name="72a"> Received</label>
-							<label class="checkbox-inline"><input type="checkbox" name="72a"> Required</label>
+							<label class="checkbox-inline"><input type="radio" value="0" name="health3"> Received</label>
+							<label class="checkbox-inline"><input type="radio" value="1" name="health3"> Required</label>
 						</td>
 						<td colspan="2">
 							<label>Observation:</label>
-							<textarea class="form-control" id="72b"></textarea>
+							<textarea class="form-control" id="health4"></textarea>
 						</td>
 					</tr>
 					<tr>
 						<td><label>Physical Health problems</label></td>
 						<td width="200px">
-							<label><input type="checkbox" id="73a"> Past history </label><br>
-							<label><input type="checkbox" id="73b"> During flight </label><br>
-							<label><input type="checkbox" id="73c"> At present</label><br>
+							<label><input type="checkbox" id="health4a"> Past history </label><br>
+							<label><input type="checkbox" id="health4b"> During flight </label><br>
+							<label><input type="checkbox" id="health4c"> At present</label><br>
 						</td>
 						<td>
 							<label>Observation:</label>
-							<textarea class="form-control" id="73d"></textarea></td>
+							<textarea class="form-control" id="health4d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Child with HIV/AIDS</label></td>
 						<td width="200px">
-							<label><input type="checkbox" id="74a"> Past history </label><br>
-							<label><input type="checkbox" id="74b"> During flight </label><br>
-							<label><input type="checkbox" id="74c"> At present</label><br>
+							<label><input type="checkbox" id="health5a"> Past history </label><br>
+							<label><input type="checkbox" id="health5b"> During flight </label><br>
+							<label><input type="checkbox" id="health5c"> At present</label><br>
 						</td>
 						<td>
 							<label>Observation:</label>
-							<textarea class="form-control" id="74d"></textarea></td>
+							<textarea class="form-control" id="health5d"></textarea></td>
+							
 					</tr>
 					<tr>
 						<td><label>Addictions <i>(Drugs, alcohol, etc.)</i></label></td>
 						<td width="200px">
-							<label><input type="checkbox" id="75a"> Past history </label><br>
-							<label><input type="checkbox" id="75b"> During flight </label><br>
-							<label><input type="checkbox" id="75c"> At present</label><br>
+							<label><input type="checkbox" id="health6a"> Past history </label><br>
+							<label><input type="checkbox" id="health6b"> During flight </label><br>
+							<label><input type="checkbox" id="health6c"> At present</label><br>
 						</td>
 						<td>
 							<label>Observation:</label>
-							<textarea class="form-control" id="75d"></textarea></td>
+							<textarea class="form-control" id="health6d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Hearing impairment</label></td>
 						<td width="200px">
-							<label><input type="checkbox" id="76a"> Past history </label><br>
-							<label><input type="checkbox" id="76b"> During flight </label><br>
-							<label><input type="checkbox" id="76c"> At present</label><br>
+							<label><input type="checkbox" id="health7a"> Past history </label><br>
+							<label><input type="checkbox" id="health7b"> During flight </label><br>
+							<label><input type="checkbox" id="health7c"> At present</label><br>
 						</td>
 						<td>
 							<label>Observation:</label>
-							<textarea class="form-control" id="76d"></textarea></td>
+							<textarea class="form-control" id="health7d"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>Mental disability</label></td>
 						<td style="max-width:200px;">
-							<label><input type="checkbox" id="77a"> Past history </label><br>
-							<label><input type="checkbox" id="77b"> During flight </label><br>
-							<label><input type="checkbox" id="77c"> At present</label><br>
+							<label><input type="checkbox" id="health8a"> Past history </label><br>
+							<label><input type="checkbox" id="health8b"> During flight </label><br>
+							<label><input type="checkbox" id="health8c"> At present</label><br>
 						</td>
 						<td>
 							<label>Observation:</label>
-							<textarea class="form-control" id="77d"></textarea></td>
+							<textarea class="form-control" id="health8d"></textarea></td>
 					</tr>
 					
 				</table>
 			</div>
-			<br><button class="btn btn-success" id="save_7"><i class="fa fa-save"></i> Save</button>			
+			<br><button class="btn btn-success" id="save_5"><i class="fa fa-save"></i> Save</button>			
 		</div>
 		</div>
 		</div>
-		<!-- 8 – Psychosocial conditions    (This part can be filled by Psychosocial workers) -->
+		<!-- Psychosocial conditions    (This part can be filled by Psychosocial workers) -->
 		<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapsePsy">8. Psychosocial conditions</a><br> <small class="text-danger">(This part can be filled by Psychosocial workers)</small>
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapsePsy"> Psychosocial conditions</a><br> <small class="text-danger">(This part can be filled by Psychosocial workers)</small>
 			</h4>
 		</div>
 		<div id="collapsePsy" class="panel-collapse collapse ">
@@ -936,11 +1046,11 @@ $(document).ready(function(){
 		</div>
 		</div>
 		</div>
-		<!-- 9 – Living conditions in place of residence -->
+		<!-- Living conditions in place of residence -->
 		<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseLiving">9. Living conditions in place of residence</a>
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseLiving"> Living conditions in place of residence</a>
 			</h4>
 		</div>
 		<div id="collapseLiving" class="panel-collapse collapse">
@@ -1168,11 +1278,11 @@ $(document).ready(function(){
 		</div>
 	
 		</div>
-		<!-- 10 - Financial Situation and Supporting System -->
+		<!-- Financial Situation and Supporting System -->
 		<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseFinancial">10. Financial Situation and Supporting System</a>
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseFinancial"> Financial Situation and Supporting System</a>
 			</h4>
 		</div>
 		<div id="collapseFinancial" class="panel-collapse collapse ">

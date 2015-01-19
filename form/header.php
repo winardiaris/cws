@@ -12,32 +12,49 @@ include ("inc/conf.php");
 
 	<title><?php echo $NAME ?></title>
 	<link rel="shortcut icon" href="img/logo.ico" />
-	<link href="css/custom.css" rel="stylesheet">
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/datepicker3.css" rel="stylesheet">
+	<link href="<?php echo $URL ?>css/custom.css" rel="stylesheet">
+	<link href="<?php echo $URL ?>css/bootstrap.css" rel="stylesheet">
+	<link href="<?php echo $URL ?>css/datepicker3.css" rel="stylesheet">
 
 	 
-	<link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
-	<link href="css/plugins/timeline.css" rel="stylesheet">
-	<link href="css/sb-admin-2.css" rel="stylesheet">
-	<link href="css/plugins/morris.css" rel="stylesheet">
-	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo $URL ?>css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
+	<link href="<?php echo $URL ?>css/plugins/timeline.css" rel="stylesheet">
+	<link href="<?php echo $URL ?>css/sb-admin-2.css" rel="stylesheet">
+	<link href="<?php echo $URL ?>css/plugins/morris.css" rel="stylesheet">
+	<link href="<?php echo $URL ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	
-	<script src="js/custom.js"></script>
-	<script src="js/jquery.js"></script>
-	<script src="js/jquery-ui.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/bootstrap-datepicker.js"></script>
-	<script src="js/plugins/metisMenu/metisMenu.min.js"></script>
-	<script src="js/sb-admin-2.js"></script>
-	<script src="js/plugins/dataTables/jquery.dataTables.js"></script>
-    <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+	<script src="<?php echo $URL ?>js/custom.js"></script>
+	<script src="<?php echo $URL ?>js/jquery.js"></script>
+	<script src="<?php echo $URL ?>js/jquery-ui.min.js"></script>
+	<script src="<?php echo $URL ?>js/bootstrap.min.js"></script>
+	<script src="<?php echo $URL ?>js/bootstrap-datepicker.js"></script>
+	<script src="<?php echo $URL ?>js/plugins/metisMenu/metisMenu.min.js"></script>
+	<script src="<?php echo $URL ?>js/sb-admin-2.js"></script>
+	<script src="<?php echo $URL ?>js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="<?php echo $URL ?>js/plugins/dataTables/dataTables.bootstrap.js"></script>
+   
 </head>
 <body <?php if($_GET['page'] == "login"){ echo 'class="bg-login"';}?>>
-<?php echo $iframe ?>
+
 <div id="wrapper"><!-- /#wrapper -->
 
 <!-- test draggable div for history.back() -->
 <script>$(function() {$("#close").draggable();});</script>
-<div id="close"><button class="btn btn-default " onClick="history.back();"><i class="fa fa-chevron-left" ></i></button></div>
-		
+
+<?php 
+	echo $iframe;
+	if(isset($_GET['page'])){
+		echo'<div id="close"><button class="btn btn-default " onClick="history.back();"><i class="fa fa-chevron-left" ></i></button></div>';
+	}
+?>	
+<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body" id="modal">
+					<input class="form-control">
+				</div>
+			</div>
+		</div>
+	</div>
+	

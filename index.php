@@ -33,7 +33,7 @@ if(!empty($_GET['page'])){
 		case "se-form":
 		$view = "form/se-form.php";
 		break;
-		case "ia-data":
+		case "se-data":
 		$view = "form/se-data.php";
 		break;
 		
@@ -41,7 +41,7 @@ if(!empty($_GET['page'])){
 		case "bia-form":
 		$view = "form/bia-form.php";
 		break;
-		case "ia-data":
+		case "bia-data":
 		$view = "form/bia-data.php";
 		break;
 		
@@ -52,6 +52,11 @@ if(!empty($_GET['page'])){
 		
 		default:
 		$view = "form/404.php";
+		break;
+		
+		//CHART --------
+		case "chart1":
+		$view = "form/chart/1.php";
 		break;
 	}
 
