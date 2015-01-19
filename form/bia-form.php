@@ -188,7 +188,104 @@ $(document).ready(function(){
 					}else{alert("Data not saved !!");}}
 				});
 		});
-		
+		//living condition
+		//a
+		$("#save_living_a").click(function(){
+			var file_no = $("#file_no").val(),
+			liva1 = $("#liva1").val(),
+			liva2 = $("#liva2").val(),
+			liva3 = $("#liva3").val(),
+			liva4 = $('input:radio[name=liva4]:checked').val(),
+			liva5 = $("#liva5").val(),
+			liva6 = $("#liva6").val(),
+			datanya = "&file_no="+file_no+"&value="+liva1+";"+liva2+";"+liva3+";"+liva4+";"+liva5+";"+liva6;
+			
+			$.ajax({url:"form/bia-action.php",data:"op=saveliva"+datanya,cache:false,success: function(msg){
+					if(msg=="success"){
+						alert("Data has been saved !!");
+						$("#col9ab").slideUp();
+						$("#col9ba").trigger("click");
+					}else{alert("Data not saved !!");}}
+			});
+		});
+		//b
+		$("#save_living_b").click(function(){
+			var	file_no = $("#file_no").val(),
+				livb1 = $("#livb1:checked").length,livb2 = $("#livb2:checked").length,livb3 = $("#livb3:checked").length,livb4 = $("#livb4:checked").length,livb5 = $("#livb5:checked").length,livb6 = $("#livb6:checked").length,livb7 = $("#livb7:checked").length,livb8 = $("#livb8:checked").length,livb9 = $("#livb9:checked").length,livb10 = $("#livb10:checked").length,livb11 = $("#livb11:checked").length,livb12 = $("#livb12:checked").length,
+				livb13 = $("#livb13").val();
+			var datanya = "&file_no="+file_no+"&value="+livb1+";"+livb2+";"+livb3+";"+livb4+";"+livb5+";"+livb6+";"+livb7+";"+livb8+";"+livb9+";"+livb10+";"+livb11+";"+livb12+";"+livb13;
+			
+			$.ajax({url:"form/bia-action.php",data:"op=savelivb"+datanya,cache:false,success: function(msg){
+					if(msg=="success"){
+						alert("Data has been saved !!");
+						$("#col9bb").slideUp();
+						$("#col9ca").trigger("click");
+					}else{alert("Data not saved !!");}}
+			});
+		});
+		//c
+		$("#save_living_c").click(function(){
+			var	file_no = $("#file_no").val(),
+				livc1a = $("#livc1a:checked").length,livc1b = $('input:radio[name=livc1b]:checked').val(),
+				livc2a = $("#livc2a:checked").length,livc2b = $('input:radio[name=livc2b]:checked').val(),
+				livc3a = $("#livc3a:checked").length,livc3b = $('input:radio[name=livc3b]:checked').val(),
+				livc4a = $("#livc4a:checked").length,livc4b = $('input:radio[name=livc4b]:checked').val(),
+				livc5a = $("#livc5a:checked").length,livc5b = $('input:radio[name=livc5b]:checked').val(),
+				livc6a = $("#livc6a:checked").length,livc6b = $('input:radio[name=livc6b]:checked').val(),
+				livc7a = $("#livc7a:checked").length,livc7b = $('input:radio[name=livc7b]:checked').val(),
+				livc8a = $("#livc8a:checked").length,livc8b = $('input:radio[name=livc8b]:checked').val(),
+				livc9a = $("#livc9a:checked").length,livc9b = $('input:radio[name=livc9b]:checked').val(),
+				livc10a = $("#livc10a:checked").length,livc10b = $('input:radio[name=livc10b]:checked').val(),
+				livc11a = $("#livc11a:checked").length,livc11b = $('input:radio[name=livc11b]:checked').val(),
+				livc12a = $("#livc12a:checked").length,livc12b = $('input:radio[name=livc12b]:checked').val();
+			var datanya="&file_no="+file_no+"&value="+livc1a+";"+livc1b+";"+livc2a+";"+livc2b+";"+livc3a+";"+livc3b+";"+livc4a+";"+livc4b+";"+livc5a+";"+livc5b+";"+livc6a+";"+livc6b+";"+livc7a+";"+livc7b+";"+livc8a+";"+livc8b+";"+livc9a+";"+livc9b+";"+livc10a+";"+livc10b+";"+livc11a+";"+livc11b+";"+livc12a+";"+livc12b;
+			
+			$.ajax({url:"form/bia-action.php",data:"op=savelivc"+datanya,cache:false,success: function(msg){
+					if(msg=="success"){
+						alert("Data has been saved !!");
+						$("#col9cb").slideUp();
+						$("#col9da").trigger("click");
+					}else{alert("Data not saved !!");}}
+			});	
+		});
+		//d
+		$("#save_living_d").click(function(){
+			var	file_no = $("#file_no").val(),
+				livd1 = $("#livd1:checked").length,
+				livd2 = $("#livd2:checked").length,
+				livd3 = $("#livd3:checked").length,
+				livd4 = $("#livd4:checked").length,
+				livd5 = $("#livd5:checked").length,
+				livd6 = $("#livd6:checked").length,
+				livd7 = $("#livd7:checked").length,
+				livd8 = $("#livd8").val(),
+				datanya="&file_no="+file_no+"&value="+livd1+";"+livd2+";"+livd3+";"+livd4+";"+livd5+";"+livd6+";"+livd7+";"+livd8;
+			
+			$.ajax({url:"form/bia-action.php",data:"op=savelivd"+datanya,cache:false,success: function(msg){
+					if(msg=="success"){
+						alert("Data has been saved !!");
+						$("#col9db").slideUp();
+						$("#col9ea").trigger("click");
+					}else{alert("Data not saved !!");}}
+			});	
+		});
+		//e
+		$("#save_living_e").click(function(){
+			var	file_no = $("#file_no").val(),
+				live1 = $("#live1").val(),
+				live2 = $("#live2:checked").length,
+				live3 = $("#live3:checked").length,
+				live4 = $("#live4:checked").length,
+				live5 = $("#live5").val(),
+				datanya = "&file_no="+file_no+"&value="+live1+";"+live2+";"+live3+";"+live4+";"+live5;
+			
+			$.ajax({url:"form/bia-action.php",data:"op=savelive"+datanya,cache:false,success: function(msg){
+					if(msg=="success"){
+						alert("Data has been saved !!");
+						$("#col9eb").slideUp();
+					}else{alert("Data not saved !!");}}
+			});	
+		});
 });
 </script>
 
@@ -1078,7 +1175,7 @@ $(document).ready(function(){
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseInteraction">INTERACTION </a><small> with the person during the interview</small><br><small><i></i>Simple Description of the Child AS or refugee as he appears - (describe what you see; highlight the positive, not just the negative; Avoid labels.)</small>
 			</h4>
 		</div>
-		<div id="collapseInteraction" class="panel-collapse collapse in ">
+		<div id="collapseInteraction" class="panel-collapse collapse  ">
 		<div class="panel-body">
 			<label>INTERACTION <small>with the person during the interview</small></label><br>
 			<i>Simple Description of the Child AS or refugee as he appears - (describe what you see; highlight the positive, not just the negative; Avoid labels.)</i><br><br><br>
@@ -1101,7 +1198,7 @@ $(document).ready(function(){
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseLiving"> Living conditions in place of residence</a>
 			</h4>
 		</div>
-		<div id="collapseLiving" class="panel-collapse collapse">
+		<div id="collapseLiving" class="panel-collapse collapse ">
 		<div class="panel-body">
 			
 			<!-- a). Suggested Questions: -->
@@ -1111,36 +1208,37 @@ $(document).ready(function(){
 					<div class="form-group">
 						<ul>
 							<li><p>With whom do you currently live?  <i>(Note names, ages, gender)</i> How long have you been living here?Is there an adult in <i>(name/location in country of asylum)</i> who is looking after you?  <i>If so, note name, relationship, contact information.</i> How did you find this place to stay? How is your relationship with your caretaker and/or housemates? </p>
-						<textarea class="form-control"  id="9a01a"></textarea></li>
+						<textarea class="form-control"  id="liva1"></textarea></li>
 							<li><p>Do you like to stay with this family? How often do you eat? Where do you sleep? How do you feel living here? Are you happy here? Do you think you have enough food? If not, please explain. Who prepares the food? Do you have access to clean water? Are appropriate sanitation facilities in place, where you live in? </p>
-						<textarea class="form-control" id="9a01b"></textarea></li>
+						<textarea class="form-control" id="liva2"></textarea></li>
 						</ul>
 						<br>
 						<small>If the child has already in the shelter, put the situation before living in shelter in this section.</small>
 					</div>
 					<div class="form-group">
 						<label>Responses:</label>
-						<textarea class="form-control" id="9a02"></textarea>
+						<textarea class="form-control" id="liva3"></textarea>
 					</div>
 					<div class="col-lg-4">
 						<div class="form-group">
 							<label>Type of housing</label><br>
-							<label class="radio-inline"><input type="radio" name="9a03" value="CWS"> CWS</label><br>
-							<label class="radio-inline"><input type="radio" name="9a03" value="House"> House</label><br>
+							<label class="radio-inline"><input type="radio" name="liva4" value="CWS"> CWS</label><br>
+							<label class="radio-inline"><input type="radio" name="liva4" value="House"> House</label><br>
 							<small class="text-danger">(If CWS shelter is tick, no need to fill up part b, c& d)</small>
 						</div>
 					</div>
 					<div class="col-lg-4">
 						<div class="form-group">
 							<label>Number of Person Living in the Same Room/House</label>
-							<textarea class="form-control" id="9a04"></textarea>
+							<textarea class="form-control" id="liva5"></textarea>
 						</div>
 					</div>
 					<div class="col-lg-4">
 						<div class="form-group">
 							<label>Neighbourhood/Relationship with around People</label>
-							<textarea class="form-control" id="9a05"></textarea>
+							<textarea class="form-control" id="liva6"></textarea>
 						</div>
+						<br><button class="btn btn-success" id="save_living_a"><i class="fa fa-save"></i> Save</button>
 					</div>
 				
 				
@@ -1155,28 +1253,30 @@ $(document).ready(function(){
 				<div class="panel-body" id="col9bb">
 					<div class="col-lg-4">
 						<div class="well well-sm"><div class="checkbox">
-						<label><input type="checkbox" id="9b01"> Bedroom</label> <br>
-						<label><input type="checkbox" id="9b02"> Bathroom</label><br>
-						<label><input type="checkbox" id="9b03"> Electricity</label><br>
-						<label><input type="checkbox" id="9b04"> Guest room</label><br>
-						<label><input type="checkbox" id="9b05"> Terrace</label><br>
-						<label><input type="checkbox" id="9b06"> Direct access to public transportation</label><br>
+						<label><input type="checkbox" id="livb1"> Bedroom</label> <br>
+						<label><input type="checkbox" id="livb2"> Bathroom</label><br>
+						<label><input type="checkbox" id="livb3"> Electricity</label><br>
+						<label><input type="checkbox" id="livb4"> Guest room</label><br>
+						<label><input type="checkbox" id="livb5"> Terrace</label><br>
+						<label><input type="checkbox" id="livb6"> Direct access to public transportation</label><br>
 						</div></div>
 					</div>
 					<div class="col-lg-4">
 						<div class="well well-sm"><div class="checkbox">
-						<label><input type="checkbox" id="9b07"> Living room</label><br>
-						<label><input type="checkbox" id="9b08"> Backyard</label><br>
-						<label><input type="checkbox" id="9b09"> Dining room</label><br>
-						<label><input type="checkbox" id="9b10"> Piped Clean & Safe Water</label><br>
-						<label><input type="checkbox" id="9b11"> Kitchen</label><br>
-						<label><input type="checkbox" id="9b12"> Dug Well Water</label><br> 
+						<label><input type="checkbox" id="livb7"> Living room</label><br>
+						<label><input type="checkbox" id="livb8"> Backyard</label><br>
+						<label><input type="checkbox" id="livb9"> Dining room</label><br>
+						<label><input type="checkbox" id="livb10"> Piped Clean & Safe Water</label><br>
+						<label><input type="checkbox" id="livb11"> Kitchen</label><br>
+						<label><input type="checkbox" id="livb12"> Dug Well Water</label><br> 
 						</div></div>
 					</div>
 					<div class="col-lg-4">
 						<label>Remarks:</label>
-						<textarea class="form-control" id="9b13"></textarea>
+						<textarea class="form-control" id="livb13"></textarea>
+						<br><button class="btn btn-success" id="save_living_b"><i class="fa fa-save"></i> Save</button>
 					</div>
+					
 				</div>
 			</div>
 			<!-- c). House facilities -->
@@ -1190,39 +1290,39 @@ $(document).ready(function(){
 						<div class="table-responsive checkbox">
 							<table class="table table-bordered">
 								<tr>
-									<td><label><input type="checkbox" id="9c01a">Fan</label></td>
-									<td><label><input type="checkbox" id="9c01b">Private</label>
-										<label><input type="checkbox" id="9c01c">House owner</label>
+									<td><label><input type="checkbox" id="livc1a">Fan</label></td>
+									<td><label><input type="radio" name="livc1b" value="0" checked> Private</label>
+										<label><input type="radio" name="livc1b" value="1" > House owner</label>
 									</td>
 								</tr>
 								<tr>
-									<td><label><input type="checkbox" id="9c03a">TV set</label></td>
-									<td><label><input type="checkbox" id="9c03b">Private</label>
-										<label><input type="checkbox" id="9c03c">House owner</label>
+									<td><label><input type="checkbox" id="livc2a">TV set</label></td>
+									<td><label><input type="radio" name="livc2b" value="0" checked> Private</label>
+										<label><input type="radio" name="livc2b" value="1" > House owner</label>
 									</td>
 								</tr>
 								<tr>
-									<td><label><input type="checkbox" id="9c05a">Telephone (mobile)</label></td>
-									<td><label><input type="checkbox" id="9c05b">Private</label>
-										<label><input type="checkbox" id="9c05c">House owner</label>
+									<td><label><input type="checkbox" id="livc3a">Telephone (mobile)</label></td>
+									<td><label><input type="radio" name="livc3b" value="0" checked> Private</label>
+										<label><input type="radio" name="livc3b" value="1" > House owner</label>
 									</td>
 								</tr>
 								<tr>
-									<td><label><input type="checkbox" id="9c07a">Radio</label></td>
-									<td><label><input type="checkbox" id="9c07b">Private</label>
-										<label><input type="checkbox" id="9c07c">House owner</label>
+									<td><label><input type="checkbox" id="livc4a">Radio</label></td>
+									<td><label><input type="radio" name="livc4b" value="0" checked> Private</label>
+										<label><input type="radio" name="livc4b" value="1" > House owner</label>
 									</td>
 								</tr>
 								<tr>
-									<td><label><input type="checkbox" id="9c09a">Furniture</label></td>
-									<td><label><input type="checkbox" id="9c09b">Private</label>
-										<label><input type="checkbox" id="9c09c">House owner</label>
+									<td><label><input type="checkbox" id="livc5a">Furniture</label></td>
+									<td><label><input type="radio" name="livc5b" value="0" checked> Private</label>
+										<label><input type="radio" name="livc5b" value="1" > House owner</label>
 									</td>
 								</tr>
 								<tr>
-									<td><label><input type="checkbox" id="9c11a">Refrigerator</label></td>
-									<td><label><input type="checkbox" id="9c11b">Private</label>
-										<label><input type="checkbox" id="9c11c">House owner</label>
+									<td><label><input type="checkbox" id="livc6a">Refrigerator</label></td>
+									<td><label><input type="radio" name="livc6b" value="0" checked> Private</label>
+										<label><input type="radio" name="livc6b" value="1" > House owner</label>
 									</td>
 								</tr>
 							</table>
@@ -1232,42 +1332,43 @@ $(document).ready(function(){
 						<div class="table-responsive checkbox">
 							<table class="table table-bordered">
 								<tr>
-									<td><label><input type="checkbox" id="9c02a">Satellite/Cable TV</label></td>
-									<td><label><input type="checkbox" id="9c02b">Private</label>
-										<label><input type="checkbox" id="9c02c">House owner</label>
+									<td><label><input type="checkbox" id="livc7a">Satellite/Cable TV</label></td>
+									<td><label><input type="radio" name="livc7b" value="0" checked> Private</label>
+										<label><input type="radio" name="livc7b" value="1" > House owner</label>
 									</td>
 								</tr>
 								<tr>
-									<td><label><input type="checkbox" id="9c04a">Washing machine</label></td>
-									<td><label><input type="checkbox" id="9c04b">Private</label>
-										<label><input type="checkbox" id="9c04c">House owner</label>
+									<td><label><input type="checkbox" id="livc8a">Washing machine</label></td>
+									<td><label><input type="radio" name="livc8b" value="0" checked> Private</label>
+										<label><input type="radio" name="livc8b" value="1" > House owner</label>
 									</td>
 								</tr>
 								<tr>
-									<td><label><input type="checkbox" id="9c06a">Computer</label></td>
-									<td><label><input type="checkbox" id="9c06b">Private</label>
-										<label><input type="checkbox" id="9c06c">House owner</label>
+									<td><label><input type="checkbox" id="livc9a">Computer</label></td>
+									<td><label><input type="radio" name="livc9b" value="0" checked> Private</label>
+										<label><input type="radio" name="livc9b" value="1" > House owner</label>
 									</td>
 								</tr>
 								<tr>
-									<td><label><input type="checkbox" id="9c08a">Internet connection</label></td>
-									<td><label><input type="checkbox" id="9c08b">Private</label>
-										<label><input type="checkbox" id="9c08c">House owner</label>
+									<td><label><input type="checkbox" id="livc10a">Internet connection</label></td>
+									<td><label><input type="radio" name="livc10b" value="0" checked> Private</label>
+										<label><input type="radio" name="livc10b" value="1" > House owner</label>
 									</td>
 								</tr>
 								<tr>
-									<td><label><input type="checkbox" id="9c10a">Kitchen Utensils</label></td>
-									<td><label><input type="checkbox" id="9c10b">Private</label>
-										<label><input type="checkbox" id="9c10c">House owner</label>
+									<td><label><input type="checkbox" id="livc11a">Kitchen Utensils</label></td>
+									<td><label><input type="radio" name="livc11b" value="0" checked> Private</label>
+										<label><input type="radio" name="livc11b" value="1" > House owner</label>
 									</td>
 								</tr>
 								<tr>
-									<td><label><input type="checkbox" id="9c12a">Other</label></td>
-									<td><label><input type="checkbox" id="9c12b">Private</label>
-										<label><input type="checkbox" id="9c12c">House owner</label>
+									<td><label><input type="checkbox" id="livc12a">Other</label></td>
+									<td><label><input type="radio" name="livc12b" value="0" checked> Private</label>
+										<label><input type="radio" name="livc12b" value="1" > House owner</label>
 									</td>
 								</tr>
 							</table>
+							<br><button class="btn btn-success" id="save_living_c"><i class="fa fa-save"></i> Save</button>
 						</div>
 					</div>
 				</div>
@@ -1280,19 +1381,20 @@ $(document).ready(function(){
 				</div>
 				<div class="panel-body" id="col9db">
 					<div class="well well-sm col-lg-5 checkbox">
-						<label><input type="checkbox" id="9d01">Fenced Accommodation</label><br>
-						<label><input type="checkbox" id="9d02">Secured Gate(s)</label><br>
-						<label><input type="checkbox" id="9d03">Health Facilities </label><br>
-						<label><input type="checkbox" id="9d04">Police station access</label><br>
-						<label><input type="checkbox" id="9d05">Secured Doors & Windows</label><br>
-						<label><input type="checkbox" id="9d06">Multiple Entry/Exit points in the building</label><br>
-						<label><input type="checkbox" id="9d07">Fire Extinguisher</label>
+						<label><input type="checkbox" id="livd1">Fenced Accommodation</label><br>
+						<label><input type="checkbox" id="livd2">Secured Gate(s)</label><br>
+						<label><input type="checkbox" id="livd3">Health Facilities </label><br>
+						<label><input type="checkbox" id="livd4">Police station access</label><br>
+						<label><input type="checkbox" id="livd5">Secured Doors & Windows</label><br>
+						<label><input type="checkbox" id="livd6">Multiple Entry/Exit points in the building</label><br>
+						<label><input type="checkbox" id="livd7">Fire Extinguisher</label>
 					</div>
 					<div class="col-lg-7">
 						<div class="form-group">
 							<Label>Remarks:</Label>
-							<textarea class="form-control" id="9d08"></textarea>
+							<textarea class="form-control" id="livd8"></textarea>
 						</div>
+						<button class="btn btn-success" id="save_living_d"><i class="fa fa-save"></i> Save</button>
 					</div>
 				</div>
 			</div>
@@ -1306,22 +1408,22 @@ $(document).ready(function(){
 					<div class="col-lg-12">
 						<div class="form-group">
 							<label>Suggested Questions</label>
-							<textarea class="form-control" id="9e01" rows="5"></textarea>
+							<textarea class="form-control" id="live1" rows="5"></textarea>
 						</div>
 						<div class="checkbox">
-						<label><input type="checkbox" id="9e02">Registered to neighbourhood/local authorities </label><br>
-						<label><input type="checkbox" id="9e03">Attestation Letter</label><br>
-						<label><input type="checkbox" id="9e04">Valid Passports and/or other recognized travel documents</label>
+						<label><input type="checkbox" id="live2">Registered to neighbourhood/local authorities </label><br>
+						<label><input type="checkbox" id="live3">Attestation Letter</label><br>
+						<label><input type="checkbox" id="live4">Valid Passports and/or other recognized travel documents</label>
 						</div>
 						<br><br>
 						<div class="form-group">
 							<Label>Remarks:</Label>
-							<textarea class="form-control" id="9d08"></textarea>
+							<textarea class="form-control" id="live5"></textarea>
 						</div>
+						<br><button class="btn btn-success" id="save_living_e"><i class="fa fa-save"></i> Save</button>
 					</div>
 				</div>
 			</div>
-			<br><button class="btn btn-success" id="save_9"><i class="fa fa-save"></i> Save</button>
 		</div>
 		</div>
 	
@@ -1333,7 +1435,7 @@ $(document).ready(function(){
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseFinancial"> Financial Situation and Supporting System</a>
 			</h4>
 		</div>
-		<div id="collapseFinancial" class="panel-collapse collapse ">
+		<div id="collapseFinancial" class="panel-collapse collapse in ">
 		<div class="panel-body">
 			<div class="form-group">
 				<label>How the child survived from Date of Arrival to the date of Assessment</label>

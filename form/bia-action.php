@@ -77,4 +77,44 @@ elseif($op == "saveinter"){
 	if($save){echo "success";}
 	else{echo "error";}
 }
+elseif($op == "saveliva"){
+	$file_no = $_GET['file_no'];;
+	$value = htmlspecialchars($_GET['value']);
+	$save = mysql_query(" UPDATE `bia` SET `living_a`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no';") or die(mysql_error());
+	
+	if($save){echo "success";}
+	else{echo "error";}
+}
+elseif($op == "savelivb"){
+	$file_no = $_GET['file_no'];;
+	$value = htmlspecialchars($_GET['value']);
+	$save = mysql_query(" UPDATE `bia` SET `living_b`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no';") or die(mysql_error());
+	
+	if($save){echo "success";}
+	else{echo "error";}
+}
+elseif($op == "savelivc"){
+	$file_no = $_GET['file_no'];;
+	$value = htmlspecialchars($_GET['value']);
+	$save = mysql_query(" UPDATE `bia` SET `living_c`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no';") or die(mysql_error());
+	
+	if($save){echo "success";}
+	else{echo "error";}
+}
+elseif($op == "savelivd"){
+	$file_no = $_GET['file_no'];;
+	$value = htmlspecialchars($_GET['value']);
+	$save = mysql_query(" UPDATE `bia` SET `living_d`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no';") or die(mysql_error());
+	
+	if($save){echo "success";}
+	else{echo "error";}
+}
+elseif($op == "savelive"){
+	$file_no = $_GET['file_no'];;
+	$value = htmlspecialchars($_GET['value']);
+	$save = mysql_query(" UPDATE `bia` SET `living_e`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no';") or die(mysql_error());
+	
+	if($save){echo "success";}
+	else{echo "error";}
+}
 ?>
