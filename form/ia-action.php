@@ -5,7 +5,7 @@ $op = $_GET['op'];
 if($op == "check"){
 	$file_no = $_GET['file_no'];
 	$qry = mysql_query("SELECT COUNT(*) AS `ada` FROM `person` WHERE `file_no`='$file_no';") or die(mysql_error());
-	$qry2 = mysql_query("SELECT COUNT(*) AS `ada` FROM `ia` WHERE `file_no`='$file_no';") or die(mysql_error());
+	$qry2 = mysql_query("SELECT COUNT(*) AS `ada` FROM `ia` WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
 	$person = mysql_fetch_array($qry);
 	$ia = mysql_fetch_array($qry2);
@@ -31,7 +31,7 @@ elseif($op == "addassessment"){
 elseif($op == "updateassessment"){
 	$file_no = $_GET['file_no'];
 	$value = htmlspecialchars($_GET['value']);
-	$save = mysql_query("UPDATE  `ia` SET `assessment`='$value', `last_change`='$NOW' WHERE `file_no`='$file_no' ;") or die(mysql_error());
+	$save = mysql_query("UPDATE  `ia` SET `assessment`='$value', `last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1' ;") or die(mysql_error());
 	
 	if($save){echo "success";}
 	else{echo "error";}
@@ -39,7 +39,7 @@ elseif($op == "updateassessment"){
 elseif($op == "savelegaldoc"){
 	$file_no = $_GET['file_no'];
 	$value = htmlspecialchars($_GET['value']);
-	$save = mysql_query("UPDATE `ia` SET `legal_doc`='$value' WHERE `file_no`='$file_no' ;") or die(mysql_error());
+	$save = mysql_query("UPDATE `ia` SET `legal_doc`='$value' WHERE `file_no`='$file_no' AND `status`='1' ;") or die(mysql_error());
 	
 	if($save){echo "success";}
 	else{echo "error";}
@@ -70,9 +70,15 @@ elseif($op == "saveiadoc"){
 	$q78 = $_GET['q78'];
 	$remarks_staff = $_GET['remarks_staff'];
 	
-	$save = mysql_query("UPDATE `ia` SET `living_env`='$living_env', `living_cond`='$living_cond', `q12`='$q12', `q34`='$q34', `q56`='$q56', `q78`='$q78', `remarks_staff`='$remarks_staff', `created`='$NOW' WHERE `file_no`='$file_no' ;") or die(mysql_error());
+	$save = mysql_query("UPDATE `ia` SET `living_env`='$living_env', `living_cond`='$living_cond', `q12`='$q12', `q34`='$q34', `q56`='$q56', `q78`='$q78', `remarks_staff`='$remarks_staff', `created`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
 	if($save){echo "success";}
+	else{echo "error";}
+}
+elseif($op == "del"){
+	$file_no = $_GET['file_no'];
+	$del = mysql_query("UPDATE `ia` SET `status`='0' WHERE  `file_no`='$file_no' AND `status`='1' ;  ") or die(mysql_error());
+	if($del){echo "success";}
 	else{echo "error";}
 }
 ?>

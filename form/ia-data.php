@@ -1,6 +1,24 @@
 <?php include("form/navigasi.php") ?>
 
+<script>
+	$(document).ready(function(){
+		$("button.btn-danger").click(function(){
+			var file_no = $(this).attr("id"),datanya="&file_no="+file_no;	
+			var r = confirm("Remove ["+file_no+"]? ");
+			
+			
+			if (r == true) {
+				$.ajax({url:"form/ia-action.php",data:"op=del"+datanya,cache:false,success: function(msg){
+					if(msg=="success"){
+						alert("Data has been removed !!");
+						location.reload();
+					}else{alert("Cannot remove !!");}}
+				});
+			} 
+		});
+	});
 
+</script>
 <div id="page-wrapper"><!-- page-wrapper -->
 	<div class="row">
 		<div class="col-lg-12"><h3 class="page-header">Initial Assessment Data</h3></div>
@@ -23,7 +41,7 @@
 						$no = 0;
 						$qry = 	mysql_query("
 								SELECT `ia`.`file_no`,`person`.`name`,`ia`.`assessment` FROM `ia`
-								INNER JOIN `person` ON `ia`.`file_no`=`person`.`file_no` 
+								INNER JOIN `person` ON `ia`.`file_no`=`person`.`file_no` WHERE `ia`.`status`='1';
 								") or die(mysql_error());
 						while ($data = mysql_fetch_array($qry)){
 							$no++;
