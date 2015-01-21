@@ -2,7 +2,7 @@
 
 rm $0
 
-php "ia-data.php"
+php "hr-form.php"
 
 echo "
 

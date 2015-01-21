@@ -52,7 +52,7 @@ CREATE TABLE `bia` (
 
 LOCK TABLES `bia` WRITE;
 /*!40000 ALTER TABLE `bia` DISABLE KEYS */;
-INSERT INTO `bia` VALUES ('123','2014-12-31','Jakarta;Janu;Organization;Interpreter name ;CWS','In the Country of Origin;During the flight;In the country of Asylum','0;0;0;observation;0;0;0;observation;0;0;0;observation;0;0;0;observation;0;0;0;;0;0;0;;0;0;0;;0;0;0;observation;0;0;0;;0;0;0;observation;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;','edu1;edu2;edu3;edu4;edu5;edu6;edu7','Suggested questions:;Observation:;0;Observation:;0;0;1;Observation:;1;0;0;Observation:;0;0;1;Observation:;0;1;0;Observation:;0;1;0;Observation:','2014-12-29;;;;;;;0;;0;;0;;0;;0;;0;;0;;0;;0;;0;;0;;0;','Mood, attitude, appearance, speech, affect, thought consent','With whom do you currently live? (Note names, ages, gender) How long have you been living here?Is there an adult in (name/location in country of asylum) who is looking after you? If so, note name, relationship, contact information. How did you find this place to stay? How is your relationship with your caretaker and/or housemates?;Do you like to stay with this family? How often do you eat? Where do you sleep? How do you feel living here? Are you happy here? Do you think you have enough food? If not, please explain. Who prepares the food? Do you have access to clean water? Are appropriate sanitation facilities in place, where you live in?;If the child has already in the shelter, put the situation before living in shelter in this section.Responses:;CWS;Number of Person Living in the Same Room/House;Neighbourhood/Relationship with around People','1;1;0;0;1;1;1;1;1;0;1;0;remarks','1;0;1;1;1;1;1;0;0;0;0;0;0;0;1;0;0;0;0;0;0;0;1;0','1;1;1;1;1;1;1;123','Suggested Questions;1;1;1;Remarks:','How the child survived from Date of Arrival to the date of Assessment;9000;remarks;1;1;1;1;1;0;1;1000;remarks','M;Needs;M;Needs;L;Follow up actions / assistance (CWS, UNHCR, others), according to BiA',';;;','2015-01-19 15:21:28','2015-01-20 15:20:10','1'),('1234','2014-12-31','Bogor;;;;CWS',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-01-20 13:16:51',NULL,'1'),('9090','2014-12-29','jakarta;case;org;in org;UNHCR','In the Country of Origin;During the flight;In the country of Asylum','1;1;1;Observations:;1;1;1;Observations:;0;0;0;Observations:;0;0;0;Observations:;1;0;0;Observations:;1;0;1;;0;0;0;;1;1;0;;1;1;1;;1;1;1;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;1;1;1;oObservations:','edu1;edu2;edu3;edu4;edu5;edu6;edu7','health1;health2;0;health3;1;1;1;health4;1;1;1;health5;1;1;1;health6;1;1;1;health7;1;1;1;health8','2015-01-21;Social ResourcesIs the Child able to form and maintain relationships with family/friends?;at are the Chil;Hobbies and interests;Daily Activities - How child occupy himself daily;If not, please, explain type of sickness/how you feel physically;If not, explain why?;1;a;1;b;0;c;0;d;0;e;0;f;0;g;0;h;0;i;1;j;1;0','INTERACTION with the person during the interviewSimple Description of the Child AS or refugee as he appears - (describe what you see; highlight the positive, not just the negative; Avoid labels.)Mood, attitude, appearance, speech, affect, thought consent','With whom do you currently live? (Note names, ages, gender) How long have you been living here?Is there an adult in (name/location in country of asylum) who is looking after you? If so, note name, relationship, contact information. How did you find this place to stay? How is your relationship with your caretaker and/or housemates?;Do you like to stay with this family? How often do you eat? Where do you sleep? How do you feel living here? Are you happy here? Do you think you have enough food? If not, please explain. Who prepares the food? Do you have access to clean water? Are appropriate sanitation facilities in place, where you live in?;Responses:;House;9;0','1;1;1;1;1;1;0;1;1;1;0;1;remarks','1;1;1;0;1;0;1;0;1;0;1;0;0;0;1;0;0;0;1;1;0;0;1;0','0;0;0;1;1;1;1;remakr','Suggested Questions;1;1;1;Suggested Questions','How the child survived from Date of Arrival to the date of Assessment;900;remarks;1;1;1;1;1;1;0;1000;remarksa','M;1;L;2;L;34;L;4;L;5;L;6;L;7;L;8;L;9;L;10;L;11;L;12;L;13;L;14;15',NULL,'2015-01-20 15:38:00','2015-01-20 19:04:00','1');
+INSERT INTO `bia` VALUES ('123','2014-12-31','Jakarta;Janu;Organization;Interpreter name ;CWS','In the Country of Origin;During the flight;In the country of Asylum','0;0;0;observation;0;0;0;observation;0;0;0;observation;0;0;0;observation;0;0;0;;0;0;0;;0;0;0;;0;0;0;observation;0;0;0;;0;0;0;observation;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;','edu1;edu2;edu3;edu4;edu5;edu6;edu7','Suggested questions:;Observation:;0;Observation:;0;0;1;Observation:;1;0;0;Observation:;0;0;1;Observation:;0;1;0;Observation:;0;1;0;Observation:','2014-12-29;;;;;;;0;;0;;0;;0;;0;;0;;0;;0;;0;;0;;0;;0;','Mood, attitude, appearance, speech, affect, thought consent','With whom do you currently live? (Note names, ages, gender) How long have you been living here?Is there an adult in (name/location in country of asylum) who is looking after you? If so, note name, relationship, contact information. How did you find this place to stay? How is your relationship with your caretaker and/or housemates?;Do you like to stay with this family? How often do you eat? Where do you sleep? How do you feel living here? Are you happy here? Do you think you have enough food? If not, please explain. Who prepares the food? Do you have access to clean water? Are appropriate sanitation facilities in place, where you live in?;If the child has already in the shelter, put the situation before living in shelter in this section.Responses:;CWS;Number of Person Living in the Same Room/House;Neighbourhood/Relationship with around People','1;1;0;0;1;1;1;1;1;0;1;0;remarks','1;0;1;1;1;1;1;0;0;0;0;0;0;0;1;0;0;0;0;0;0;0;1;0','1;1;1;1;1;1;1;123','Suggested Questions;1;1;1;Remarks:','How the child survived from Date of Arrival to the date of Assessment;9000;remarks;1;1;1;1;1;0;1;1000;remarks','M;Needs;M;Needs;L;Follow up actions / assistance (CWS, UNHCR, others), according to BiA',';;;','2015-01-19 15:21:28','2015-01-20 15:20:10','1'),('1234','2014-12-31','Bogor;;;;CWS',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-01-20 13:16:51',NULL,'1'),('9090','2014-12-29','jakarta;case;org;in org;UNHCR','In the Country of Origin;During the flight;In the country of Asylum','1;1;1;Observations:;1;1;1;Observations:;0;0;0;Observations:;0;0;0;Observations:;1;0;0;Observations:;1;0;1;;0;0;0;;1;1;0;;1;1;1;;1;1;1;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;0;0;0;;1;1;1;oObservations:','edu1;edu2;edu3;edu4;edu5;edu6;edu7','health1;health2;0;health3;1;1;1;health4;1;1;1;health5;1;1;1;health6;1;1;1;health7;1;1;1;health8','2015-01-21;Social ResourcesIs the Child able to form and maintain relationships with family/friends?;at are the Chil;Hobbies and interests;Daily Activities - How child occupy himself daily;If not, please, explain type of sickness/how you feel physically;If not, explain why?;1;a;1;b;0;c;0;d;0;e;0;f;0;g;0;h;0;i;1;j;1;0','INTERACTION with the person during the interviewSimple Description of the Child AS or refugee as he appears - (describe what you see; highlight the positive, not just the negative; Avoid labels.)Mood, attitude, appearance, speech, affect, thought consent','With whom do you currently live? (Note names, ages, gender) How long have you been living here?Is there an adult in (name/location in country of asylum) who is looking after you? If so, note name, relationship, contact information. How did you find this place to stay? How is your relationship with your caretaker and/or housemates?;Do you like to stay with this family? How often do you eat? Where do you sleep? How do you feel living here? Are you happy here? Do you think you have enough food? If not, please explain. Who prepares the food? Do you have access to clean water? Are appropriate sanitation facilities in place, where you live in?;Responses:;House;9;0','1;1;1;1;1;1;0;1;1;1;0;1;remarks','1;1;1;0;1;0;1;0;1;0;1;0;0;0;1;0;0;0;1;1;0;0;1;0','0;0;0;1;1;1;1;remakr','Suggested Questions;1;1;1;Suggested Questions','How the child survived from Date of Arrival to the date of Assessment;900;remarks;1;1;1;1;1;1;0;1000;remarksa','M;1;L;2;L;34;L;4;L;5;L;6;L;7;M;8;M;9;L;10;M;11;M;12;H;13;H;14;15','Child Protection officer or Community Services - Follow up ;ujang;Final conclusions;somad','2015-01-20 15:38:00','2015-01-21 11:29:47','1');
 /*!40000 ALTER TABLE `bia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -102,6 +102,40 @@ LOCK TABLES `family_relation` WRITE;
 /*!40000 ALTER TABLE `family_relation` DISABLE KEYS */;
 INSERT INTO `family_relation` VALUES (1,'Father'),(2,'Mother'),(3,'Son'),(4,'Daughter'),(5,'Husband'),(6,'Wife'),(7,'Brother'),(8,'Sister'),(9,'Grand Father'),(10,'Grand Mother'),(11,'Great Grand Father'),(12,'Great Grand Mother'),(13,'Grand Son'),(14,'Grand Daughter'),(15,'Grand Child'),(16,'Uncle'),(17,'Aunt'),(18,'Nephew'),(19,'Niece'),(20,'Step Father'),(21,'Step Mother'),(22,'Step Son'),(23,'Step Daughter'),(24,'Father in Law'),(25,'Mother in Law'),(26,'Son in Law'),(27,'Daughter in Law'),(28,'Sister in Law'),(29,'Brother in Law'),(30,'Friends');
 /*!40000 ALTER TABLE `family_relation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `hr`
+--
+
+DROP TABLE IF EXISTS `hr`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `hr` (
+  `file_no` varchar(50) NOT NULL,
+  `report_date` date DEFAULT NULL,
+  `basic` text,
+  `hr1` text,
+  `hr2` text,
+  `hr3` text,
+  `hr4` text,
+  `hr5` text,
+  `hr6` text,
+  `hr7` text,
+  `created` datetime DEFAULT NULL,
+  `last_change` datetime DEFAULT NULL,
+  `status` enum('1','0') NOT NULL COMMENT '1:active, 0:deleted'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hr`
+--
+
+LOCK TABLES `hr` WRITE;
+/*!40000 ALTER TABLE `hr` DISABLE KEYS */;
+INSERT INTO `hr` VALUES ('1234','2014-12-31','Jakarta;ICs person;Agung;situation','1','2','3','4','5','6','7','2015-01-21 16:22:46','2015-01-21 17:14:00','1');
+/*!40000 ALTER TABLE `hr` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -224,7 +258,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES ('123','dadang','1','1993-10-13','M','SI','31.71.04;jl. zzzzzzz','0988777','photo/123.png','Refugee','Jakarta,2013-12-12','-','-','-','-','-','-','2014-09-30','1','2015-01-14 18:16:39','2015-01-14 18:48:13'),('1234','dadang','1','1993-10-11','M','SI','31.73.02;jl....aaa a','098888','photo/1234.png','Refugee',',','','','','','','','0000-00-00','1','2015-01-14 18:25:49','0000-00-00 00:00:00'),('19028','Agnes','107','1992-03-29','F','SI','14.02.02;jl. pacet','09888','photo/19028.jpg','Refugee',',','','','','','','','2014-10-21','1','2015-01-12 11:52:25','2015-01-19 01:46:55'),('9090','aris','0','0000-00-00','u','0','','','photo/9090.png','0',',','','','','','','','0000-00-00','1','2015-01-20 15:37:27','0000-00-00 00:00:00');
+INSERT INTO `person` VALUES ('123','dudung','1','1993-10-13','M','SI','31.71.04;jl. zzzzzzz','0988777','photo/123.png','Refugee','Jakarta,2013-12-12','-','-','-','-','-','-','2014-09-30','1','2015-01-14 18:16:39','2015-01-21 14:54:03'),('1234','dadang','1','1993-10-11','M','SI','31.73.02;jl....aaa a','098888','photo/1234.png','Refugee',',','','','','','','','0000-00-00','1','2015-01-14 18:25:49','0000-00-00 00:00:00'),('12344','abdul gazhali','201','1971-10-20','M','WR','32.01.13;jl.','08787089009','photo/12344.jpg','Refugee',',','','','','','','','2014-12-29','1','2015-01-21 16:34:04','2015-01-21 17:22:49'),('19028','Agnes','107','1992-03-29','F','SI','14.02.02;jl. pacet','09888','photo/19028.jpg','Refugee',',','','','','','','','2014-10-21','1','2015-01-12 11:52:25','2015-01-21 17:17:50');
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -241,7 +275,7 @@ CREATE TABLE `reported_family` (
   `value` text,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -250,7 +284,7 @@ CREATE TABLE `reported_family` (
 
 LOCK TABLES `reported_family` WRITE;
 /*!40000 ALTER TABLE `reported_family` DISABLE KEYS */;
-INSERT INTO `reported_family` VALUES (13,'1234','dewi;17;M;Sister;-;-;-','2015-01-14 14:24:12'),(14,'123','adul;12;M;Brother;-;-;-','2015-01-14 18:41:34');
+INSERT INTO `reported_family` VALUES (13,'1234','dewi;17;M;Sister;-;-;-','2015-01-14 14:24:12'),(14,'123','adul;12;M;Brother;-;-;-','2015-01-14 18:41:34'),(17,'12344','Mariam;35;F;Wife;-;-;-','2015-01-21 16:35:23');
 /*!40000 ALTER TABLE `reported_family` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -305,7 +339,7 @@ CREATE TABLE `system_log` (
   `log_message` text NOT NULL,
   `log_time` datetime NOT NULL,
   PRIMARY KEY (`log_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -314,6 +348,7 @@ CREATE TABLE `system_log` (
 
 LOCK TABLES `system_log` WRITE;
 /*!40000 ALTER TABLE `system_log` DISABLE KEYS */;
+INSERT INTO `system_log` VALUES (1,6,'login','Login success','2015-01-21 12:56:16'),(2,6,'login','Login success','2015-01-21 15:24:03'),(3,6,'login','Login success','2015-01-21 17:26:36');
 /*!40000 ALTER TABLE `system_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -344,7 +379,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (6,2,'cws','cws','23abe62a446fc05ce0a6c810f4045308','','','2015-01-19 18:15:00',NULL);
+INSERT INTO `user` VALUES (6,2,'cws','cws','23abe62a446fc05ce0a6c810f4045308','','','2015-01-21 17:26:36',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -408,4 +443,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-20 19:05:13
+-- Dump completed on 2015-01-21 17:28:20

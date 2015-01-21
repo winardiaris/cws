@@ -301,7 +301,7 @@ else{
 			<div class="table-responsive">
 			
 				<div class="col-lg-6">
-					<table class="table table-bordered ia-living">
+					<table class="table  ia-living">
 					<tbody>
 						<tr>
 							<td align="right" width="10px"><label>1.</label></td>
@@ -334,7 +334,7 @@ else{
 					</table>
 				</div>
 				<div class="col-lg-6">
-					<table class="table table-bordered ia-living">
+					<table class="table  ia-living">
 					<tbody>
 						<tr>
 							<td align="right" width="10px"><label>5.</label></td>

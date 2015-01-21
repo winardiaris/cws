@@ -34,7 +34,7 @@ include ("inc/conf.php");
     <script src="<?php echo $URL ?>js/plugins/dataTables/dataTables.bootstrap.js"></script>
    
 </head>
-<body <?php if($_GET['page'] == "login"){ echo 'class="bg-login"';}?>>
+<body >
 
 <div id="wrapper"><!-- /#wrapper -->
 

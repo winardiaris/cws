@@ -45,6 +45,14 @@ if(!empty($_GET['page'])){
 		$view = "form/bia-data.php";
 		break;
 		
+		// HR --------
+		case "hr-form":
+		$view = "form/hr-form.php";
+		break;
+		case "hr-data":
+		$view = "form/hr-data.php";
+		break;
+		
 		//USER --------
 		case "user":
 		$view = "form/user.php";

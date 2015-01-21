@@ -169,13 +169,13 @@ else{
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Reported Personal Information</a>
 			</h4>
 			</div>
-		<div id="collapseOne" class="panel-collapse collapse in">
+		<div id="collapseOne" class="panel-collapse collapse">
 		<div class="panel-body">
 		<!-- biodata -->
 	<!-- form-biodata -->
 		<div class="col-lg-6">
 		<div class="table-responsive">
-			<table class="table table-bordered table-hover" >
+			<table class="table  table-hover" >
 				<tbody>
 					<tr>
 						<td width="180px"><label>Name: *</label></td>
@@ -253,7 +253,7 @@ else{
 		</div>
 		<div class="col-lg-6">
 		<div class="table-responsive">
-			<table class="table table-bordered table-hover">
+			<table class="table  table-hover">
 				<tbody>
 					<tr>
 						<td width="180px"><label>Status:</label></td>
@@ -339,7 +339,7 @@ else{
 			<div class="col-lg-6">
 			<div class="table-responsive">
 				<!-- <form role="form" name="form-family"> -->
-					<table class="table table-bordered table-hover family">
+					<table class="table  table-hover family">
 						<tbody>
 							<tr>
 								<td width="10px" align="right"><label>1.</label></td>
@@ -374,7 +374,7 @@ else{
 			</div>
 			<div class="col-lg-6">
 			<div class="table-responsive">
-				<table class="table table-bordered table-hover family">
+				<table class="table table-hover family">
 					<tbody>
 					<tr>
 						<td width="10px" align="right"><label>5.</label></td>

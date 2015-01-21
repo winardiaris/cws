@@ -16,6 +16,8 @@ if(isset($_GET['op'])){
 		$livd=explode(";",$data['living_d']);
 		$live=explode(";",$data['living_e']);
 		$fin=explode(";",$data['financial']);
+		$cws=explode(";",$data['cws_analysis']);
+		$opt=explode(";",$data['optional']);
 		
 		
 		
@@ -1095,23 +1097,23 @@ else{
 						<td>Boy at risk</td>
 						<td>
 							<div class="checkbox">
-								<label><input type="radio" name="cws1" value="L" checked> LOW</label>
-								<label><input type="radio" name="cws1" value="M"> MEDIUM</label>
-								<label ><input type="radio" name="cws1" value="H" > HIGH</label>
+								<label><input type="radio" name="cws1" value="L" <?php if($edit==1){if($cws[0]=="L"){echo "checked";}}?>> LOW</label>
+								<label><input type="radio" name="cws1" value="M" <?php if($edit==1){if($cws[0]=="M"){echo "checked";}}?>> MEDIUM</label>
+								<label ><input type="radio" name="cws1" value="H" <?php if($edit==1){if($cws[0]=="H"){echo "checked";}}?>> HIGH</label>
 							</div>
 						</td>
-						<td><textarea class="form-control" id="cws1"></textarea></td>
+						<td><textarea class="form-control" id="cws1"><?php if($edit==1){echo $cws[1];}?></textarea></td>
 					</tr>
 					<tr>
 						<td>Girl at risk</td>
 						<td>
 							<div class="checkbox">
-								<label><input type="radio" name="cws2" value="L" checked> LOW</label>
-								<label><input type="radio" name="cws2" value="M"> MEDIUM</label>
-								<label><input type="radio" name="cws2" value="H"> HIGH</label>
+								<label><input type="radio" name="cws2" value="L" <?php if($edit==1){if($cws[2]=="L"){echo "checked";}}?>> LOW</label>
+								<label><input type="radio" name="cws2" value="M" <?php if($edit==1){if($cws[2]=="M"){echo "checked";}}?>> MEDIUM</label>
+								<label><input type="radio" name="cws2" value="H" <?php if($edit==1){if($cws[3]=="H"){echo "checked";}}?>> HIGH</label>
 							</div>
 						</td>
-						<td><textarea class="form-control" id="cws2"></textarea></td>
+						<td><textarea class="form-control" id="cws2"><?php if($edit==1){echo $cws[3];}?></textarea></td>
 					</tr>
 					<tr><td colspan="3"></td></tr>
 					<tr class="warning">
@@ -1126,137 +1128,137 @@ else{
 						<td>Legal protection <br><small>(including documentation)</small> </td>
 						<td>
 							<div class="checkbox">
-								<label><input type="radio" name="cws3" value="L" checked> LOW</label>
-								<label><input type="radio" name="cws3" value="M"> MEDIUM</label>
-								<label><input type="radio" name="cws3" value="H"> HIGH</label>
+								<label><input type="radio" name="cws3" value="L" <?php if($edit==1){if($cws[4]=="L"){echo "checked";}}?>> LOW</label>
+								<label><input type="radio" name="cws3" value="M" <?php if($edit==1){if($cws[4]=="M"){echo "checked";}}?>> MEDIUM</label>
+								<label><input type="radio" name="cws3" value="H" <?php if($edit==1){if($cws[4]=="H"){echo "checked";}}?>> HIGH</label>
 							</div>
 						</td>
-						<td><textarea class="form-control" id="cws3"></textarea></td>
+						<td><textarea class="form-control" id="cws3"><?php if($edit==1){echo $cws[5];}?></textarea></td>
 					</tr>
 					<tr>
 						<td>RSD </td>
 						<td>
 							<div class="checkbox">
-								<label><input type="radio" name="cws4" value="L" checked> LOW</label>
-								<label><input type="radio" name="cws4" value="M"> MEDIUM</label>
-								<label><input type="radio" name="cws4" value="H"> HIGH</label>
+								<label><input type="radio" name="cws4" value="L" <?php if($edit==1){if($cws[6]=="L"){echo "checked";}}?>> LOW</label>
+								<label><input type="radio" name="cws4" value="M" <?php if($edit==1){if($cws[6]=="M"){echo "checked";}}?>> MEDIUM</label>
+								<label><input type="radio" name="cws4" value="H" <?php if($edit==1){if($cws[6]=="H"){echo "checked";}}?>> HIGH</label>
 							</div>
 						</td>
-						<td><textarea class="form-control" id="cws4"></textarea></td>
+						<td><textarea class="form-control" id="cws4"><?php if($edit==1){echo $cws[7];}?></textarea></td>
 					</tr>
 					<tr>
 						<td>Basic needs <br><small>(food, water)</small> </td>
 						<td>
 							<div class="checkbox">
-								<label><input type="radio" name="cws5" value="L" checked> LOW</label>
-								<label><input type="radio" name="cws5" value="M"> MEDIUM</label>
-								<label><input type="radio" name="cws5" value="H"> HIGH</label>
+								<label><input type="radio" name="cws5" value="L" <?php if($edit==1){if($cws[8]=="L"){echo "checked";}}?>> LOW</label>
+								<label><input type="radio" name="cws5" value="M" <?php if($edit==1){if($cws[8]=="M"){echo "checked";}}?>> MEDIUM</label>
+								<label><input type="radio" name="cws5" value="H" <?php if($edit==1){if($cws[8]=="H"){echo "checked";}}?>> HIGH</label>
 							</div>
 						</td>
-						<td><textarea class="form-control" id="cws5"></textarea></td>
+						<td><textarea class="form-control" id="cws5"><?php if($edit==1){echo $cws[9];}?></textarea></td>
 					</tr>
 					<tr>
 						<td>Education</td>
 						<td>
 							<div class="checkbox">
-								<label><input type="radio" name="cws6" value="L" checked> LOW</label>
-								<label><input type="radio" name="cws6" value="M"> MEDIUM</label>
-								<label><input type="radio" name="cws6" value="H"> HIGH</label>
+								<label><input type="radio" name="cws6" value="L" <?php if($edit==1){if($cws[10]=="L"){echo "checked";}}?>> LOW</label>
+								<label><input type="radio" name="cws6" value="M" <?php if($edit==1){if($cws[10]=="M"){echo "checked";}}?>> MEDIUM</label>
+								<label><input type="radio" name="cws6" value="H" <?php if($edit==1){if($cws[10]=="H"){echo "checked";}}?>> HIGH</label>
 							</div>
 						</td>
-						<td><textarea class="form-control" id="cws6"></textarea></td>
+						<td><textarea class="form-control" id="cws6"><?php if($edit==1){echo $cws[11];}?></textarea></td>
 					</tr>
 					<tr>
 						<td>SGBVs</td>
 						<td>
 							<div class="checkbox">
-								<label><input type="radio" name="cws7" value="L" checked> LOW</label>
-								<label><input type="radio" name="cws7" value="M"> MEDIUM</label>
-								<label><input type="radio" name="cws7" value="H"> HIGH</label>
+								<label><input type="radio" name="cws7" value="L" <?php if($edit==1){if($cws[12]=="L"){echo "checked";}}?>> LOW</label>
+								<label><input type="radio" name="cws7" value="M" <?php if($edit==1){if($cws[12]=="M"){echo "checked";}}?>> MEDIUM</label>
+								<label><input type="radio" name="cws7" value="H" <?php if($edit==1){if($cws[12]=="H"){echo "checked";}}?>> HIGH</label>
 							</div>
 						</td>
-						<td><textarea class="form-control" id="cws7"></textarea></td>
+						<td><textarea class="form-control" id="cws7"><?php if($edit==1){echo $cws[13];}?></textarea></td>
 					</tr>
 					<tr>
 						<td>Medical assitance</td>
 						<td>
 							<div class="checkbox">
-								<label><input type="radio" name="cws8" value="L" checked> LOW</label>
-								<label><input type="radio" name="cws8" value="M"> MEDIUM</label>
-								<label><input type="radio" name="cws8" value="H"> HIGH</label>
+								<label><input type="radio" name="cws8" value="L" <?php if($edit==1){if($cws[14]=="L"){echo "checked";}}?>> LOW</label>
+								<label><input type="radio" name="cws8" value="M" <?php if($edit==1){if($cws[14]=="M"){echo "checked";}}?>> MEDIUM</label>
+								<label><input type="radio" name="cws8" value="H" <?php if($edit==1){if($cws[14]=="H"){echo "checked";}}?>> HIGH</label>
 							</div>
 						</td>
-						<td><textarea class="form-control" id="cws8"></textarea></td>
+						<td><textarea class="form-control" id="cws8"><?php if($edit==1){echo $cws[15];}?></textarea></td>
 					</tr>
 					<tr>
 						<td>Psychosocial</td>
 						<td>
 							<div class="checkbox">
-								<label><input type="radio" name="cws9" value="L" checked> LOW</label>
-								<label><input type="radio" name="cws9" value="M"> MEDIUM</label>
-								<label><input type="radio" name="cws9" value="H"> HIGH</label>
+								<label><input type="radio" name="cws9" value="L" <?php if($edit==1){if($cws[16]=="L"){echo "checked";}}?>> LOW</label>
+								<label><input type="radio" name="cws9" value="M" <?php if($edit==1){if($cws[16]=="M"){echo "checked";}}?>> MEDIUM</label>
+								<label><input type="radio" name="cws9" value="H" <?php if($edit==1){if($cws[16]=="H"){echo "checked";}}?>> HIGH</label>
 							</div>
 						</td>
-						<td><textarea class="form-control" id="cws9"></textarea></td>
+						<td><textarea class="form-control" id="cws9"><?php if($edit==1){echo $cws[17];}?></textarea></td>
 					</tr>
 					<tr>
 						<td>Material assitance <br><small>(shelter, NFI, financial)</small></td>
 						<td>
 							<div class="checkbox">
-								<label><input type="radio" name="cws10" value="L" checked> LOW</label>
-								<label><input type="radio" name="cws10" value="M"> MEDIUM</label>
-								<label><input type="radio" name="cws10" value="H"> HIGH</label>
+								<label><input type="radio" name="cws10" value="L" <?php if($edit==1){if($cws[18]=="L"){echo "checked";}}?>> LOW</label>
+								<label><input type="radio" name="cws10" value="M" <?php if($edit==1){if($cws[18]=="M"){echo "checked";}}?>> MEDIUM</label>
+								<label><input type="radio" name="cws10" value="H" <?php if($edit==1){if($cws[18]=="H"){echo "checked";}}?>> HIGH</label>
 							</div>
 						</td>
-						<td><textarea class="form-control" id="cws10"></textarea></td>
+						<td><textarea class="form-control" id="cws10"><?php if($edit==1){echo $cws[19];}?></textarea></td>
 					</tr>
 					<tr>
 						<td>Recreational activities / Community activities</td>
 						<td>
 							<div class="checkbox">
-								<label><input type="radio" name="cws11" value="L" checked> LOW</label>
-								<label><input type="radio" name="cws11" value="M"> MEDIUM</label>
-								<label><input type="radio" name="cws11" value="H"> HIGH</label>
+								<label><input type="radio" name="cws11" value="L" <?php if($edit==1){if($cws[20]=="L"){echo "checked";}}?>> LOW</label>
+								<label><input type="radio" name="cws11" value="M" <?php if($edit==1){if($cws[20]=="M"){echo "checked";}}?>> MEDIUM</label>
+								<label><input type="radio" name="cws11" value="H" <?php if($edit==1){if($cws[20]=="H"){echo "checked";}}?>> HIGH</label>
 							</div>
 						</td>
-						<td><textarea class="form-control" id="cws11"></textarea></td>
+						<td><textarea class="form-control" id="cws11"><?php if($edit==1){echo $cws[21];}?></textarea></td>
 					</tr>
 					<tr>
 						<td>Regular Home visits</td>
 						<td>
 							<div class="checkbox">
-								<label><input type="radio" name="cws12" value="L" checked> LOW</label>
-								<label><input type="radio" name="cws12" value="M"> MEDIUM</label>
-								<label><input type="radio" name="cws12" value="H"> HIGH</label>
+								<label><input type="radio" name="cws12" value="L" <?php if($edit==1){if($cws[22]=="L"){echo "checked";}}?>> LOW</label>
+								<label><input type="radio" name="cws12" value="M" <?php if($edit==1){if($cws[22]=="M"){echo "checked";}}?>> MEDIUM</label>
+								<label><input type="radio" name="cws12" value="H" <?php if($edit==1){if($cws[22]=="H"){echo "checked";}}?>> HIGH</label>
 							</div>
 						</td>
-						<td><textarea class="form-control" id="cws12"></textarea></td>
+						<td><textarea class="form-control" id="cws12"><?php if($edit==1){echo $cws[23];}?></textarea></td>
 					</tr>
 					<tr>
 						<td>Family tracing</td>
 						<td>
 							<div class="checkbox">
-								<label><input type="radio" name="cws13" value="L" checked> LOW</label>
-								<label><input type="radio" name="cws13" value="M"> MEDIUM</label>
-								<label><input type="radio" name="cws13" value="H"> HIGH</label>
+								<label><input type="radio" name="cws13" value="L" <?php if($edit==1){if($cws[24]=="L"){echo "checked";}}?>> LOW</label>
+								<label><input type="radio" name="cws13" value="M" <?php if($edit==1){if($cws[24]=="M"){echo "checked";}}?>> MEDIUM</label>
+								<label><input type="radio" name="cws13" value="H" <?php if($edit==1){if($cws[24]=="H"){echo "checked";}}?>> HIGH</label>
 							</div>
 						</td>
-						<td><textarea class="form-control" id="cws13"></textarea></td>
+						<td><textarea class="form-control" id="cws13"><?php if($edit==1){echo $cws[25];}?></textarea></td>
 					</tr>
 					<tr>
 						<td>Durable solution</td>
 						<td>
 							<div class="checkbox">
-								<label><input type="radio" name="cws14" value="L" checked> LOW</label>
-								<label><input type="radio" name="cws14" value="M"> MEDIUM</label>
-								<label><input type="radio" name="cws14" value="H"> HIGH</label>
+								<label><input type="radio" name="cws14" value="L" <?php if($edit==1){if($cws[26]=="L"){echo "checked";}}?>> LOW</label>
+								<label><input type="radio" name="cws14" value="M" <?php if($edit==1){if($cws[26]=="M"){echo "checked";}}?>> MEDIUM</label>
+								<label><input type="radio" name="cws14" value="H" <?php if($edit==1){if($cws[26]=="H"){echo "checked";}}?>> HIGH</label>
 							</div>
 						</td>
-						<td><textarea class="form-control" id="cws14"></textarea></td>
+						<td><textarea class="form-control" id="cws14"><?php if($edit==1){echo $cws[27];}?></textarea></td>
 					</tr>
 					<tr>
 						<td>Caseworker signature & date</td>
-						<td colspan="2"><textarea class="form-control" id="cws15"></textarea></td>
+						<td colspan="2"><textarea class="form-control" id="cws15"><?php if($edit==1){echo $cws[28];}?></textarea></td>
 					</tr>
 					
 				</table>
@@ -1278,18 +1280,18 @@ else{
 				<div class="well well-sm">
 					<h4>UNHCR</h4><small>Child Protection officer or Community Services -  Follow up & Conclusions</small><br><br>
 					<label>Conclusions </label>
-					<textarea class="form-control" id="opt1" rows="8"></textarea><br>
+					<textarea class="form-control" id="opt1" rows="8"><?php if($edit==1){echo $opt[0];}?></textarea><br>
 					<label>CSO or CP name & date</label>
-					<textarea class="form-control" id="opt2"></textarea><br>
+					<textarea class="form-control" id="opt2"><?php if($edit==1){echo $opt[1];}?></textarea><br>
 				</div>
 			</div>
 			<div class="col-lg-6">
 				<div class="well well-sm">
 					<h4>Panel conclusion</h4><small>(Optional –for complicated cases, only if necessary)</small><br><br>
 					<label>Final conclusions</label>
-					<textarea class="form-control" id="opt3" rows="8"></textarea><br>
+					<textarea class="form-control" id="opt3" rows="8"><?php if($edit==1){echo $opt[2];}?></textarea><br>
 					<label>CSO or CP name & date</label>
-					<textarea class="form-control" id="opt4"></textarea>
+					<textarea class="form-control" id="opt4"><?php if($edit==1){echo $opt[3];}?></textarea>
 				</div>
 			</div>
 			<div class="col-lg-12"><button class="btn btn-success" id="save_opt"><i class="fa fa-save"></i> Save</button></div>
