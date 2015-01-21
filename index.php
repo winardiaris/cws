@@ -57,6 +57,15 @@ if(!empty($_GET['page'])){
 		case "user":
 		$view = "form/user.php";
 		break;
+		case "user-form":
+		$view = "form/user-form.php";
+		break;
+		case "user-action":
+		$view = "form/user-action.php";
+		break;
+		case "user-group":
+		$view = "form/usergroup.php";
+		break;
 		
 		default:
 		$view = "form/404.php";

@@ -1,3 +1,4 @@
+<?php $file_id = 2;?>;
 <div class="table-responsive">
 <table class="table  table-bordered table-hover">
 <thead>

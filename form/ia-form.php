@@ -1,4 +1,5 @@
 <?php 
+$file_id = 3;
 include("form/navigasi.php");
 	
 if(isset($_GET['op'])){

@@ -16,6 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `access`
+--
+
+DROP TABLE IF EXISTS `access`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `access` (
+  `group_id` int(11) NOT NULL,
+  `file_id` int(11) NOT NULL,
+  `r` enum('1','0') NOT NULL,
+  `w` enum('1','0') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `access`
+--
+
+LOCK TABLES `access` WRITE;
+/*!40000 ALTER TABLE `access` DISABLE KEYS */;
+/*!40000 ALTER TABLE `access` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `bia`
 --
 
@@ -339,7 +363,7 @@ CREATE TABLE `system_log` (
   `log_message` text NOT NULL,
   `log_time` datetime NOT NULL,
   PRIMARY KEY (`log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -348,7 +372,7 @@ CREATE TABLE `system_log` (
 
 LOCK TABLES `system_log` WRITE;
 /*!40000 ALTER TABLE `system_log` DISABLE KEYS */;
-INSERT INTO `system_log` VALUES (1,6,'login','Login success','2015-01-21 12:56:16'),(2,6,'login','Login success','2015-01-21 15:24:03'),(3,6,'login','Login success','2015-01-21 17:26:36');
+INSERT INTO `system_log` VALUES (1,6,'login','Login success','2015-01-21 12:56:16'),(2,6,'login','Login success','2015-01-21 15:24:03'),(3,6,'login','Login success','2015-01-21 17:26:36'),(4,6,'login','Login success','2015-01-21 17:37:41'),(5,6,'User form','Add new User','2015-01-21 17:48:53'),(6,7,'login','Login success','2015-01-21 17:53:49'),(7,7,'login','Login success','2015-01-21 17:54:21'),(8,6,'login','Login success','2015-01-21 18:02:14'),(9,7,'login','Login success','2015-01-21 18:20:04'),(10,6,'login','Login success','2015-01-21 18:25:43'),(11,6,'login','Login success','2015-01-21 22:50:11'),(12,6,'login','Login success','2015-01-21 22:55:30'),(13,6,'login','Login success','2015-01-21 23:07:53'),(14,8,'login','Login success','2015-01-22 00:42:57'),(15,8,'login','Login success','2015-01-22 00:43:21'),(16,8,'login','Login success','2015-01-22 00:45:04'),(17,8,'login','Login success','2015-01-22 00:45:37'),(18,8,'login','Login success','2015-01-22 00:46:07'),(19,8,'login','Login success','2015-01-22 00:46:36'),(20,10,'login','Login success','2015-01-22 01:29:48');
 /*!40000 ALTER TABLE `system_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -365,12 +389,12 @@ CREATE TABLE `user` (
   `user_name` varchar(50) NOT NULL,
   `user_real_name` varchar(50) NOT NULL,
   `user_password` text NOT NULL,
-  `user_mail` text NOT NULL,
   `user_info` text NOT NULL,
   `last_login` datetime DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
   `last_change` datetime DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -379,7 +403,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (6,2,'cws','cws','23abe62a446fc05ce0a6c810f4045308','','','2015-01-21 17:26:36',NULL);
+INSERT INTO `user` VALUES (6,2,'cws','cws','23abe62a446fc05ce0a6c810f4045308','','2015-01-21 23:07:53',NULL,NULL),(7,1,'aris','aris','288077f055be4fadc3804a69422dd4f8','-','2015-01-21 18:20:04',NULL,NULL),(8,3,'adul','adul sadulin bin dul sumbang','997593f7b7af4fc758127e1dc41e3446','infohttp://localhost/~winardiaris/cws/?page=login','2015-01-22 00:46:36',NULL,'2015-01-22 02:01:46'),(9,0,'','','d41d8cd98f00b204e9800998ecf8427e','',NULL,NULL,NULL),(10,1,'ariss','aris','288077f055be4fadc3804a69422dd4f8','','2015-01-22 01:29:48',NULL,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -395,7 +419,7 @@ CREATE TABLE `usergroup` (
   `group_name` varchar(50) NOT NULL,
   `group_access` text NOT NULL,
   PRIMARY KEY (`group_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -404,7 +428,7 @@ CREATE TABLE `usergroup` (
 
 LOCK TABLES `usergroup` WRITE;
 /*!40000 ALTER TABLE `usergroup` DISABLE KEYS */;
-INSERT INTO `usergroup` VALUES (1,'Super Admin',''),(2,'Administrator','');
+INSERT INTO `usergroup` VALUES (1,'Super Admin','1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1'),(2,'Administrator',''),(3,'User','1;1;1;1;1;1;1;1;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0');
 /*!40000 ALTER TABLE `usergroup` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -443,4 +467,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-21 17:28:20
+-- Dump completed on 2015-01-22  2:02:52

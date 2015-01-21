@@ -1,5 +1,7 @@
 <?php
-	include("form/navigasi.php") ;
+$file_id = 6;	
+include("form/navigasi.php") ;
+
 if(isset($_GET['op'])){
 	if(isset($_GET['file_no'])){
 		$qry = mysql_query("SELECT * FROM `hr` WHERE `file_no`='".$_GET['file_no']."' AND `status`='1'") or die(mysql_error());

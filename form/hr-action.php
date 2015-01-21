@@ -1,4 +1,5 @@
 <?php
+$file_id = 6;
 include ("../inc/conf.php");
 $op = $_GET['op'];
 

@@ -1,4 +1,5 @@
 <?php 
+$file_id = 4;
 	include("form/navigasi.php") ;
 ?>
 
@@ -62,4 +63,4 @@
 	</div>
 </div><!-- row -->
 </div><!-- page-wrapper -->
-<script>$(document).ready(function() {$('#dataTables').dataTable();});</script>
+

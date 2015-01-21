@@ -1,5 +1,5 @@
 <?php 
-$A = "D";
+$file_id = 1;
 //cek login
 include("form/navigasi.php") 
 ?>

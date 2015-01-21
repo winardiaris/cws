@@ -1,4 +1,5 @@
 <?php
+$file_id = 5;
 include("form/navigasi.php") ;
 
 ?>
@@ -70,4 +71,4 @@ include("form/navigasi.php") ;
 </div>
 
 </div>
-<script>$(document).ready(function() {$('#dataTables').dataTable();});</script>
+

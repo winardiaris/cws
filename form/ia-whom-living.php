@@ -1,3 +1,4 @@
+<?php $file_id = 3;?>
 <div class="table-responsive">
 	<form role="form" name="form-data-with-who-living">
 		<table class="table table-bordered  table-hover">

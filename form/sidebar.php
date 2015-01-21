@@ -33,8 +33,14 @@
 					<li><a href="?page=hr-data"><i class="fa fa-table"></i> Data</a></li>
 				</ul><!-- /.nav-second-level -->
 			</li>
+			<li><a href="#" title="Administrator"><i class="fa fa-gear fa-fw" ></i> Administrator<span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level">
+					<li><a href="?page=user"><i class="fa fa-user"></i> User</a></li>
+					<li><a href="?page="><i class="fa fa-table"></i> dll</a></li>
+				</ul><!-- /.nav-second-level -->
+			</li>
 			
-			<li><a  href="?page=user"><i class="fa fa-user fa-fw"></i> User </a></li>
+		
 		</ul>
 	</div><!-- /.sidebar-collapse -->
 </div><!-- /.navbar-static-side -->
