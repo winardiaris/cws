@@ -1,5 +1,5 @@
 <?php 
-$file_id = 4;
+$R="R6";$W="W6";
 	include("form/navigasi.php");
 
 if(isset($_GET['op'])){

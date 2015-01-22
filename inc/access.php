@@ -1,8 +1,18 @@
 <?php
 	$group_id=$_SESSION['group_id'];
-	$qry=mysql_query("SELECT `file_id` FROM  `access` WHERE  `group_id` ='$group_id' AND `file_id`='$file_id'");
-	if(mysql_num_rows($qru)==0){
-		echo "<script type='text/javascript'> alert('Access Forbiden !!');history.back();</script>";
-		return false;
+	$getR=mysql_query("SELECT COUNT(*) AS `R` FROM `usergroup` WHERE `group_id`='$group_id' AND `group_access` LIKE '%$R%'");
+	$getW=mysql_query("SELECT COUNT(*) AS `W` FROM `usergroup` WHERE `group_id`='$group_id' AND `group_access` LIKE '%$W%'");
+	
+	$read=mysql_fetch_array($getR);
+	$write=mysql_fetch_array($getW);
+	if($read['R'] > 0 AND $write['W'] > 0){
+		$allow="RW";
 	}
+	elseif($read['R'] > 0 AND $write['W'] == 0){
+		$allow="R";
+	}
+	else{
+		$allow=0;
+	}
+	
 ?>

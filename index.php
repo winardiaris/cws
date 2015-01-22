@@ -67,13 +67,21 @@ if(!empty($_GET['page'])){
 		$view = "form/usergroup.php";
 		break;
 		
-		default:
-		$view = "form/404.php";
-		break;
+		
 		
 		//CHART --------
 		case "chart1":
 		$view = "form/chart/1.php";
+		break;
+		
+		
+		//test --------
+		case "test":
+		$view = "testaccess.php";
+		break;
+		
+		default:
+		$view = "form/404.php";
 		break;
 	}
 

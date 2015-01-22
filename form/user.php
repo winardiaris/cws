@@ -1,5 +1,5 @@
 <?php 
-$file_id = 99;
+$R="R12";$W="W12";
 include("form/navigasi.php");
 ?>
 <div id="page-wrapper"><!-- page-wrapper -->

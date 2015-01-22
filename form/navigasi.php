@@ -1,4 +1,4 @@
-<?php //include ("inc/access.php"); ?>
+<?php include ("inc/access.php"); ?>
 <!-- Navigation -->
 	<nav class="navbar navbar-default " role="navigation" style="margin-bottom: 0">
 		<!-- /.navbar-header -->

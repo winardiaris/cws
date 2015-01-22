@@ -1,5 +1,5 @@
 <?php 
-$file_id = 3;
+$R="R5";$W="W5";
 include("form/navigasi.php") ?>
 
 <script>

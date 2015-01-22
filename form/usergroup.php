@@ -1,14 +1,25 @@
 <?php 
-$file_id = 99;
+$file_id = 12;
 include("form/navigasi.php");
 ?>
 <script>
 $(document).ready(function(){
 	$("#save_group").click(function(){
-		var group_name = $("#group_name").val(),
-			R1 = $("#R1:checked").length, W1 = $("#W1:checked").length,R2 = $("#R2:checked").length, W2 = $("#W2:checked").length,R3 = $("#R3:checked").length, W3 = $("#W3:checked").length,R4 = $("#R4:checked").length, W4 = $("#W4:checked").length,R5 = $("#R5:checked").length, W5 = $("#W5:checked").length,R6 = $("#R6:checked").length, W6 = $("#W6:checked").length,R7 = $("#R7:checked").length, W7 = $("#W7:checked").length,R8 = $("#R8:checked").length, W8 = $("#W8:checked").length,R9 = $("#R9:checked").length, W9 = $("#W9:checked").length,R10 = $("#R10:checked").length, W10 = $("#W10:checked").length,R11 = $("#R11:checked").length, W11 = $("#W11:checked").length,R99 = $("#R99:checked").length, W99 = $("#9W9:checked").length,
-		datanya = "&group_name="+group_name+"&value="+R1+";"+W1+";"+R2+";"+W2+";"+R3+";"+W3+";"+R4+";"+W4+";"+R5+";"+W5+";"+R6+";"+W6+";"+R7+";"+W7+";"+R8+";"+W8+";"+R9+";"+W9+";"+R10+";"+W10+";"+R11+";"+W11+";"+R99+";"+W99;
+		var group_name = $("#group_name").val();
+			for(i=1;i<=12;i++){
+				r= $("#R"+i+":checked").length;
+				w= $("#W"+i+":checked").length;
+				if(r==0 && w==0){x=0;z=0;}
+				else if(r==0 && w==1){x=0;z= $("#W"+i+":checked").val();}
+				else if(r==1 && w==0){x= $("#R"+i+":checked").val();z=0;}
+				else if(r==1 && w==1 ){x= $("#R"+i+":checked").val();z= $("#W"+i+":checked").val();}
+			
+				var aa = aa+";"+x+";"+z;
+			}
+		var aa;var pnjg = aa.length;var potong = aa.split(";");var ambil = potong[0].length+1;var value = aa.substr(ambil,pnjg);
+		var datanya = "&group_name="+group_name+"&value="+value;
 
+		
 		$.ajax({url:"form/user-action.php",data:"op=saveusergroup"+datanya,cache:false,success: function(msg){
 			if(msg=="success"){
 				alert("Data has been saved !!");
@@ -18,16 +29,47 @@ $(document).ready(function(){
 	});
 	$("#update_group").click(function(){
 		var group_id = $("#group_id").val(),
-			group_name = $("#group_name").val(),
-			R1 = $("#R1:checked").length, W1 = $("#W1:checked").length,R2 = $("#R2:checked").length, W2 = $("#W2:checked").length,R3 = $("#R3:checked").length, W3 = $("#W3:checked").length,R4 = $("#R4:checked").length, W4 = $("#W4:checked").length,R5 = $("#R5:checked").length, W5 = $("#W5:checked").length,R6 = $("#R6:checked").length, W6 = $("#W6:checked").length,R7 = $("#R7:checked").length, W7 = $("#W7:checked").length,R8 = $("#R8:checked").length, W8 = $("#W8:checked").length,R9 = $("#R9:checked").length, W9 = $("#W9:checked").length,R10 = $("#R10:checked").length, W10 = $("#W10:checked").length,R11 = $("#R11:checked").length, W11 = $("#W11:checked").length,R99 = $("#R99:checked").length, W99 = $("#9W9:checked").length,
-		datanya = "&group_id="+group_id+"&group_name="+group_name+"&value="+R1+";"+W1+";"+R2+";"+W2+";"+R3+";"+W3+";"+R4+";"+W4+";"+R5+";"+W5+";"+R6+";"+W6+";"+R7+";"+W7+";"+R8+";"+W8+";"+R9+";"+W9+";"+R10+";"+W10+";"+R11+";"+W11+";"+R99+";"+W99;
+			group_name = $("#group_name").val();
+			
+			for(i=1;i<=12;i++){
+				r= $("#R"+i+":checked").length;
+				w= $("#W"+i+":checked").length;
+				if(r==0 && w==0){x=0;z=0;}
+				else if(r==0 && w==1){x=0;z= $("#W"+i+":checked").val();}
+				else if(r==1 && w==0){x= $("#R"+i+":checked").val();z=0;}
+				else if(r==1 && w==1 ){x= $("#R"+i+":checked").val();z= $("#W"+i+":checked").val();}
+			
+				var aa = aa+";"+x+";"+z;
+			}
+		var aa;var pnjg = aa.length;var potong = aa.split(";");var ambil = potong[0].length+1;var value = aa.substr(ambil,pnjg);
+		var datanya = "&group_id="+group_id+"&group_name="+group_name+"&value="+value;
 
+		
 		$.ajax({url:"form/user-action.php",data:"op=updateusergroup"+datanya,cache:false,success: function(msg){
 			if(msg=="success"){
 				alert("Data has been saved !!");
 				window.location="?page=user-group";
 			}else{alert("Data not saved !!");}}
 		});
+	});
+	
+	//check uncheck all
+	$("#R0").click(function() {
+		var c = this.checked;
+		for(i=0;i<=13;i++){
+			$("#R"+i+":checkbox").prop("checked",c);
+		}
+	});
+	$("#W0").click(function() {
+		var c = this.checked;
+		for(i=1;i<=12;i++){
+			$("#W"+i+":checkbox").prop("checked",c);			
+		}		
+	});
+	
+	//test
+	$("#asd").click(function(){
+		
 	});
 	
 });
@@ -66,82 +108,82 @@ if(isset($_GET['op'])){
 				<tr>
 					<th>No.</th>
 					<th>Access File</th>
-					<th>R</th>
-					<th>W</th>
+					<th>R <input type="checkbox"  id="R0" ></th>
+					<th>W <input type="checkbox"  id="W0" ></th>
 				</tr>
 				</thead>
-				<tbody>
+				<tbody id="tbody">
 				<tr>
 					<td width="10px" align="right">1.</td>
 					<td>Dashboard</td>
-					<td width="10px"><input type="checkbox"  id="R1" checked></td>
-					<td width="10px"><input type="checkbox"  id="W1" checked></td>
+					<td width="10px"><input type="checkbox"  id="R1" value="R1" checked></td>
+					<td width="10px"><input type="checkbox"  id="W1" value="W1"checked></td>
 				</tr>
 				<tr>
 					<td width="10px" align="right">2.</td>
 					<td>Personal Form</td>
-					<td width="10px"><input type="checkbox"  id="R2" <?php if($edit==1){if($access[2]=="1"){echo "checked";}}?>></td>
-					<td width="10px"><input type="checkbox"  id="W2" <?php if($edit==1){if($access[3]=="1"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="R2" value="R2" <?php if($edit==1){if($access[2]=="R2"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="W2" value="W2" <?php if($edit==1){if($access[3]=="W2"){echo "checked";}}?>></td>
 				</tr>
 				<tr>
 					<td width="10px" align="right">3.</td>
 					<td>Personal Data</td>
-					<td width="10px"><input type="checkbox"  id="R3" <?php if($edit==1){if($access[4]=="1"){echo "checked";}}?>></td>
-					<td width="10px"><input type="checkbox"  id="W3" <?php if($edit==1){if($access[5]=="1"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="R3" value="R3" <?php if($edit==1){if($access[4]=="R3"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="W3" value="W3" <?php if($edit==1){if($access[5]=="W3"){echo "checked";}}?>></td>
 				</tr>
 				<tr>
 					<td width="10px" align="right">4.</td>
 					<td>IA Form</td>
-					<td width="10px"><input type="checkbox"  id="R4" <?php if($edit==1){if($access[6]=="1"){echo "checked";}}?>></td>
-					<td width="10px"><input type="checkbox"  id="W4" <?php if($edit==1){if($access[7]=="1"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="R4" value="R4" <?php if($edit==1){if($access[6]=="R4"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="W4" value="W4" <?php if($edit==1){if($access[7]=="W4"){echo "checked";}}?>></td>
 				</tr>
 				<tr>
 					<td width="10px" align="right">5.</td>
 					<td>IA Data</td>
-					<td width="10px"><input type="checkbox"  id="R5" <?php if($edit==1){if($access[8]=="1"){echo "checked";}}?>></td>
-					<td width="10px"><input type="checkbox"  id="W5" <?php if($edit==1){if($access[9]=="1"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="R5" value="R5" <?php if($edit==1){if($access[8]=="R5"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="W5" value="W5" <?php if($edit==1){if($access[9]=="W5"){echo "checked";}}?>></td>
 				</tr>
 				<tr>
 					<td width="10px" align="right">6.</td>
 					<td>SE Form</td>
-					<td width="10px"><input type="checkbox"  id="R6" <?php if($edit==1){if($access[10]=="1"){echo "checked";}}?>></td>
-					<td width="10px"><input type="checkbox"  id="W6" <?php if($edit==1){if($access[11]=="1"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="R6" value="R6" <?php if($edit==1){if($access[10]=="R6"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="W6" value="W6" <?php if($edit==1){if($access[11]=="W6"){echo "checked";}}?>></td>
 				</tr>
 				<tr>
 					<td width="10px" align="right">7.</td>
 					<td>SE Data</td>
-					<td width="10px"><input type="checkbox"  id="R7" <?php if($edit==1){if($access[12]=="1"){echo "checked";}}?>></td>
-					<td width="10px"><input type="checkbox"  id="W7" <?php if($edit==1){if($access[13]=="1"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="R7" value="R7" <?php if($edit==1){if($access[12]=="R7"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="W7" value="W7" <?php if($edit==1){if($access[13]=="W7"){echo "checked";}}?>></td>
 				</tr>
 				<tr>
 					<td width="10px" align="right">8.</td>
 					<td>BIA Form</td>
-					<td width="10px"><input type="checkbox"  id="R8" <?php if($edit==1){if($access[14]=="1"){echo "checked";}}?>></td>
-					<td width="10px"><input type="checkbox"  id="W8" <?php if($edit==1){if($access[15]=="1"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="R8" value="R8" <?php if($edit==1){if($access[14]=="R8"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="W8" value="W8" <?php if($edit==1){if($access[15]=="W8"){echo "checked";}}?>></td>
 				</tr>
 				<tr>
 					<td width="10px" align="right">9.</td>
 					<td>BIA Data</td>
-					<td width="10px"><input type="checkbox"  id="R9" <?php if($edit==1){if($access[16]=="1"){echo "checked";}}?>></td>
-					<td width="10px"><input type="checkbox"  id="W9" <?php if($edit==1){if($access[17]=="1"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="R9" value="R9" <?php if($edit==1){if($access[16]=="R9"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="W9" value="W9" <?php if($edit==1){if($access[17]=="W9"){echo "checked";}}?>></td>
 				</tr>
 				<tr>
 					<td width="10px" align="right">10.</td>
 					<td>HR Form</td>
-					<td width="10px"><input type="checkbox"  id="R10" <?php if($edit==1){if($access[18]=="1"){echo "checked";}}?>></td>
-					<td width="10px"><input type="checkbox"  id="W10" <?php if($edit==1){if($access[19]=="1"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="R10" value="R10" <?php if($edit==1){if($access[18]=="R10"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="W10" value="W10" <?php if($edit==1){if($access[19]=="W10"){echo "checked";}}?>></td>
 				</tr>
 				<tr>
 					<td width="10px" align="right">11.</td>
 					<td>HR Data</td>
-					<td width="10px"><input type="checkbox"  id="R11" <?php if($edit==1){if($access[20]=="1"){echo "checked";}}?>></td>
-					<td width="10px"><input type="checkbox"  id="W11" <?php if($edit==1){if($access[21]=="1"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="R11" value="R11" <?php if($edit==1){if($access[20]=="R11"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="W11" value="W11" <?php if($edit==1){if($access[21]=="W11"){echo "checked";}}?>></td>
 				</tr>
 				<tr>
 					<td width="10px" align="right">12.</td>
 					<td>User</td>
-					<td width="10px"><input type="checkbox"  id="R99" <?php if($edit==1){if($access[22]=="1"){echo "checked";}}?>></td>
-					<td width="10px"><input type="checkbox"  id="W99" <?php if($edit==1){if($access[23]=="1"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="R12" value="R12" <?php if($edit==1){if($access[22]=="R12"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="W12" value="W12" <?php if($edit==1){if($access[23]=="W12"){echo "checked";}}?>></td>
 				</tr>
 				</tbody>
 			</table>
@@ -150,9 +192,7 @@ if(isset($_GET['op'])){
 	<br>
 	<br>
 	</div>
-	
-<?php
-	
+<?php	
 }
 else{
 ?>
