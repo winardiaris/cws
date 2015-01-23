@@ -1,5 +1,5 @@
 <?php
-	$R="R1";$W="W1";
+	$R="R2";$W="W2";
 	include("form/navigasi.php");
 	
 ?>

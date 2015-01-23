@@ -18,7 +18,7 @@ if(isset($_GET['op'])){
 		
 		
 		
-		$button = '<button class="btn btn-primary" id="update_hr1"><i class="fa fa-refresh"></i> Update</button>';
+		$button = '<button class="btn btn-success" id="update_hr1"><i class="fa fa-refresh"></i> Update</button>';
 		$edit = 1;
 	}
 }
@@ -193,7 +193,7 @@ else{
 									<div class="input-group" >
 										<input list="file_no_list" class="form-control" id="file_no" placeholder="File No / Name" <?php if($edit==1){echo 'value="'.$data['file_no'].'" disabled';} ?>>
 										<datalist id="file_no_list"></datalist>
-										<span class="input-group-btn"><button class="btn btn-primary" id="find" title="Get data" <?php if($edit==1){echo"disabled";}?>><i class="fa fa-arrow-right"></i></button></span>
+										<span class="input-group-btn"><button class="btn btn-success" id="find" title="Get data" <?php if($edit==1){echo"disabled";}?>><i class="fa fa-arrow-right"></i></button></span>
 									</div>
 									
 								</td>

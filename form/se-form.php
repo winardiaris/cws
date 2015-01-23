@@ -27,7 +27,7 @@ if(isset($_GET['op'])){
 		
 		//
 		$disable = "disabled";
-		$button = '<button type="submit" class="btn btn-primary" id="update_assessment" ><i class="fa fa-refresh"></i> Update </button>';
+		$button = '<button type="submit" class="btn btn-success" id="update_assessment" ><i class="fa fa-refresh"></i> Update </button>';
 		$edit = 1;
 	}
 }

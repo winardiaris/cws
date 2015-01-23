@@ -22,7 +22,7 @@ if(isset($_GET['op'])){
 		
 		
 		
-		$button = '<button class="btn btn-primary" id="update_1"><i class="fa fa-refresh"></i> Update</button>';
+		$button = '<button class="btn btn-success" id="update_1"><i class="fa fa-refresh"></i> Update</button>';
 		$edit = 1;
 	}
 }

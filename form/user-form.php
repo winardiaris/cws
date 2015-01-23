@@ -7,7 +7,7 @@ if(isset($_GET['op'])){
 	if($op=="edit"){
 		$user_id = $_GET['user_id'];
 		$header = "Edit User";
-		$button = '<button  id="user_update" class="btn btn-primary"><i class="fa fa-refresh"></i> Update</button>';
+		$button = '<button  id="user_update" class="btn btn-success"><i class="fa fa-refresh"></i> Update</button>';
 		
 		$qry = mysql_query("SELECT * FROM `user` WHERE `user_id`='$user_id'") or die(mysql_error());
 		$data = mysql_fetch_array($qry);
@@ -24,7 +24,7 @@ if(isset($_GET['op'])){
 }
 else{
 		$header = "User Add";
-		$button = '<button  id="user_save" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>';
+		$button = '<button  id="user_save" class="btn btn-success"><i class="fa fa-save"></i> Save</button>';
 		$edit=0;
 }
 

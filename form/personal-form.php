@@ -10,7 +10,7 @@ if(isset($_GET['op'])){
 		$address = explode(";",$data['address']);
 		$wilayah = explode(".",$address[0]); $prov = $wilayah[0]; $kota = $prov.".".$wilayah[1]; $kec = $kota.".".$wilayah[2];
 		$disable = "disabled";
-		$button = '<button type="submit" id="person_update" class="btn btn-primary"><i class="fa fa-refresh"></i> Update</button>';
+		$button = '<button type="submit" id="person_update" class="btn btn-success"><i class="fa fa-refresh"></i> Update</button>';
 		if($data['photo']!=""){$photo = $URL."form/".$data['photo'];}else{$photo = $URL.'form/photo/default.png';}
 		
 		$edit = 1;
@@ -21,6 +21,7 @@ else{
 	$photo = $URL.'form/photo/default.png';
 	$edit = 0;
 }
+
 ?>
 
 <script>
@@ -145,14 +146,14 @@ else{
 				file_no.focus();
 				
 			}
-		})
+		})		
 	});
 }) (jQuery);
 </script>
 <div id="page-wrapper">
 <div class="row">
 	<div class="col-lg-12">
-	<div class="col-lg-10"><h3 class="page-header">Personal Information</h3></div>
+	<div class="col-lg-10"><h3 class="page-header">Personal Information </h3></div>
 	<div class="col-lg-2" ><div class="photo"><img src="<?php echo $photo; ?>"></div><!-- buat photo --></div>
 		<div class="col-lg-3">
 			<div class="form-group">
@@ -241,7 +242,7 @@ else{
 							<form enctype="multipart/form-data" action="form/upload.php" method="POST" target="iframe" id="uphoto">
 								<input type="file" name="userfile">
 								<input id="file_no2" name="file_no" type="hidden" <?php if($edit==1){echo 'value="'.$data['file_no'].'" ';}?>>
-								<br><button type="submit" class="btn btn-sm btn-primary" value="Upload" name="upload" ><i class="fa fa-upload"></i> Upload</button>
+								<br><button type="submit" class="btn btn-sm btn-success" value="Upload" name="upload" ><i class="fa fa-upload"></i> Upload</button>
 								
 									<?php if($edit==1){echo '<input type="hidden" class="form-control" id="photo" value="'.$data['photo'].'" ><br><small class="text-success"> ';}?>
 							</form>

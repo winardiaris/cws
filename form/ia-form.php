@@ -23,7 +23,7 @@ if(isset($_GET['op'])){
 		
 		//
 		$disable = "disabled";
-		$button = '<button  class="btn btn-primary" id="update_assessment" ><i class="fa fa-refresh"></i> Update </button>';
+		$button = '<button  class="btn btn-success" id="update_assessment" ><i class="fa fa-refresh"></i> Update </button>';
 		$edit = 1;
 	}
 }
@@ -282,7 +282,7 @@ else{
 					<label>3. Do you have a valid passport and/ or other recognized travel documents? </label>
 					<textarea class="form-control" id="legal_doc_3"><?php if($edit==1){echo $legal_doc[2];} ?></textarea>
 				</div>
-				<button class="btn btn-primary" type="submit" id="save_legal_doc" title="Legal Documentation"><i class="fa fa-save"></i> Save</button>
+				<button class="btn btn-success" type="submit" id="save_legal_doc" title="Legal Documentation"><i class="fa fa-save"></i> Save</button>
 			</div>
 		</div><!-- panel body -->
 		</div>
@@ -496,7 +496,7 @@ else{
 						
 						<i>Please be sure to inform the UAM of next steps and the follow up that s/he can expect.</i>
 						<br>
-						<button  class="btn btn-primary" id="save_ia_doc" title="Save for (Visual inspection of the UAM’s current living environment) "><i class="fa fa-save"></i> Save</button>
+						<button  class="btn btn-success" id="save_ia_doc" title="Save for (Visual inspection of the UAM’s current living environment) "><i class="fa fa-save"></i> Save</button>
 					</div>
 			</div>
 		</div>
