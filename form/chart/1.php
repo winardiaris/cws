@@ -1,27 +1,43 @@
-<?php 
-include("form/navigasi.php") ;
+<?php include("form/navigasi.php") ;?>
 
-$qry = mysql_query("SELECT SUM( IF( `sex`='M',  1 , 0 ) ) AS  `M`, SUM( IF( `sex`='F',  1 , 0 ) ) AS  `F` FROM  `person` ") or die( mysql_error());
-$data=mysql_fetch_array($qry);
-?>
-<script src="<?php echo $URL ?>js/plugins/morris/raphael.min.js"></script>
-<script src="<?php echo $URL ?>js/plugins/morris/morris.min.js"></script>
-<script src="<?php echo $URL ?>js/plugins/morris/morris-data.js"></script>
 <div id="page-wrapper">
-<div class="row">
-<div id="myfirstchart" style="height: 250px;"></div>
+<div class="row" >
+	<div class="col-lg-12"><h3 class="page-header">Chart Person </h3></div>
+	<div class="col-lg-4">
+	<div class="panel panel-default">
+		<div class="panel-heading"><i class="fa fa-bar-chart-o"></i> Person Sex (Active)</div>
+		<div class="panel-body">
+			<div id="chart_sex" style="height: 250px;"></div>
+		</div>
+	</div>
+	</div>
+	<div class="col-lg-4">
+	<div class="panel panel-default">
+		<div class="panel-heading"><i class="fa fa-bar-chart-o"></i> Person Marital Status (Active)</div>
+		<div class="panel-body">
+			<div id="chart_marital_status_a" style="height: 250px;"><?php echo $ma;?></div>
+		</div>
+	</div>
+	</div>
+
+	
+
 </div>
 </div>
 <script>
 new Morris.Donut({
   // ID of the element in which to draw the chart.
-  element: 'myfirstchart',
+  element: 'chart_sex',
   // Chart data records -- each entry in this array corresponds to a point on
   // the chart.
   data: [
 	<?php
-	echo "{ label: 'Male', value:".$data['M']."},";
-	echo "{ label: 'Female', value:".$data['F']."}";
+	$qsex = mysql_query("SELECT SUM( IF( `sex`='M',  1 , 0 ) ) AS  `M`, SUM( IF( `sex`='F',  1 , 0 ) ) AS  `F` FROM  `person` WHERE `active`='1'") or die( mysql_error());
+	$sex=mysql_fetch_array($qsex);
+	
+	
+	echo "{ label: 'Male', value:".$sex['M']."},";
+	echo "{ label: 'Female', value:".$sex['F']."}";
 	
 	?>
     //{ year: '2008', value: 20 },
@@ -38,5 +54,50 @@ new Morris.Donut({
   // chart.
   labels: ['Value']
 });
+
+
+//Flot Pie Chart
+$(function() {
+	<?php
+	$ms = mysql_query("SELECT * FROM `marital_status`");
+	while($m=mysql_fetch_array($ms)){
+		$marital = $marital."SUM( IF( `marital`='".$m['marital_id']."',  1 , 0 ) ) AS `".$m['marital_id']."`,";
+	}
+	$ma = substr($marital,0,strlen($marital)-1);
+	$qmar = mysql_query("SELECT ".$ma." FROM  `person` WHERE `active`='1'") or die( mysql_error());
+	$mar=mysql_fetch_array($qmar);
+	echo'
+	var data = [
+	{label: \'Single ['.$mar['SI'].'] \', data:'.$mar['SI'].'},
+	{label: \'Married ['.$mar['MA'].']\', data:'.$mar['MA'].'},
+	{label: \'Engaged ['.$mar['EN'].']\', data:'.$mar['EN'].'},
+	{label: \'Widower ['.$mar['WR'].']\', data:'.$mar['WR'].'},
+	{label: \'Widow ['.$mar['WW'].']\', data:'.$mar['WW'].'}
+	];';
+	
+	?>
+    var plotObj = $.plot($("#chart_marital_status_a"), data, {
+        series: {
+            pie: {
+                show: true
+            }
+        },
+        grid: {
+            hoverable: true
+        },
+        tooltip: true,
+        tooltipOpts: {
+            content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+            shifts: {
+                x: 20,
+                y: 0
+            },
+            defaultTheme: false
+        }
+    });
+
+});
+
+
 </script>
 

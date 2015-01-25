@@ -74,4 +74,5 @@ elseif($op == "getkec"){
 		echo'>'.$data['nama'].'</option>';
 	}
 }
+
 ?>

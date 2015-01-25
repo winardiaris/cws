@@ -64,7 +64,7 @@ elseif($op=="savehr2"){
 	$hr5=htmlspecialchars($_GET['hr5']); 
 	$hr6=htmlspecialchars($_GET['hr6']); 
 	$hr7=htmlspecialchars($_GET['hr7']); 
-	$save = mysql_query("UPDATE `hr` SET `hr1`='$hr1',`hr2`='$hr2',`hr3`='$hr3',`hr4`='$hr4',`hr5`='$hr5',`hr6`='$hr6',`hr7`='$hr7' WHERE `file_no`='$file_no' AND `status`='1' ") or die(mysql_error());
+	$save = mysql_query("UPDATE `hr` SET `hr1`='$hr1',`hr2`='$hr2',`hr3`='$hr3',`hr4`='$hr4',`hr5`='$hr5',`hr6`='$hr6',`hr7`='$hr7', `last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1' ") or die(mysql_error());
 	
 	if($save){echo "success";}
 	else{echo "error";}

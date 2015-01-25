@@ -2,7 +2,7 @@
 
 rm $0
 
-php "header.php"
+php "1.php"
 
 echo "
 

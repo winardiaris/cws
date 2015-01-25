@@ -92,5 +92,11 @@ elseif($op == "saveverification"){
 	if($save){echo "success";}
 	else{echo "error";}
 }
+elseif($op == "del"){
+	$file_no = $_GET['file_no'];
+	$del = mysql_query("UPDATE `se` SET `status`='0' WHERE  `file_no`='$file_no' AND `status`='1' ;  ") or die(mysql_error());
+	if($del){echo "success";}
+	else{echo "error";}
+}
 
 ?>

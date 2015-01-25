@@ -1,6 +1,4 @@
-<?php
-include ("inc/conf.php");
-?>
+<?php include ("inc/conf.php");?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,13 +29,22 @@ include ("inc/conf.php");
 	<script src="<?php echo $URL ?>js/plugins/metisMenu/metisMenu.min.js"></script>
 	<script src="<?php echo $URL ?>js/sb-admin-2.js"></script>
 	<script src="<?php echo $URL ?>js/plugins/dataTables/jquery.dataTables.js"></script>
-    <script src="<?php echo $URL ?>js/plugins/dataTables/dataTables.bootstrap.js"></script>
+	<script src="<?php echo $URL ?>js/plugins/dataTables/dataTables.bootstrap.js"></script>
+	<script src="<?php echo $URL ?>js/plugins/morris/raphael.min.js"></script>
+	<script src="<?php echo $URL ?>js/plugins/morris/morris.min.js"></script>
+	<!-- Flot Charts JavaScript -->
+	<script src="<?php echo $URL ?>js/plugins/flot/excanvas.min.js"></script>
+	<script src="<?php echo $URL ?>js/plugins/flot/jquery.flot.js"></script>
+	<script src="<?php echo $URL ?>js/plugins/flot/jquery.flot.pie.js"></script>
+	<script src="<?php echo $URL ?>js/plugins/flot/jquery.flot.resize.js"></script>
+	<script src="<?php echo $URL ?>js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+
    
 </head>
 <body >
 <script>$(document).ready(function() {$('#dataTables').dataTable();});</script>
 <div id="wrapper"><!-- /#wrapper -->
 
-<?php echo $iframe;?>	
+<?php //echo $iframe;?>	
 
 	

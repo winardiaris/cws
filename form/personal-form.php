@@ -93,9 +93,9 @@ else{
 			}
 			else{
 			
-				var file_no = $("#file_no").val(), name = $("#name").val(), coo = $("#coo").val(), dob = $("#dob").val(), sex = $('input:radio[name=sex]:checked').val(), marital = $("#marital").val(), address = $("#address").val(), phone = $("#phone").val(), photo = $("#photo").val(), status = $("#status").val(), date_arrival = $("#date_arrival").val(),arrival = $("#arrival").val(), education = $("#education").val(), skill = $("#skill").val(), mot = $("#mot").val(), known_language = $("#known_language").val(), previous_occupation = $("#previous_occupation").val(), volunteer = $("#volunteer").val(), date_recognition = $("#date_recognition").val(), status_active = $("#status_active").val();
+				var file_no = $("#file_no").val(), name = $("#name").val(), coo = $("#coo").val(), dob = $("#dob").val(),age = $("#age").val(), sex = $('input:radio[name=sex]:checked').val(), marital = $("#marital").val(), address = $("#address").val(), phone = $("#phone").val(), photo = $("#photo").val(), status = $("#status").val(), date_arrival = $("#date_arrival").val(),arrival = $("#arrival").val(), education = $("#education").val(), skill = $("#skill").val(), mot = $("#mot").val(), known_language = $("#known_language").val(), previous_occupation = $("#previous_occupation").val(), volunteer = $("#volunteer").val(), date_recognition = $("#date_recognition").val(), status_active = $("#status_active").val();
 				
-				var datanya = "&file_no="+file_no+"&name="+name+"&coo="+coo+"&dob="+dob+"&sex="+sex+"&marital="+marital+"&address="+address+"&phone="+phone+"&photo="+photo+"&status="+status+"&arrival="+arrival+"&date_arrival="+date_arrival+"&education="+education+"&skill="+skill+"&mot="+mot+"&known_language="+known_language+"&previous_occupation="+previous_occupation+"&volunteer="+volunteer+"&date_recognition="+date_recognition+"&status_active="+status_active;
+				var datanya = "&file_no="+file_no+"&name="+name+"&coo="+coo+"&dob="+dob+"&age="+age+"&sex="+sex+"&marital="+marital+"&address="+address+"&phone="+phone+"&photo="+photo+"&status="+status+"&arrival="+arrival+"&date_arrival="+date_arrival+"&education="+education+"&skill="+skill+"&mot="+mot+"&known_language="+known_language+"&previous_occupation="+previous_occupation+"&volunteer="+volunteer+"&date_recognition="+date_recognition+"&status_active="+status_active;
 				
 				$.ajax({url:"form/personal-action.php",data:"op=saveperson"+datanya,cache:false,success: function(msg){
 						if(msg=="success"){
@@ -112,9 +112,9 @@ else{
 		
 		//update person
 		$("#person_update").click(function(){
-			var file_no = $("#file_no").val(), name = $("#name").val(), coo = $("#coo").val(), dob = $("#dob").val(), sex = $('input:radio[name=sex]:checked').val(), marital = $("#marital").val(), address = $("#address").val(), phone = $("#phone").val(), photo = $("#photo").val(), status = $("#status").val(), date_arrival = $("#date_arrival").val(),arrival = $("#arrival").val(), education = $("#education").val(), skill = $("#skill").val(), mot = $("#mot").val(), known_language = $("#known_language").val(), previous_occupation = $("#previous_occupation").val(), volunteer = $("#volunteer").val(), date_recognition = $("#date_recognition").val(), status_active = $("#status_active").val();
-			
-			var datanya = "&file_no="+file_no+"&name="+name+"&coo="+coo+"&dob="+dob+"&sex="+sex+"&marital="+marital+"&address="+address+"&phone="+phone+"&photo="+photo+"&status="+status+"&arrival="+arrival+"&date_arrival="+date_arrival+"&education="+education+"&skill="+skill+"&mot="+mot+"&known_language="+known_language+"&previous_occupation="+previous_occupation+"&volunteer="+volunteer+"&date_recognition="+date_recognition+"&status_active="+status_active;
+			var file_no = $("#file_no").val(), name = $("#name").val(), coo = $("#coo").val(), dob = $("#dob").val(),age = $("#age").val(), sex = $('input:radio[name=sex]:checked').val(), marital = $("#marital").val(), address = $("#address").val(), phone = $("#phone").val(), photo = $("#photo").val(), status = $("#status").val(), date_arrival = $("#date_arrival").val(),arrival = $("#arrival").val(), education = $("#education").val(), skill = $("#skill").val(), mot = $("#mot").val(), known_language = $("#known_language").val(), previous_occupation = $("#previous_occupation").val(), volunteer = $("#volunteer").val(), date_recognition = $("#date_recognition").val(), status_active = $("#status_active").val();
+				
+			var datanya = "&file_no="+file_no+"&name="+name+"&coo="+coo+"&dob="+dob+"&age="+age+"&sex="+sex+"&marital="+marital+"&address="+address+"&phone="+phone+"&photo="+photo+"&status="+status+"&arrival="+arrival+"&date_arrival="+date_arrival+"&education="+education+"&skill="+skill+"&mot="+mot+"&known_language="+known_language+"&previous_occupation="+previous_occupation+"&volunteer="+volunteer+"&date_recognition="+date_recognition+"&status_active="+status_active;
 			
 			$.ajax({url:"form/personal-action.php",data:"op=updateperson"+datanya,cache:false,success: function(msg){
 					if(msg=="success"){
@@ -139,14 +139,7 @@ else{
 			});
 		});
 		
-		$("#uphoto").submit(function(){
-			var file_no = $("#file_no");
-			if(file_no.val() = ""){
-				alert("Please insert file number");
-				file_no.focus();
-				
-			}
-		})		
+			
 	});
 }) (jQuery);
 </script>
@@ -196,7 +189,7 @@ else{
 							<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
 								<input type="text" class="form-control" name="birth" id="dob" placeholder="yyyy-mm-dd" onchange="CalAge(dob,age);" value="<?php if($edit==1){echo $data['dob'];}?>" required><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 							</div>
-							<label>Age</label> <input class="form-control" name="age" placeholder="Age" id="age">		
+							<label>Age</label> <input class="form-control" name="age" placeholder="Age" id="age" value="<?php if($edit==1){echo $data['age'];}?>">		
 						</td>
 					</tr>
 					<tr>
@@ -242,7 +235,7 @@ else{
 							<form enctype="multipart/form-data" action="form/upload.php" method="POST" target="iframe" id="uphoto">
 								<input type="file" name="userfile">
 								<input id="file_no2" name="file_no" type="hidden" <?php if($edit==1){echo 'value="'.$data['file_no'].'" ';}?>>
-								<br><button type="submit" class="btn btn-sm btn-success" value="Upload" name="upload" ><i class="fa fa-upload"></i> Upload</button>
+								<br><button type="submit" class="btn btn-sm btn-success" value="Upload" name="upload" id="btnupload" ><i class="fa fa-upload"></i> Upload</button>
 								
 									<?php if($edit==1){echo '<input type="hidden" class="form-control" id="photo" value="'.$data['photo'].'" ><br><small class="text-success"> ';}?>
 							</form>

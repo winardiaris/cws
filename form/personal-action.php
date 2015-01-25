@@ -5,7 +5,7 @@ include ("../inc/conf.php");
 
 $op = $_GET['op'];
 if($op == "saveperson"){
-	$file_no = $_GET['file_no'];$name = $_GET['name'];$coo = $_GET['coo'];$dob=$_GET['dob'];$sex = $_GET['sex'];
+	$file_no = $_GET['file_no'];$name = $_GET['name'];$coo = $_GET['coo'];$dob=$_GET['dob'];$age=$_GET['age'];$sex = $_GET['sex'];
 	$marital = $_GET['marital'];$address = $_GET['address'];$phone = $_GET['phone']; $status = $_GET['status'];
 	$arrival = $_GET['arrival'];$date_arrival = $_GET['date_arrival'];$arrival2 = $arrival.",".$date_arrival;
 	$education = $_GET['education'];$skill=$_GET['skill'];$mot=$_GET['mot'];$known_language = $_GET['known_language'];
@@ -14,13 +14,13 @@ if($op == "saveperson"){
 	
 	$photo=$_GET['photo'];
 	
-	$save = mysql_query("INSERT INTO `person` VALUES('$file_no','$name','$coo','$dob','$sex','$marital','$address','$phone','$photo','$status','$arrival2','$education','$skill','$mot','$known_language','$previous_occupation','$volunteer','$date_recognition','$status_active','$NOW','');") or die(mysql_error());
+	$save = mysql_query("INSERT INTO `person` VALUES('$file_no','$name','$coo','$dob','$age','$sex','$marital','$address','$phone','$photo','$status','$arrival2','$education','$skill','$mot','$known_language','$previous_occupation','$volunteer','$date_recognition','$status_active','$NOW','');") or die(mysql_error());
 	
 	if($save){echo "success";}
 	else{echo "error";}
 }
 elseif($op == "updateperson"){
-	$file_no = $_GET['file_no'];$name = $_GET['name'];$coo = $_GET['coo'];$dob=$_GET['dob'];$sex = $_GET['sex'];
+	$file_no = $_GET['file_no'];$name = $_GET['name'];$coo = $_GET['coo'];$dob=$_GET['dob'];$age=$_GET['age'];$sex = $_GET['sex'];
 	$marital = $_GET['marital'];$address = $_GET['address'];$phone = $_GET['phone']; $status = $_GET['status'];
 	$arrival = $_GET['arrival'];$date_arrival = $_GET['date_arrival'];$arrival2 = $arrival.",".$date_arrival;
 	$education = $_GET['education'];$skill=$_GET['skill'];$mot=$_GET['mot'];$known_language = $_GET['known_language'];
@@ -33,6 +33,7 @@ elseif($op == "updateperson"){
 	`name`='$name',
 	`coo`='$coo',
 	`dob`='$dob',
+	`age`='$age',
 	`sex`='$sex',
 	`marital`='$marital',
 	`address`='$address',

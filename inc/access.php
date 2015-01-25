@@ -1,5 +1,6 @@
 <?php
 	$group_id=$_SESSION['group_id'];
+if(isset($group_id)){
 	$getR=mysql_query("SELECT COUNT(*) AS `R` FROM `usergroup` WHERE `group_id`='$group_id' AND `group_access` LIKE '%$R%'");
 	$getW=mysql_query("SELECT COUNT(*) AS `W` FROM `usergroup` WHERE `group_id`='$group_id' AND `group_access` LIKE '%$W%'");
 	
@@ -39,5 +40,8 @@
 		echo '<script>alert("Authentication Failure !!");window.location="?page=dashboard";</script>';
 		return false;
 	}
-	
+}
+else{
+	echo '<script>alert("You not logged !!");window.location="?page=login";</script>';
+}
 ?>

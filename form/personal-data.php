@@ -26,7 +26,7 @@ $R="R3";$W="W3";
 			
 		</div>
 	</div>
-	<div class="col-lg-12">
+	
 		<div class="table-responsive">
 		<table class="table table-striped table-bordered table-hover" id="dataTables">
 			<thead>
@@ -38,7 +38,7 @@ $R="R3";$W="W3";
 				<th>Sex</th>
 				<th>Address</th>
 				<th>Phone</th>
-				<th>Active Status</th>
+				<th>Status</th>
 				<th width="10px">Action</th>
 				</tr>
 			</thead>
@@ -48,7 +48,7 @@ $R="R3";$W="W3";
 					$qry = mysql_query("
 					SELECT `person`.`file_no`,`person`.`name`,`master_country`.`country_name` ,`person`.`sex`,`person`.`address`,`person`.`phone`,`person`.`active` FROM `person`
 					INNER JOIN `master_country` ON `person`.`coo` = `master_country`.`country_id` 
-					WHERE `person`.`active` = '$active';
+					WHERE `person`.`active` = '$active' ORDER BY `created` DESC;
 					
 					") or die(mysql_error());
 					while($data = mysql_fetch_array($qry)){
@@ -84,7 +84,6 @@ $R="R3";$W="W3";
 			</tbody>
 		</table>
 		</div>
-	</div>
 	
 </div><!-- row -->
 </div><!-- page-wrapper -->

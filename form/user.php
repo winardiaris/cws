@@ -20,7 +20,7 @@ include("form/navigasi.php");
 					<tr>
 						<th>No</th>
 						<th >User ID</th>
-						<th >Group ID</th>
+						<th >Group</th>
 						<th >User Name</th>
 						<th>User Real Name</th>
 						<th>Last Login</th>
