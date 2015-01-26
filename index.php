@@ -70,8 +70,8 @@ if(!empty($_GET['page'])){
 		
 		
 		//CHART --------
-		case "chart1":
-		$view = "form/chart/1.php";
+		case "chart":
+		$view = "form/chart/chart.php";
 		break;
 		
 		

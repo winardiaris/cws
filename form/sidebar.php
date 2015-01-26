@@ -2,7 +2,7 @@
 <div class="navbar-default sidebar" role="navigation">
 	<div class="sidebar-nav navbar-collapse">
 		<ul class="nav" id="side-menu">
-			<li><a href="?page=dashboard" <?php if($_GET['page']=="dashboard") echo " class='active'"; ?>><i class="fa fa-dashboard fa-fw"></i> Dashboard</a></li>
+			<li><a href="?page=dashboard" <?php if($_GET['page']=="dashboard" OR $_GET['page']=="chart" ) echo " class='active'"; ?>><i class="fa fa-dashboard fa-fw"></i> Dashboard</a></li>
 			<li <?php if($_GET['page']=="person-form" OR $_GET['page']=="person-data") echo " class='active'"; ?>>
 				<a href="#" title="Personal Information"><i class="fa fa-user fa-fw" ></i> Person<span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">
@@ -38,13 +38,10 @@
 					<li><a href="?page=hr-data" <?php if($_GET['page']=="hr-data") echo " class='active'"; ?>><i class="fa fa-table"></i> Data</a></li>
 				</ul><!-- /.nav-second-level -->
 			</li>
-			<li <?php if($_GET['page']=="user" OR $_GET['page']=="chart1") echo " class='active'"; ?>>
+			<li <?php if($_GET['page']=="user") echo " class='active'"; ?>>
 				<a href="#" title="Administrator"><i class="fa fa-gear fa-fw" ></i> Administrator<span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">
 					<li><a href="?page=user" <?php if($_GET['page']=="user") echo " class='active'"; ?>><i class="fa fa-user"></i> User</a></li>
-<!--
-					<li><a href="?page=chart1" <?php if($_GET['page']=="chart1") echo " class='active'"; ?>><i class="fa fa-bar-chart-o"></i> Chart</a></li>
--->
 				</ul><!-- /.nav-second-level -->
 			</li>
 			
