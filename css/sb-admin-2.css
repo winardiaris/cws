@@ -107,11 +107,11 @@ body {
 }
 
 .sidebar .fa.arrow:before {
-    content: "\f104";
+    content: "\f142";
 }
 
 .sidebar .active>a>.fa.arrow:before {
-    content: "\f107";
+    content: "\f142";
 }
 
 .sidebar .nav-second-level li,

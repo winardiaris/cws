@@ -42,7 +42,9 @@
 				<a href="#" title="Administrator"><i class="fa fa-gear fa-fw" ></i> Administrator<span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">
 					<li><a href="?page=user" <?php if($_GET['page']=="user") echo " class='active'"; ?>><i class="fa fa-user"></i> User</a></li>
+<!--
 					<li><a href="?page=chart1" <?php if($_GET['page']=="chart1") echo " class='active'"; ?>><i class="fa fa-bar-chart-o"></i> Chart</a></li>
+-->
 				</ul><!-- /.nav-second-level -->
 			</li>
 			
