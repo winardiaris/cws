@@ -260,7 +260,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES ('11','Muhammad Djulkarnaen','20','1970-06-16',44,'M','MA','31.73.03;Jl. merdeka','0898123456','photo/11.jpg','Refugee',',','','','','','','','0000-00-00','1','2015-01-25 20:48:48','0000-00-00 00:00:00'),('123','dudung','1','1993-10-13',21,'M','SI','31.71.04;jl. zzzzzzz','0988777','photo/123.jpg','Refugee','Jakarta,2013-12-12','-','-','-','-','-','-','2014-09-30','1','2015-01-14 18:16:39','2015-01-25 17:00:44'),('1234','dadang','1','1989-10-10',25,'M','EN','31.73.02;jl....aaa a','098888','photo/1234.jpg','Refugee',',','','','','','','','1900-12-29','1','2015-01-14 18:25:49','2015-01-25 20:54:14'),('12344','abdul gazhali','201','1971-10-20',43,'M','WR','32.01.13;jl.','08787089009','photo/12344.jpg','Refugee',',','','','','','','','2014-12-29','1','2015-01-21 16:34:04','2015-01-25 16:58:44'),('19028','Agnes','107','1992-03-29',22,'F','SI','14.02.02;jl. pacet','09888','photo/19028.jpg','Refugee',',','','','','','','','2014-10-21','1','2015-01-12 11:52:25','2015-01-25 16:55:33');
+INSERT INTO `person` VALUES ('11','Muhammad Djulkarnaen','20','1970-06-16',44,'M','MA','31.73.03;Jl. merdeka','0898123456','photo/11.jpg','Refugee',',','','','','','','','0000-00-00','1','2015-01-25 20:48:48','0000-00-00 00:00:00'),('121','Sueb','20','1981-07-21',33,'M','MA','32.76.06;jl......','098777','photo/121.png','Refugee','Jakarta,2009-05-04','-','','','','','','0000-00-00','1','2015-01-26 12:22:14','0000-00-00 00:00:00'),('123','dudung','1','1993-10-13',21,'M','SI','36.01.10;jl. zzzzzzz','0988777','photo/123.jpg','Refugee','Jakarta,2013-12-12','-','-','-','-','-','-','2014-09-30','1','2015-01-14 18:16:39','2015-01-26 12:28:30'),('1234','M Sulaeman','1','1989-10-10',25,'M','EN','31.71.05;jl....aaa a','098888','photo/1234.jpg','Refugee',',','','','','','','','2001-12-13','1','2015-01-14 18:25:49','2015-01-26 12:29:09'),('12344','abdul gazhali','201','1971-10-20',43,'M','WR','32.01.13;jl.','08787089009','photo/12344.jpg','Refugee',',','','','','','','','2014-12-29','1','2015-01-21 16:34:04','2015-01-25 16:58:44'),('19028','Agnes','107','1992-03-29',22,'F','SI','36.02.09;jl. pacet','09888','photo/19028.jpg','Refugee',',','','','','','','','2014-10-21','1','2015-01-12 11:52:25','2015-01-26 11:51:25');
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -342,7 +342,7 @@ CREATE TABLE `system_log` (
   `log_message` text NOT NULL,
   `log_time` datetime NOT NULL,
   PRIMARY KEY (`log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -351,7 +351,7 @@ CREATE TABLE `system_log` (
 
 LOCK TABLES `system_log` WRITE;
 /*!40000 ALTER TABLE `system_log` DISABLE KEYS */;
-INSERT INTO `system_log` VALUES (1,6,'login','Login success','2015-01-21 12:56:16'),(2,6,'login','Login success','2015-01-21 15:24:03'),(3,6,'login','Login success','2015-01-21 17:26:36'),(4,6,'login','Login success','2015-01-21 17:37:41'),(5,6,'User form','Add new User','2015-01-21 17:48:53'),(6,7,'login','Login success','2015-01-21 17:53:49'),(7,7,'login','Login success','2015-01-21 17:54:21'),(8,6,'login','Login success','2015-01-21 18:02:14'),(9,7,'login','Login success','2015-01-21 18:20:04'),(10,6,'login','Login success','2015-01-21 18:25:43'),(11,6,'login','Login success','2015-01-21 22:50:11'),(12,6,'login','Login success','2015-01-21 22:55:30'),(13,6,'login','Login success','2015-01-21 23:07:53'),(14,8,'login','Login success','2015-01-22 00:42:57'),(15,8,'login','Login success','2015-01-22 00:43:21'),(16,8,'login','Login success','2015-01-22 00:45:04'),(17,8,'login','Login success','2015-01-22 00:45:37'),(18,8,'login','Login success','2015-01-22 00:46:07'),(19,8,'login','Login success','2015-01-22 00:46:36'),(20,10,'login','Login success','2015-01-22 01:29:48'),(21,6,'login','Login success','2015-01-22 02:28:04'),(22,10,'login','Login success','2015-01-22 11:40:55'),(23,7,'login','Login success','2015-01-22 13:02:25'),(24,10,'login','Login success','2015-01-22 13:03:08'),(25,6,'login','Login success','2015-01-22 13:13:43'),(26,7,'login','Login success','2015-01-22 13:14:04'),(27,10,'login','Login success','2015-01-22 13:17:12'),(28,7,'login','Login success','2015-01-25 16:06:59'),(29,10,'login','Login success','2015-01-25 16:44:08'),(30,7,'login','Login success','2015-01-25 18:39:10'),(31,7,'login','Login success','2015-01-25 20:05:56'),(32,7,'login','Login success','2015-01-25 22:01:10'),(33,7,'login','Login success','2015-01-26 10:05:34');
+INSERT INTO `system_log` VALUES (1,6,'login','Login success','2015-01-21 12:56:16'),(2,6,'login','Login success','2015-01-21 15:24:03'),(3,6,'login','Login success','2015-01-21 17:26:36'),(4,6,'login','Login success','2015-01-21 17:37:41'),(5,6,'User form','Add new User','2015-01-21 17:48:53'),(6,7,'login','Login success','2015-01-21 17:53:49'),(7,7,'login','Login success','2015-01-21 17:54:21'),(8,6,'login','Login success','2015-01-21 18:02:14'),(9,7,'login','Login success','2015-01-21 18:20:04'),(10,6,'login','Login success','2015-01-21 18:25:43'),(11,6,'login','Login success','2015-01-21 22:50:11'),(12,6,'login','Login success','2015-01-21 22:55:30'),(13,6,'login','Login success','2015-01-21 23:07:53'),(14,8,'login','Login success','2015-01-22 00:42:57'),(15,8,'login','Login success','2015-01-22 00:43:21'),(16,8,'login','Login success','2015-01-22 00:45:04'),(17,8,'login','Login success','2015-01-22 00:45:37'),(18,8,'login','Login success','2015-01-22 00:46:07'),(19,8,'login','Login success','2015-01-22 00:46:36'),(20,10,'login','Login success','2015-01-22 01:29:48'),(21,6,'login','Login success','2015-01-22 02:28:04'),(22,10,'login','Login success','2015-01-22 11:40:55'),(23,7,'login','Login success','2015-01-22 13:02:25'),(24,10,'login','Login success','2015-01-22 13:03:08'),(25,6,'login','Login success','2015-01-22 13:13:43'),(26,7,'login','Login success','2015-01-22 13:14:04'),(27,10,'login','Login success','2015-01-22 13:17:12'),(28,7,'login','Login success','2015-01-25 16:06:59'),(29,10,'login','Login success','2015-01-25 16:44:08'),(30,7,'login','Login success','2015-01-25 18:39:10'),(31,7,'login','Login success','2015-01-25 20:05:56'),(32,7,'login','Login success','2015-01-25 22:01:10'),(33,7,'login','Login success','2015-01-26 10:05:34'),(34,7,'login','Login success','2015-01-26 12:19:36');
 /*!40000 ALTER TABLE `system_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -382,7 +382,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (6,2,'cws','cws','23abe62a446fc05ce0a6c810f4045308','','2015-01-22 13:13:43',NULL,NULL),(7,1,'aris','aris','288077f055be4fadc3804a69422dd4f8','-','2015-01-26 10:05:34',NULL,NULL),(8,3,'adul','adul sadulin bin dul sumbang','997593f7b7af4fc758127e1dc41e3446','infohttp://localhost/~winardiaris/cws/?page=login','2015-01-22 00:46:36',NULL,'2015-01-22 02:01:46'),(9,0,'','','d41d8cd98f00b204e9800998ecf8427e','',NULL,NULL,NULL),(10,5,'ariss','ariss','aa9d274f947663a8bd87bb96379db12b','ariss','2015-01-25 16:44:08',NULL,'2015-01-22 11:39:26');
+INSERT INTO `user` VALUES (6,2,'cws','cws','23abe62a446fc05ce0a6c810f4045308','','2015-01-22 13:13:43',NULL,NULL),(7,1,'aris','aris','288077f055be4fadc3804a69422dd4f8','-','2015-01-26 12:19:36',NULL,NULL),(8,3,'adul','adul sadulin bin dul sumbang','997593f7b7af4fc758127e1dc41e3446','infohttp://localhost/~winardiaris/cws/?page=login','2015-01-22 00:46:36',NULL,'2015-01-22 02:01:46'),(9,0,'','','d41d8cd98f00b204e9800998ecf8427e','',NULL,NULL,NULL),(10,5,'ariss','ariss','aa9d274f947663a8bd87bb96379db12b','ariss','2015-01-25 16:44:08',NULL,'2015-01-22 11:39:26');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -446,4 +446,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-26 10:14:28
+-- Dump completed on 2015-01-26 12:33:21

@@ -1,4 +1,6 @@
-<?php include("form/navigasi.php") ;?>
+<?php include("form/navigasi.php") ;
+
+?>
 
 <div id="page-wrapper">
 <div class="row" >
@@ -15,10 +17,51 @@
 	<div class="panel panel-default">
 		<div class="panel-heading"><i class="fa fa-bar-chart-o"></i> Person Marital Status (Active)</div>
 		<div class="panel-body">
-			<div id="chart_marital_status_a" style="height: 250px;"><?php echo $ma;?></div>
+			<div id="chart_marital_status_a" style="height: 250px;"></div>
 		</div>
 	</div>
 	</div>
+	<div class="col-lg-4">
+	<div class="panel panel-default">
+		<div class="panel-heading"><i class="fa fa-bar-chart-o"></i> Personal Age (Active)</div>
+		<div class="panel-body">
+			<div id="chart_age" style="height: 250px;"></div>
+		</div>
+	</div>
+	</div>
+	<div class="col-lg-6">
+	<div class="panel panel-default">
+		<div class="panel-heading"><i class="fa fa-bar-chart-o"></i> Mapping Propinsi </div>
+		<div class="panel-body">
+			<div id="chart_propinsi" style="height: 250px;"></div>
+		</div>
+	</div>
+	</div>
+	<div class="col-lg-6">
+	<div class="panel panel-default">
+		<div class="panel-heading"><i class="fa fa-bar-chart-o"></i> Mapping DKI Jakarta </div>
+		<div class="panel-body">
+			<div id="chart_dki" style="height: 250px;"></div>
+		</div>
+	</div>
+	</div>
+	<div class="col-lg-6">
+	<div class="panel panel-default">
+		<div class="panel-heading"><i class="fa fa-bar-chart-o"></i> Mapping Jawa Barat </div>
+		<div class="panel-body">
+			<div id="chart_jabar" style="height: 450px;"></div>
+		</div>
+	</div>
+	</div>
+	<div class="col-lg-6">
+	<div class="panel panel-default">
+		<div class="panel-heading"><i class="fa fa-bar-chart-o"></i> Mapping Banten</div>
+		<div class="panel-body">
+			<div id="chart_banten" style="height: 250px;"></div>
+		</div>
+	</div>
+	</div>
+	
 
 	
 
@@ -54,8 +97,6 @@ new Morris.Donut({
   // chart.
   labels: ['Value']
 });
-
-
 //Flot Pie Chart
 $(function() {
 	<?php
@@ -77,6 +118,205 @@ $(function() {
 	
 	?>
     var plotObj = $.plot($("#chart_marital_status_a"), data, {
+        series: {
+            pie: {
+                show: true
+            }
+        },
+        grid: {
+            hoverable: true
+        },
+        tooltip: true,
+        tooltipOpts: {
+            content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+            shifts: {
+                x: 20,
+                y: 0
+            },
+            defaultTheme: false
+        }
+    });
+
+});
+
+//AGE
+$(function() {
+	<?php
+	
+	$qage = mysql_query("SELECT SUM(IF(`age`<='17',1,0)) AS `age_17`, SUM(IF(`age`<='30',1,0)) AS `age_30`,SUM(IF(`age`<='40',1,0)) AS `age_40`,SUM(IF(`age`>'40',1,0)) AS `age_40_plus` FROM  `person` WHERE `active`='1'") or die( mysql_error());
+	$mage=mysql_fetch_array($qage);
+	echo'
+	var data = [
+	{label: \'<= 17 ['.$mage['age_17'].'] \', data:'.$mage['age_17'].'},
+	{label: \'<= 30 ['.$mage['age_30'].']\', data:'.$mage['age_30'].'},
+	{label: \'<= 40  ['.$mage['age_40'].']\', data:'.$mage['age_40'].'},
+	{label: \'>40 ['.$mage['age_40_plus'].']\', data:'.$mage['age_40_plus'].'}
+	];';
+	
+	?>
+    var plotObj = $.plot($("#chart_age"), data, {
+        series: {
+            pie: {
+                show: true
+            }
+        },
+        grid: {
+            hoverable: true
+        },
+        tooltip: true,
+        tooltipOpts: {
+            content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+            shifts: {
+                x: 20,
+                y: 0
+            },
+            defaultTheme: false
+        }
+    });
+
+});
+
+//Propinsi
+$(function() {
+	<?php
+	
+	$qry = mysql_query("SELECT SUM(IF(`address` LIKE '31%',1,0)) AS `dki`,SUM(IF(`address` LIKE '32%',1,0)) AS `jabar`,SUM(IF(`address` LIKE '36%',1,0)) AS `banten` FROM  `person` WHERE `active`='1'") or die( mysql_error());
+	$data=mysql_fetch_array($qry);
+	echo'
+	var data = [
+	{label: \'DKI Jakarta ['.$data['dki'].'] \', data:'.$data['dki'].'},
+	{label: \'Jawa Barat ['.$data['jabar'].']\', data:'.$data['jabar'].'},
+	{label: \'Banten  ['.$data['banten'].']\', data:'.$data['banten'].'}
+	];';
+	
+	?>
+    var plotObj = $.plot($("#chart_propinsi"), data, {
+        series: {
+            pie: {
+                show: true
+            }
+        },
+        grid: {
+            hoverable: true
+        },
+        tooltip: true,
+        tooltipOpts: {
+            content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+            shifts: {
+                x: 20,
+                y: 0
+            },
+            defaultTheme: false
+        }
+    });
+
+});
+//DKI Jakarta
+$(function() {
+	<?php
+	
+	$q = mysql_query("SELECT * FROM `data_wilayah` WHERE `kode` LIKE '31%' AND LENGTH(`kode`)>2 AND LENGTH(`kode`)<=5 ORDER BY `kode` ASC; ") or die(mysql_error());
+	
+	
+	while($d = mysql_fetch_array($q)){
+		$a = $a."SUM( IF( `address` LIKE'".$d['kode']."%',  1 , 0 ) ) AS `".$d['kode']."`,";
+		$b = substr($a,0,strlen($a)-1);
+		
+		$qry = mysql_query("SELECT ".$b." FROM `person` WHERE `active`='1'") or die( mysql_error());
+		$data=mysql_fetch_array($qry);
+		
+		
+		$x = $x."{label: '".$d['nama']." [".$data[$d['kode']]."] ', data:".$data[$d['kode']]."},";
+		$z = substr($x,0,strlen($x)-1);
+	}
+	echo "var data = [".$z."];";
+	print("\n\n");
+	?>
+    var plotObj = $.plot($("#chart_dki"), data, {
+        series: {
+            pie: {
+                show: true
+            }
+        },
+        grid: {
+            hoverable: true
+        },
+        tooltip: true,
+        tooltipOpts: {
+            content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+            shifts: {
+                x: 20,
+                y: 0
+            },
+            defaultTheme: false
+        }
+    });
+
+});
+//Jabar
+$(function() {
+	<?php
+	
+	
+	$qj = mysql_query("SELECT * FROM `data_wilayah` WHERE `kode` LIKE '32%' AND LENGTH(`kode`)>2 AND LENGTH(`kode`)<=5 ORDER BY `kode` ASC; ") or die(mysql_error());
+	
+	while($dj = mysql_fetch_array($qj)){
+		$aj = $aj."SUM( IF( `address` LIKE'".$dj['kode']."%',  1 , 0 ) ) AS `".$dj['kode']."`,";
+		$bj = substr($aj,0,strlen($aj)-1);
+		
+		$qryj = mysql_query("SELECT ".$bj." FROM `person` WHERE `active`='1'") or die( mysql_error());
+		$dataj=mysql_fetch_array($qryj);
+		
+		
+		$xj = $xj."{label: '".$dj['nama']." [".$dataj[$dj['kode']]."]', data:".$dataj[$dj['kode']]."},";
+		$zj = substr($xj,0,strlen($xj)-1);
+	}
+	echo "var data = [".$zj."];";
+	print("\n\n");
+	?>
+    var plotObj = $.plot($("#chart_jabar"), data, {
+        series: {
+            pie: {
+                show: true
+            }
+        },
+        grid: {
+            hoverable: true
+        },
+        tooltip: true,
+        tooltipOpts: {
+            content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+            shifts: {
+                x: 20,
+                y: 0
+            },
+            defaultTheme: false
+        }
+    });
+
+});
+//Banten
+$(function() {
+	<?php
+	
+	
+	$qb = mysql_query("SELECT * FROM `data_wilayah` WHERE `kode` LIKE '36%' AND LENGTH(`kode`)>2 AND LENGTH(`kode`)<=5 ORDER BY `kode` ASC; ") or die(mysql_error());
+	
+	while($db = mysql_fetch_array($qb)){
+		$ab = $ab."SUM( IF( `address` LIKE'".$db['kode']."%',  1 , 0 ) ) AS `".$db['kode']."`,";
+		$bb = substr($ab,0,strlen($ab)-1);
+		
+		$qryb = mysql_query("SELECT ".$bb." FROM `person` WHERE `active`='1'") or die( mysql_error());
+		$datab=mysql_fetch_array($qryb);
+		
+		
+		$xb = $xb."{label: '".$db['nama']." [".$datab[$db['kode']]."]', data:".$datab[$db['kode']]."},";
+		$zb = substr($xb,0,strlen($xb)-1);
+	}
+	echo "var data = [".$zb."];";
+	print("\n\n");
+	?>
+    var plotObj = $.plot($("#chart_banten"), data, {
         series: {
             pie: {
                 show: true
