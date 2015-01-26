@@ -717,8 +717,8 @@ else{
 							<td width="300px"><label>Assistance Highly Recommended:  </label></td>
 							<td>
 								<div class="form-group">
-									<label class="radio-inline"><input type="radio" name="radioahr" value="1" <?php if($edit==1){if($recomend[0]==1){echo "checked";}}?>> YES</label>
-									<label class="radio-inline"><input type="radio" name="radioahr" value="0" <?php if($edit==1){if($recomend[0]==0){echo "checked";}}?>> NO</label>
+									<label class="radio-inline"><input type="radio" name="radioahr" value="1" <?php if($edit==1){if($recommend[0]==1){echo "checked";}}?>> YES</label>
+									<label class="radio-inline"><input type="radio" name="radioahr" value="0" <?php if($edit==1){if($recommend[0]==0){echo "checked";}}?>> NO</label>
 								</div>
 							</td>
 						</tr>
@@ -726,8 +726,8 @@ else{
 							<td><label>Assistance Recommended:  </label></td>
 							<td>
 								<div class="form-group">
-									<label class="radio-inline"><input type="radio" name="radioar" value="1" <?php if($edit==1){if($recomend[1]==1){echo "checked";}}?>> YES</label>
-									<label class="radio-inline"><input type="radio" name="radioar" value="0" <?php if($edit==1){if($recomend[1]==0){echo "checked";}}?>> NO</label>
+									<label class="radio-inline"><input type="radio" name="radioar" value="1" <?php if($edit==1){if($recommend[1]==1){echo "checked";}}?>> YES</label>
+									<label class="radio-inline"><input type="radio" name="radioar" value="0" <?php if($edit==1){if($recommend[1]==0){echo "checked";}}?>> NO</label>
 								</div>
 							</td>
 						</tr>
@@ -735,8 +735,8 @@ else{
 							<td><label>Assistance Not Recommended:  </label></td>
 							<td>
 								<div class="form-group">
-									<label class="radio-inline"><input type="radio" name="radioanr" value="1" <?php if($edit==1){if($recomend[2]==1){echo "checked";}}?>> YES</label>
-									<label class="radio-inline"><input type="radio" name="radioanr" value="0" <?php if($edit==1){if($recomend[2]==0){echo "checked";}}?>> NO</label>
+									<label class="radio-inline"><input type="radio" name="radioanr" value="1" <?php if($edit==1){if($recommend[2]==1){echo "checked";}}?>> YES</label>
+									<label class="radio-inline"><input type="radio" name="radioanr" value="0" <?php if($edit==1){if($recommend[2]==0){echo "checked";}}?>> NO</label>
 								</div>
 							</td>
 						</tr>

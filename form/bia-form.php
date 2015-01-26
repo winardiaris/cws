@@ -88,7 +88,7 @@ else{
 					<label class="radio-inline"><input type="radio" name="ioc"  value="UNHCR" <?php if($edit==1){if($assessment[4]=="UNHCR"){echo"checked";}  } ?>>UNHCR</label><br>
 					<label class="radio-inline"><input type="radio" name="ioc"  value="CWS" <?php if($edit==1){if($assessment[4]=="CWS"){echo"checked";}  } ?>>CWS</label><br>
 					<label class="radio-inline"><input type="radio" name="ioc"  value="other" id="other" <?php if($edit==1){if($assessment[4]=="other"){echo"checked";}  } ?>>Other</label>
-					<input class="form-control" style="padding:5px;height:25px;width:150px;" placeholder="(Name, if other)" id="others" <?php if($edit==1){echo 'value="'.$assessment[5].'" ';}?>>
+					<input class="form-control" style="padding:5px;height:25px;width:150px;" placeholder="(Name, if other)" id="others" <?php if($edit==1){if($assessment[4]=="other"){echo 'value="'.$assessment[5].'" ';}}?>>
 					<br><?php echo $button;?>
 				</div>
 			</div>

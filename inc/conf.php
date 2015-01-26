@@ -10,12 +10,6 @@ $TIMEOUT = "3600";
 session_start();
 ob_start();
 
-
-
-
-
-
-
 //iframe
 $iframe = '	<div id="divpopup" name="divpopup" class="wrapper" style="display:none" onClick="window.framepopup.location=\''.$URL.'loading.html\';setdisplay(divpopup,0); return false">
 				<div class="col-lg-12">

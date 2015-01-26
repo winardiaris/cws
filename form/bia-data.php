@@ -41,13 +41,14 @@ include("form/navigasi.php") ;
 		</thead>
 		<tbody>
 			<?php
-			$no=1;
+			$no=0;
 			$qry = mysql_query("SELECT `bia`.`file_no`,`bia`.`doa`,`bia`.`assessment`,`person`.`name` FROM `bia` INNER JOIN `person` ON `bia`.`file_no`=`person`.`file_no` WHERE `bia`.`status`='1' ") or die(mysql_error());
 			while($data=mysql_fetch_array($qry)){
+				$no++;
 				$assessment = explode(";",$data['assessment']);
 				echo'
 				<tr>
-					<td align="right">'.$no++.'.</td>
+					<td align="right">'.$no.'.</td>
 					<td>'.$data['file_no'].'</td>
 					<td>'.$data['name'].'</td>
 					<td>'.$data['doa'].'</td>
