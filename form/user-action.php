@@ -47,6 +47,25 @@ elseif($op=="updateuser"){
 	if($save){echo "success";}
 	else{echo "error";}
 }
+elseif($op=="updateusersetting"){
+	$user_id = $_GET['user_id'];
+	$user_name = $_GET['name'];
+	$user_real_name = $_GET['real_name'];
+	$user_password = $_GET['password'];
+	$md5_password = md5($user_password);
+	$user_info= $_GET['info'];
+	if($user_password != ""){
+		$save = mysql_query("UPDATE `user` SET `user_name`='$user_name',`user_real_name`='$user_real_name',
+						`user_password`='$md5_password', `user_info`='$user_info',`last_change`='$NOW' WHERE `user_id`='$user_id';") or die(mysql_error());
+	}
+	else{
+		$save = mysql_query("UPDATE `user` SET `user_name`='$user_name',`user_real_name`='$user_real_name',
+						 `user_info`='$user_info',`last_change`='$NOW' WHERE `user_id`='$user_id';") or die(mysql_error());
+	}
+	
+	if($save){echo "success";}
+	else{echo "error";}
+}
 
 elseif($op == "checkgroup"){
 	$group_name = $_GET['group_name'];

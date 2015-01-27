@@ -22,8 +22,11 @@
 	<link href="<?php echo $URL ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	
 	<script src="<?php echo $URL ?>js/custom.js"></script>
+	
 	<script src="<?php echo $URL ?>js/jquery.js"></script>
 	<script src="<?php echo $URL ?>js/jquery-ui.min.js"></script>
+	<script src="<?php echo $URL ?>js/jquery.md5.js"></script>
+	
 	<script src="<?php echo $URL ?>js/bootstrap.min.js"></script>
 	<script src="<?php echo $URL ?>js/bootstrap-datepicker.js"></script>
 	<script src="<?php echo $URL ?>js/plugins/metisMenu/metisMenu.min.js"></script>
@@ -45,6 +48,11 @@
 <script>$(document).ready(function() {$('#dataTables').dataTable();});</script>
 <div id="wrapper"><!-- /#wrapper -->
 
-<?php //echo $iframe;?>	
+<div id="divpopup" name="divpopup" class="wrapper" style="display:none" onClick="window.framepopup.location='<?php echo $URL; ?>loading.html';setdisplay(divpopup,0); return false">
+				<div class="col-lg-12">
+				<a href=# id="iframebtn" onClick="window.framepopup.location='<?php echo $URL; ?>loading.html\';setdisplay(divpopup,0); return false"><button type="button" class="btn btn-default  btn-close"><i class="fa fa-close"></i></button></a>
+				<iframe id="framepopup" name="framepopup"  src="loading.html"></iframe>
+				</div>
+			</div>
 
 	
