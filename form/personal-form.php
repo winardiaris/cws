@@ -11,6 +11,7 @@ if(isset($_GET['op'])){
 		$wilayah = explode(".",$address[0]); $prov = $wilayah[0]; $kota = $prov.".".$wilayah[1]; $kec = $kota.".".$wilayah[2];
 		$disable = "disabled";
 		$button = '<button type="submit" id="person_update" class="btn btn-success"><i class="fa fa-refresh"></i> Update</button>';
+		$prints = '<a href="form/personal-form-print.php?file_no='.$_GET['file_no'].'" class="btn btn-default" title="Print '.$_GET['file_no'].'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-print"></i> Print</a>';
 		if($data['photo']!=""){$photo = $URL."form/".$data['photo'];}else{$photo = $URL.'form/photo/default.png';}
 		
 		$edit = 1;
@@ -139,21 +140,23 @@ else{
 			});
 		});
 		
-			
+		
 	});
 }) (jQuery);
 </script>
 <div id="page-wrapper">
 <div class="row">
-	<div class="col-lg-12">
 	<div class="col-lg-10"><h3 class="page-header">Personal Information </h3></div>
 	<div class="col-lg-2" ><div class="photo"><img src="<?php echo $photo; ?>"></div><!-- buat photo --></div>
-		<div class="col-lg-3">
-			<div class="form-group">
-				<label>File No:</label> <span id="a"></span>
-				<input class="form-control" name="file-no" id="file_no" <?php if($edit==1){echo 'value="'.$data['file_no'].'"'; echo $disable;}?>>
-			</div>
-		</div>	
+	<div class="col-lg-3">
+		<div class="form-group">
+			<label>File No:</label> <span id="a"></span>
+			<input class="form-control" name="file-no" id="file_no" <?php if($edit==1){echo 'value="'.$data['file_no'].'"'; echo $disable;}?>>
+		</div>
+	</div>	
+	<div class="col-lg-9">
+		<br>
+		<?php if($edit==1){echo $prints;}?>
 	</div>
 <div class="col-lg-12">
 	<div class="panel-group" id="accordion">
@@ -334,7 +337,7 @@ else{
 			<div class="col-lg-6">
 			<div class="table-responsive">
 				<!-- <form role="form" name="form-family"> -->
-					<table class="table  table-hover family">
+					<table class="table  table-hover family ">
 						<tbody>
 							<tr>
 								<td width="10px" align="right"><label>1.</label></td>
