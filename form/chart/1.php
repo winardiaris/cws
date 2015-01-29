@@ -1,30 +1,53 @@
 <?php include("../../inc/conf.php") ;?>
-<div class="col-lg-6" id="chart1">
+<div class="col-lg-12 col-sm-6" id="chart1">
 <div class="panel panel-default">
 <div class="panel-heading"><i class="fa fa-pie-chart"></i> Person Sex (Active)</div>
 <div class="panel-body">
-<div id="chart_sex" style="height: 450px;"></div>
+<div id="chart_sex" style="height: 600px;"></div>
 </div>
 </div>
 </div>
 
 
 <script>
-new Morris.Donut({
-  // ID of the element in which to draw the chart.
-  element: 'chart_sex',
-  // Chart data records -- each entry in this array corresponds to a point on
-  // the chart.
-  data: [
+$(function() {
 	<?php
 	$qsex = mysql_query("SELECT SUM( IF( `sex`='M',  1 , 0 ) ) AS  `M`, SUM( IF( `sex`='F',  1 , 0 ) ) AS  `F` FROM  `person` WHERE `active`='1'") or die( mysql_error());
 	$sex=mysql_fetch_array($qsex);
-	echo "{ label: 'Male', value:".$sex['M']."},";
-	echo "{ label: 'Female', value:".$sex['F']."}";
+	echo'
+	var data = [
+	{label: \'Male ['.$sex['M'].'] \', data:'.$sex['M'].'},
+	{label: \'Female ['.$sex['F'].'] \', data:'.$sex['F'].'}
+	];';
+	
 	?>
-  ],
-  xkey: 'sex',
-  ykeys: ['value'],
-  labels: ['Value']
+    var plotObj = $.plot($("#chart_sex"), data, {
+        series: {
+            pie: {
+                show: true,
+                label: {
+		            show:true,
+		            radius: 0.8,
+		            formatter: function (label, series) {                
+		                return '<div class="label-chart">' +label + ' : ' +Math.round(series.percent) +'%</div>';
+		            }
+		        }
+            }
+        },
+        grid: {
+            hoverable: true
+        },
+        tooltip: true,
+        tooltipOpts: {
+            content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+            shifts: {
+                x: 20,
+                y: 0
+            },
+            defaultTheme: false
+        }
+    });
+
 });
+
 </script>

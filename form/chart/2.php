@@ -1,9 +1,9 @@
 <?php include("../../inc/conf.php") ;?>
-<div class="col-lg-6" id="chart2">
+<div class="col-lg-12 col-sm-6" id="chart2">
 <div class="panel panel-default">
 <div class="panel-heading"><i class="fa fa-pie-chart"></i> Person Marital Status (Active)</div>
 <div class="panel-body">
-<div id="chart_marital_status_a" style="height: 450px;"></div>
+<div id="chart_marital_status_a" style="height: 600px;"></div>
 </div>
 </div>
 </div>
@@ -32,7 +32,14 @@ $(function() {
     var plotObj = $.plot($("#chart_marital_status_a"), data, {
         series: {
             pie: {
-                show: true
+                show: true,
+                label: {
+		            show:true,
+		            radius: 0.8,
+		            formatter: function (label, series) {                
+		                return '<div class="label-chart">' +label + ' : ' +Math.round(series.percent) +'%</div>';
+		            }
+		        }
             }
         },
         grid: {

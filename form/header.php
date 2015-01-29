@@ -18,7 +18,7 @@
 	<link href="<?php echo $URL ?>css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
 	<link href="<?php echo $URL ?>css/plugins/timeline.css" rel="stylesheet">
 	<link href="<?php echo $URL ?>css/sb-admin-2.css" rel="stylesheet">
-	<link href="<?php echo $URL ?>css/plugins/morris.css" rel="stylesheet">
+
 	<link href="<?php echo $URL ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	
 	<script src="<?php echo $URL ?>js/custom.js"></script>
@@ -33,8 +33,7 @@
 	<script src="<?php echo $URL ?>js/sb-admin-2.js"></script>
 	<script src="<?php echo $URL ?>js/plugins/dataTables/jquery.dataTables.js"></script>
 	<script src="<?php echo $URL ?>js/plugins/dataTables/dataTables.bootstrap.js"></script>
-	<script src="<?php echo $URL ?>js/plugins/morris/raphael.min.js"></script>
-	<script src="<?php echo $URL ?>js/plugins/morris/morris.min.js"></script>
+
 	<!-- Flot Charts JavaScript -->
 	<script src="<?php echo $URL ?>js/plugins/flot/excanvas.min.js"></script>
 	<script src="<?php echo $URL ?>js/plugins/flot/jquery.flot.js"></script>
