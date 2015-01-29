@@ -55,8 +55,8 @@
 }
 
 .label-chart{
-	background:#4D4D4D;
-	padding:2px;
+	background:rgba(0,0,0,0.6);
+	padding:0 2px 0 2px;
 	border:1px solid #7F7F7F;
 	color:#fff;
 	font-size:10pt;

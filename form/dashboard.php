@@ -64,7 +64,7 @@ include("form/navigasi.php")
 <!--
 	chart
 -->
-	<div class="col-lg-4">
+	<div class="col-lg-6">
 	<div class="panel panel-default">
 		<div class="panel-heading"><i class="fa fa-pie-chart"></i> Person Sex (Active)</div>
 		<div class="panel-body">
@@ -72,7 +72,7 @@ include("form/navigasi.php")
 		</div>
 	</div>
 	</div>
-	<div class="col-lg-4">
+	<div class="col-lg-6">
 	<div class="panel panel-default">
 		<div class="panel-heading"><i class="fa fa-pie-chart"></i> Person Marital Status (Active)</div>
 		<div class="panel-body">
@@ -80,7 +80,7 @@ include("form/navigasi.php")
 		</div>
 	</div>
 	</div>
-	<div class="col-lg-4">
+	<div class="col-lg-6">
 	<div class="panel panel-default">
 		<div class="panel-heading"><i class="fa fa-pie-chart"></i> Personal Age (Active)</div>
 		<div class="panel-body">
@@ -88,7 +88,7 @@ include("form/navigasi.php")
 		</div>
 	</div>
 	</div>
-	<div class="col-lg-4">
+	<div class="col-lg-6">
 	<div class="panel panel-default">
 		<div class="panel-heading"><i class="fa fa-pie-chart"></i> Mapping Propinsi </div>
 		<div class="panel-body">
@@ -102,36 +102,46 @@ include("form/navigasi.php")
 </div>
 </div><!-- page-wrapper -->
 <script>
-new Morris.Donut({
-  // ID of the element in which to draw the chart.
-  element: 'chart_sex',
-  // Chart data records -- each entry in this array corresponds to a point on
-  // the chart.
-  data: [
+$(function() {
 	<?php
 	$qsex = mysql_query("SELECT SUM( IF( `sex`='M',  1 , 0 ) ) AS  `M`, SUM( IF( `sex`='F',  1 , 0 ) ) AS  `F` FROM  `person` WHERE `active`='1'") or die( mysql_error());
 	$sex=mysql_fetch_array($qsex);
-	
-	
-	echo "{ label: 'Male', value:".$sex['M']."},";
-	echo "{ label: 'Female', value:".$sex['F']."}";
+	echo'
+	var data = [
+	{label: \'Male ['.$sex['M'].'] \', data:'.$sex['M'].'},
+	{label: \'Female ['.$sex['F'].'] \', data:'.$sex['F'].'}
+	];';
 	
 	?>
-    //{ year: '2008', value: 20 },
-    //{ year: '2009', value: 10 },
-    //{ year: '2010', value: 5 },
-    //{ year: '2011', value: 5 },
-    //{ year: '2012', value: 20 }
-  ],
-  // The name of the data record attribute that contains x-values.
-  xkey: 'sex',
-  // A list of names of data record attributes that contain y-values.
-  ykeys: ['value'],
-  // Labels for the ykeys -- will be displayed when you hover over the
-  // chart.
-  labels: ['Value']
+    var plotObj = $.plot($("#chart_sex"), data, {
+        series: {
+            pie: {
+                show: true,
+                label: {
+		            show:true,
+		            radius: 0.8,
+		            formatter: function (label, series) {                
+		                return '<div class="label-chart">' +label + ' : ' +Math.round(series.percent) +'%</div>';
+		            }
+		        }
+            }
+        },
+        grid: {
+            hoverable: true
+        },
+        tooltip: true,
+        tooltipOpts: {
+            content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+            shifts: {
+                x: 20,
+                y: 0
+            },
+            defaultTheme: false
+        }
+    });
+
 });
-//Flot Pie Chart
+//marital
 $(function() {
 	<?php
 	$ms = mysql_query("SELECT * FROM `marital_status`");
@@ -154,7 +164,14 @@ $(function() {
     var plotObj = $.plot($("#chart_marital_status_a"), data, {
         series: {
             pie: {
-                show: true
+                show: true,
+                label: {
+		            show:true,
+		            radius: 0.8,
+		            formatter: function (label, series) {                
+		                return '<div class="label-chart">' +label + ' : ' +Math.round(series.percent) +'%</div>';
+		            }
+		        }
             }
         },
         grid: {
@@ -172,48 +189,45 @@ $(function() {
     });
 
 });
-
 //AGE
-$(function() {
+$(function chartage() {
 	<?php
-	
 	$qage = mysql_query("SELECT SUM(IF(`age`<='17',1,0)) AS `age_17`, SUM(IF(`age`<='30',1,0)) AS `age_30`,SUM(IF(`age`<='40',1,0)) AS `age_40`,SUM(IF(`age`>'40',1,0)) AS `age_40_plus` FROM  `person` WHERE `active`='1'") or die( mysql_error());
 	$mage=mysql_fetch_array($qage);
 	echo'
 	var data = [
-	{label: \'<= 17 ['.$mage['age_17'].'] \', data:'.$mage['age_17'].'},
-	{label: \'<= 30 ['.$mage['age_30'].']\', data:'.$mage['age_30'].'},
-	{label: \'<= 40  ['.$mage['age_40'].']\', data:'.$mage['age_40'].'},
-	{label: \'>40 ['.$mage['age_40_plus'].']\', data:'.$mage['age_40_plus'].'}
+	{label: \' <= 17 ['.$mage['age_17'].'] \', data:'.$mage['age_17'].'},
+	{label: \' <= 30 ['.$mage['age_30'].']\', data:'.$mage['age_30'].'},
+	{label: \' <= 40  ['.$mage['age_40'].']\', data:'.$mage['age_40'].'},
+	{label: \' > 40 ['.$mage['age_40_plus'].']\', data:'.$mage['age_40_plus'].'}
 	];';
-	
 	?>
     var plotObj = $.plot($("#chart_age"), data, {
         series: {
-            pie: {
-                show: true
+			pie: {
+                show: true,
+                label: {
+		            show:true,
+		            radius: 0.8,
+		            formatter: function (label, series) {                
+		                return '<div class="label-chart">' +label + ' : ' +Math.round(series.percent) +'%</div>';
+		            }
+		        }
             }
         },
-        grid: {
-            hoverable: true
-        },
+        grid: {hoverable: true},
         tooltip: true,
         tooltipOpts: {
             content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
-            shifts: {
-                x: 20,
-                y: 0
-            },
+            shifts: {x: 20,y: 0},
             defaultTheme: false
         }
     });
 
 });
-
 //Propinsi
 $(function() {
 	<?php
-	
 	$qry = mysql_query("SELECT SUM(IF(`address` LIKE '31%',1,0)) AS `dki`,SUM(IF(`address` LIKE '32%',1,0)) AS `jabar`,SUM(IF(`address` LIKE '36%',1,0)) AS `banten` FROM  `person` WHERE `active`='1'") or die( mysql_error());
 	$data=mysql_fetch_array($qry);
 	echo'
@@ -225,21 +239,20 @@ $(function() {
 	
 	?>
     var plotObj = $.plot($("#chart_propinsi"), data, {
-        series: {
-            pie: {
-                show: true
-            }
-        },
-        grid: {
-            hoverable: true
-        },
+        series: {pie: {
+                show: true,
+                label: {
+		            show:true,
+		            radius: 0.8,
+		            formatter: function (label, series) {                
+		                return '<div class="label-chart">' +label + ' : ' +Math.round(series.percent) +'%</div>';
+		            }
+		        }
+            }},
+        grid: {hoverable: true},
         tooltip: true,
-        tooltipOpts: {
-            content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
-            shifts: {
-                x: 20,
-                y: 0
-            },
+        tooltipOpts: {content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+            shifts: {x: 20,y: 0},
             defaultTheme: false
         }
     });
