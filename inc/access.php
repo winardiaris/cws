@@ -8,7 +8,6 @@ if(isset($group_id)){
 	$write=mysql_fetch_array($getW);
 	if($read['R'] > 0 AND $write['W'] > 0){
 		$allow="RW";
-		
 	}
 	elseif($read['R'] > 0 AND $write['W'] == 0){
 		$allow="R";

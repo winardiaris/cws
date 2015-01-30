@@ -16,21 +16,5 @@ function CalAge(d,a){
 		$(a).val(age);
 	}
 }
-//function prints(){
-	//a = $(".panel-collapse");b = a.length;
-	//for (i=1;i<=b;i++){a.addClass("in");}
-	
-	//c = $(".btn");d=c.length;
-	//for (j=1;j<=d;j++){c.addClass("hidden");}
-	
-	//e = $(".form-control"); f=e.length;
-	//for (k=1;k<=f;k++){e.addClass("form-control-print").removeClass("form-control");}
 
-	//g = $("table"); h=g.length;
-	//for (l=1;l<=h;l++){e.addClass("table-bordered");}
-	
-	////alert(h);
-	//window.print();
-	
-//}
 

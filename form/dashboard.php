@@ -96,7 +96,7 @@ include("form/navigasi.php")
 		</div>
 	</div>
 	</div>
-	<div class="col-lg-12 well" ><a href="?page=chart" >View All Chart >></a></div>
+	<div class="col-lg-12 well" ><a href="?page=chart" ><i class="fa fa-pie-chart"></i> View All Chart >></a></div>
 	
 	
 </div>

@@ -5,6 +5,8 @@
 <div class="panel-body">
 <div id="chart_sex" style="height: 600px;"></div>
 </div>
+<div class="panel-footer">
+</div>
 </div>
 </div>
 

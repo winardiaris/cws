@@ -48,7 +48,7 @@ $R="R3";$W="W3";
 					$qry = mysql_query("
 					SELECT `person`.`file_no`,`person`.`name`,`master_country`.`country_name` ,`person`.`sex`,`person`.`address`,`person`.`phone`,`person`.`active` FROM `person`
 					INNER JOIN `master_country` ON `person`.`coo` = `master_country`.`country_id` 
-					WHERE `person`.`active` = '$active' ORDER BY `created` DESC;
+					WHERE `person`.`active` = '$active' ORDER BY `file_no` ASC;
 					
 					") or die(mysql_error());
 					while($data = mysql_fetch_array($qry)){
