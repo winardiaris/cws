@@ -12,6 +12,7 @@
 			<a href="index.php">
 			<img src="img/logo.svg" class="navbar-logo">
 			<span class="navbar-brand" ><?php echo $NAME ?></span></a>
+			<p class="navbar-text">Database System Protecting Urban Refugees Through Empowerment</p> 
 		</div>
 		<!-- /.navbar-header -->
 		<ul class="nav navbar-top-links navbar-right">
