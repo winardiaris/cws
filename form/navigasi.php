@@ -18,7 +18,7 @@
 			
 			<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-					<i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+					<?php echo $_SESSION['user_real_name'];?> <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
 				</a>
 				<ul class="dropdown-menu dropdown-user">
 				<li><a href="form/user-setting.php?op=edit&user_id=<?php echo $_SESSION['user_id'];?>"  title="User setting" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-gear fa-fw"></i> User Settings</a></li>

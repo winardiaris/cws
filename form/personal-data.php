@@ -73,7 +73,7 @@ $R="R3";$W="W3";
 								<td>'.getAddress($data['address']).'. </td>
 								<td>'.$data['phone'].'</td>
 								<td>'.$actives.'</td>
-								<td  align="center">
+								<td  width="90px" align="center">
 									<a href="?page=person-form&op=edit&file_no='.$data['file_no'].'" class="btn btn-primary btn-sm" title="Edit '.$data['file_no'].'"><i class="fa fa-edit"></i></a>
 									<a href="form/personal-form-print.php?file_no='.$data['file_no'].'" class="btn btn-default btn-sm" title="Print '.$data['file_no'].'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-print"></i></a>
 								</td>
