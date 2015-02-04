@@ -32,20 +32,22 @@ if(isset($_SESSION['login'])){
 		}
 		elseif($read['R'] == 0 AND $write['W'] > 0){
 			$allow="0";
-			echo '<script>alert("Authentication Failure !!");window.location="?page=dashboard";</script>';
+			echo '<script>alert("Access Forbiden !!");window.location="?page=dashboard";</script>';
 			return false;
 		}
 		else{
 			$allow="0";
-			echo '<script>alert("Authentication Failure !!");window.location="?page=dashboard";</script>';
+			echo '<script>alert("Access Forbiden !!");window.location="?page=dashboard";</script>';
 			return false;
 		}
 	}
 	else{
 		echo '<script>alert("You not logged !!");window.location="?page=login";</script>';
+		return false;
 	}
 }
 else{
 	echo '<script>alert("You not logged !!");window.location="?page=login";</script>';
+	return false;
 }
 ?>
