@@ -28,6 +28,7 @@ if(isset($_POST['login'])){
 			$_SESSION['user_real_name'] = $data['user_real_name'];
 			$_SESSION['timein'] = time();
 			$_SESSION['timeout'] = $_SESSION['timein'] + $TIMEOUT;
+			$_SESSION['login'] = 1;
 			
 			//update last_login
 			mysql_query("UPDATE `user` SET `last_login`='$NOW' WHERE `user_id`='".$data['user_id']."'") or die(mysql_error());
@@ -64,6 +65,19 @@ if(isset($_POST['login'])){
 	}
 	
 }
+elseif(isset($_GET['log'])){
+	if($_GET['log']=="out"){
+		echo '
+			<div class="alert alert-success alert-dismissable alerts" >
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			You has been logout
+			</div>;
+		';
+		session_destroy();
+	}
+		
+}
+
 
 
 ?>
