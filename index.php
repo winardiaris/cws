@@ -68,6 +68,10 @@ if(!empty($_GET['page'])){
 		break;
 		
 		
+		//DELETED DATA
+		case "deleted":
+		$view = "form/deleted-data.php";
+		break;
 		
 		//CHART --------
 		case "chart":

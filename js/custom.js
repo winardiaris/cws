@@ -17,4 +17,10 @@ function CalAge(d,a){
 	}
 }
 
+$(document).ready(function(){
+	$("*:disabled").click(function(){
+		alert("Read Only !");
+	});
+});
+
 

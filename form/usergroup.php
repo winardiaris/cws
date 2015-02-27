@@ -6,7 +6,7 @@ include("form/navigasi.php");
 $(document).ready(function(){
 	$("#save_group").click(function(){
 		var group_name = $("#group_name").val();
-			for(i=1;i<=12;i++){
+			for(i=1;i<=13;i++){
 				r= $("#R"+i+":checked").length;
 				w= $("#W"+i+":checked").length;
 				if(r==0 && w==0){x=0;z=0;}
@@ -31,7 +31,7 @@ $(document).ready(function(){
 		var group_id = $("#group_id").val(),
 			group_name = $("#group_name").val();
 			
-			for(i=1;i<=12;i++){
+			for(i=1;i<=13;i++){
 				r= $("#R"+i+":checked").length;
 				w= $("#W"+i+":checked").length;
 				if(r==0 && w==0){x=0;z=0;}
@@ -184,6 +184,12 @@ if(isset($_GET['op'])){
 					<td>User</td>
 					<td width="10px"><input type="checkbox"  id="R12" value="R12" <?php if($edit==1){if($access[22]=="R12"){echo "checked";}}?>></td>
 					<td width="10px"><input type="checkbox"  id="W12" value="W12" <?php if($edit==1){if($access[23]=="W12"){echo "checked";}}?>></td>
+				</tr>
+				<tr>
+					<td width="10px" align="right">13.</td>
+					<td>Deleted Data</td>
+					<td width="10px"><input type="checkbox"  id="R13" value="R13" <?php if($edit==1){if($access[24]=="R13"){echo "checked";}}?>></td>
+					<td width="10px"><input type="checkbox"  id="W13" value="W13" <?php if($edit==1){if($access[25]=="W13"){echo "checked";}}?>></td>
 				</tr>
 				</tbody>
 			</table>
