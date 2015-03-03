@@ -74,6 +74,9 @@ else{
 				else{col4b.slideDown();window.location="#col4a";}
 			}
 		});
+		var file_no = $("#file_no").val(),
+				 doa = $("#doa").val();	 
+			$("#nextassessment").load("form/function.php?op=nextAssessment&file_no="+file_no+"&doa="+doa);
 		
 		
 		//check available
@@ -94,6 +97,12 @@ else{
 				}
 			});
 		});
+		//next assessment
+		$("#doa").change(function(){
+			var file_no = $("#file_no").val(),
+				 doa = $(this).val();	 
+			$("#nextassessment").load("form/function.php?op=nextAssessment&file_no="+file_no+"&doa="+doa);
+		});
 		
 		//save  of assessment
 		$("#save_assessment").click(function(){
@@ -113,9 +122,9 @@ else{
 				else {$("#file_no").val("").focus();}
 			}
 			else{
-				var doa = $("#doa").val(),by = $("#interviewer").val(),location = $("#location").val(),last = $("#last_assessment").val(),asst = $("#assistance").val(),inter = $("#interpreter").val(),home = $("#home_visit").val(),last_visit = $("#last_home_visit").val();
+				var doa = $("#doa").val(),dore=$("#dore").val(),by = $("#interviewer").val(),location = $("#location").val(),last = $("#last_assessment").val(),asst = $("#assistance").val(),inter = $("#interpreter").val(),home = $("#home_visit").val(),last_visit = $("#last_home_visit").val();
 					
-				var datanya = "&file_no="+file_no+"&doa="+doa+"&value="+by+";"+location+";"+last+";"+asst+";"+inter+";"+home+";"+last_visit;
+				var datanya = "&file_no="+file_no+"&doa="+doa+"&dore="+dore+"&value="+by+";"+location+";"+last+";"+asst+";"+inter+";"+home+";"+last_visit;
 				$.ajax({url: "form/se-action.php",data: "op=addassessment"+datanya,cache: false,
 					success: function(msg){
 						if(msg=="success"){
@@ -355,7 +364,7 @@ else{
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseDate">Assessment Remaks</a>
 			</h4>
 		</div>
-		<div id="collapseDate" class="panel-collapse collapse">
+		<div id="collapseDate" class="panel-collapse collapse in">
 		<div class="panel-body">
 			<div class="col-lg-4">
 				<div class="form-group">
@@ -413,8 +422,10 @@ else{
 			</div>
 			<div class="col-lg-12">
 				<div class="form-group">
+					<small id="nextassessment"></small>
 					<br>
 					<?php echo $button; ?>
+					
 				</div>
 			</div>
 

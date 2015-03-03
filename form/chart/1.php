@@ -1,7 +1,7 @@
 <?php include("../../inc/conf.php") ;?>
 <div class="col-lg-12 col-sm-6" id="chart1">
 <div class="panel panel-default">
-<div class="panel-heading"><i class="fa fa-pie-chart"></i> Person Sex (Active)</div>
+<div class="panel-heading"><i class="fa fa-pie-chart"></i> Person Gender (Active)</div>
 <div class="panel-body">
 <div id="chart_sex" style="height: 600px;"></div>
 </div>

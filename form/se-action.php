@@ -25,8 +25,9 @@ if($op == "check"){
 elseif($op == "addassessment"){
 	$file_no = $_GET['file_no'];
 	$doa = $_GET['doa'];
+	$dore = $_GET['dore'];
 	$value = htmlspecialchars($_GET['value']);
-	$save = mysql_query("INSERT INTO `se` (`file_no`,`doa`,`assessment_data`,`created`) VALUES('$file_no','$doa','$value','$NOW') ;") or die(mysql_error());
+	$save = mysql_query("INSERT INTO `se` (`file_no`,`doa`,`dore`,`assessment_data`,`created`) VALUES('$file_no','$doa','$dore','$value','$NOW') ;") or die(mysql_error());
 	
 	if($save){echo "success";}
 	else{echo "error";}
@@ -34,8 +35,9 @@ elseif($op == "addassessment"){
 elseif($op == "updateassessment"){
 	$file_no = $_GET['file_no'];
 	$doa = $_GET['doa'];
+	$dore = $_GET['dore'];
 	$value = htmlspecialchars($_GET['value']);
-	$save = mysql_query("UPDATE `se` SET `doa`='$doa',`assessment_data`='$value', `last_change`='$NOW' WHERE `file_no`='$file_no';") or die(mysql_error());
+	$save = mysql_query("UPDATE `se` SET `doa`='$doa',`dore`='$dore',`assessment_data`='$value', `last_change`='$NOW' WHERE `file_no`='$file_no';") or die(mysql_error());
 	
 	if($save){echo "success";}
 	else{echo "error";}

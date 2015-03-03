@@ -771,8 +771,7 @@ else{
 		</div>
 		<div id="collapseInteraction" class="panel-collapse collapse  ">
 		<div class="panel-body">
-			<label>INTERACTION <small>with the person during the interview</small></label><br>
-			<i>Simple Description of the Child AS or refugee as he appears - (describe what you see; highlight the positive, not just the negative; Avoid labels.)</i><br><br><br>
+			
 			<div class="form-group">
 				<label>Mood, attitude, appearance, speech, affect, thought consent</label>
 				<textarea class="form-control" id="interaction" rows="5"><?php if($edit==1){echo $data['interaction'];}?></textarea>

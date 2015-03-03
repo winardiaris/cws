@@ -8,11 +8,14 @@ $R="R3";$W="W3";
 		if($active == "1"){$header = "(Active)";}
 		elseif($active == "2"){$header = "(Terminated)";}
 		elseif($active == "3"){$header = "(Deleted)";}
+		elseif($active == "4"){$header = "(Inactive)";}
 		
 	}
 	else{
 		header("location:?page=person-data&active=1");
 	}
+	
+	
 ?>
 <div id="page-wrapper">
 <div class="row">
@@ -23,6 +26,7 @@ $R="R3";$W="W3";
 				<a href="?page=person-data&active=1"  class="btn btn-sm btn-primary <?php if($_GET['active']==1){ echo "active";}?> "> Active</a>
 				<a href="?page=person-data&active=2"  class="btn btn-sm btn-primary <?php if($_GET['active']==2){ echo "active";}?>"> Terminated</a>
 				<a href="?page=person-data&active=3"  class="btn btn-sm btn-primary <?php if($_GET['active']==3){ echo "active";}?>"> Deleted</a>
+				<a href="?page=person-data&active=4"  class="btn btn-sm btn-primary <?php if($_GET['active']==4){ echo "active";}?>"> Inactive</a>
 			
 		</div>
 	</div>
@@ -31,15 +35,15 @@ $R="R3";$W="W3";
 		<table class="table table-striped table-bordered table-hover" id="dataTables">
 			<thead>
 				<tr>
-				<th width"10px">No.</th>
-				<th width="100px">File No.</th>
+				<th>No.</th>
+				<th>File No.</th>
 				<th>Name</th>
 				<th>CoO</th>
 				<th>Sex</th>
 				<th>Address</th>
 				<th>Phone</th>
-				<th>Status</th>
-				<th>Action</th>
+				<th>Data</th>
+				<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -53,29 +57,21 @@ $R="R3";$W="W3";
 					") or die(mysql_error());
 					while($data = mysql_fetch_array($qry)){
 						$no++;
-						if($data['active'] == "1"){
-							$actives = "<p class='text-success'><i class='fa fa-check'></i>  Active</p>";
-						}
-						elseif($data['active'] == "2"){
-							$actives = "<p class='text-warning'><i class='fa fa-warning'></i> Terminated</p>";
-						}
-						elseif($data['active'] == "3"){
-							$actives = "<p class='text-danger'><i class='fa fa-close'></i> Deleted</p>";
-						}
-				
+						$file_no = $data['file_no'];
+
+
 						echo'
 							<tr >
 								<td width="10px" align="right">'.$no.'.</td>
-								<td>'.$data['file_no'].'</td>
+								<td><a href="form/view/?file_no='.$file_no.'"  title="Viwe '.$file_no.'" target="framepopup"  onClick="setdisplay(divpopup,1)">'.$file_no.'</a></td>
 								<td>'.$data['name'].'</td>
 								<td>'.$data['country_name'].'</td>
 								<td>'.$data['sex'].'</td>
 								<td>'.getAddress($data['address']).'. </td>
 								<td>'.$data['phone'].'</td>
-								<td>'.$actives.'</td>
-								<td  width="90px" align="center">
-									<a href="?page=person-form&op=edit&file_no='.$data['file_no'].'" class="btn btn-primary btn-sm" title="Edit '.$data['file_no'].'"><i class="fa fa-edit"></i></a>
-									<a href="form/personal-form-print.php?file_no='.$data['file_no'].'" class="btn btn-default btn-sm" title="Print '.$data['file_no'].'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-print"></i></a>
+								<td>'.getData($file_no).'</td>
+								<td  width="30px" align="center">
+									<a href="?page=person-form&op=edit&file_no='.$file_no.'" class="btn btn-primary btn-sm" title="Edit '.$file_no.'"><i class="fa fa-edit"></i></a>
 								</td>
 							</tr>
 						';

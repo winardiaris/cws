@@ -6,7 +6,7 @@ include("form/navigasi.php") ;
 		$("#placeholder").load("form/chart/0.php");
 		$("#chartselect").change(function(){
 			var a = $(this).val(),
-				place =$("#placeholder");
+				place=$("#placeholder");
 		
 				place.load("form/chart/"+a+".php");
 		});
@@ -23,9 +23,10 @@ include("form/navigasi.php") ;
 		<label>Filter</label>
 		<select id="chartselect" class="form-control">
 			<option value="0">All</option>
-			<option value="1">Sex</option>
+			<option value="1">Gender</option>
 			<option value="2">Marital Status</option>
 			<option value="3">Personal Age</option>
+			<option value="13">Status</option>
 			<option value="4">Mapping Propinsi</option>
 			<option value="5">Mapping DKI Jakarta</option>
 			<option value="6">Mapping Jakarta Pusat</option>
@@ -34,7 +35,7 @@ include("form/navigasi.php") ;
 			<option value="9">Mapping Jakarta Timur</option>
 			<option value="10">Mapping Jakarta Selatan</option>
 			<option value="11">Mapping Jawa Barat</option>
-			<option value="12">Maping Banten</option>
+			<option value="12">Mapping Banten</option>
 		</select>
 		<small>Last Update<span class="text-primary">
 			<?php 

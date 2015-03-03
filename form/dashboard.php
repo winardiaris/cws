@@ -66,7 +66,7 @@ include("form/navigasi.php")
 -->
 	<div class="col-lg-6">
 	<div class="panel panel-default">
-		<div class="panel-heading"><i class="fa fa-pie-chart"></i> Person Sex (Active)</div>
+		<div class="panel-heading"><i class="fa fa-pie-chart"></i> Person Gender (Active)</div>
 		<div class="panel-body">
 			<div id="chart_sex" style="height: 250px;"></div>
 		</div>
@@ -192,14 +192,23 @@ $(function() {
 //AGE
 $(function chartage() {
 	<?php
-	$qage = mysql_query("SELECT SUM(IF(`age`<='17',1,0)) AS `age_17`, SUM(IF(`age`<='30',1,0)) AS `age_30`,SUM(IF(`age`<='40',1,0)) AS `age_40`,SUM(IF(`age`>'40',1,0)) AS `age_40_plus` FROM  `person` WHERE `active`='1'") or die( mysql_error());
+
+	$qage = mysql_query("
+			SELECT
+			SUM(IF(`age`<='4',1,0)) AS `age_4`,
+			SUM(IF(`age`<='11',1,0)) AS `age_11`,
+			SUM(IF(`age`<='17',1,0)) AS `age_17`,
+			SUM(IF(`age`<='59',1,0)) AS `age_59`,
+			SUM(IF(`age`>'60',1,0)) AS `age_60_plus`
+			FROM  `person` WHERE `active`='1'") or die( mysql_error());
 	$mage=mysql_fetch_array($qage);
 	echo'
 	var data = [
-	{label: \' <= 17 ['.$mage['age_17'].'] \', data:'.$mage['age_17'].'},
-	{label: \' <= 30 ['.$mage['age_30'].']\', data:'.$mage['age_30'].'},
-	{label: \' <= 40  ['.$mage['age_40'].']\', data:'.$mage['age_40'].'},
-	{label: \' > 40 ['.$mage['age_40_plus'].']\', data:'.$mage['age_40_plus'].'}
+	{label: \' 0-4 ['.$mage['age_4'].'] \', data:'.$mage['age_4'].'},
+	{label: \' 5-11 ['.$mage['age_11'].']\', data:'.$mage['age_11'].'},
+	{label: \' 12-17  ['.$mage['age_17'].']\', data:'.$mage['age_17'].'},
+	{label: \' 18-59  ['.$mage['age_59'].']\', data:'.$mage['age_59'].'},
+	{label: \' 60+ ['.$mage['age_60_plus'].']\', data:'.$mage['age_60_plus'].'}
 	];';
 	?>
     var plotObj = $.plot($("#chart_age"), data, {

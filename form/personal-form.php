@@ -256,7 +256,6 @@ else{
 					<tr>
 						<td width="180px"><label>Status:</label></td>
 						<td><select class="form-control" name="status" id="status">
-							<option value="0">-- select --</option>
 							<option <?php if($edit==1){if($data['status']=="Refugee")echo"selected";}?>>Refugee</option>
 							<option <?php if($edit==1){if($data['status']=="Asylum Seeker")echo"selected";}?>>Asylum Seeker</option>
 						</select></td>
@@ -314,6 +313,7 @@ else{
 							<option value="1" <?php if($edit==1){if($data['active']=="1")echo"selected";}?>>Active</option>
 							<option value="2" <?php if($edit==1){if($data['active']=="2")echo"selected";}?>>Terminated</option>
 							<option value="3" <?php if($edit==1){if($data['active']=="3")echo"selected";}?>>Deleted</option>
+							<option value="4" <?php if($edit==1){if($data['active']=="4")echo"selected";}?>>Inactive</option>
 						</select></td>
 					</tr>
 				</tbody>
