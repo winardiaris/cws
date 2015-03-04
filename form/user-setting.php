@@ -127,7 +127,7 @@ $(document).ready(function(){
 <div id="asd" >
 <div class="col-lg-12" ><h3 class="page-header">User Setting</h3></div>
 <div class="row col-lg-12">
-	<div class="col-lg-6 col-sm-6">
+	<div class="col-lg-6 col-md-6 col-sm-12">
 		<div class="form-group">
 			<label>Username: *</label>  <span id="a"></span>
 			<input type="hidden" id="user_id" value="<?php if($edit==1){ echo $user_id;}?>">
@@ -150,15 +150,42 @@ $(document).ready(function(){
 			<label>Retype Password *</label>
 			<input class="form-control" id="retype_password" type="password"><span id="same2"></span>
 			<br><small>* Required</small>
-		</div>		
+		</div>	
 	</div>
-	<div class="col-lg-6 col-sm-6">
+	<div class="col-lg-6 col-md-6 col-sm-12">
 		<div class="form-group">
 			<label>User Info: *</label>
-			<textarea class="form-control" id="user_info" rows="15"><?php if($edit==1){echo $user_info;} ?></textarea>
+			<textarea class="form-control" id="user_info" rows="5"><?php if($edit==1){echo $user_info;} ?></textarea>
 		</div>
 		<button  id="user_update" class="btn btn-success"><i class="fa fa-refresh"></i> Update</button>
 	</div>
+	
+</div>
+<div class="col-lg-12">
+	<table class="table table-striped table-bordered table-hover" id="dataTables">
+		<thead>
+		<tr>
+			<th>No</th>
+			<th>History</th>
+			<th>Time</th>
+		</tr>
+		</thead>
+		<tbody>
+		<?php
+			$no=1;
+			$qry = mysql_query("SELECT * FROM `system_log` WHERE `user_id`='$user_id' ORDER BY `log_time` DESC")or die(mysql_error());
+			while($data=mysql_fetch_array($qry)){
+				echo'
+				<tr>
+					<td align="right">'.$no++.'.</td>
+					<td>'.$data['log_message'].'</td>
+					<td>'.$data['log_time'].'</td>
+				</tr>
+				';
+			}
+		?>
+		</tbody>
+	</table>
 </div>
 </div>
 

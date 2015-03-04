@@ -1,6 +1,7 @@
 <?php
 $file_id = 3;
 include ("../inc/conf.php");
+include ("function.php");
 $op = $_GET['op'];
 
 if($op == "check"){
@@ -26,7 +27,10 @@ elseif($op == "addassessment"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query("INSERT INTO `ia` (`file_no`,`assessment`,`created`) VALUES('$file_no','$value','$NOW') ;") or die(mysql_error());
 	
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"ia_form","Save IA Assessemnt for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op == "updateassessment"){
@@ -34,7 +38,10 @@ elseif($op == "updateassessment"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query("UPDATE  `ia` SET `assessment`='$value', `last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1' ;") or die(mysql_error());
 	
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"ia_form","Update IA Assessemnt for File No [$file_no]",$NOW);	
+	}
 	else{echo "error";}
 }
 elseif($op == "savelegaldoc"){
@@ -42,7 +49,10 @@ elseif($op == "savelegaldoc"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query("UPDATE `ia` SET `legal_doc`='$value' WHERE `file_no`='$file_no' AND `status`='1' ;") or die(mysql_error());
 	
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"ia_form","Save/Update IA Legal Document for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op == "addwhomliving"){
@@ -50,7 +60,10 @@ elseif($op == "addwhomliving"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query("INSERT INTO `with_whom_living` VALUES('','$file_no','$value','$NOW') ;") or die(mysql_error());
 	
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"ia_form","Add IA with whow living for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 	
 }
@@ -58,7 +71,10 @@ elseif($op == "deletewhomliving"){
 	$id = $_GET['id'];
 	$file_no = $_GET['file_no'];
 	$del = mysql_query("DELETE FROM `with_whom_living` WHERE id='".$id."' AND file_no='".$file_no."' ;")or die(mysql_error());
-	if($del){echo "success";}
+	if($del){
+		echo "success";
+		setHistory($_SESSION['user_id'],"ia_form","Delete IA with whow living for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op == "saveiadoc"){
@@ -73,13 +89,19 @@ elseif($op == "saveiadoc"){
 	
 	$save = mysql_query("UPDATE `ia` SET `living_env`='$living_env', `living_cond`='$living_cond', `q12`='$q12', `q34`='$q34', `q56`='$q56', `q78`='$q78', `remarks_staff`='$remarks_staff', `created`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"ia_form","Save/Update IA Current Living Condition for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op == "del"){
 	$file_no = $_GET['file_no'];
 	$del = mysql_query("UPDATE `ia` SET `status`='0' WHERE  `file_no`='$file_no' AND `status`='1' ;  ") or die(mysql_error());
-	if($del){echo "success";}
+	if($del){
+		echo "success";
+		setHistory($_SESSION['user_id'],"ia_form","Delete IA Data for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 ?>

@@ -149,7 +149,7 @@ $(document).ready(function(){
 	<div class="col-lg-6 col-sm-6">
 		<div class="form-group">
 			<label>User Info</label>
-			<textarea class="form-control" id="user_info" rows="15"><?php if($edit==1){echo $user_info;} ?></textarea>
+			<textarea class="form-control" id="user_info" rows="5"><?php if($edit==1){echo $user_info;} ?></textarea>
 		</div>
 		<?php echo $button ?>
 	</div>

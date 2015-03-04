@@ -28,7 +28,7 @@ elseif($op == "getcountry"){
 elseif($op == "getmarital"){
 	$status = $_GET['status'];
 	$b = mysql_query("SELECT * FROM `marital_status` ") or die(mysql_error());
-	echo '<option value="0">-- select --</option>';
+
 	while ($data = mysql_fetch_array($b)){
 		echo '<option value="'.$data['marital_id'].'"';
 			if($status == $data['marital_id']){echo 'selected';}

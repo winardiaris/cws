@@ -1,6 +1,7 @@
 <?php
-$file_id = 2;
+$LOCATION = "person_form";
 include ("../inc/conf.php");
+include ("function.php");
 
 
 $op = $_GET['op'];
@@ -16,7 +17,10 @@ if($op == "saveperson"){
 	
 	$save = mysql_query("INSERT INTO `person` VALUES('$file_no','$name','$coo','$dob','$age','$sex','$marital','$address','$phone','$photo','$status','$arrival2','$education','$skill','$mot','$known_language','$previous_occupation','$volunteer','$date_recognition','$status_active','$NOW','');") or die(mysql_error());
 	
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],$LOCATION,"Add person [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op == "updateperson"){
@@ -26,7 +30,6 @@ elseif($op == "updateperson"){
 	$education = $_GET['education'];$skill=$_GET['skill'];$mot=$_GET['mot'];$known_language = $_GET['known_language'];
 	$previous_occupation = $_GET['previous_occupation'];$volunteer=$_GET['volunteer'];
 	$date_recognition=$_GET['date_recognition'];$status_active=$_GET['status_active'];
-	
 	$photo=$_GET['photo'];
 	
 	$update = mysql_query("UPDATE  `person` SET 
@@ -52,7 +55,10 @@ elseif($op == "updateperson"){
 	`last_change`='$NOW'
 	WHERE `file_no`='$file_no';") or die(mysql_error());
 	
-	if($update){echo "success";}
+	if($update){
+		echo "success";
+		setHistory($_SESSION['user_id'],$LOCATION,"Update person [$file_no]",$NOW);
+	}
 	else{echo "error";}
 	
 }
@@ -61,14 +67,20 @@ elseif($op == "addfamily"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query("INSERT INTO `reported_family` VALUES('','$file_no','$value','$NOW') ;") or die(mysql_error());
 	
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],$LOCATION,"Add person family for [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op == "deletefamily"){
 	$id = $_GET['id'];
 	$file_no = $_GET['file_no'];
 	$del = mysql_query("DELETE FROM `reported_family` WHERE id='".$id."' AND file_no='".$file_no."' ;")or die(mysql_error());
-	if($del){echo "success";}
+	if($del){
+		echo "success";
+		setHistory($_SESSION['user_id'],$LOCATION,"Del person family for [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 

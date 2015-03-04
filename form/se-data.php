@@ -1,5 +1,6 @@
 <?php 
 $R="R7";$W="W7";
+setHistory($_SESSION['user_id'],"se_data","Open SE Data",$NOW);
 	include("form/navigasi.php") ;
 ?>
 <script>

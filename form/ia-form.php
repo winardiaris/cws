@@ -1,5 +1,8 @@
 <?php 
 $R="R4";$W="W4";
+$LOCATION = "ia_form";
+setHistory($_SESSION['user_id'],$LOCATION,"Open IA Form",$NOW);
+
 include("form/navigasi.php");
 	
 if(isset($_GET['op'])){
@@ -255,8 +258,12 @@ else{
 			<?php echo $button;?>
 		</div>
 	</div>
+	
 </div> <!-- form-ia-date -->
 <div class="col-lg-12">
+	<?php if($edit==1){
+		echo getWhoLastChange("".$data['file_no']."","ia_form");
+	}?>
 	<div class="panel-group" id="accordion">
 		
 		<!-- B panel -->

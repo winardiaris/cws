@@ -1,19 +1,22 @@
 <?php 
-$R="R3";$W="W3";
-	include("form/navigasi.php") ;
-	include("form/function.php") ;
+$LOCATION = "person_data";
+setHistory($_SESSION['user_id'],$LOCATION,"Open Personal Data",$NOW);
 
-	if(isset($_GET['active'])){
-		$active = $_GET['active'];
-		if($active == "1"){$header = "(Active)";}
-		elseif($active == "2"){$header = "(Terminated)";}
-		elseif($active == "3"){$header = "(Deleted)";}
-		elseif($active == "4"){$header = "(Inactive)";}
-		
-	}
-	else{
-		header("location:?page=person-data&active=1");
-	}
+
+$R="R3";$W="W3";
+include("form/navigasi.php") ;
+
+if(isset($_GET['active'])){
+	$active = $_GET['active'];
+	if($active == "1"){$header = "(Active)";}
+	elseif($active == "2"){$header = "(Terminated)";}
+	elseif($active == "3"){$header = "(Deleted)";}
+	elseif($active == "4"){$header = "(Inactive)";}
+	
+}
+else{
+	header("location:?page=person-data&active=1");
+}
 	
 	
 ?>
@@ -35,6 +38,7 @@ $R="R3";$W="W3";
 		<table class="table table-striped table-bordered table-hover" id="dataTables">
 			<thead>
 				<tr>
+				<th></th>
 				<th>No.</th>
 				<th>File No.</th>
 				<th>Name</th>
@@ -43,7 +47,6 @@ $R="R3";$W="W3";
 				<th>Address</th>
 				<th>Phone</th>
 				<th>Data</th>
-				<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -62,17 +65,23 @@ $R="R3";$W="W3";
 
 						echo'
 							<tr >
+								<td  width="30px" align="center">
+									<div class="dropdown">
+									  <button class="btn btn-primary btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span class="caret"></span></button>
+									  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+									    <li role="presentation"><a role="menuitem" tabindex="-1" href="form/view/?file_no='.$file_no.'"  title="View '.$file_no.'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-eye"></i> View</a></li>
+									    <li role="presentation"><a role="menuitem" tabindex="-1" href="?page=person-form&op=edit&file_no='.$file_no.'"><i class="fa fa-edit"></i> Edit</a></li>
+									  </ul>
+									</div>
+								</td>
 								<td width="10px" align="right">'.$no.'.</td>
-								<td><a href="form/view/?file_no='.$file_no.'"  title="Viwe '.$file_no.'" target="framepopup"  onClick="setdisplay(divpopup,1)">'.$file_no.'</a></td>
+								<td>'.$file_no.'</td>
 								<td>'.$data['name'].'</td>
 								<td>'.$data['country_name'].'</td>
 								<td>'.$data['sex'].'</td>
 								<td>'.getAddress($data['address']).'. </td>
 								<td>'.$data['phone'].'</td>
 								<td>'.getData($file_no).'</td>
-								<td  width="30px" align="center">
-									<a href="?page=person-form&op=edit&file_no='.$file_no.'" class="btn btn-primary btn-sm" title="Edit '.$file_no.'"><i class="fa fa-edit"></i></a>
-								</td>
 							</tr>
 						';
 					}

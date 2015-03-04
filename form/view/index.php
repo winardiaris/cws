@@ -7,6 +7,7 @@ include("../function.php") ;
 	<link href="<?php echo $URL ?>css/bootstrap.css" rel="stylesheet">
 	<link href="<?php echo $URL ?>css/custom.css" rel="stylesheet">
 	<script src="<?php echo $URL ?>js/jquery.js"></script>
+	<link href="<?php echo $URL ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<?php
@@ -51,7 +52,7 @@ include("../function.php") ;
 	</div>
 	</form>
 <div id="page-print">
-	<button class="print" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
+	<button class="print btn btn-sm btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
 	<div id="content">
 	</div>
 </div>

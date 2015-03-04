@@ -111,7 +111,7 @@ body {
 	width:80%;
 	min-height:600px;
 	max-height:100%;
-	margin:0 10% 0 10%;
+	margin:1.5% 10% 0 10%;
 	border-radius:4px;
 	box-shadow:0 2px 10px rgba(0,0,0,0.6);
 }
@@ -119,8 +119,8 @@ body {
 	right:0;
 	top:0;
 	float:right;
-	margin-top:1%;
-	margin-right:0.5%;
+	margin-top:0.5%;
+	margin-right:10%;
 	position:absolute;
 	z-index:2001;
 	box-shadow:0 2px 10px rgba(0,0,0,0.6);

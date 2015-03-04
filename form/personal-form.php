@@ -1,4 +1,6 @@
 <?php 
+$LOCATION = "person_form";
+setHistory($_SESSION['user_id'],$LOCATION,"Open Personal Form",$NOW);
 $R="R2";$W="W2";
 include("form/navigasi.php") ;
 if(isset($_GET['op'])){
@@ -148,13 +150,16 @@ else{
 <div class="row">
 	<div class="col-lg-10"><h3 class="page-header">Personal Information </h3></div>
 	<div class="col-lg-2" ><div class="photo"><img src="<?php echo $photo; ?>"></div><!-- buat photo --></div>
-	<div class="col-lg-3">
+	<div class="col-lg-4">
 		<div class="form-group">
 			<label>File No:</label> <span id="a"></span>
 			<input class="form-control" name="file-no" id="file_no" <?php if($edit==1){echo 'value="'.$data['file_no'].'"'; echo $disable;}?>>
+			<?php if($edit==1){
+				echo getWhoLastChange("".$data['file_no']."","person_form");
+			}?>
 		</div>
 	</div>	
-	<div class="col-lg-9">
+	<div class="col-lg-8">
 		<br>
 		<?php if($edit==1){echo $prints;}?>
 	</div>

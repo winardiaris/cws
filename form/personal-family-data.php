@@ -1,6 +1,6 @@
-<?php $file_id = 2;?>;
+<?php $LOCATION = "personal_form";?>
 <div class="table-responsive">
-<table class="table  table-bordered table-hover">
+<table class="table  table-bordered table-hover" location="<?php echo $LOCATION;?>">
 <thead>
 	<tr>
 	<th width="10px">No</th>
@@ -45,8 +45,8 @@
 <script>
 $(document).ready(function(){
 	$(".delete").click(function(){
-		var fam_id=$(this).val(),file_no=$("#file_no").val();
-		var datanya="&id="+fam_id+"&file_no="+file_no;
+		var fam_id=$(this).val(),file_no=$("#file_no").val(),location=$(".table").attr("location");
+		var datanya="&id="+fam_id+"&file_no="+file_no+"&location="+location;
 		$.ajax({url: "form/personal-action.php",data: "op=deletefamily"+datanya,cache: false,
 			success: function(msg){
 				if(msg=="success"){alert("berhasil menghapus");$("#family").load("form/personal-family-data.php?file_no="+file_no);}

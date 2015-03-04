@@ -69,13 +69,13 @@ if(!empty($_GET['page'])){
 		
 		
 		//DELETED DATA
-		case "view":
-		$view = "form/view-data.php";
-		break;
-		
-		//DELETED DATA
 		case "deleted":
 		$view = "form/deleted-data.php";
+		break;
+		
+		//History
+		case "history":
+		$view = "form/history.php";
 		break;
 		
 		//CHART --------

@@ -33,13 +33,8 @@ if(isset($_POST['login'])){
 			//update last_login
 			mysql_query("UPDATE `user` SET `last_login`='$NOW' WHERE `user_id`='".$data['user_id']."'") or die(mysql_error());
 			
-			//make a log
-			mysql_query("	INSERT INTO `system_log` 
-							VALUES('',
-							'".$data['user_id']."',
-							'$LOCATION',
-							'Login success', 
-							'$NOW') ") or die(mysql_error());
+			//make log 
+			setHistory($data['user_id'],$LOCATION,"Login Succes",$NOW);
 		
 			sleep(1);
 			
@@ -73,6 +68,8 @@ elseif(isset($_GET['log'])){
 			You has been logout
 			</div>;
 		';
+		//make log 
+		setHistory($_SESSION['user_id'],$LOCATION,"Logout Succes",$NOW);
 		session_destroy();
 	}
 		

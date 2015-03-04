@@ -5,7 +5,7 @@ $(document).ready(function(){
 	<?php
 		$group_id=$_SESSION['group_id'];
 		if(isset($group_id)){
-			$a = "R1;W1;R2;W2;R3;W3;R4;W4;R5;W5;R6;W6;R7;W7;R8;W8;R9;W9;R10;W10;R11;W11;R12;W12;R13;W13";
+			$a = "R1;W1;R2;W2;R3;W3;R4;W4;R5;W5;R6;W6;R7;W7;R8;W8;R9;W9;R10;W10;R11;W11;R12;W12;R13;W13;R14;W14";
 			$b = explode(";",$a);
 			$c = count($z);
 			
@@ -13,7 +13,7 @@ $(document).ready(function(){
 			$x = mysql_fetch_array($qry);
 			$z=explode(";",$x['group_access']);
 			
-			for($i=1;$i<=13;$i++){
+			for($i=1;$i<=14;$i++){
 				$k = $i+($i-1);
 				$j = $k-1;
 				
@@ -29,24 +29,13 @@ $(document).ready(function(){
 				else{
 					echo "$('#M".$i."').hide();";
 				}
-				
-				if($z[2]==0 AND $z[4]=0){
-					echo "$('#M23').hide();";
-				}
-				elseif($z[4]==0 AND $z[5]=0){
-					echo "$('#M45').hide();";
-				}
-				elseif($z[6]==0 AND $z[7]=0){
-					echo "$('#M23').hide();";
-				}
-				
-				//echo $b[$j]." ".$b[$k]." => ".$z[$j]." ".$z[$k]."<br>";
+
+	
 			}
-			
-			
-			
 		}
 	?>
+
+	
 
 });
 </script>
@@ -89,11 +78,12 @@ $(document).ready(function(){
 					<li id="M11"><a href="?page=hr-data" <?php if($_GET['page']=="hr-data") echo " class='active'"; ?>><i class="fa fa-table"></i> Data</a></li>
 				</ul><!-- /.nav-second-level -->
 			</li>
-			<li id="M1213" <?php if($_GET['page']=="user") echo " class='active'"; ?>>
+			<li id="M121314" <?php if($_GET['page']=="user" OR $_GET['page']=="deleted" OR $_GET['page']=="history") echo " class='active'"; ?>>
 				<a href="#" title="Administrator"><i class="fa fa-gear fa-fw" ></i> Administrator<span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">
 					<li id="M12"><a href="?page=user" <?php if($_GET['page']=="user") echo " class='active'"; ?>><i class="fa fa-user"></i> User</a></li>
 					<li id="M13"><a href="?page=deleted" <?php if($_GET['page']=="deleted") echo " class='active'"; ?>><i class="fa fa-trash"></i> Deleted Data</a></li>
+					<li id="M14"><a href="?page=history" <?php if($_GET['page']=="history") echo " class='active'"; ?>><i class="fa fa-history"></i> History</a></li>
 				</ul><!-- /.nav-second-level -->
 			</li>
 			

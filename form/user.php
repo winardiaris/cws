@@ -14,7 +14,7 @@ include("form/navigasi.php");
 				<a href="?page=user-group" class="btn btn-sm btn-primary"><i class="fa fa-user" ></i> User Group</a>
 			</div>
 			</div>
-		<div class="table-responsive">
+			
 			<table class="table table-striped table-bordered table-hover" id="dataTables">
 				<thead>
 					<tr>
@@ -57,7 +57,6 @@ include("form/navigasi.php");
 					?>
 				</tbody>
 			</table>
-		</div>
 		</div>
 		
 	</div>

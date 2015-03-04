@@ -29,4 +29,9 @@ $DBPASSWORD = 'simabes';
 $DBDATABASE = 'cws';
 mysql_connect($DBSERVER,$DBUSER,$DBPASSWORD) or die(mysql_error());
 mysql_select_db($DBDATABASE) or die(mysql_error());
+
+
+
+
+
 ?>

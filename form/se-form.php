@@ -1,6 +1,7 @@
 <?php 
 $R="R6";$W="W6";
-	include("form/navigasi.php");
+setHistory($_SESSION['user_id'],"se_form","Open SE Form",$NOW);
+include("form/navigasi.php");
 
 if(isset($_GET['op'])){
 	if(isset($_GET['file_no'])){
@@ -531,7 +532,7 @@ else{
 				<div class="col-lg-4">
 					<div class="form-group">
 						<label>Number of rooms: </label>
-						<input class="form-control" id="living_cond1" placeholder="type here" value="<?php if($edit==1){echo $living_cond[0];}?>">
+						<input type="number" class="form-control" id="living_cond1" placeholder="type here" value="<?php if($edit==1){echo $living_cond[0];}?>">
 					</div>
 				</div>
 				<div class="col-lg-4">

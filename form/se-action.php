@@ -1,6 +1,6 @@
 <?php
-$file_id = 4;
 include ("../inc/conf.php");
+include ("function.php");
 $op = $_GET['op'];
 $file_no = $_GET['file_no'];
 
@@ -29,7 +29,10 @@ elseif($op == "addassessment"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query("INSERT INTO `se` (`file_no`,`doa`,`dore`,`assessment_data`,`created`) VALUES('$file_no','$doa','$dore','$value','$NOW') ;") or die(mysql_error());
 	
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"se_form","Save SE Assessment for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op == "updateassessment"){
@@ -39,7 +42,10 @@ elseif($op == "updateassessment"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query("UPDATE `se` SET `doa`='$doa',`dore`='$dore',`assessment_data`='$value', `last_change`='$NOW' WHERE `file_no`='$file_no';") or die(mysql_error());
 	
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"se_form","Update SE Assessment for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op == "saveback"){
@@ -47,7 +53,10 @@ elseif($op == "saveback"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query(" UPDATE `se` SET `background_info`='$value', `last_change`='$NOW' WHERE `file_no`='$file_no'") or die(mysql_error());
 	
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Background Information and Assessment Purpose for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op == "savelivinga"){
@@ -58,7 +67,10 @@ elseif($op == "savelivinga"){
 	$phnn = htmlspecialchars($_GET['phnn']);
 	$save = mysql_query(" UPDATE `se` SET `living_env`='$living_env', `living_cond`='$living_cond',`sec_neigh`='$sec_neigh',`phnn`='$phnn', `last_change`='$NOW' WHERE `file_no`='$file_no'") or die(mysql_error());
 	
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Living Condition A. General for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op == "savelivingb"){
@@ -67,7 +79,10 @@ elseif($op == "savelivingb"){
 	$child_protect = htmlspecialchars($_GET['child_protect']);
 	$save = mysql_query(" UPDATE `se` SET `vulnerabilities`='$vulne', `child_protect`='$child_protect',`last_change`='$NOW' WHERE `file_no`='$file_no'") or die(mysql_error());
 	
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Living Condition B. Person With Spesific Needs for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op == "savefinanciala"){
@@ -75,7 +90,10 @@ elseif($op == "savefinanciala"){
 	$support = htmlspecialchars($_GET['support']);
 	$save = mysql_query(" UPDATE `se` SET `support_system`='$support', `last_change`='$NOW' WHERE `file_no`='$file_no'") or die(mysql_error());
 	
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Financial A. Support System for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op == "savefinancialb"){
@@ -83,7 +101,10 @@ elseif($op == "savefinancialb"){
 	$recommend = htmlspecialchars($_GET['recommend']);
 	$save = mysql_query(" UPDATE `se` SET `recommend`='$recommend', `last_change`='$NOW' WHERE `file_no`='$file_no'") or die(mysql_error());
 	
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Financial B. Recommendation for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op == "saveverification"){
@@ -91,13 +112,19 @@ elseif($op == "saveverification"){
 	$verification = htmlspecialchars($_GET['verification']);
 	$save = mysql_query(" UPDATE `se` SET `verification`='$verification', `last_change`='$NOW' WHERE `file_no`='$file_no'") or die(mysql_error());
 	
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Assessment verified for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op == "del"){
 	$file_no = $_GET['file_no'];
 	$del = mysql_query("UPDATE `se` SET `status`='0' WHERE  `file_no`='$file_no' AND `status`='1' ;  ") or die(mysql_error());
-	if($del){echo "success";}
+	if($del){
+		echo "success";
+		setHistory($_SESSION['user_id'],"se_data","Delete SE Data for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 

@@ -1,4 +1,6 @@
 <?php 
+$LOCATION="Chart";
+setHistory($_SESSION['user_id'],$LOCATION,"Open Chart",$NOW);
 include("form/navigasi.php") ;
 ?>
 <script>

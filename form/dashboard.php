@@ -1,4 +1,6 @@
 <?php 
+$LOCATION = "dashboard";
+setHistory($_SESSION['user_id'],$LOCATION,"Open Dasboard",$NOW);
 $R="R1";$W="W1";
 //cek login
 include("form/navigasi.php") 
@@ -267,5 +269,4 @@ $(function() {
     });
 
 });
-
 </script>
