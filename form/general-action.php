@@ -45,7 +45,7 @@ elseif($op == "getrelation"){
 elseif($op == "getprov"){
 	$kode = $_GET['kode'];
 	$prov = mysql_query("SELECT * FROM `data_wilayah` WHERE LENGTH(`kode`)<=2 ORDER BY `nama` ASC;") or die(mysql_error());
-	echo '<option value="0">-- Provinsi --</option>';
+	echo '<option value="0">-- Province --</option>';
 	while ($data = mysql_fetch_array($prov)){
 		echo '<option value="'.$data['kode'].'" ';
 			if($kode == $data['kode']){echo 'selected';}
@@ -56,7 +56,7 @@ elseif($op == "getkab"){
 	$kode = $_GET['kode'];
 	$prov = $_GET['prov'];
 	$kab = mysql_query("SELECT * FROM `data_wilayah` WHERE `kode` LIKE '$prov%' AND LENGTH(`kode`)>2 AND LENGTH(`kode`)<=5 ORDER BY `nama` ASC;") or die(mysql_error());
-	echo '<option value="0">-- Kabupaten/Kota --</option>';
+	echo '<option value="0">-- Regency/City --</option>';
 	while ($data = mysql_fetch_array($kab)){
 		echo '<option value="'.$data['kode'].'" ';
 			if($kode == $data['kode']){echo 'selected';}
@@ -67,7 +67,7 @@ elseif($op == "getkec"){
 	$kode = $_GET['kode'];
 	$kab = $_GET['kab'];
 	$kec = mysql_query("SELECT * FROM `data_wilayah` WHERE `kode` LIKE '$kab%' AND LENGTH(`kode`)>5 AND LENGTH(`kode`)<=8 ORDER BY `nama` ASC;") or die(mysql_error());
-	echo '<option value="0">-- Kecamatan/Kelurahan --</option>';
+	echo '<option value="0">-- Sub-district/Village --</option>';
 	while ($data = mysql_fetch_array($kec)){
 		echo '<option value="'.$data['kode'].'" ';
 			if($kode == $data['kode']){echo 'selected';}

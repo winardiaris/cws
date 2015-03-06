@@ -14,9 +14,7 @@ if(isset($_GET['file_no'])){
 	
 ?>
 <hr>
-<h3>Health Report Form</h3>
-
-
+<h3>Health Report</h3>
 <hr>
 <h4>Basic</h4>
 <table class="table table-bordered" >

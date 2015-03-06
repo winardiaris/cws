@@ -10,7 +10,7 @@ include("form/navigasi.php");
 		<h3 class="page-header">History</h3>
 	</div>
 	<div class="col-lg-12">
-		<table  class="table table-bordered" id="dataTables">
+		<table  class="table table-bordered table-hover table-striped" id="dataTables">
 			<thead>
 			<tr>
 				<th>No.</th>

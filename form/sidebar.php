@@ -60,7 +60,8 @@ $(document).ready(function(){
 			<li id="M67" <?php if($_GET['page']=="se-form" OR $_GET['page']=="se-data") echo " class='active'"; ?>>
 				<a href="#" title="Socio Eeconomic Assessment Report"><i class="fa fa-user fa-fw" ></i> SE<span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">
-					<li id="M6"><a href="?page=se-form" <?php if($_GET['page']=="se-form") echo " class='active'"; ?>><i class="fa fa-list-alt"></i> Form</a></li>
+					<li id="M6"><a href="?page=se-form" <?php if($_GET['page']=="se-form" AND empty($_GET['a'])) echo " class='active'"; ?>><i class="fa fa-plus"></i> Add New</a></li>
+					<li id="M6"><a href="?page=se-form&a=reassesment" <?php if($_GET['page']=="se-form" AND isset($_GET['a'])) echo " class='active'"; ?>><i class="fa fa-list-alt"></i> Reassessment</a></li>
 					<li id="M7"><a href="?page=se-data" <?php if($_GET['page']=="se-data") echo " class='active'"; ?>><i class="fa fa-table"></i> Data</a></li>
 				</ul><!-- /.nav-second-level -->
 			</li>

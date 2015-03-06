@@ -68,8 +68,16 @@ $(document).ready(function(){
 	});
 	
 	//test
-	$("#asd").click(function(){
+	$(".delete").click(function(){
+		var 	group_id = $(this).attr("id"),
+				datanya = "&group_id="+group_id;
 		
+		$.ajax({url:"form/user-action.php",data:"op=delusergroup"+datanya,cache:false,success: function(msg){
+			if(msg=="success"){
+				alert("Data has been deleted !!");
+				location.reload();
+			}else{alert("Data not delete	 !!");}}
+		});
 	});
 	
 });
@@ -208,11 +216,11 @@ else{
 			<table class="table table-striped table-bordered table-hover" id="dataTables">
 				<thead>
 				<tr>
+					<th></th>
 					<th>No.</th>
 					<th>Group ID</th>
 					<th>Group Name</th>
 					<th>Group Access</th>
-					<th>Action</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -223,14 +231,23 @@ else{
 					$no++;
 				echo'
 				<tr>
+               <td width="30px">
+						<div class="dropdown">
+						  <button class="btn btn-primary btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span class="caret"></span></button>
+						  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+						    <li role="presentation">
+								<a role="menuitem" tabindex="-1" href="?page=user-group&op=edit&group_id='.$data['group_id'].'" ><i class="fa fa-edit"></i> Edit</a>
+						    </li>
+						    <li role="presentation">
+								<a role="menuitem" tabindex="-1" id="'.$data['group_id'].'" href="#" class="delete text-danger"><i class="fa fa-trash"></i> Delete</a>
+							</li>
+						  </ul>
+						</div>
+					</td>
 					<td align="right" width="50px">'.$no.'.</td>
 					<td width="150px">'.$data['group_id'].'</td>
 					<td>'.$data['group_name'].'</td>
 					<td>'.$data['group_access'].'</td>
-					<td width="100px" align="center">
-						<a href="?page=user-group&op=edit&group_id='.$data['group_id'].'" class="btn btn-sm btn-primary btn-sm"  title="Edit '.$data['group_name'].'"><i class="fa fa-edit"></i></a>
-						<button class="btn btn-sm btn-danger btn-sm" id="'.$data['group_id'].'" title="Delete '.$data['group_name'].'"><i class="fa fa-trash"></i></button>
-					</td>
 				</tr>
 				';
 				}

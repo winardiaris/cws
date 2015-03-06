@@ -77,12 +77,23 @@ else{
 		});
 		var file_no = $("#file_no").val(),
 				 doa = $("#doa").val();	 
-			$("#nextassessment").load("form/function.php?op=nextAssessment&file_no="+file_no+"&doa="+doa);
+			$("#nextassessment").load("form/se-action.php?op=nextAssessment&file_no="+file_no+"&doa="+doa);
 		
-		
+
 		//check available
 		$("#file_no").change(function(){
-			var datanya = "&file_no="+$(this).val();
+			var  	file_no = $(this).val(),
+					a = $("input:radio[name=id_data]:checked").val(),
+					datanya = "&file_no="+file_no+"&a="+a;
+			
+         //reassessment
+			if( a > 0){
+				$.ajax({url: "form/se-action.php",data: "op=lastAssessment"+datanya,cache: false,
+					success: function(s){
+						$("#last_assessment").val(s);
+					}
+				});
+			}
 			
 			$.ajax({url: "form/se-action.php",data: "op=check"+datanya,cache: false,
 				success: function(msg){
@@ -102,12 +113,13 @@ else{
 		$("#doa").change(function(){
 			var file_no = $("#file_no").val(),
 				 doa = $(this).val();	 
-			$("#nextassessment").load("form/function.php?op=nextAssessment&file_no="+file_no+"&doa="+doa);
+			$("#nextassessment").load("form/se-action.php?op=nextAssessment&file_no="+file_no+"&doa="+doa);
 		});
 		
 		//save  of assessment
 		$("#save_assessment").click(function(){
 			var file_no = $("#file_no").val();
+			var a = $("input:radio[name=id_data]:checked").val();
 			
 			if(file_no == ""){
 				alert("Please insert File No");
@@ -123,9 +135,9 @@ else{
 				else {$("#file_no").val("").focus();}
 			}
 			else{
-				var doa = $("#doa").val(),dore=$("#dore").val(),by = $("#interviewer").val(),location = $("#location").val(),last = $("#last_assessment").val(),asst = $("#assistance").val(),inter = $("#interpreter").val(),home = $("#home_visit").val(),last_visit = $("#last_home_visit").val();
+				var doa = $("#doa").val(),dore=$("#dore").text(),by = $("#interviewer").val(),location = $("#location").val(),last = $("#last_assessment").val(),asst = $("#assistance").val(),inter = $("#interpreter").val(),home = $("#home_visit").val(),last_visit = $("#last_home_visit").val();
 					
-				var datanya = "&file_no="+file_no+"&doa="+doa+"&dore="+dore+"&value="+by+";"+location+";"+last+";"+asst+";"+inter+";"+home+";"+last_visit;
+				var datanya = "&file_no="+file_no+"&a="+a+"&doa="+doa+"&dore="+dore+"&value="+by+";"+location+";"+last+";"+asst+";"+inter+";"+home+";"+last_visit;
 				$.ajax({url: "form/se-action.php",data: "op=addassessment"+datanya,cache: false,
 					success: function(msg){
 						if(msg=="success"){
@@ -158,9 +170,9 @@ else{
 				else {$("#file_no").val("").focus();}
 			}
 			else{
-				var doa = $("#doa").val(),by = $("#interviewer").val(),location = $("#location").val(),last = $("#last_assessment").val(),asst = $("#assistance").val(),inter = $("#interpreter").val(),home = $("#home_visit").val(),last_visit = $("#last_home_visit").val();
+				var doa = $("#doa").val(),doa = $("#dore").text(),by = $("#interviewer").val(),location = $("#location").val(),last = $("#last_assessment").val(),asst = $("#assistance").val(),inter = $("#interpreter").val(),home = $("#home_visit").val(),last_visit = $("#last_home_visit").val();
 					
-				var datanya = "&file_no="+file_no+"&doa="+doa+"&value="+by+";"+location+";"+last+";"+asst+";"+inter+";"+home+";"+last_visit;
+				var datanya = "&file_no="+file_no+"&doa="+doa+"&dore="+dore+"&value="+by+";"+location+";"+last+";"+asst+";"+inter+";"+home+";"+last_visit;
 				$.ajax({url: "form/se-action.php",data: "op=updateassessment"+datanya,cache: false,
 					success: function(msg){
 						if(msg=="success"){
@@ -355,7 +367,7 @@ else{
 
 <div id="page-wrapper">
 <div class="row">
-<div class="col-lg-12"><h3 class="page-header">Socio Economic Assessment Report  </h3></div>
+<div class="col-lg-12"><h3 class="page-header">Socio Economic <?php if(isset($_GET['a'])){echo "Re-Assessment";}else{echo "Assessment";} ?> Report  </h3></div>
 <div class="col-lg-12">
 	<div class="panel-group" id="accordion">
 		<!-- date assessment -->
@@ -367,6 +379,11 @@ else{
 		</div>
 		<div id="collapseDate" class="panel-collapse collapse in">
 		<div class="panel-body">
+			<div class="col-lg-12 hidden">
+					<label class="radio-inline"><input type="radio" name="id_data" value="0" <?php if(empty($_GET['a'])){echo "checked";}?> >New </label>
+					<label class="radio-inline"><input type="radio" name="id_data" value="1" <?php if(isset($_GET['a'])){echo "checked";}?>>Reassesment </label>
+					<hr>
+			</div>
 			<div class="col-lg-4">
 				<div class="form-group">
 					<label>File No: <span  id="a"></span></label>
@@ -376,7 +393,7 @@ else{
 			<div class="col-lg-4">
 				<label>Date of Assessment: </label>
 				<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-					<input type="text" class="form-control" id="doa" placeholder="yyyy-mm-dd" value="<?php if($edit==1){echo $data['doa'];} ?>" ><span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
+					<input type="text" class="form-control" id="doa" placeholder="yyyy-mm-dd" value="<?php if($edit==1){echo $data['doa'];}else{echo $TODAY;} ?>" ><span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -394,7 +411,7 @@ else{
 			<div class="col-lg-4">
 				<label>Date of last assessment:</label>
 				<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-					<input type="text" class="form-control" id="last_assessment" placeholder="yyyy-mm-dd" value="<?php if($edit==1){echo $assessment[2];} ?>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					<input type="text" class="form-control" id="last_assessment" placeholder="yyyy-mm-dd" value="<?php if($edit==1){echo $assessment[2];} ?>" <?php if(isset($_GET['a'])){echo "disabled";}?>><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 				</div>
 			</div>
 			<div class="col-lg-4">

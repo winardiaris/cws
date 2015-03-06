@@ -6,28 +6,79 @@ $file_no = $_GET['file_no'];
 
 if($op == "check"){
 	$file_no = $_GET['file_no'];
-	$qry = mysql_query("SELECT COUNT(*) AS `ada` FROM `person` WHERE `file_no`='$file_no';") or die(mysql_error());
-	$qry2 = mysql_query("SELECT COUNT(*) AS `ada` FROM `se` WHERE `file_no`='$file_no';") or die(mysql_error());
+	$a = $_GET['a'];
+	if($a==0){
+		$qry = mysql_query("SELECT COUNT(*) AS `ada` FROM `person` WHERE `file_no`='$file_no';") or die(mysql_error());
+		$qry2 = mysql_query("SELECT COUNT(*) AS `ada` FROM `se` WHERE `file_no`='$file_no' ;") or die(mysql_error());
+		
+		$person = mysql_fetch_array($qry);
+		$se = mysql_fetch_array($qry2);
+		
+		if($person['ada'] > 0 AND $se['ada'] > 0){
+			echo "inuse";
+		}
+		elseif($person['ada'] > 0 AND $se['ada'] == 0){
+			echo "avail";
+		}
+		elseif($person['ada'] == 0 AND $se['ada'] == 0){
+			echo "nodata";
+		}
+		
+		
+	}
+	elseif($a==1){
+		$qry = mysql_query("SELECT COUNT(*) AS `ada` FROM `person` WHERE `file_no`='$file_no';") or die(mysql_error());
+		$qry2 = mysql_query("SELECT COUNT(*) AS `ada` FROM `se` WHERE `file_no`='$file_no' AND `status`='0';") or die(mysql_error());
+		
+		$person = mysql_fetch_array($qry);
+		$se = mysql_fetch_array($qry2);
+
+		if($person['ada'] > 0 AND $se['ada'] > 0){
+			echo "inuse";
+		}
+		elseif($person['ada'] > 0 AND $se['ada'] == 0){
+			echo "avail";
+		}
+		elseif($person['ada'] == 0 AND $se['ada'] == 0){
+			echo "nodata";
+		}
+
+	}	
+}
+elseif($op=="nextAssessment"){
+	$file_no=$_GET['file_no'];
+	$doa=$_GET['doa'];
 	
-	$person = mysql_fetch_array($qry);
-	$se = mysql_fetch_array($qry2);
+	$qry = mysql_query("SELECT `status` FROM `person` WHERE `file_no`='$file_no'");
+	$data = mysql_fetch_array($qry);
+	$status = $data['status'];
+	if($status=="Refugee"){
+		$plus = "+3 month";
+	}
+	else{
+		$plus = "+6 month";
+	}
 	
-	if($person['ada'] > 0 AND $se['ada'] > 0){
-		echo "inuse";
-	}
-	elseif($person['ada'] > 0 AND $se['ada'] == 0){
-		echo "avail";
-	}
-	elseif($person['ada'] == 0 AND $se['ada'] == 0){
-		echo "nodata";
-	}
+	$a = strtotime($plus,strtotime($doa));
+	$a = date("Y-m-d", $a);
+	$b = strtotime("-2 week",strtotime($a));
+	$next = date("Y-m-d", $b);	
+	echo "Next Assessment: <span id='dore'>".$next."</span>";
+}
+elseif($op == "lastAssessment"){
+	$file_no = $_GET['file_no'];
+	$qry = mysql_query("SELECT max(`doa`) as `doa` FROM `se` WHERE `file_no`='$file_no'")or die(mysql_error());
+	$data = mysql_fetch_array($qry);
+	echo $data['doa'];
+	
 }
 elseif($op == "addassessment"){
 	$file_no = $_GET['file_no'];
 	$doa = $_GET['doa'];
 	$dore = $_GET['dore'];
+	$a = $_GET['a'];
 	$value = htmlspecialchars($_GET['value']);
-	$save = mysql_query("INSERT INTO `se` (`file_no`,`doa`,`dore`,`assessment_data`,`created`) VALUES('$file_no','$doa','$dore','$value','$NOW') ;") or die(mysql_error());
+	$save = mysql_query("INSERT INTO `se` (`file_no`,`id`,`doa`,`dore`,`assessment_data`,`created`) VALUES('$file_no','$a','$doa','$dore','$value','$NOW') ;") or die(mysql_error());
 	
 	if($save){
 		echo "success";
@@ -127,5 +178,4 @@ elseif($op == "del"){
 	}
 	else{echo "error";}
 }
-
 ?>

@@ -15,7 +15,7 @@ include("../function.php") ;
 
 
 <div class="photos" ><img src="<?php echo $photo; ?>"></div><br>
-<h4>Personal Information</h4>
+<h3>Personal Information</h3>
 <hr>
 <table class="table table-bordered">
 <tr>
@@ -74,7 +74,7 @@ include("../function.php") ;
 </tr>
 </table>
 
-<h3>Reported family member</h3>
+<h4>Reported family member</h4>
 <hr>
 <table class="table table-bordered">
 <tr>
@@ -112,5 +112,6 @@ include("../function.php") ;
 		echo '<tr><td> - </td><td> - </td><td> - </td><td> - </td><td> - </td><td> - </td><td> - </td><td> - </td></tr>';
 	}
 ?>
-
+</table>
+<hr>
 

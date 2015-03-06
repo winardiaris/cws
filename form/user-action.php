@@ -98,6 +98,25 @@ elseif($op=="updateusergroup"){
 	if($save){echo "success";}
 	else{echo "error";}
 }
+elseif($op=="delusergroup"){
+	$group_id = $_GET['group_id'];
+	$del =mysql_query("DELETE FROM `usergroup` WHERE `group_id`='$group_id' ") or die(mysql_error());
+
+	if($del){
+		echo "success";
+	}
+	else{echo "error";}
+}
+
+elseif($op=="deluser"){
+	$user_id = $_GET['user_id'];
+	$del =mysql_query("DELETE FROM `user` WHERE `user_id`='$user_id' ") or die(mysql_error());
+
+	if($del){
+		echo "success";
+	}
+	else{echo "error";}
+}
 
 
 

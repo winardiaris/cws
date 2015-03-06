@@ -127,28 +127,7 @@ function balikinSimbol($str){
 
 if(isset($_GET['op'])){
 	$op = $_GET['op'];
-
-	if($op=="nextAssessment"){
-		$file_no=$_GET['file_no'];
-		$doa=$_GET['doa'];
-		
-		$qry = mysql_query("SELECT `status` FROM `person` WHERE `file_no`='$file_no'");
-		$data = mysql_fetch_array($qry);
-		$status = $data['status'];
-		if($status=="Refugee"){
-			$plus = "3 month";
-		}
-		else{
-			$plus = "6 month";
-		}
-		
-		$a = strtotime($plus,strtotime($doa));
-		$a = date("Y-m-d", $a);
-		$b = strtotime("-2 week",strtotime($a));
-		$next = date("Y-m-d", $b);	
-		echo "Reassessment: <span id='dore'>".$next."</span>";
-	}
-	elseif($op=="setHistory"){
+	if($op=="setHistory"){
 		$user_id = $_GET['user_id'];
 		$log_location = $_GET['log_location'];
 		$log_message = $_GET['log_message'];

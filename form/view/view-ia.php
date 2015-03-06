@@ -25,10 +25,6 @@ if(isset($_GET['file_no'])){
 	if($count>0){
 
 ?>	
-	
-	
-	
-
 
 <h3>Initial Assessment</h3>
 <table class="table table-bordered" border="1">
@@ -48,7 +44,7 @@ if(isset($_GET['file_no'])){
 	</tr>
 </table>
 <hr>
-<h3>Legal Documentation</h3>
+<h4>Legal Documentation</h4>
 <table class="table table-bordered" border="1">
 	<tr>
 		<td><label>1. Did you register in your neighbourhood/ local authorities?</label></td>
@@ -64,7 +60,7 @@ if(isset($_GET['file_no'])){
 	</tr>
 </table>
 <hr>
-<h3>Current Living Condition</h3>
+<h4>Current Living Condition</h4>
 <table class="table table-bordered  table-hover" border="1">
 	<thead>
 		<tr>
@@ -105,7 +101,7 @@ if(isset($_GET['file_no'])){
 	</tbody>
 </table>
 <hr>
-<h3 >Visual inspection of the UAM’s current living environment</h3>
+<h4 >Visual inspection of the UAM’s current living environment</h4>
 <table class="table table-bordered" border="1">
 	<tr>
 		<td><label>Type of Residence:</label></td>
@@ -236,4 +232,5 @@ if(isset($_GET['file_no'])){
 }
 ?>
 
+<hr>
 

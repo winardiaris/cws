@@ -218,11 +218,11 @@ else{
 						
 						<td ><label>Address (in detail): *</label></td>
 						<td><div class="form-group">
-								<small>Provinsi</small>
+								<small>Province</small>
 								<select name="provinsi" id="provinsi" class="form-control"></select>
-								<small>Kabupaten / Kota</small>
+								<small>Regency / City</small>
 								<select name="kabupaten" id="kota" class="form-control" ></select>
-								<small>Kecamatan / Kelurahan</small>
+								<small>Sub-district / Village</small>
 								<select name="kecamatan" id="kelurahan" class="form-control" ></select>
 								<small>In Detail</small>
 								<textarea class="form-control" id="detail" placeholder="Detail"><?php  if($edit==1){echo $address[1];} ?></textarea>

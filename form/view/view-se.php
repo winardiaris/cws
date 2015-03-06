@@ -29,10 +29,9 @@ if(isset($_GET['file_no'])){
 	
 	if($count>0){
 ?>
-<hr>
 <h3>Socio Economic Assessment Report  </h3>
 <hr>
-<h3>Assessment Remaks</h3>
+<h4>Assessment Remaks</h4>
 	<table border="1" class="table table-bordered">
 		<tr>
 			<td><label>File Number:</label></td>
@@ -67,19 +66,21 @@ if(isset($_GET['file_no'])){
 	</table>
 	
 <hr>
-<h3>Background Information and Assessment Purpose</h3>
+<h4>Background Information and Assessment Purpose</h4>
 	<table border="1" class="table table-bordered">
 		<tr>
 			<td><label>1. How PoC (and family) survived from date of arrival to the date of assessment?</label></td>
+		</tr><tr>	
 			<td><?php if($edit==1){echo $background[0];} ?></td>
 		</tr>
 		<tr>
 			<td><label>2. Current Situation (Socio-economic):</label></td>
+		</tr><tr>	
 			<td><?php if($edit==1){echo $background[1];} ?></td>
 		</tr>
 	</table>
 	<hr>
-<h3>Living Condition <small>(to be filled in after home visits)</small></h3>
+<h4>Living Condition <small>(to be filled in after home visits)</small></h4>
 <h4>A. GENERAL</h4>
 	<table border="1" class="table table-bordered">
 		<tr>
@@ -242,7 +243,7 @@ if(isset($_GET['file_no'])){
 	</table>
 	
 <hr>
-<h3>Financial And Other Support System Available To The Person Of Concern</h3>
+<h4>Financial And Other Support System Available To The Person Of Concern</h4>
 	<table border="1" class="table table-bordered">
 		<tr>
 			<td colspan="4" ><h4>Support System</h4></td>
@@ -331,7 +332,7 @@ if(isset($_GET['file_no'])){
 		
 	</table>
 <hr>
-<h3>Assessment verified by:</h3>		
+<h4>Assessment verified by:</h4>		
 	<table border="1" class="table table-bordered">
 		<tr>
 			<td><label>Name:</label></td>
