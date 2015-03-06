@@ -67,7 +67,7 @@ elseif($op=="nextAssessment"){
 }
 elseif($op == "lastAssessment"){
 	$file_no = $_GET['file_no'];
-	$qry = mysql_query("SELECT max(`doa`) as `doa` FROM `se` WHERE `file_no`='$file_no'")or die(mysql_error());
+	$qry = mysql_query("SELECT max(`doa`) as `doa` FROM `se` WHERE `file_no`='$file_no' AND `status`='1'")or die(mysql_error());
 	$data = mysql_fetch_array($qry);
 	echo $data['doa'];
 	
@@ -86,12 +86,19 @@ elseif($op == "addassessment"){
 	}
 	else{echo "error";}
 }
+elseif($op == "getseid"){
+	$file_no = $_GET['file_no'];
+	$qry = mysql_query("SELECT MAX(`se_id`) AS `se_id` FROM `se` WHERE `file_no`='$file_no'")or die(mysql_error());
+	$data = mysql_fetch_array($qry);
+	echo $data['se_id'];
+}
 elseif($op == "updateassessment"){
 	$file_no = $_GET['file_no'];
+	$se_id = $_GET['se_id'];
 	$doa = $_GET['doa'];
 	$dore = $_GET['dore'];
 	$value = htmlspecialchars($_GET['value']);
-	$save = mysql_query("UPDATE `se` SET `doa`='$doa',`dore`='$dore',`assessment_data`='$value', `last_change`='$NOW' WHERE `file_no`='$file_no';") or die(mysql_error());
+	$save = mysql_query("UPDATE `se` SET `doa`='$doa',`dore`='$dore',`assessment_data`='$value', `last_change`='$NOW' WHERE `file_no`='$file_no' AND `se_id`='$se_id';") or die(mysql_error());
 	
 	if($save){
 		echo "success";
@@ -100,9 +107,10 @@ elseif($op == "updateassessment"){
 	else{echo "error";}
 }
 elseif($op == "saveback"){
+	$se_id = $_GET['se_id'];
 	$file_no = $_GET['file_no'];
 	$value = htmlspecialchars($_GET['value']);
-	$save = mysql_query(" UPDATE `se` SET `background_info`='$value', `last_change`='$NOW' WHERE `file_no`='$file_no'") or die(mysql_error());
+	$save = mysql_query(" UPDATE `se` SET `background_info`='$value', `last_change`='$NOW' WHERE `file_no`='$file_no' AND `se_id`='$se_id'") or die(mysql_error());
 	
 	if($save){
 		echo "success";
@@ -111,12 +119,13 @@ elseif($op == "saveback"){
 	else{echo "error";}
 }
 elseif($op == "savelivinga"){
+	$se_id = $_GET['se_id'];
 	$file_no = $_GET['file_no'];
 	$living_env = htmlspecialchars($_GET['living_env']);
 	$living_cond = htmlspecialchars($_GET['living_cond']);
 	$sec_neigh = htmlspecialchars($_GET['sec_neigh']);
 	$phnn = htmlspecialchars($_GET['phnn']);
-	$save = mysql_query(" UPDATE `se` SET `living_env`='$living_env', `living_cond`='$living_cond',`sec_neigh`='$sec_neigh',`phnn`='$phnn', `last_change`='$NOW' WHERE `file_no`='$file_no'") or die(mysql_error());
+	$save = mysql_query(" UPDATE `se` SET `living_env`='$living_env', `living_cond`='$living_cond',`sec_neigh`='$sec_neigh',`phnn`='$phnn', `last_change`='$NOW' WHERE `file_no`='$file_no' AND `se_id`='$se_id'") or die(mysql_error());
 	
 	if($save){
 		echo "success";
@@ -126,9 +135,10 @@ elseif($op == "savelivinga"){
 }
 elseif($op == "savelivingb"){
 	$file_no = $_GET['file_no'];
+	$se_id = $_GET['se_id'];
 	$vulne = htmlspecialchars($_GET['vulne']);
 	$child_protect = htmlspecialchars($_GET['child_protect']);
-	$save = mysql_query(" UPDATE `se` SET `vulnerabilities`='$vulne', `child_protect`='$child_protect',`last_change`='$NOW' WHERE `file_no`='$file_no'") or die(mysql_error());
+	$save = mysql_query(" UPDATE `se` SET `vulnerabilities`='$vulne', `child_protect`='$child_protect',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `se_id`='$se_id'") or die(mysql_error());
 	
 	if($save){
 		echo "success";
@@ -138,8 +148,9 @@ elseif($op == "savelivingb"){
 }
 elseif($op == "savefinanciala"){
 	$file_no = $_GET['file_no'];
+	$se_id = $_GET['se_id'];
 	$support = htmlspecialchars($_GET['support']);
-	$save = mysql_query(" UPDATE `se` SET `support_system`='$support', `last_change`='$NOW' WHERE `file_no`='$file_no'") or die(mysql_error());
+	$save = mysql_query(" UPDATE `se` SET `support_system`='$support', `last_change`='$NOW' WHERE `file_no`='$file_no' AND `se_id`='$se_id'") or die(mysql_error());
 	
 	if($save){
 		echo "success";
@@ -149,8 +160,9 @@ elseif($op == "savefinanciala"){
 }
 elseif($op == "savefinancialb"){
 	$file_no = $_GET['file_no'];
+	$se_id = $_GET['se_id'];
 	$recommend = htmlspecialchars($_GET['recommend']);
-	$save = mysql_query(" UPDATE `se` SET `recommend`='$recommend', `last_change`='$NOW' WHERE `file_no`='$file_no'") or die(mysql_error());
+	$save = mysql_query(" UPDATE `se` SET `recommend`='$recommend', `last_change`='$NOW' WHERE `file_no`='$file_no' AND `se_id`='$se_id'") or die(mysql_error());
 	
 	if($save){
 		echo "success";
@@ -160,8 +172,9 @@ elseif($op == "savefinancialb"){
 }
 elseif($op == "saveverification"){
 	$file_no = $_GET['file_no'];
+	$se_id = $_GET['se_id'];
 	$verification = htmlspecialchars($_GET['verification']);
-	$save = mysql_query(" UPDATE `se` SET `verification`='$verification', `last_change`='$NOW' WHERE `file_no`='$file_no'") or die(mysql_error());
+	$save = mysql_query(" UPDATE `se` SET `verification`='$verification', `last_change`='$NOW' WHERE `file_no`='$file_no' AND `se_id`='$se_id'") or die(mysql_error());
 	
 	if($save){
 		echo "success";
@@ -171,7 +184,8 @@ elseif($op == "saveverification"){
 }
 elseif($op == "del"){
 	$file_no = $_GET['file_no'];
-	$del = mysql_query("UPDATE `se` SET `status`='0' WHERE  `file_no`='$file_no' AND `status`='1' ;  ") or die(mysql_error());
+	$se_id = $_GET['se_id'];
+	$del = mysql_query("UPDATE `se` SET `status`='0' WHERE  `file_no`='$file_no' AND `se_id`='$se_id' AND `status`='1' ;  ") or die(mysql_error());
 	if($del){
 		echo "success";
 		setHistory($_SESSION['user_id'],"se_data","Delete SE Data for File No [$file_no]",$NOW);

@@ -4,8 +4,8 @@ setHistory($_SESSION['user_id'],"se_form","Open SE Form",$NOW);
 include("form/navigasi.php");
 
 if(isset($_GET['op'])){
-	if(isset($_GET['file_no'])){
-		$qry = mysql_query("SELECT * FROM `se` WHERE `file_no`='".$_GET['file_no']."'") or die(mysql_error());
+	if(isset($_GET['file_no']) AND isset($_GET['se_id'])){
+		$qry = mysql_query("SELECT * FROM `se` WHERE `file_no`='".$_GET['file_no']."' AND `se_id`='".$_GET['se_id']."'") or die(mysql_error());
 		$data = mysql_fetch_array($qry);
 		$assessment = explode(";",$data['assessment_data']);
 		$background = explode(";",$data['background_info']);
@@ -86,10 +86,10 @@ else{
 					a = $("input:radio[name=id_data]:checked").val(),
 					datanya = "&file_no="+file_no+"&a="+a;
 			
-         //reassessment
+         //last assessment
 			if( a > 0){
 				$.ajax({url: "form/se-action.php",data: "op=lastAssessment"+datanya,cache: false,
-					success: function(s){
+					success: function(s){				
 						$("#last_assessment").val(s);
 					}
 				});
@@ -150,11 +150,16 @@ else{
 						else{alert("Data not saved !!");}
 					}
 				});
+				$.ajax({url: "form/se-action.php",data: "op=getseid&file_no="+file_no,cache: false,
+					success: function(a){
+						$("#se_id").val(a);
+					}
+				});
 			}
 		});
 		//update  of assessment
 		$("#update_assessment").click(function(){
-			var file_no = $("#file_no").val();
+			var file_no = $("#file_no").val(),se_id = $("#se_id").val();
 			
 			if(file_no == ""){
 				alert("Please insert File No");
@@ -170,9 +175,9 @@ else{
 				else {$("#file_no").val("").focus();}
 			}
 			else{
-				var doa = $("#doa").val(),doa = $("#dore").text(),by = $("#interviewer").val(),location = $("#location").val(),last = $("#last_assessment").val(),asst = $("#assistance").val(),inter = $("#interpreter").val(),home = $("#home_visit").val(),last_visit = $("#last_home_visit").val();
+				var doa = $("#doa").val(),dore = $("#dore").text(),by = $("#interviewer").val(),location = $("#location").val(),last = $("#last_assessment").val(),asst = $("#assistance").val(),inter = $("#interpreter").val(),home = $("#home_visit").val(),last_visit = $("#last_home_visit").val();
 					
-				var datanya = "&file_no="+file_no+"&doa="+doa+"&dore="+dore+"&value="+by+";"+location+";"+last+";"+asst+";"+inter+";"+home+";"+last_visit;
+				var datanya = "&se_id="+se_id+"&file_no="+file_no+"&doa="+doa+"&dore="+dore+"&value="+by+";"+location+";"+last+";"+asst+";"+inter+";"+home+";"+last_visit;
 				$.ajax({url: "form/se-action.php",data: "op=updateassessment"+datanya,cache: false,
 					success: function(msg){
 						if(msg=="success"){
@@ -191,10 +196,11 @@ else{
 		//save background information
 		$("#save_back").click(function(){
 				var file_no = $("#file_no").val(),
+					se_id= $("#se_id").val(),
 					back1 = $("#back1").val(),
 					back2 = $("#back2").val();
 					
-				var datanya = "&file_no="+file_no+"&value="+back1+";"+back2;
+				var datanya = "&se_id="+se_id+"&file_no="+file_no+"&value="+back1+";"+back2;
 				$.ajax({url: "form/se-action.php",data: "op=saveback"+datanya,cache: false,
 					success: function(msg){
 						if(msg=="success"){
@@ -210,6 +216,7 @@ else{
 		//save living condition A. General
 		$("#save_living_a").click(function(){
 			var file_no = $("#file_no").val(),
+				se_id= $("#se_id").val(),
 				room_1 = $("#room_1:checked").length,room_2 = $("#room_2:checked").length,room_3 = $("#room_3:checked").length,room_4 = $("#room_4:checked").length,room_5 = $("#room_5:checked").length,room_6 = $("#room_6:checked").length,room_7 = $("#room_7:checked").length,room_8 = $("#room_8:checked").length,room_9 = $("#room_9:checked").length,room_10 = $("#room_10:checked").length,room_11 = $("#room_11:checked").length;
 				
 			var	furni_1=$("#furni_1:checked").length,furni_2=$("#furni_2:checked").length,furni_3=$("#furni_3:checked").length,furni_4=$("#furni_4:checked").length,furni_5=$("#furni_5:checked").length,furni_6=$("#furni_6:checked").length,furni_7=$("#furni_7:checked").length,furni_8=$("#furni_8:checked").length,furni_9=$("#furni_9:checked").length,furni_10=$("#furni_10:checked").length,furni_11=$("#furni_11:checked").length,furni_12=$("#furni_12:checked").length,furni_13=$("#furni_13:checked").length,furni_14=$("#furni_14:checked").length,furni_15=$("#furni_15:checked").length,furni_16=$("#furni_16:checked").length,furni_17=$("#furni_17:checked").length,furni_18=$("#furni_18:checked").length,furni_19=$("#furni_19:checked").length,furni_20=$("#furni_20:checked").length,furni_21=$("#furni_21:checked").length;
@@ -235,7 +242,7 @@ else{
 			
 			var phnn = $("#police").val()+";"+$("#health").val()+";"+$("#notes2").val()+";"+$("#person_living").val();
 			
-			var datanya = "&file_no="+file_no+"&living_env="+living_env+"&living_cond="+living_cond+"&sec_neigh="+sec_neigh+"&phnn="+phnn;
+			var datanya = "&se_id="+se_id+"&file_no="+file_no+"&living_env="+living_env+"&living_cond="+living_cond+"&sec_neigh="+sec_neigh+"&phnn="+phnn;
 			
 				$.ajax({url: "form/se-action.php",data: "op=savelivinga"+datanya,cache: false,
 					success: function(msg){
@@ -254,6 +261,7 @@ else{
 		//save living condition B. PERSON WITH SPECIFIC NEEDS
 		$("#save_living_b").click(function(){
 			var file_no = $("#file_no").val(),
+				se_id = $("#se_id").val(),
 				vulne = $("#vulne").val(),
 				u_minor = $('input:radio[name=unaccompanied_minors]:checked').val(),
 				u_minor_text = $("#unaccompanied_minors_text").val(),
@@ -266,7 +274,7 @@ else{
 				protect = $("#protect").val();
 			var child = u_minor+","+u_minor_text+","+separated+","+separated_text+","+remarks_child+","+child_1+","+child_2+","+child_3;
 			var child_protect = child+";"+protect;
-			var datanya = "&file_no="+file_no+"&vulne="+vulne+"&child_protect="+child_protect;
+			var datanya = "&se_id="+se_id+"&file_no="+file_no+"&vulne="+vulne+"&child_protect="+child_protect;
 			
 			
 				$.ajax({url: "form/se-action.php",data: "op=savelivingb"+datanya,cache: false,
@@ -289,6 +297,7 @@ else{
 		//Support System
 		$("#save_support").click(function(){
 			var file_no = $("#file_no").val(),
+				se_id = $("#se_id").val(),
 				house_1 = $("#house_1").val(),
 				house_2 = $("#house_2").val(),
 				house_3 = $("#house_3").val(),
@@ -303,7 +312,7 @@ else{
 				com1 = $("#support_comment_1").val(),
 				com2 = $("#support_comment_2").val(),
 				com = com1+","+com2,
-				datanya = "&file_no="+file_no+"&support="+house+";"+expe+";"+com;
+				datanya = "&se_id="+se_id+"&file_no="+file_no+"&support="+house+";"+expe+";"+com;
 				
 				$.ajax({url: "form/se-action.php",data: "op=savefinanciala"+datanya,cache: false,
 					success: function(msg){
@@ -320,12 +329,12 @@ else{
 		});
 		//recommend
 		$("#save_recommend").click(function(){
-			var	file_no = $("#file_no").val(),
+			var	file_no = $("#file_no").val(), se_id = $("#se_id").val(),
 				ahr = $('input:radio[name=radioahr]:checked').val(),
 				ar = $('input:radio[name=radioar]:checked').val(),
 				anr = $('input:radio[name=radioanr]:checked').val(),
 				final_remarks = $("#final_remarks").val(),
-				datanya = "&file_no="+file_no+"&recommend="+ahr+";"+ar+";"+anr+";"+final_remarks;
+				datanya = "&se_id="+se_id+"&file_no="+file_no+"&recommend="+ahr+";"+ar+";"+anr+";"+final_remarks;
 				
 				$.ajax({url: "form/se-action.php",data: "op=savefinancialb"+datanya,cache: false,
 					success: function(msg){
@@ -342,12 +351,12 @@ else{
 		
 		//verified
 		$("#save_verification").click(function(){
-			var	file_no = $("#file_no").val(),
+			var	file_no = $("#file_no").val(), se_id = $("#se_id").val(),
 				ver_name = $("#ver_name").val(),
 				ver_sig = $("#ver_sig").val(),
 				ver_date = $("#ver_date").val(),
 				ver_remarks = $("#ver_remarks").val(),
-				datanya = "&file_no="+file_no+"&verification="+ver_name+";"+ver_sig+";"+ver_date+";"+ver_remarks;
+				datanya = "&se_id="+se_id+"&file_no="+file_no+"&verification="+ver_name+";"+ver_sig+";"+ver_date+";"+ver_remarks;
 				$.ajax({url: "form/se-action.php",data: "op=saveverification"+datanya,cache: false,
 					success: function(msg){
 						if(msg=="success"){
@@ -374,7 +383,7 @@ else{
 		<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseDate">Assessment Remaks</a>
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseDate"><?php if(isset($_GET['a'])){echo "Re-Assessment";}else{echo "Assessment";} ?> Remaks</a>
 			</h4>
 		</div>
 		<div id="collapseDate" class="panel-collapse collapse in">
@@ -382,7 +391,7 @@ else{
 			<div class="col-lg-12 hidden">
 					<label class="radio-inline"><input type="radio" name="id_data" value="0" <?php if(empty($_GET['a'])){echo "checked";}?> >New </label>
 					<label class="radio-inline"><input type="radio" name="id_data" value="1" <?php if(isset($_GET['a'])){echo "checked";}?>>Reassesment </label>
-					<hr>
+					<input id="se_id" value="<?php if($edit==1){echo $_GET['se_id'];}?>">
 			</div>
 			<div class="col-lg-4">
 				<div class="form-group">
