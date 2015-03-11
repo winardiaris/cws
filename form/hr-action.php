@@ -1,7 +1,9 @@
 <?php
 $file_id = 6;
 include ("../inc/conf.php");
+include ("function.php");
 $op = $_GET['op'];
+
 
 if($op == "check"){
 	$file_no = $_GET['file_no'];
@@ -46,16 +48,25 @@ elseif($op=="getData"){
 	while($d = mysql_fetch_array($q2)){
 		$pecah = explode(";",$d['value']);
 		$name2 = $pecah[0];
-		echo '<option value="'.$d['id'].'">'.$name2.'</option>';
+		echo '<option value="'.$file_no.".".$d['id'].'">'.$name2.'</option>';
 	}
 }
+elseif($op=="getHRData"){
+	$hr_id = $_GET['hr_id'];
+	$person_id = $_GET['person_id'];
+	$q = mysql_query("SELECT * FROM `hr_data` WHERE  `hr_id`='$hr_id' AND `person_id`='$person_id'")or die(mysql_error());
+	$d = mysql_fetch_array($q);
+	
+	echo Balikin($d['situation'])."|||".Balikin($d['hr1'])."|||".Balikin($d['hr2'])."|||".Balikin($d['hr3'])."|||".Balikin($d['hr4'])."|||".Balikin($d['hr5'])."|||".Balikin($d['hr6'])."|||".Balikin($d['hr7']);
+}
+
 elseif($op=="save_basic"){
 	$file_no = $_GET['file_no'];
 	$report_date = $_GET['report_date'];
-	$location = $_GET['location'];
-	$ics = $_GET['ics'];
+	$location = UbahSimbol($_GET['location']);
+	$ics = UbahSimbol($_GET['ics']);
 	$id_data = $_GET['id_data'];
-	$reported = $_GET['reported'];
+	$reported = UbahSimbol($_GET['reported']);
 	$save = mysql_query("
 				INSERT INTO `hr` (`file_no`,`id_data`,`report_date`,`location`,`ics`,`reported`,`created`) 
 				VALUES('$file_no','$id_data','$report_date','$location','$ics','$reported','$NOW');"
@@ -64,12 +75,25 @@ elseif($op=="save_basic"){
 	if($save){echo "success";}
 	else{echo "error";}
 }
-
 elseif($op=="update_basic"){
 	$file_no = $_GET['file_no'];
 	$report_date = $_GET['report_date'];
-	$value = htmlspecialchars($_GET['value']);
-	$save = mysql_query("UPDATE `hr` SET `report_date`='$report_date', `basic`='$value', `last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1' ;") or die(mysql_error());
+	$location = UbahSimbol($_GET['location']);
+	$ics = UbahSimbol($_GET['ics']);
+	$id_data = $_GET['id_data'];
+	$reported = UbahSimbol($_GET['reported']);
+	$hr_id = $_GET['hr_id'];
+	$save = mysql_query("
+				UPDATE  `hr` SET 
+				`id_data`='$id_data',
+				`report_date`='$report_date',
+				`location`='$location',
+				`ics`='$ics',
+				`reported`='$reported',
+				`last_change`='$NOW' 
+				WHERE `file_no`='$file_no'
+				AND `hr_id`='$hr_id'"
+			) or die(mysql_error());
 	
 	if($save){echo "success";}
 	else{echo "error";}
@@ -79,8 +103,8 @@ elseif($op=="save_hr1"){
 	$hr_id = $_GET['hr_id'];
 	$person_id=$_GET['person_id']; $id_data = $_GET['id_data'];
 	
-	$situation = $_GET['situation'];
-	$val = $_GET['val'];
+	$situation = UbahSimbol($_GET['situation']);
+	$val = UbahSimbol($_GET['val']);
 	
 	$cek = mysql_query("SELECT * FROM `hr_data` WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_errno());
 	$ada = mysql_num_rows($cek);
@@ -100,8 +124,8 @@ elseif($op=="save_hr1"){
 elseif($op=="save_hr2"){
 	$hr_id = $_GET['hr_id'];
 	$person_id=$_GET['person_id']; $id_data = $_GET['id_data'];
-	$situation = $_GET['situation'];
-	$val = $_GET['val'];
+	$situation = UbahSimbol($_GET['situation']);
+	$val = UbahSimbol($_GET['val']);
 	
 	$cek = mysql_query("SELECT * FROM `hr_data` WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_errno());
 	$ada = mysql_num_rows($cek);
@@ -121,8 +145,8 @@ elseif($op=="save_hr2"){
 elseif($op=="save_hr3"){
 	$hr_id = $_GET['hr_id'];
 	$person_id=$_GET['person_id']; $id_data = $_GET['id_data'];
-	$situation = $_GET['situation'];
-	$val = $_GET['val'];
+	$situation = UbahSimbol($_GET['situation']);
+	$val = UbahSimbol($_GET['val']);
 	
 	$cek = mysql_query("SELECT * FROM `hr_data` WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_errno());
 	$ada = mysql_num_rows($cek);
@@ -142,8 +166,8 @@ elseif($op=="save_hr3"){
 elseif($op=="save_hr4"){
 	$hr_id = $_GET['hr_id'];
 	$person_id=$_GET['person_id']; $id_data = $_GET['id_data'];
-	$situation = $_GET['situation'];
-	$val = $_GET['val'];
+	$situation = UbahSimbol($_GET['situation']);
+	$val = UbahSimbol($_GET['val']);
 	
 	$cek = mysql_query("SELECT * FROM `hr_data` WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_errno());
 	$ada = mysql_num_rows($cek);
@@ -163,8 +187,8 @@ elseif($op=="save_hr4"){
 elseif($op=="save_hr5"){
 	$hr_id = $_GET['hr_id'];
 	$person_id=$_GET['person_id']; $id_data = $_GET['id_data'];
-	$situation = $_GET['situation'];
-	$val = $_GET['val'];
+	$situation = UbahSimbol($_GET['situation']);
+	$val = UbahSimbol($_GET['val']);
 	
 	$cek = mysql_query("SELECT * FROM `hr_data` WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_errno());
 	$ada = mysql_num_rows($cek);
@@ -184,8 +208,8 @@ elseif($op=="save_hr5"){
 elseif($op=="save_hr6"){
 	$hr_id = $_GET['hr_id'];
 	$person_id=$_GET['person_id']; $id_data = $_GET['id_data'];
-	$situation = $_GET['situation'];
-	$val = $_GET['val'];
+	$situation = UbahSimbol($_GET['situation']);
+	$val = UbahSimbol($_GET['val']);
 	
 	$cek = mysql_query("SELECT * FROM `hr_data` WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_errno());
 	$ada = mysql_num_rows($cek);
@@ -205,8 +229,8 @@ elseif($op=="save_hr6"){
 elseif($op=="save_hr7"){
 	$hr_id = $_GET['hr_id'];
 	$person_id=$_GET['person_id']; $id_data = $_GET['id_data'];
-	$situation = $_GET['situation'];
-	$val = $_GET['val'];
+	$situation = UbahSimbol($_GET['situation']);
+	$val = UbahSimbol($_GET['val']);
 	
 	$cek = mysql_query("SELECT * FROM `hr_data` WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_errno());
 	$ada = mysql_num_rows($cek);
@@ -229,5 +253,4 @@ elseif($op == "del"){
 	if($del){echo "success";}
 	else{echo "error";}
 }
-
 ?>

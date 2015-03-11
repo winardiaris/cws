@@ -33,7 +33,7 @@ setHistory($_SESSION['user_id'],"se_data","Open SE Data",$NOW);
 		</div>
 	</div>
 	<div class="col-lg-12">
-		<div class="table-responsive">
+		<div class="">
 			<table class="table table-bordered table-hover table-striped" id="dataTables">
 				<thead>
 				<tr>

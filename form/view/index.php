@@ -63,7 +63,7 @@ $(document).ready(function(){
 	$("#hr").change(function(){
 		if($(this).is(":checked")){
 			thr.show();
-			thr.load("view-hr.php?file_no="+file_no);
+			thr.load("view-hr-all.php?file_no="+file_no);
 		}
 		else{thr.hide();} 
 	});

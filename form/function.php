@@ -76,36 +76,64 @@ function getWhoLastChange($file_no,$location){
 	}
 }
 
-function balikinSimbol($str){
-	$search = array ("'xpetiksatux'",
-						"'xpetikx'",
+function UbahSimbol($str){
+	$str = trim(htmlentities(htmlspecialchars($str)));
+	$search = array ("'\''",
+						"'%'",
+						"'@'",
+						"'_'",
+						"'1=1'",
+						"'/'",
+						"'!'",
+						"'<'",
+						"'>'",
+						"'\('",
+						"'\)'",
+						"';'",
+						"'-'",
+						"'_'");
+
+	$replace = array ("xpsijix",
+						"xpersenx",
+						"xtkeongx",
+						"xgwahx",
+						"x1smdgan1x",
+						"xgmringx",
+						"xpentungx",
+						"xkkirix",
+						"xkkananx",
+						"xkkurix",
+						"xkkurnanx",
+						"xkommax",
+						"xstrix",
+						"xstripbwhx");
+
+	$str = preg_replace($search,$replace,$str);
+	return $str;
+	
+}
+function Balikin($str){
+	$search = array ("'xpsijix'",
 						"'xpersenx'",
-						"'xkeongx'",
+						"'xtkeongx'",
 						"'xgwahx'",
-						"'x1smdg1x'",
-						"'xgaringx'",
-						"'xgaring2x'",
-						"'xserux'",
+						"'x1smdgan1x'",
+						"'xgmringx'",
+						"'xpentungx'",
 						"'xkkirix'",
 						"'xkkananx'",
 						"'xkkurix'",
 						"'xkkurnanx'",
-						"'xkomax'",
-						"'xstripx'",
-						"'xtitikx'",
-						"'xpetiksatux'",
-						"'xpetikduax'",
-						"'xcacingx'",
-					);
+						"'xkommax'",
+						"'xstrix'",
+						"'xstripbwhx'");
 
 	$replace = array ("'",
-						"`",
 						"%",
 						"@",
 						"_",
 						"1=1",
 						"/",
-						"\\",
 						"!",
 						"<",
 						">",
@@ -113,11 +141,7 @@ function balikinSimbol($str){
 						")",
 						";",
 						"-",
-						".",
-						"'",
-						"\"",
-						"~",
-					);
+						"_");
 
 	$str = preg_replace($search,$replace,$str);
 

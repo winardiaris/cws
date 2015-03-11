@@ -32,7 +32,7 @@ include("form/navigasi.php") ;
 		</div>
 	</div>
 	<div class="col-lg-12">
-		<div class="table-responsive">
+		<div class="">
 			<table class="table table-striped table-bordered table-hover" id="dataTables">
 				<thead>
 				<tr>
@@ -74,9 +74,14 @@ include("form/navigasi.php") ;
 								  </button>
 								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 								   <li role="presentation">
-										<a role="menuitem" tabindex="-1" href="form/view/view.php?op=hr&file_no='.$data['file_no'].'"  title="View '.$file_no.'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-eye"></i> View</a></li>
-								   <li role="presentation">
-										<a role="menuitem" tabindex="-1" href="?page=hr-form&op=edit&file_no='.$data['file_no'].'"><i class="fa fa-edit"></i> Edit</a></li>
+										<a role="menuitem" tabindex="-1" href="form/view/view.php?op=hr&file_no='.$data['file_no'].'&id='.$data['hr_id'].'"  title="View '.$file_no.'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-eye"></i> View this</a></li>';
+									if($_GET['a']==1){
+										echo '<li role="presentation">
+										<a role="menuitem" tabindex="-1" href="form/view/view.php?op=hr&file_no='.$data['file_no'].'&a=all"  title="View '.$file_no.'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-eye"></i> View all</a></li>';
+										
+									}
+								  echo' <li role="presentation">
+										<a role="menuitem" tabindex="-1" href="?page=hr-form&op=edit&file_no='.$data['file_no'].'&hr_id='.$data['hr_id'].'"><i class="fa fa-edit"></i> Edit</a></li>
 								   <li role="presentation">
 										<a role="menuitem" tabindex="-1" class="delete text-danger" href="" id="'.$data['file_no'].'"><i class="fa fa-trash"></i> Delete</a>
 									</li>
@@ -87,8 +92,8 @@ include("form/navigasi.php") ;
 							<td>'.$data['file_no'].'</td>
 							<td>'.$data['name'].'</td>
 							<td>'.$data['report_date'].'</td>
-							<td>'.$data['reported'].'</td>
-							<td>'.$data['location'].'</td>						
+							<td>'.Balikin($data['reported']).'</td>
+							<td>'.Balikin($data['location']).'</td>						
 						</tr>
 						';
 					}

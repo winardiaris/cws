@@ -29,8 +29,11 @@ if(isset($_GET['op'])){
 	elseif($op=="bia"){
 		echo "<script>$(document).ready(function(){ $('#page-print').load('view-bia.php?file_no=".$file_no."');});</script>";
 	}
-	elseif($op=="hr"){
-		echo "<script>$(document).ready(function(){ $('#page-print').load('view-hr.php?file_no=".$file_no."');});</script>";
+	elseif($op=="hr" AND $a =="all"){
+		echo "<script>$(document).ready(function(){ $('#page-print').load('view-hr-all.php?&file_no=".$file_no."');});</script>";
+	}
+	elseif($op=="hr" AND $a ==""){
+		echo "<script>$(document).ready(function(){ $('#page-print').load('view-hr.php?id=".$id."&file_no=".$file_no."');});</script>";
 	}
 	
 }
