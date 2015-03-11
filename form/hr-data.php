@@ -25,6 +25,13 @@ include("form/navigasi.php") ;
 <div class="row">
 	<div class="col-lg-12"><h3 class="page-header">Data Health Report</h3></div>
 	<div class="col-lg-12">
+		<div class="navbar">
+			<div class="btn-group">
+				<a href="?page=hr-data&a=1"  class="btn btn-sm btn-primary <?php if($_GET['a']==1){ echo "active";}?> "> First Assessment</a>
+				<a href="?page=hr-data&a=2"  class="btn btn-sm btn-primary <?php if($_GET['a']==2){ echo "active";}?>"> Re-Assessment</a>
+		</div>
+	</div>
+	<div class="col-lg-12">
 		<div class="table-responsive">
 			<table class="table table-striped table-bordered table-hover" id="dataTables">
 				<thead>
@@ -33,7 +40,7 @@ include("form/navigasi.php") ;
 					<th >No.</th>
 					<th>File No</th>
 					<th>Name</th>
-					<th>Report Date</th>
+					<th>Report Date </th>
 					<th>Reported</th>
 					<th>Location</th>
 				</tr>
@@ -41,11 +48,23 @@ include("form/navigasi.php") ;
 				<tbody>
 				<?php
 					$no = 0;
-					$qry = mysql_query("SELECT `hr`.`file_no`, `person`.`name`,`hr`.`report_date`, `hr`.`basic` FROM `hr`
-										INNER JOIN `person` ON `hr`.`file_no` = `person`.`file_no` WHERE `hr`.`status`='1'") or die(mysql_error());
+					if($_GET['a']==1){
+						$qry = mysql_query("
+							SELECT `hr`.`hr_id`,`hr`.`file_no`, `person`.`name`,`hr`.`report_date`, `hr`.`location` ,`hr`.`reported` 
+							FROM `hr`
+							INNER JOIN `person` ON `hr`.`file_no` = `person`.`file_no` WHERE `hr`.`status`='1' AND `hr`.`id_data`='0'") or die(mysql_error());
+					}
+					elseif($_GET['a']==2){
+						 $qry = mysql_query("
+							SELECT `hr`.`hr_id`,`hr`.`file_no`, `person`.`name`,`hr`.`report_date`, `hr`.`location` ,`hr`.`reported` 
+							FROM `hr`
+							INNER JOIN `person` ON `hr`.`file_no` = `person`.`file_no` WHERE `hr`.`status`='1' AND `hr`.`id_data`='1'") or die(mysql_error());
+					}
+					else{
+						header("location:?page=hr-data&a=1");
+					}
 					while($data=mysql_fetch_array($qry)){
 						$no++;
-						$basic=explode(";",$data['basic']);
 						echo'
 						<tr>
 							<td width="10px">
@@ -68,8 +87,8 @@ include("form/navigasi.php") ;
 							<td>'.$data['file_no'].'</td>
 							<td>'.$data['name'].'</td>
 							<td>'.$data['report_date'].'</td>
-							<td>'.$basic[2].'</td>
-							<td>'.$basic[0].'</td>						
+							<td>'.$data['reported'].'</td>
+							<td>'.$data['location'].'</td>						
 						</tr>
 						';
 					}

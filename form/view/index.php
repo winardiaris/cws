@@ -10,50 +10,90 @@ include("../function.php") ;
 	<link href="<?php echo $URL ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<?php
-		if(isset($_POST['file_no'])){
-			$j = count($_POST['view']);
-			for($i=0;$i<$j;$i++){
-				$view = $view.";".$_POST['view'][$i];
-				$pecah = explode(";",substr($view,1,strlen($view)));
-				
-				$a = $a."$('#content').append('<div id=\"o".$i."\" ></div>'); $('#o".$i."').load('".$pecah[$i]."?file_no=".$_GET['file_no']."');";
-			}
-			echo "<script>
-					$(document).ready(function(){
-						".$a."
-					});
-				</script>";
+<script>
+$(document).ready(function(){
+	var 	content = $("#content"),
+			file_no = $("#file_no").val(),
+			id = $("#id").val(),
+			tperson = $("#tperson"),
+			tia = $("#tia"),
+			tse = $("#tse"),
+			tbia = $("#tbia"),
+			thr = $("#thr");
+
+		
+		tperson.load("view-personal.php?file_no="+file_no);
+		tia.hide();
+		tse.hide();
+		tbia.hide();
+		thr.hide();
+
+
+
+
+
+	$("#person").change(function(){
+		if($(this).is(":checked")){
+			tperson.show();
+			tperson.load("view-personal.php?file_no="+file_no);
 		}
-		else{
-			$a = "$('#content').append('<div id=\"oo\" ></div>'); $('#oo').load('view-personal.php?file_no=".$_GET['file_no']."');";
-			echo "<script>
-					$(document).ready(function(){
-						".$a."
-					});
-				</script>";
+		else{tperson.hide();} 
+	});
+	$("#ia").change(function(){
+		if($(this).is(":checked")){
+			tia.show();
+			tia.load("view-ia.php?file_no="+file_no);
 		}
-	?>
+		else{tia.hide();} 
+	});
+	$("#se").change(function(){
+		if($(this).is(":checked")){
+			tse.show();
+			tse.load("view-se-person.php?file_no="+file_no+"&id="+id);
+		}
+		else{tse.hide();} 
+	});
+	$("#bia").change(function(){
+		if($(this).is(":checked")){
+			tbia.show();
+			tbia.load("view-bia.php?file_no="+file_no);
+		}
+		else{tbia.hide();} 
+	});
+	$("#hr").change(function(){
+		if($(this).is(":checked")){
+			thr.show();
+			thr.load("view-hr.php?file_no="+file_no);
+		}
+		else{thr.hide();} 
+	});
 	
-<form method="post" action="?file_no=<?php if(isset($_GET['file_no'])){ echo $_GET['file_no'];} ?>">
+
+	
+});
+
+	
+</script>
+
 	<div class="checkbox atas">
-		<label class="checkbox-inline"><input type="checkbox" name="view[]" id="view[]" value="view-personal.php"   <?php if(isset($_POST['file_no'])){if($pecah[0]=="view-personal.php" OR $pecah[1]=="view-personal.php" OR $pecah[2]=="view-personal.php" OR $pecah[3]=="view-personal.php" OR $pecah[4]=="view-personal.php" ){ echo "checked";} } ?>> Personal</label>
-		
-		<label class="checkbox-inline"><input type="checkbox" name="view[]" id="view[]" value="view-ia.php"  <?php if(isset($_POST['file_no'])){if($pecah[0]=="view-ia.php" OR $pecah[1]=="view-ia.php" OR $pecah[2]=="view-ia.php" OR $pecah[3]=="view-ia.php" OR $pecah[4]=="view-ia.php" ){ echo "checked";} } ?>> IA </label>
-		
-		<label class="checkbox-inline"><input type="checkbox" name="view[]" id="view[]" value="view-se.php" <?php if(isset($_POST['file_no'])){if($pecah[0]=="view-se.php" OR $pecah[1]=="view-se.php" OR $pecah[2]=="view-se.php" OR $pecah[3]=="view-se.php" OR $pecah[4]=="view-se.php" ){ echo "checked";} } ?> > SE </label>
-		
-		<label class="checkbox-inline"><input type="checkbox" name="view[]" id="view[]" value="view-bia.php" <?php if(isset($_POST['file_no'])){if($pecah[0]=="view-bia.php" OR $pecah[1]=="view-bia.php" OR $pecah[2]=="view-bia.php" OR $pecah[3]=="view-bia.php" OR $pecah[4]=="view-bia.php" ){ echo "checked";} } ?>> BIA </label>
-		
-		<label class="checkbox-inline"><input type="checkbox" name="view[]" id="view[]" value="view-hr.php" <?php if(isset($_POST['file_no'])){if($pecah[0]=="view-hr.php" OR $pecah[1]=="view-hr.php" OR $pecah[2]=="view-hr.php" OR $pecah[3]=="view-hr.php" OR $pecah[4]=="view-hr.php" ){ echo "checked";} } ?> > HR </label>
-		
+		<label class="checkbox-inline"><input type="checkbox" id="person" checked> Personal </label>
+		<label class="checkbox-inline"><input type="checkbox" id="ia" > IA </label>
+		<label class="checkbox-inline"><input type="checkbox" id="se" > SE </label>
+		<label class="checkbox-inline"><input type="checkbox" id="bia" > BIA </label>
+		<label class="checkbox-inline"><input type="checkbox" id="hr" > HR </label>
 		<input type="hidden" id="file_no" name="file_no" value="<?php if(isset($_GET['file_no'])){ echo $_GET['file_no'];} ?>" >
-		<button type="submit" class="btn btn-sm btn-default" id="ok" >View</button>
+		<input type="hidden" id="id" name="id" value="<?php if(isset($_GET['id'])){ echo $_GET['id'];} ?>" >
+		<button class="print btn btn-sm btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
 	</div>
-	</form>
+
 <div id="page-print">
-	<button class="print btn btn-sm btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
+	
 	<div id="content">
+	<div id="tperson"></div>
+	<div id="tia"></div>
+	<div id="tse"></div>
+	<div id="tbia"></div>
+	<div id="thr"></div>
 	</div>
 </div>
 </body>

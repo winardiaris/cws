@@ -75,7 +75,8 @@ $(document).ready(function(){
 			<li id="M1011" <?php if($_GET['page']=="hr-form" OR $_GET['page']=="hr-data") echo " class='active'"; ?>>
 				<a href="#" title="Health Report"><i class="fa fa-medkit fa-fw" ></i> HR<span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">
-					<li id="M10"><a href="?page=hr-form" <?php if($_GET['page']=="hr-form") echo " class='active'"; ?>><i class="fa fa-list-alt"></i> Form</a></li>
+					<li id="M10"><a href="?page=hr-form" <?php if($_GET['page']=="hr-form" AND empty($_GET['a'])) echo " class='active'"; ?>><i class="fa fa-plus"></i> Add New</a></li>
+					<li id="M10"><a href="?page=hr-form&a=reassessment" <?php if($_GET['page']=="hr-form" AND isset($_GET['a'])) echo " class='active'"; ?>><i class="fa fa-list-alt"></i> Re-assessment</a></li>
 					<li id="M11"><a href="?page=hr-data" <?php if($_GET['page']=="hr-data") echo " class='active'"; ?>><i class="fa fa-table"></i> Data</a></li>
 				</ul><!-- /.nav-second-level -->
 			</li>

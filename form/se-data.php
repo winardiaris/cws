@@ -10,8 +10,6 @@ setHistory($_SESSION['user_id'],"se_data","Open SE Data",$NOW);
 					se_id = $(this).attr("id"),
 					datanya="&file_no="+file_no+"&se_id="+se_id;	
 			var r = confirm("Remove ["+file_no+"]? ");
-			
-			
 			if (r == true) {
 				$.ajax({url:"form/se-action.php",data:"op=del"+datanya,cache:false,success: function(msg){
 					if(msg=="success"){
@@ -36,7 +34,7 @@ setHistory($_SESSION['user_id'],"se_data","Open SE Data",$NOW);
 	</div>
 	<div class="col-lg-12">
 		<div class="table-responsive">
-			<table class="table table-bordered table-hover table-stiped" id="dataTables">
+			<table class="table table-bordered table-hover table-striped" id="dataTables">
 				<thead>
 				<tr>
 					<th></th>
@@ -84,8 +82,13 @@ setHistory($_SESSION['user_id'],"se_data","Open SE Data",$NOW);
 								  </button>
 								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 								   <li role="presentation">
-										<a role="menuitem" tabindex="-1" href="form/view/view.php?op=se&file_no='.$data['file_no'].'"  title="View '.$file_no.'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-eye"></i> View</a></li>
-								   <li role="presentation">
+										<a role="menuitem" tabindex="-1" href="form/view/view.php?op=se&file_no='.$data['file_no'].'&id='.$data['se_id'].'"  title="View '.$file_no.'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-eye"></i> View this</a></li> ';
+								   if($_GET['a']==1){
+										echo '<li role="presentation">
+										<a role="menuitem" tabindex="-1" href="form/view/view.php?op=se&file_no='.$data['file_no'].'&a=all"  title="View '.$file_no.'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-eye"></i> View all</a></li>';
+										
+									}
+								   echo'<li role="presentation">
 										<a role="menuitem" tabindex="-1" href="?page=se-form&op=edit&file_no='.$data['file_no'].'&se_id='.$data['se_id'].'"><i class="fa fa-edit"></i> Edit</a></li>
 								   <li role="presentation">
 										<a role="menuitem" tabindex="-1" class="delete text-danger" href="" data="'.$data['file_no'].'" id="'.$data['se_id'].'"><i class="fa fa-trash"></i> Delete</a>

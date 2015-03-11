@@ -31,10 +31,11 @@ function getData($file_no){
 		$str .="<a href='?page=ia-form&op=edit&file_no=$file_no'>IA</a>, ";
 	}
 	
-	$qse =mysql_query("SELECT count(*) AS `ada` FROM `se` WHERE `file_no`='$file_no' AND `status`='1' ")or die(mysql_error());
+	$qse =mysql_query("SELECT `se_id` FROM `se` WHERE `file_no`='$file_no' AND `status`='1' ORDER BY `doa` DESC ")or die(mysql_error());
+	$ada = mysql_num_rows($qse);
 	$data2 =mysql_fetch_array($qse);
-	if($data2['ada']>0){
-		$str .="<a href='?page=se-form&op=edit&file_no=$file_no'>SE</a>, ";
+	if($ada>0){
+		$str .="<a href='?page=se-form&op=edit&file_no=$file_no&se_id=".$data2['se_id']."'>SE</a>, ";
 	}
 	
 	$qbia =mysql_query("SELECT count(*) AS `ada` FROM `bia` WHERE `file_no`='$file_no' AND `status`='1' ")or die(mysql_error());
@@ -122,6 +123,7 @@ function balikinSimbol($str){
 
 	return $str;
  }
+
 
 
 

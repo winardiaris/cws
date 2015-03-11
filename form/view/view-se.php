@@ -1,8 +1,17 @@
 <?php
 include("../../inc/conf.php");
 include("../function.php") ;
-if(isset($_GET['file_no'])){
-	$qry = mysql_query("SELECT * FROM `se` WHERE `file_no`='".$_GET['file_no']."'") or die(mysql_error());
+?>
+<html>
+<head>
+	<link href="<?php echo $URL ?>css/bootstrap.css" rel="stylesheet">
+	<link href="<?php echo $URL ?>css/custom.css" rel="stylesheet">
+</head>
+<body>
+	
+<?php
+if(isset($_GET['file_no']) AND isset($_GET['id'])){
+	$qry = mysql_query("SELECT * FROM `se` WHERE `file_no`='".$_GET['file_no']."' AND `se_id`='".$_GET['id']."' ") or die(mysql_error());
 	$data = mysql_fetch_array($qry);
 	$count = mysql_num_rows($qry);
 	
@@ -358,4 +367,7 @@ if(isset($_GET['file_no'])){
 		
 	}	
 }
+
 ?>
+</body>
+</html>

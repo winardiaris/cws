@@ -154,7 +154,7 @@ body {
 	body{
 		font-size:9pt;
 	}
-	.print,.atas{
+	.print,.atas,#found{
 		display:none;
 	}
 	

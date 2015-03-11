@@ -4,18 +4,9 @@ include("form/navigasi.php") ;
 
 if(isset($_GET['op'])){
 	if(isset($_GET['file_no'])){
-		$qry = mysql_query("SELECT * FROM `hr` WHERE `file_no`='".$_GET['file_no']."' AND `status`='1'") or die(mysql_error());
-		$data = mysql_fetch_array($qry);
-		$basic = explode(";",$data['basic']);
-		
 		$file_no = $_GET['file_no'];
-		$qry2=mysql_query("	SELECT  `person`.`name`,`master_country`.`country_name` AS `coo` ,`person`.`phone`,`person`.`dob`,`person`.`sex`,`person`.`status`
-						FROM `person`
-						INNER JOIN `master_country` ON `person`.`coo` = `master_country`.`country_id`	 WHERE `person`.`file_no`='$file_no'") or die(mysql_error());
-		$data2=mysql_fetch_array($qry2);
-		
-		
-		
+		//$qry2=mysql_query(" ") or die(mysql_error());
+		//$data2=mysql_fetch_array($qry2);
 		
 		
 		$button = '<button class="btn btn-success" id="update_hr1"><i class="fa fa-refresh"></i> Update</button>';
@@ -29,143 +20,168 @@ else{
 	
 ?>
 <script>
-	$(document).ready(function(){
-		$("#file_no_list").load("form/hr-action.php","op=find&find="+$(this).val());
-		
-		$("#file_no").keyup(function(){
-			$("#value").load("form/hr-action.php","op=getdata&file_no="+$(this).val());
-		})	
-		.change(function() {
-			$("#value").load("form/hr-action.php","op=getdata&file_no="+$(this).val());
-			
-			var datanya = "&file_no="+$(this).val();
-			$.ajax({url: "form/hr-action.php",data: "op=check"+datanya,cache: false,
-				success: function(msg){
-					if(msg=="inuse"){
-						$("#a").addClass("text-warning").removeClass("text-success text-danger").html("<i class='fa fa-warning'></i> In use");
-					}
-					else if(msg=="avail"){
-						$("#a").addClass("text-success").removeClass("text-danger text-warning").html("<i class='fa fa-check'></i> Available");
-					}
-					else{
-						$("#a").addClass("text-danger").removeClass("text-success text-warning").html("<i class='fa fa-warning'></i> No Data");
-					}
+$(document).ready(function(){
+   //id_data 
+	var id_data = $("input:radio[name=id_data]:checked").val();
+	
+	$("#file_no").change(function(){
+		var 	file_no = $(this).val(),
+				datanya = "&file_no="+file_no+"&id_data="+id_data;
+		$.ajax({url: "form/hr-action.php",data: "op=check"+datanya,cache: false,
+			success: function(msg){
+				if(msg=="inuse"){
+					$("#a").addClass("text-warning").removeClass("text-success text-danger").html("<i class='fa fa-warning'></i> In use");
 				}
-			});
-		});
-		$("#find").click(function(){
-			var vtext = $("#value").text();
-			vsplit = vtext.split(",");				
-			$("#name").text(vsplit[0]);
-			$("#coo").text(vsplit[1]);
-			$("#phone").text(vsplit[2]);
-			$("#adob").text(vsplit[3]);
-			$("#sex").text(vsplit[4]);
-			$("#status").text(vsplit[5]);
-		})
-		
-		//save HR 1
-		$("#save_hr1").click(function(){
-			var file_no = $("#file_no").val(),
-				report_date = $("#report_update").val(),
-				location = $("#location").val(),
-				ics = $("#ics").val(),
-				reported = $("#reported").val(),
-				situation = $("#situation").val();
-			var datanya = "&file_no="+file_no+"&report_date="+report_date+"&value="+location+";"+ics+";"+reported+";"+situation;
-			if(file_no == ""){
-				alert("Please insert File No");
-				$("#file_no").val("").focus();
-			}
-			else if($("#a").hasClass("text-warning")){
-				alert("File Number in use");
-				$("#file_no").val("").focus();
-			}
-			else if($("#a").hasClass("text-danger")){
-				var r = confirm("No Data for ["+file_no+"], Add new Data?");
-				if (r == true) {window.location="?page=person-form";} 
-				else {$("#file_no").val("").focus();}
-			}
-			else if(report_date == ""){
-				alert("Please insert Report Update");
-				$("#report_update").focus();
-			}
-			else if(location == ""){
-				alert("Please insert Location");
-				$("#location").focus();
-			}
-			else if(reported == ""){
-				alert("Please insert Reported by");
-				$("#reported").focus();
-			}
-			
-			else{
-				$.ajax({url:"form/hr-action.php",data:"op=savehr1"+datanya,cache:false,success: function(msg){
-					if(msg=="success"){
-						alert("Data has been saved !!");
-						$("#hr2a").trigger("click");
-						$("#hr_1").focus();
-					}else{alert("Data not saved !!");}}
-				});
+				else if(msg=="avail"){
+					$("#a").addClass("text-success").removeClass("text-danger text-warning").html("<i class='fa fa-check'></i> Available");				
+					$("#family").load("form/hr-action.php","op=getData"+datanya);
+				}
+				else if(msg=="nodataperson"){
+					$("#a").addClass("text-danger").removeClass("text-success text-warning").html("<i class='fa fa-warning'></i> No Data Person");
+				}
+				else if(msg=="nodatahr"){
+					$("#a").addClass("text-danger").removeClass("text-success text-warning").html("<i class='fa fa-warning'></i> No Data HR");
+				}
 			}
 		});
-		//update HR 1
-		$("#update_hr1").click(function(){
-			var file_no = $("#file_no").val(),
-				report_date = $("#report_update").val(),
-				location = $("#location").val(),
-				ics = $("#ics").val(),
-				reported = $("#reported").val(),
-				situation = $("#situation").val();
-			var datanya = "&file_no="+file_no+"&report_date="+report_date+"&value="+location+";"+ics+";"+reported+";"+situation;
-			if(file_no == ""){
-				alert("Please insert File No");
-				$("#file_no").val("").focus();
-			}
-			else if($("#a").hasClass("text-warning")){
-				alert("File Number in use");
-				$("#file_no").val("").focus();
-			}
-			else if($("#a").hasClass("text-danger")){
-				var r = confirm("No Data for ["+file_no+"], Add new Data?");
-				if (r == true) {window.location="?page=person-form";} 
-				else {$("#file_no").val("").focus();}
-			}
-			else if(report_date == ""){
-				alert("Please insert Report Update");
-				$("#report_update").focus();
-			}
-			else if(location == ""){
-				alert("Please insert Location");
-				$("#location").focus();
-			}
-			else if(reported == ""){
-				alert("Please insert Reported by");
-				$("#reported").focus();
-			}
-			else{
-				$.ajax({url:"form/hr-action.php",data:"op=updatehr1"+datanya,cache:false,success: function(msg){
-					if(msg=="success"){
-						alert("Data has been saved !!");
-						$("#hr2a").trigger("click");
-						$("#hr_1").focus();
-					}else{alert("Data not saved !!");}}
-				});
-			}
-		});
-		
-		$("#save_hr2").click(function(){
-			var file_no=$("#file_no").val(),hr1=$("#hr_1").val(),hr2=$("#hr_2").val(),hr3=$("#hr_3").val(),hr4=$("#hr_4").val(),hr5=$("#hr_5").val(),hr6=$("#hr_6").val(),hr7=$("#hr_7").val(),
-				datanya = "&file_no="+file_no+"&hr1="+hr1+"&hr2="+hr2+"&hr3="+hr3+"&hr4="+hr4+"&hr5="+hr5+"&hr6="+hr6+"&hr7="+hr7;
-				$.ajax({url:"form/hr-action.php",data:"op=savehr2"+datanya,cache:false,success: function(msg){
-					if(msg=="success"){
-						alert("Data has been saved !!");
-						$("#hr2a").trigger("click");
-					}else{alert("Data not saved !!");}}
-				});
-		});
-		
 	});
+
+	//save HR 1
+	$("#save_hr1").click(function(){
+		var file_no = $("#file_no").val(),
+			report_date = $("#report_update").val(),
+			location = $("#location").val(),
+			ics = $("#ics").val(),
+			reported = $("#reported").val();
+		var datanya = "&file_no="+file_no+"&report_date="+report_date+"&location="+location+"&ics="+ics+"&reported="+reported+"&id_data="+id_data;
+		if(file_no == ""){
+			alert("Please insert File No");
+			$("#file_no").val("").focus();
+		}
+		else if($("#a").hasClass("text-warning")){
+			alert("File Number in use");
+			$("#file_no").val("").focus();
+		}
+		else if($("#a").hasClass("text-danger")){
+			var r = confirm("No Data for ["+file_no+"], Add new Data?");
+			if (r == true) {window.location="?page=person-form";} 
+			else {$("#file_no").val("").focus();}
+		}
+		else if(report_date == ""){
+			alert("Please insert Report Update");
+			$("#report_update").focus();
+		}
+		else if(location == ""){
+			alert("Please insert Location");
+			$("#location").focus();
+		}
+		else if(reported == ""){
+			alert("Please insert Reported by");
+			$("#reported").focus();
+		}
+		else{
+			$.ajax({url:"form/hr-action.php",data:"op=save_basic"+datanya,cache:false,success: function(msg){
+				if(msg=="success"){
+					alert("Data has been saved !!");
+					$("#hr2a").trigger("click");
+					$("#hr_1").focus();
+				}else{alert("Data not saved !!");}
+			}
+			});
+			$.ajax({url:"form/hr-action.php",data:"op=getID&file_no="+file_no,cache:false,success: function(msg){
+				$("#hr_id").val(msg);
+			}
+			});
+		}
+	});
+	
+	
+	$("#hr_1").change(function(){
+		var 	hr_id = $("#hr_id").val(),person_id = $("#family").val(),situation = $("#situation").val(),val = $(this).val();
+		datanya = "&hr_id="+hr_id+"&person_id="+person_id+"&situation="+situation+"&val="+val+"&id_data="+id_data;
+		$.ajax({url:"form/hr-action.php",data:"op=save_hr1"+datanya,cache:false,
+			beforeSend:function(){$("#thr_1").text("Saving data...")},
+			success: function(msg){
+				if(msg=="success"){$("#thr_1").text("Data Saved!!");
+				}else{alert("Data not saved !!");}
+			}
+		});
+	});
+	$("#hr_2").change(function(){
+		var 	hr_id = $("#hr_id").val(),person_id = $("#family").val(),situation = $("#situation").val(),val = $(this).val();
+		datanya = "&hr_id="+hr_id+"&person_id="+person_id+"&situation="+situation+"&val="+val+"&id_data="+id_data;
+		$.ajax({url:"form/hr-action.php",data:"op=save_hr2"+datanya,cache:false,
+			beforeSend:function(){$("#thr_2").text("Saving data...")},
+			success: function(msg){
+				if(msg=="success"){$("#thr_2").text("Data Saved!!");
+				}else{alert("Data not saved !!");}
+			}
+		});
+	});
+	$("#hr_3").change(function(){
+		var 	hr_id = $("#hr_id").val(),person_id = $("#family").val(),situation = $("#situation").val(),val = $(this).val();
+		datanya = "&hr_id="+hr_id+"&person_id="+person_id+"&situation="+situation+"&val="+val+"&id_data="+id_data;
+		$.ajax({url:"form/hr-action.php",data:"op=save_hr3"+datanya,cache:false,
+			beforeSend:function(){$("#thr_3").text("Saving data...")},
+			success: function(msg){
+				if(msg=="success"){$("#thr_3").text("Data Saved!!");
+				}else{alert("Data not saved !!");}
+			}
+		});
+	});
+	$("#hr_4").change(function(){
+		var 	hr_id = $("#hr_id").val(),person_id = $("#family").val(),situation = $("#situation").val(),val = $(this).val();
+		datanya = "&hr_id="+hr_id+"&person_id="+person_id+"&situation="+situation+"&val="+val+"&id_data="+id_data;
+		$.ajax({url:"form/hr-action.php",data:"op=save_hr4"+datanya,cache:false,
+			beforeSend:function(){$("#thr_4").text("Saving data...")},
+			success: function(msg){
+				if(msg=="success"){$("#thr_4").text("Data Saved!!");
+				}else{alert("Data not saved !!");}
+			}
+		});
+	});
+	$("#hr_5").change(function(){
+		var 	hr_id = $("#hr_id").val(),person_id = $("#family").val(),situation = $("#situation").val(),val = $(this).val();
+		datanya = "&hr_id="+hr_id+"&person_id="+person_id+"&situation="+situation+"&val="+val+"&id_data="+id_data;
+		$.ajax({url:"form/hr-action.php",data:"op=save_hr5"+datanya,cache:false,
+			beforeSend:function(){$("#thr_5").text("Saving data...")},
+			success: function(msg){
+				if(msg=="success"){$("#thr_5").text("Data Saved!!");
+				}else{alert("Data not saved !!");}
+			}
+		});
+	});	
+	$("#hr_6").change(function(){
+		var 	hr_id = $("#hr_id").val(),person_id = $("#family").val(),situation = $("#situation").val(),val = $(this).val();
+		datanya = "&hr_id="+hr_id+"&person_id="+person_id+"&situation="+situation+"&val="+val+"&id_data="+id_data;
+		$.ajax({url:"form/hr-action.php",data:"op=save_hr6"+datanya,cache:false,
+			beforeSend:function(){$("#thr_6").text("Saving data...")},
+			success: function(msg){
+				if(msg=="success"){$("#thr_6").text("Data Saved!!");
+				}else{alert("Data not saved !!");}
+			}
+		});
+	});
+	$("#hr_7").change(function(){
+		var 	hr_id = $("#hr_id").val(),person_id = $("#family").val(),situation = $("#situation").val(),val = $(this).val();
+		datanya = "&hr_id="+hr_id+"&person_id="+person_id+"&situation="+situation+"&val="+val+"&id_data="+id_data;
+		$.ajax({url:"form/hr-action.php",data:"op=save_hr7"+datanya,cache:false,
+			beforeSend:function(){$("#thr_7").text("Saving data...")},
+			success: function(msg){
+				if(msg=="success"){$("#thr_7").text("Data Saved!!");
+				}else{alert("Data not saved !!");}
+			}
+		});
+	});	
+
+	//save HR 2
+	$("#save_hr2").click(function(){
+		var r = confirm("Add new Helath Report?");
+		if (r == true) {window.location="?page=person-form";} 
+		else {$("#file_no").val("").focus();}
+	});
+
+});
 </script>
 <div id="page-wrapper">
 <div class="row">
@@ -181,6 +197,11 @@ else{
 			</div>
 			<div id="hr1" class="panel-collapse collapse in">
 			<div class="panel-body">
+				<div class="col-lg-12 ">
+					<label class="radio-inline"><input type="radio" name="id_data" value="0" <?php if(empty($_GET['a'])){echo "checked";}?> >New </label>
+					<label class="radio-inline"><input type="radio" name="id_data" value="1" <?php if(isset($_GET['a'])){echo "checked";}?>>Reassesment </label>
+					<input id="hr_id" value="<?php if($edit==1){echo $_GET['hr_id'];}?>">
+			</div>
 				<div class="col-lg-6">
 					<div class="table-responsive">
 						<table class="table table-hover">
@@ -188,16 +209,11 @@ else{
 							<tr>
 								<td width="200px"><label>File No: *</label>  <span id="a"></span></td>
 								<td>
-									<div class="input-group" >
-										<input list="file_no_list" class="form-control" id="file_no" placeholder="File No / Name" <?php if($edit==1){echo 'value="'.$data['file_no'].'" disabled';} ?>>
-										<datalist id="file_no_list"></datalist>
-										<span class="input-group-btn"><button class="btn btn-success btn-sm" id="find" title="Get data" <?php if($edit==1){echo"disabled";}?>><i class="fa fa-arrow-right"></i></button></span>
-									</div>
-									
+									<input  class="form-control" id="file_no" placeholder="File No / Name" <?php if($edit==1){echo 'value="'.$data['file_no'].'" disabled';} ?>>
 								</td>
 							</tr>
 							<tr>
-								<td><label>Report Update: *</label></td>
+								<td><label>Report Date: *</label></td>
 								<td>
 									<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
 										<input type="text" class="form-control" id="report_update"  placeholder="yyyy-mm-dd" <?php if($edit==1){echo 'value="'.$data['report_date'].'"';} ?> ><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -208,69 +224,30 @@ else{
 								<td><label>Location: *</label></td>
 								<td><input class="form-control" id="location" value="<?php if($edit==1){echo $basic[0];} ?>"></td>
 							</tr>
-							<tr>
-								<td><label>IC’s Personal information:</label></td>
-								<td><input class="form-control" id="ics" value="<?php if($edit==1){echo $basic[1];} ?>"></td>
-							</tr>
-							<tr>
-								<td><label>Reported by: *</label></td>
-								<td><input class="form-control" id="reported" value="<?php if($edit==1){echo $basic[2];} ?>"></td>
-							</tr>
 							</tbody>
-							<tfoot>
-								<tr>
-								<td colspan="2"><small>* required</small></td></tr>
-							</tfoot>
 						</table>
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="table-responsive">
-						<table class="table table-hover">
+				       <table class="table ">
 							<tbody>
-							<tr>
-								<td align="right"><label>1.</label></td>
-								<td><label>Name:</label></td>
-								<td>
-									<label id="name"><?php if($edit==1){echo $data2['name'];}?></label>
-									<span id="value" class="hidden" ></span><!-- autoload -->
-								</td>
-							</tr>
-							<tr>
-								<td align="right"><label>2.</label></td>
-								<td><label>Country of Origin:</label></td>
-								<td><label  id="coo" ><?php if($edit==1){echo $data2['coo'];}?></label></td>
-							</tr>
-							<tr>
-								<td align="right"><label>3.</label></td>
-								<td><label>Phone:</label></td>
-								<td><label id="phone" ><?php if($edit==1){echo $data2['phone'];}?></label></td>
-							</tr>
-							<tr>
-								<td align="right"><label>4.</label></td>
-								<td><label>DoB:</label></td>
-								<td><label id="adob" ><?php if($edit==1){echo $data2['dob'];}?></label></td>
-							</tr>
-							<tr>
-								<td align="right"><label>5.</label></td>
-								<td><label>Sex:</label></td>
-								<td><label id="sex" ><?php if($edit==1){echo $data2['sex'];}?></label></td>
-							</tr>
-							<tr>
-								<td align="right"><label>6.</label></td>
-								<td><label>Status:</label></td>
-								<td><label id="status" ><?php if($edit==1){echo $data2['status'];}?></label></td>
-							</tr>
-							<tr>
-								<td align="right"><label>7.</label></td>
-								<td><label>Situation:</label></td>
-								<td><input class="form-control" id="situation" value="<?php if($edit==1){echo $basic[3];} ?>"></td>
-							</tr>
+								<tr>
+									<td><label>IC’s Personal information:</label></td>
+									<td><input class="form-control" id="ics" value="<?php if($edit==1){echo $basic[1];} ?>"></td>
+								</tr>
+								<tr>
+									<td><label>Reported by: *</label></td>
+									<td><input class="form-control" id="reported" value="<?php if($edit==1){echo $basic[2];} ?>"></td>
+								</tr>
+								<tr>
+									<td colspan="2"><?php echo $button;?></td>
+								</tr>
 							</tbody>
 						</table>
 					</div>
 				</div>
-				<div class="col-lg-6"><?php echo $button;?></div>
+			
 	
 			</div>
 			</div>
@@ -285,20 +262,48 @@ else{
 			</div>
 			<div id="hr2" class="panel-collapse collapse ">
 			<div class="panel-body">
-				<label>Chronology/ Situation reported:</label>
-				<textarea rows="20" class="form-control" id="hr_1" ><?php if($edit==1){echo $data['hr1'];} ?></textarea><br>
-				<label>Action taken:</label>
-				<textarea rows="10" class="form-control" id="hr_2" ><?php if($edit==1){echo $data['hr2'];} ?></textarea><br>
-				<label>Budget estimate:</label>
-				<textarea rows="10" class="form-control" id="hr_3" ><?php if($edit==1){echo $data['hr3'];} ?></textarea><br>
-				<label>Risk happened when the recommended procedure is not conducted: </label>
-				<textarea rows="10" class="form-control" id="hr_4" ><?php if($edit==1){echo $data['hr4'];} ?></textarea><br>
-				<label>Concomitant illnesses that would affect treatment of the disease:</label>
-				<textarea rows="10" class="form-control" id="hr_5" ><?php if($edit==1){echo $data['hr5'];} ?></textarea><br>
-				<label>How long the procedure will take: </label>
-				<textarea rows="10" class="form-control" id="hr_6" ><?php if($edit==1){echo $data['hr6'];} ?></textarea><br>
-				<label>Suggestion: </label>
-				<textarea rows="10" class="form-control" id="hr_7" ><?php if($edit==1){echo $data['hr7'];} ?></textarea><br>
+				<div class="col-lg-6"><input type="text" id="hr_id" hidden>
+				<label>Health Report for: </label>
+				<select type="text" class="form-control" id="family">
+				
+				</select></div>
+				<div class="col-lg-6"><label>Situation: </label><input class="form-control" id="situation"></div>
+				
+				<br><br><br><br><br>
+				<ol>
+					<li>
+						<label>Chronology/ Situation reported:</label>
+						<textarea rows="20" class="form-control" id="hr_1" ><?php if($edit==1){echo $data['hr1'];} ?></textarea><small id="thr_1"></small><br><br>
+					</li>
+					<li>
+						<label>Action taken:</label>
+						<textarea rows="10" class="form-control" id="hr_2" ><?php if($edit==1){echo $data['hr2'];} ?></textarea><small id="thr_2"></small><br><br>
+					</li>
+					<li>
+						<label>Budget estimate:</label>
+						<textarea rows="10" class="form-control" id="hr_3" ><?php if($edit==1){echo $data['hr3'];} ?></textarea><small id="thr_3"></small><br><br>
+					</li>
+					<li>
+						<label>Risk happened when the recommended procedure is not conducted: </label>
+						<textarea rows="10" class="form-control" id="hr_4" ><?php if($edit==1){echo $data['hr4'];} ?></textarea><small id="thr_4"></small><br><br>
+					</li>
+					<li>
+						<label>Risk happened when the recommended procedure is not conducted: </label>
+						<textarea rows="10" class="form-control" id="hr_4" ><?php if($edit==1){echo $data['hr4'];} ?></textarea><small id="thr_4"></small><br><br>
+					</li>
+					<li>
+						<label>Concomitant illnesses that would affect treatment of the disease:</label>
+						<textarea rows="10" class="form-control" id="hr_5" ><?php if($edit==1){echo $data['hr5'];} ?></textarea><small id="thr_5"></small><br><br>
+					</li>
+					<li>
+						<label>How long the procedure will take: </label>
+						<textarea rows="10" class="form-control" id="hr_6" ><?php if($edit==1){echo $data['hr6'];} ?></textarea><small id="thr_6"></small><br><br>
+					</li>
+					<li>
+						<label>Suggestion: </label>
+						<textarea rows="10" class="form-control" id="hr_7" ><?php if($edit==1){echo $data['hr7'];} ?></textarea><small id="thr_7"></small><br><br>
+					</li>
+				</ol>
 				<button class="btn btn-success" id="save_hr2"><i class="fa fa-save"></i> Save</button>
 			</div>
 			</div>
