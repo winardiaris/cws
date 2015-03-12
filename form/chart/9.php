@@ -8,11 +8,6 @@
 </div>
 </div>
 
-	
-	
-	
-	
-	
 <script>
 // Jakarta Selatan
 $(function() {

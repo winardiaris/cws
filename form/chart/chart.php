@@ -30,6 +30,7 @@ include("form/navigasi.php") ;
 			<option value="3">Personal Age</option>
 			<option value="13">Status</option>
 			<option value="coo">Country of Origin</option>
+			<option value="edu">Education</option>
 			<option value="4">Mapping Province</option>
 			<option value="5">Mapping DKI Jakarta</option>
 			<option value="6">Mapping Jakarta Pusat</option>

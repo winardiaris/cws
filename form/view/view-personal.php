@@ -8,21 +8,26 @@ include("../function.php") ;
 				WHERE `person`.`file_no` ='$file_no'") 
 				or die(mysql_error());
 		$data = mysql_fetch_array($qry);
+      
+      $edu=explode("|",$data['education']);
+		$edu1=explode(",",$edu[0]);
+		$edu2=explode(",",$edu[1]);
+		$edu3=explode(",",$edu[2]);
+		
 		$split=explode(",",$data['arrival']);
 		if($data['photo']!=""){$photo = $URL."form/".$data['photo'];}else{$photo = $URL.'form/photo/default.png';}
 	}
 ?>
-
 
 <div class="photos" ><img src="<?php echo $photo; ?>"></div><br>
 <h3>Personal Information</h3>
 <hr>
 <table class="table table-bordered">
 <tr>
-	<td><label>File No:</label></td>
-	<td><?php echo $data['file_no'];?></td>
-	<td><label>Status:</label></td>
-	<td><?php echo $data['status'];?></td>
+	<td width="15%"><label>File No:</label></td>
+	<td width="35%"><?php echo $data['file_no'];?></td>
+	<td width="15%"><label>Status:</label></td>
+	<td width="35%"><?php echo $data['status'];?></td>
 </tr>
 <tr>
 	<td><label>Name:</label></td>
@@ -34,7 +39,34 @@ include("../function.php") ;
 	<td><label>Country of Origin:</label></td>
 	<td><?php echo $data['country_name'];?></td>
 	<td><label>Education:</label></td>
-	<td><?php echo $data['education'];?></td>
+	<td>
+		<label>Formal:</label><br>
+		<?php if($edu1[0]==1){$tedu1 .="Elementary School, ";}
+				elseif($edu1[1]==1){$tedu1 .= "Junior High School, ";} 
+				elseif($edu1[2]==1){$tedu1 .= "Senior High School, ";} 
+				elseif($edu1[3]==1){$tedu1 .= "Vocational School, ";} 
+				elseif($edu1[4]==1){$tedu1 .= "Accelerated School, ";}
+				echo $tedu1;
+		?>
+		<br>
+		<label>Informal:</label><br>
+		<label>CWS:</label><br>
+		<?php		
+				if($edu2[0]==1){$tedu2 .="English, ";}
+				elseif($edu2[1]==1){$tedu2 .= "Bahasa Indonesia, ";} 
+				elseif($edu2[2]==1){$tedu2 .= "Computer, ";} 
+				elseif($edu2[3]==1){$tedu2 .= "Art, ";} 
+				elseif($edu2[4]==1){$tedu2 .= "Handicraft, ";}
+				echo $tedu2;
+		?>
+		<br>
+		<label>Insitution:</label><br>
+		<?php		
+				if($edu3[0]==1){$tedu3 .="English, ";}
+				elseif($edu3[1]==1){$tedu3 .= "Art, ";} 
+				echo $tedu3;	
+		?>
+	</td>
 </tr>
 <tr>
 	<td><label>Date of Birth / Age:</label></td>

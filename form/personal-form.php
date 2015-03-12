@@ -9,6 +9,11 @@ if(isset($_GET['op'])){
 		$data = mysql_fetch_array($qry);
 	
 		$split=explode(",",$data['arrival']);
+		$edu=explode("|",$data['education']);
+		$edu1=explode(",",$edu[0]);
+		$edu2=explode(",",$edu[1]);
+		$edu3=explode(",",$edu[2]);
+		
 		$address = explode(";",$data['address']);
 		$wilayah = explode(".",$address[0]); $prov = $wilayah[0]; $kota = $prov.".".$wilayah[1]; $kec = $kota.".".$wilayah[2];
 		$disable = "disabled";
@@ -96,7 +101,11 @@ else{
 			}
 			else{
 			
-				var file_no = $("#file_no").val(), name = $("#name").val(), coo = $("#coo").val(), dob = $("#dob").val(),age = $("#age").val(), sex = $('input:radio[name=sex]:checked').val(), marital = $("#marital").val(), address = $("#address").val(), phone = $("#phone").val(), photo = $("#photo").val(), status = $("#status").val(), date_arrival = $("#date_arrival").val(),arrival = $("#arrival").val(), education = $("#education").val(), skill = $("#skill").val(), mot = $("#mot").val(), known_language = $("#known_language").val(), previous_occupation = $("#previous_occupation").val(), volunteer = $("#volunteer").val(), date_recognition = $("#date_recognition").val(), status_active = $("#status_active").val();
+				var file_no = $("#file_no").val(), name = $("#name").val(), coo = $("#coo").val(), dob = $("#dob").val(),age = $("#age").val(), sex = $('input:radio[name=sex]:checked').val(), marital = $("#marital").val(), address = $("#address").val(), phone = $("#phone").val(), photo = $("#photo").val(), status = $("#status").val(), date_arrival = $("#date_arrival").val(),arrival = $("#arrival").val(), 
+				
+				education = $("#edu1a:checked").length+","+$("#edu1b:checked").length+","+$("#edu1c:checked").length+","+$("#edu1d:checked").length+","+$("#edu1e:checked").length+"|"+$("#edu2a:checked").length+","+$("#edu2b:checked").length+","+$("#edu2c:checked").length+","+$("#edu2d:checked").length+","+$("#edu2e:checked").length+"|"+$("#edu3a:checked").length+","+$("#edu3b:checked").length, 
+				
+				skill = $("#skill").val(), mot = $("#mot").val(), known_language = $("#known_language").val(), previous_occupation = $("#previous_occupation").val(), volunteer = $("#volunteer").val(), date_recognition = $("#date_recognition").val(), status_active = $("#status_active").val();
 				
 				var datanya = "&file_no="+file_no+"&name="+name+"&coo="+coo+"&dob="+dob+"&age="+age+"&sex="+sex+"&marital="+marital+"&address="+address+"&phone="+phone+"&photo="+photo+"&status="+status+"&arrival="+arrival+"&date_arrival="+date_arrival+"&education="+education+"&skill="+skill+"&mot="+mot+"&known_language="+known_language+"&previous_occupation="+previous_occupation+"&volunteer="+volunteer+"&date_recognition="+date_recognition+"&status_active="+status_active;
 				
@@ -115,7 +124,11 @@ else{
 		
 		//update person
 		$("#person_update").click(function(){
-			var file_no = $("#file_no").val(), name = $("#name").val(), coo = $("#coo").val(), dob = $("#dob").val(),age = $("#age").val(), sex = $('input:radio[name=sex]:checked').val(), marital = $("#marital").val(), address = $("#address").val(), phone = $("#phone").val(), photo = $("#photo").val(), status = $("#status").val(), date_arrival = $("#date_arrival").val(),arrival = $("#arrival").val(), education = $("#education").val(), skill = $("#skill").val(), mot = $("#mot").val(), known_language = $("#known_language").val(), previous_occupation = $("#previous_occupation").val(), volunteer = $("#volunteer").val(), date_recognition = $("#date_recognition").val(), status_active = $("#status_active").val();
+			var file_no = $("#file_no").val(), name = $("#name").val(), coo = $("#coo").val(), dob = $("#dob").val(),age = $("#age").val(), sex = $('input:radio[name=sex]:checked').val(), marital = $("#marital").val(), address = $("#address").val(), phone = $("#phone").val(), photo = $("#photo").val(), status = $("#status").val(), date_arrival = $("#date_arrival").val(),arrival = $("#arrival").val(), 
+			
+			education = $("#edu1a:checked").length+","+$("#edu1b:checked").length+","+$("#edu1c:checked").length+","+$("#edu1d:checked").length+","+$("#edu1e:checked").length+"|"+$("#edu2a:checked").length+","+$("#edu2b:checked").length+","+$("#edu2c:checked").length+","+$("#edu2d:checked").length+","+$("#edu2e:checked").length+"|"+$("#edu3a:checked").length+","+$("#edu3b:checked").length, 
+			
+			skill = $("#skill").val(), mot = $("#mot").val(), known_language = $("#known_language").val(), previous_occupation = $("#previous_occupation").val(), volunteer = $("#volunteer").val(), date_recognition = $("#date_recognition").val(), status_active = $("#status_active").val();
 				
 			var datanya = "&file_no="+file_no+"&name="+name+"&coo="+coo+"&dob="+dob+"&age="+age+"&sex="+sex+"&marital="+marital+"&address="+address+"&phone="+phone+"&photo="+photo+"&status="+status+"&arrival="+arrival+"&date_arrival="+date_arrival+"&education="+education+"&skill="+skill+"&mot="+mot+"&known_language="+known_language+"&previous_occupation="+previous_occupation+"&volunteer="+volunteer+"&date_recognition="+date_recognition+"&status_active="+status_active;
 			
@@ -172,7 +185,7 @@ else{
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Reported Personal Information</a>
 			</h4>
 			</div>
-		<div id="collapseOne" class="panel-collapse collapse">
+		<div id="collapseOne" class="panel-collapse collapse in">
 		<div class="panel-body">
 		<!-- biodata -->
 	<!-- form-biodata -->
@@ -276,7 +289,31 @@ else{
 					<tr>
 						
 						<td ><label>Education:</label></td>
-						<td><input class="form-control" name="education" id="education" value="<?php if($edit==1){ echo $data['education'];}?>"></td>
+						<td>
+							<label>Formal:</label>
+							<div class="checkbox">
+								<label><input type="checkbox" id="edu1a" <?php if($edit==1){if($edu1[0]==1){echo "checked";}} ?>> Elementary School</label>
+								<label><input type="checkbox" id="edu1b" <?php if($edit==1){if($edu1[1]==1){echo "checked";}} ?>> Junior High School</label>
+								<label><input type="checkbox" id="edu1c" <?php if($edit==1){if($edu1[2]==1){echo "checked";}} ?>> Senior High School</label>
+								<label><input type="checkbox" id="edu1d" <?php if($edit==1){if($edu1[3]==1){echo "checked";}} ?>> Vocational School</label>
+								<label><input type="checkbox" id="edu1e" <?php if($edit==1){if($edu1[4]==1){echo "checked";}} ?>> Accelerated School</label>
+							</div>
+							<label>Informal:</label><br>
+							<label>CWS:</label>
+							<div class="checkbox">
+								<label><input type="checkbox" id="edu2a" <?php if($edit==1){if($edu2[0]==1){echo "checked";}} ?>> English</label>
+								<label><input type="checkbox" id="edu2b" <?php if($edit==1){if($edu2[1]==1){echo "checked";}} ?>> Bahasa Indonesia</label>
+								<label><input type="checkbox" id="edu2c" <?php if($edit==1){if($edu2[2]==1){echo "checked";}} ?>> Computer</label>
+								<label><input type="checkbox" id="edu2d" <?php if($edit==1){if($edu2[3]==1){echo "checked";}} ?>> Art</label>
+								<label><input type="checkbox" id="edu2e" <?php if($edit==1){if($edu2[4]==1){echo "checked";}} ?>> Handicraft</label>
+							</div>
+							<label>Insitution:</label>
+							<div class="checkbox">
+								<label><input type="checkbox" id="edu3a" <?php if($edit==1){if($edu3[0]==1){echo "checked";}} ?>> English</label>
+								<label><input type="checkbox" id="edu3b" <?php if($edit==1){if($edu3[1]==1){echo "checked";}} ?>> Art</label>
+							</div>
+							
+						</td>
 					</tr>
 					<tr>
 						

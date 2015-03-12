@@ -28,7 +28,7 @@ include("form/navigasi.php") ?>
 	<div class="row">
 		<div class="col-lg-12"><h3 class="page-header">Initial Assessment Data</h3></div>
 		<div class="col-lg-12">
-			<div class="table-responsive">
+			<div class="">
 			<table class="table table-striped table-bordered table-hover" id="dataTables">
 				<thead>
 				<tr>
