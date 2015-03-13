@@ -288,6 +288,19 @@ $(document).ready(function(){
 			}
 		});
 		});
+		//comment
+		$("#comment").change(function(){
+			var	file_no = $("#file_no").val(),comments = $(this).val(),hr_id=$("#hr_id").val();
+			var 	datanya = "&file_no="+file_no+"&comment="+comments+"&hr_id="+hr_id;
+			$.ajax({url: "form/general-action.php",data: "op=hr_comment"+datanya,cache: false,
+				beforeSend:function(){$("#t").text("Saving data...")},
+				success: function(msg){
+					if(msg=="success"){$("#t").text("Data saved");}
+					else{$("#t").text("Data not saved !!");}
+				}
+			});
+		});
+		
 
 	});
 	
@@ -310,7 +323,7 @@ $(document).ready(function(){
 			</div>
 			<div id="hr1" class="panel-collapse collapse in">
 			<div class="panel-body">
-				<div class="col-lg-12 ">
+				<div class="col-lg-12 hidden">
 					<label class="radio-inline"><input type="radio" name="id_data" value="0" <?php if(empty($_GET['a'])){echo "checked";}?> >New </label>
 					<label class="radio-inline"><input type="radio" name="id_data" value="1" <?php if(isset($_GET['a'])){echo "checked";}?>>Reassesment </label>
 					<input id="hr_id" value="<?php if($edit==1){echo $_GET['hr_id'];}?>">
@@ -426,5 +439,11 @@ $(document).ready(function(){
 			
 		</div>
 	</div>
+<?php
+// comment 
+if($edit==1 AND $_SESSION['group_id']==1){
+echo '<div class="col-lg-12" ><label>Comment:</label><textarea class="form-control" id="comment">'; echo Balikin($hr['comment']); echo'</textarea><br><small id="t"></small></div> ';
+}
+?>
 </div>
 </div>

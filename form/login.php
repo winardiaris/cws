@@ -43,19 +43,19 @@ if(isset($_POST['login'])){
 		}
 		else{
 		echo '
-			<div class="alert alert-danger alert-dismissable alerts" >
+			<div class="alert alert-danger alert-dismissable alerts" style="position:absolute;">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 			Username or Password Invalid !!
-			</div>;
+			</div>
 		';
 		}
 	}
 	else{
 		echo '
-			<div class="alert alert-danger alert-dismissable alerts" >
+			<div class="alert alert-danger alert-dismissable alerts" style="position:absolute;">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 			Username or Password Invalid !!
-			</div>;
+			</div>
 		';
 	}
 	
@@ -63,10 +63,10 @@ if(isset($_POST['login'])){
 elseif(isset($_GET['log'])){
 	if($_GET['log']=="out"){
 		echo '
-			<div class="alert alert-success alert-dismissable alerts" >
+			<div class="alert alert-success alert-dismissable alerts" style="position:absolute;">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 			You has been logout
-			</div>;
+			</div>
 		';
 		//make log 
 		setHistory($_SESSION['user_id'],$LOCATION,"Logout Succes",$NOW);
@@ -82,6 +82,11 @@ elseif(isset($_GET['log'])){
 <!-- ---------------------------------------- -->
 <div id="page-login">
 <div class="col-md-4 col-md-offset-4 col-lg-4">
+	<div class="header-login">
+		<img src="img/logo.svg">
+		<h3>Church World Service<br>Indonesia</h3>
+	</div>
+	
 	<div class="login-panel panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title">Please Sign In</h3>
@@ -96,7 +101,7 @@ elseif(isset($_GET['log'])){
 						<input class="form-control" placeholder="Password" name="user_password" type="password" value="">
 					</div>
 					<!-- Change this to a button or input when using this as a form -->
-					<button type="submit" name="login" class="btn btn-lg btn-success btn-block">Login</button>
+					<button type="submit" name="login" class="btn btn-lg btn-primary btn-block">Login</button>
 				</fieldset>
 			</form>
 		</div>

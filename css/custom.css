@@ -28,9 +28,44 @@ body {
 }
 #page-login{
 	padding: 0;
-	margin: 15px 0;
-    min-height: 700px;
+	margin: 0;
+	height:auto;
+   min-height: 700px;
+   max-height: 100%;
+   background:url('../img/background/0.jpg') no-repeat top center;
+   background-color:#000000;
+   -webkit-background-size: contain; /* For WebKit*/
+    -moz-background-size: contain;    /* Mozilla*/
+    -o-background-size: contain;      /* Opera*/
+    background-size: contain;         /* Generic*/
+	-webkit-animation: bg 60s ease-in-out  0s infinite alternate running;
+	-moz-animation: bg 60s ease-in-out  0s infinite alternate running;
+	animation: bg 60s ease-in-out  0s infinite alternate running;
 }
+@-webkit-keyframes bg {
+    0% { background:url('../img/background/1.jpg') no-repeat top center; }
+    32% { background:url('../img/background/2.jpg') no-repeat top center; }
+    55% { background:url('../img/background/3.jpg') no-repeat top center; }
+    76% { background:url('../img/background/4.jpg') no-repeat top center; }
+    100% { background:url('../img/background/5.jpg') no-repeat top center; }
+}
+#page-login .login-panel{
+	box-shadow:0px 2px 10px rgba(0,0,0,0.5);
+	margin-top:20px;
+}
+#page-login .header-login{
+	color:#fff;
+	text-align:center;
+	margin:80px auto 0 auto;
+	text-shadow:0 1px 5px rgba(0,0,0,0.7);
+}
+.header-login img{
+	width:100px;
+	box-shadow:0 0 20px rgba(0,0,0,0.7);
+	border-radius:50px;
+}
+
+
 .navbar-logo{
 	width:30px;
 	float:left;
@@ -90,8 +125,13 @@ body {
 	font-size:10pt;
 }
 .footer{
-	margin-top:10px;
-	background-color: #e7e7e7;
+	background:#E5E5E5;
+	position:relative;
+	bottom:0;
+	left:0;
+	width:100%;
+	padding:3px 10px 3px 10px;
+	
 }
 .alerts{
 	width:100%;

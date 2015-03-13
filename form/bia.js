@@ -367,5 +367,19 @@ $(document).ready(function(){
 					}else{alert("Data not saved !!");}}
 			});
 		});
+		
+		
+		//comment
+		$("#comment").change(function(){
+			var	file_no = $("#file_no").val(),comments = $(this).val();
+			var 	datanya = "&file_no="+file_no+"&comment="+comments;
+			$.ajax({url: "form/general-action.php",data: "op=bia_comment"+datanya,cache: false,
+				beforeSend:function(){$("#t").text("Saving data...")},
+				success: function(msg){
+					if(msg=="success"){$("#t").text("Data saved");}
+					else{$("#t").text("Data not saved !!");}
+				}
+			});
+		});
 
 });

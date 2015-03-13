@@ -1300,7 +1300,13 @@ else{
 		</div>
 		</div>
 	</div>
-	
+<?php
+// comment 
+if($edit==1 AND $_SESSION['group_id']==1){
+echo '<div class="col-lg-12" ><label>Comment:</label><textarea class="form-control" id="comment">'; echo Balikin($data['comment']); echo'</textarea><br><small id="t"></small></div> ';
+}
+?>	
 </div>
+
 </div><!-- row -->
 </div><!-- page-wrapper -->

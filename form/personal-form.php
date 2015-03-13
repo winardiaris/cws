@@ -156,6 +156,22 @@ else{
 		});
 		
 		
+		//comment
+		$("#comment").change(function(){
+			var	file_no = $("#file_no").val(),comments = $(this).val();
+			var 	datanya = "&file_no="+file_no+"&comment="+comments;
+			$.ajax({url: "form/general-action.php",data: "op=person_comment"+datanya,cache: false,
+				beforeSend:function(){$("#t").text("Saving data...")},
+				success: function(msg){
+					if(msg=="success"){$("#t").text("Data saved");}
+					else{$("#t").text("Data not saved !!");}
+				}
+			});
+		});
+
+
+		
+		
 	});
 }) (jQuery);
 </script>
@@ -443,12 +459,21 @@ else{
 			
 			</div>
 			<div class="col-lg-12" id="family"></div>
+			
 		</div>
 		</div>
 		
 		</div>
 	</div>
 </div>
+
+<?php
+// comment 
+if($edit==1 AND $_SESSION['group_id']==1){
+echo '<div class="col-lg-12" ><label>Comment:</label><textarea class="form-control" id="comment">'; echo Balikin($data['comment']); echo'</textarea><br><small id="t"></small></div> ';
+}
+?>
+
 </div><!-- row -->
 </div><!-- page-wrapper -->
 
