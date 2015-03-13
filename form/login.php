@@ -107,6 +107,5 @@ elseif(isset($_GET['log'])){
 		</div>
 	</div>
 </div>
-<div id="#alert">
-</div>	
+<div id="#alert"></div>	
 </div>
