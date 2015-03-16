@@ -5,7 +5,9 @@ include("form/navigasi.php") ;
 <script>
 	$(document).ready(function(){
 		$("a.delete").click(function(){
-			var file_no = $(this).attr("id"),datanya="&file_no="+file_no;	
+			var 	hr_id = $(this).attr("id"),
+					file_no = $(this).attr("data"),
+					datanya="&hr_id="+hr_id;	
 			var r = confirm("Remove ["+file_no+"]? ");
 			
 			
@@ -83,7 +85,7 @@ include("form/navigasi.php") ;
 								  echo' <li role="presentation">
 										<a role="menuitem" tabindex="-1" href="?page=hr-form&op=edit&file_no='.$data['file_no'].'&hr_id='.$data['hr_id'].'"><i class="fa fa-edit"></i> Edit</a></li>
 								   <li role="presentation">
-										<a role="menuitem" tabindex="-1" class="delete text-danger" href="" id="'.$data['file_no'].'"><i class="fa fa-trash"></i> Delete</a>
+										<a role="menuitem" tabindex="-1" class="delete text-danger" href="" id="'.$data['hr_id'].'" data="'.$data['file_no'].'"><i class="fa fa-trash"></i> Delete</a>
 									</li>
 								  </ul>
 								</div>

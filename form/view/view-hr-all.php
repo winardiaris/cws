@@ -5,15 +5,12 @@ include("../function.php") ;
 if(isset($_GET['file_no'])){
 	$file_no = $_GET['file_no'];	
 	$qry = mysql_query("SELECT * FROM `hr` WHERE `file_no`='$file_no' AND `status`='1'") or die(mysql_error());
-	
-	
 	$count=mysql_num_rows($qry);
-	
 	$edit = 1;
 	if($count>0){
 		while($data = mysql_fetch_array($qry)){
 			$hr_id = $data['hr_id'];
-?>			
+?>			<hr>
 			<h3>Health Report File Number : <?php echo $_GET['file_no']?></h3>
 			<hr>
 			<h4>Basic</h4>
@@ -128,11 +125,15 @@ if(isset($_GET['file_no'])){
 					<td colspan="3"><p style="margin-left:15px;"><?php if($edit==1){echo Balikin($d['hr7']);} ?></p></td>
 				</tr>
 			</table>
-			<div class="page-break"></div>
+			
 
 <?php	
 			//----------
-			}	
+			}
+			// comment 
+			echo '<label>Comment:</label>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>
+			<div class="page-break"></div>
+			';	
 		}
 	}
 }

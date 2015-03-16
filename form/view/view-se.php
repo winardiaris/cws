@@ -359,14 +359,15 @@ if(isset($_GET['file_no']) AND isset($_GET['id'])){
 		</tr>
 	</table>
 
-
 <?php
+		echo '<label>Comment:</label>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>';
 	}
 	else{
 		echo "No data SE for File Number: ".$_GET['file_no'];
 		
 	}	
 }
+
 
 ?>
 </body>

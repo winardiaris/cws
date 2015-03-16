@@ -13,6 +13,7 @@ if($op == "check"){
 	$person = mysql_fetch_array($qry);
 
 		if($person['ada']>0){
+			//cek first assessment
 			$qry2 = mysql_query(
 						"SELECT COUNT(*) AS `ada` FROM `hr` WHERE `file_no`='$file_no' AND `status`='1' AND `id_data`='0';"
 						) or die(mysql_error());
@@ -248,8 +249,8 @@ elseif($op=="save_hr7"){
 	else{echo "error";}
 }
 elseif($op == "del"){
-	$file_no = $_GET['file_no'];
-	$del = mysql_query("UPDATE `hr` SET `status`='0' WHERE  `file_no`='$file_no' AND `status`='1' ;  ") or die(mysql_error());
+	$hr_id = $_GET['hr_id'];
+	$del = mysql_query("UPDATE `hr` SET `status`='0' WHERE  `hr_id`='$hr_id' AND `status`='1' ;  ") or die(mysql_error());
 	if($del){echo "success";}
 	else{echo "error";}
 }

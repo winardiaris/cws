@@ -60,7 +60,7 @@ $(document).ready(function(){
 			<li id="M67" <?php if($_GET['page']=="se-form" OR $_GET['page']=="se-data") echo " class='active'"; ?>>
 				<a href="#" title="Socio Eeconomic Assessment Report"><i class="fa fa-user fa-fw" ></i> SE<span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">
-					<li id="M6"><a href="?page=se-form" <?php if($_GET['page']=="se-form" AND empty($_GET['a'])) echo " class='active'"; ?>><i class="fa fa-plus"></i> Add New</a></li>
+					<li id="M6"><a href="?page=se-form" <?php if($_GET['page']=="se-form" AND empty($_GET['a'])) echo " class='active'"; ?>><i class="fa fa-list-alt"></i> Form</a></li>
 					<li id="M6"><a href="?page=se-form&a=reassesment" <?php if($_GET['page']=="se-form" AND isset($_GET['a'])) echo " class='active'"; ?>><i class="fa fa-list-alt"></i> Reassessment</a></li>
 					<li id="M7"><a href="?page=se-data" <?php if($_GET['page']=="se-data") echo " class='active'"; ?>><i class="fa fa-table"></i> Data</a></li>
 				</ul><!-- /.nav-second-level -->
@@ -75,7 +75,7 @@ $(document).ready(function(){
 			<li id="M1011" <?php if($_GET['page']=="hr-form" OR $_GET['page']=="hr-data") echo " class='active'"; ?>>
 				<a href="#" title="Health Report"><i class="fa fa-medkit fa-fw" ></i> HR<span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">
-					<li id="M10"><a href="?page=hr-form" <?php if($_GET['page']=="hr-form" AND empty($_GET['a'])) echo " class='active'"; ?>><i class="fa fa-plus"></i> Add New</a></li>
+					<li id="M10"><a href="?page=hr-form" <?php if($_GET['page']=="hr-form" AND empty($_GET['a'])) echo " class='active'"; ?>><i class="fa fa-list-alt"></i> Form</a></li>
 					<li id="M10"><a href="?page=hr-form&a=reassessment" <?php if($_GET['page']=="hr-form" AND isset($_GET['a'])) echo " class='active'"; ?>><i class="fa fa-list-alt"></i> Re-assessment</a></li>
 					<li id="M11"><a href="?page=hr-data" <?php if($_GET['page']=="hr-data") echo " class='active'"; ?>><i class="fa fa-table"></i> Data</a></li>
 				</ul><!-- /.nav-second-level -->

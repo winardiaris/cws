@@ -6,8 +6,6 @@
 	<ul class="dropdown-menu dropdown-alerts">
 	<?php
 	$MONTH = date("Y-m");
-	
-
 	$qse = mysql_query("SELECT * FROM `se` WHERE `dore` like '%$MONTH%' ")or die(mysql_error());
 	$count = mysql_num_rows($qse);
 	$i=0;

@@ -10,8 +10,6 @@ if(isset($_GET['op'])){
 		$qry=mysql_query("SELECT * FROM `hr` WHERE `file_no`='$file_no' AND `status`='1' AND `hr_id`='$hr_id'") or die(mysql_error());
 		$hr=mysql_fetch_array($qry);
 		
-		
-		
 		$button = '<button class="btn btn-success" id="update_hr1"><i class="fa fa-refresh"></i> Update</button>';
 		$edit = 1;
 	}
@@ -33,17 +31,17 @@ $(document).ready(function(){
 		$.ajax({url: "form/hr-action.php",data: "op=check"+datanya,cache: false,
 			success: function(msg){
 				if(msg=="inuse"){
-					$("#a").addClass("text-warning").removeClass("text-success text-danger").html("<i class='fa fa-warning'></i> In use");
+					$("#a").addClass("text-warning").removeClass("text-success text-danger nodataperson nodata").html("<i class='fa fa-warning'></i> In use");
 				}
 				else if(msg=="avail"){
-					$("#a").addClass("text-success").removeClass("text-danger text-warning").html("<i class='fa fa-check'></i> Available");				
+					$("#a").addClass("text-success").removeClass("text-danger text-warning nodataperson nodata").html("<i class='fa fa-check'></i> Available");				
 					$("#family").load("form/hr-action.php","op=getData"+datanya);
 				}
 				else if(msg=="nodataperson"){
-					$("#a").addClass("text-danger").removeClass("text-success text-warning").html("<i class='fa fa-warning'></i> No Data Person");
+					$("#a").addClass("text-danger nodataperson").removeClass("text-success text-warning nodata").html("<i class='fa fa-warning'></i> No Data Person");
 				}
 				else if(msg=="nodatahr"){
-					$("#a").addClass("text-danger").removeClass("text-success text-warning").html("<i class='fa fa-warning'></i> No Data HR");
+					$("#a").addClass("text-danger nodata").removeClass("text-success text-warning nodataperson").html("<i class='fa fa-warning'></i> No Data HR");
 				}
 			}
 		});
@@ -65,9 +63,14 @@ $(document).ready(function(){
 			alert("File Number in use");
 			$("#file_no").val("").focus();
 		}
-		else if($("#a").hasClass("text-danger")){
-			var r = confirm("No Data for ["+file_no+"], Add new Data?");
+		else if($("#a").hasClass("nodataperson")){
+			var r = confirm("No Data Person for ["+file_no+"], Add new Data?");
 			if (r == true) {window.location="?page=person-form";} 
+			else {$("#file_no").val("").focus();}
+		}
+		else if($("#a").hasClass("nodata")){
+			var r = confirm("No Data for ["+file_no+"], Add new Data?");
+			if (r == true) {window.location="?page=hr-form";} 
 			else {$("#file_no").val("").focus();}
 		}
 		else if(report_date == ""){
@@ -121,9 +124,14 @@ $(document).ready(function(){
 			alert("File Number in use");
 			$("#file_no").val("").focus();
 		}
-		else if($("#a").hasClass("text-danger")){
-			var r = confirm("No Data for ["+file_no+"], Add new Data?");
+		else if($("#a").hasClass("nodataperson")){
+			var r = confirm("No Data Person for ["+file_no+"], Add new Data?");
 			if (r == true) {window.location="?page=person-form";} 
+			else {$("#file_no").val("").focus();}
+		}
+		else if($("#a").hasClass("nodata")){
+			var r = confirm("No Data for ["+file_no+"], Add new Data?");
+			if (r == true) {window.location="?page=hr-form";} 
 			else {$("#file_no").val("").focus();}
 		}
 		else if(report_date == ""){

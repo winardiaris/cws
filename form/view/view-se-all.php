@@ -367,7 +367,9 @@ if(isset($_GET['file_no'])){
 	</table>
 
 
-<?php	
+<?php
+		// comment 
+		echo '<label>Comment:</label>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>';
 		}
 	}
 	else{

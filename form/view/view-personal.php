@@ -4,7 +4,7 @@ include("../function.php") ;
 	if(isset($_GET['file_no'])){
 		$file_no = $_GET['file_no'];
 		$qry = mysql_query("
-				SELECT `person`.`file_no`,`person`.`name`,`master_country`.`country_name` ,`person`.`dob`,`person`.`age`,`person`.`sex`,`marital_status`.`marital`,`person`.`address`,`person`.`phone`,`person`.`photo`,`person`.`status`,`person`.`arrival`,`person`.`education`,`person`.`skill`,`person`.`mot`,`person`.`known_language`,`person`.`previous_occupation`,`person`.`volunteer`,`person`.`date_recognition`,`person`.`active`FROM `person`INNER JOIN `master_country` ON `person`.`coo` = `master_country`.`country_id` INNER JOIN `marital_status` ON `person`.`marital` = `marital_status`.`marital_id` 
+				SELECT `person`.`file_no`,`person`.`name`,`master_country`.`country_name` ,`person`.`dob`,`person`.`age`,`person`.`sex`,`marital_status`.`marital`,`person`.`address`,`person`.`phone`,`person`.`photo`,`person`.`status`,`person`.`arrival`,`person`.`education`,`person`.`skill`,`person`.`mot`,`person`.`known_language`,`person`.`previous_occupation`,`person`.`volunteer`,`person`.`date_recognition`,`person`.`active`, `person`.`comment` FROM `person`INNER JOIN `master_country` ON `person`.`coo` = `master_country`.`country_id` INNER JOIN `marital_status` ON `person`.`marital` = `marital_status`.`marital_id` 
 				WHERE `person`.`file_no` ='$file_no'") 
 				or die(mysql_error());
 		$data = mysql_fetch_array($qry);
@@ -13,6 +13,7 @@ include("../function.php") ;
 		$edu1=explode(",",$edu[0]);
 		$edu2=explode(",",$edu[1]);
 		$edu3=explode(",",$edu[2]);
+		//$comment = $data['comment'];
 		
 		$split=explode(",",$data['arrival']);
 		if($data['photo']!=""){$photo = $URL."form/".$data['photo'];}else{$photo = $URL.'form/photo/default.png';}
@@ -124,8 +125,8 @@ include("../function.php") ;
 	$option=mysql_query("SELECT * FROM `reported_family` WHERE `file_no`='$file_no' ");
 	$no=0;
 	if(mysql_num_rows($option)>0){
-		while($data=mysql_fetch_array($option)){
-			$no ++;	$id=$data['id'];$value=$data['value'];$split=explode(";",$value);
+		while($data2=mysql_fetch_array($option)){
+			$no ++;	$id=$data2['id'];$value=$data2['value'];$split=explode(";",$value);
 			$name=$split[0];$age=$split[1];	$sex=$split[2]; $relation=$split[3]; $location=$split[4];$remarks =	$split[5];$contact=$split[6];
 			echo 
 			"<tr>
@@ -145,5 +146,9 @@ include("../function.php") ;
 	}
 ?>
 </table>
+<?php
+// comment 
+echo '<label>Comment:</label>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>';
+?>
 <hr>
 

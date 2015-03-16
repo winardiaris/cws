@@ -81,9 +81,9 @@ if(isset($_GET['file_no'])){
 			$no=0;
 			
 			$qry = mysql_query("SELECT * FROM `with_whom_living` WHERE `file_no`='$file_no'") or die(mysql_error());
-			while($data=mysql_fetch_array($qry)){
+			while($data2=mysql_fetch_array($qry)){
 				$no++;
-				$id=$data['id'];$value=$data['value'];$split=explode(";",$value);
+				$id=$data2['id'];$value=$data2['value'];$split=explode(";",$value);
 				echo'
 				<tr>
 					<td align="right">'.$no.'.</td>
@@ -220,10 +220,12 @@ if(isset($_GET['file_no'])){
 		<td colspan="2"><p style="margin-left:20px;"><?php echo $q78[1]; ?></p></td>
 	</tr>
 	<tr>
-		<td colspan="2"><label>Remarks from CWS staff: </label><?php echo $data['remarks_staff']; ?></td>
+		<td colspan="2"><label>Remarks from CWS staff: </label><?php echo $data2['remarks_staff']; ?></td>
 	</tr>
 </table>
 <?php
+	// comment 
+	echo '<label>Comment:</label>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>';
 	}
 	else{
 		echo "No data IA for File Number: ".$_GET['file_no'];
@@ -231,6 +233,5 @@ if(isset($_GET['file_no'])){
 	}	
 }
 ?>
-
 <hr>
 

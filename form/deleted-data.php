@@ -4,8 +4,9 @@ include("form/navigasi.php");
 ?>
 <script>
 	$(document).ready(function(){
-		$(".tperson .btn-danger").click(function(){
-			var file_no = $(this).attr("id"),datanya="&file_no="+file_no;	
+		//delete person
+		$(".tperson .text-danger").click(function(){
+			var file_no = $(this).attr("data"),datanya="&file_no="+file_no;	
 			var r = confirm("Remove ["+file_no+"]? ");
 			if (r == true) {
 				$.ajax({url:"form/deleted-action.php",data:"op=delperson"+datanya,cache:false,success: function(msg){
@@ -16,8 +17,22 @@ include("form/navigasi.php");
 				});
 			} 
 		});
-		$(".tia .btn-danger").click(function(){
-			var file_no = $(this).attr("id"),datanya="&file_no="+file_no;	
+		//restore person
+		$(".tperson .text-success").click(function(){
+			var file_no = $(this).attr("data"),datanya="&file_no="+file_no;	
+			var r = confirm("Restore ["+file_no+"]? ");
+			if (r == true) {
+				$.ajax({url:"form/deleted-action.php",data:"op=resperson"+datanya,cache:false,success: function(msg){
+					if(msg=="success"){
+						alert("Data has been restored !!");
+						location.reload();
+					}else{alert("Cannot restore !!");}}
+				});
+			} 
+		});
+		//delete IA
+		$(".tia .text-danger").click(function(){
+			var file_no = $(this).attr("data"),datanya="&file_no="+file_no;	
 			var r = confirm("Remove ["+file_no+"]? ");
 			if (r == true) {
 				$.ajax({url:"form/deleted-action.php",data:"op=delia"+datanya,cache:false,success: function(msg){
@@ -28,8 +43,24 @@ include("form/navigasi.php");
 				});
 			} 
 		});
-		$(".tse .btn-danger").click(function(){
-			var file_no = $(this).attr("id"),datanya="&file_no="+file_no;	
+		//restore IA
+		$(".tia .text-success").click(function(){
+			var file_no = $(this).attr("data"),datanya="&file_no="+file_no;	
+			var r = confirm("Restore ["+file_no+"]? ");
+			if (r == true) {
+				$.ajax({url:"form/deleted-action.php",data:"op=resia"+datanya,cache:false,success: function(msg){
+					if(msg=="success"){
+						alert("Data has been restored !!");
+						location.reload();
+					}else{alert("Cannot restore !!");}}
+				});
+			} 
+		});
+		//delete SE
+		$(".tse .text-danger").click(function(){
+			var 	file_no = $(this).attr("data"),
+					se_id = $(this).attr("id"),
+					datanya="&file_no="+file_no+"&se_id="+se_id;	
 			var r = confirm("Remove ["+file_no+"]? ");
 			if (r == true) {
 				$.ajax({url:"form/deleted-action.php",data:"op=delse"+datanya,cache:false,success: function(msg){
@@ -40,8 +71,24 @@ include("form/navigasi.php");
 				});
 			} 
 		});
-		$(".tbia .btn-danger").click(function(){
-			var file_no = $(this).attr("id"),datanya="&file_no="+file_no;	
+		//restore SE
+		$(".tse .text-success").click(function(){
+			var 	file_no = $(this).attr("data"),
+					se_id = $(this).attr("id"),
+					datanya="&file_no="+file_no+"&se_id="+se_id;	
+			var r = confirm("Restore ["+file_no+"]? ");
+			if (r == true) {
+				$.ajax({url:"form/deleted-action.php",data:"op=resse"+datanya,cache:false,success: function(msg){
+					if(msg=="success"){
+						alert("Data has been Restore !!");
+						location.reload();
+					}else{alert("Cannot Restore !!");}}
+				});
+			} 
+		});
+		//delete SE
+		$(".tbia .text-danger").click(function(){
+			var file_no = $(this).attr("data"),datanya="&file_no="+file_no;	
 			var r = confirm("Remove ["+file_no+"]? ");
 			if (r == true) {
 				$.ajax({url:"form/deleted-action.php",data:"op=delbia"+datanya,cache:false,success: function(msg){
@@ -52,8 +99,24 @@ include("form/navigasi.php");
 				});
 			} 
 		});
-		$(".thr .btn-danger").click(function(){
-			var file_no = $(this).attr("id"),datanya="&file_no="+file_no;	
+		//restore SE
+		$(".tbia .text-success").click(function(){
+			var file_no = $(this).attr("data"),datanya="&file_no="+file_no;	
+			var r = confirm("Restore ["+file_no+"]? ");
+			if (r == true) {
+				$.ajax({url:"form/deleted-action.php",data:"op=resbia"+datanya,cache:false,success: function(msg){
+					if(msg=="success"){
+						alert("Data has been restored !!");
+						location.reload();
+					}else{alert("Cannot restore !!");}}
+				});
+			} 
+		});
+		//delete HR
+		$(".thr .text-danger").click(function(){
+			var 	file_no = $(this).attr("data"),
+					hr_id = $(this).attr("id"),
+					datanya="&file_no="+file_no+"&hr_id="+hr_id;		
 			var r = confirm("Remove ["+file_no+"]? ");
 			if (r == true) {
 				$.ajax({url:"form/deleted-action.php",data:"op=delhr"+datanya,cache:false,success: function(msg){
@@ -61,6 +124,21 @@ include("form/navigasi.php");
 						alert("Data has been removed !!");
 						location.reload();
 					}else{alert("Cannot remove !!");}}
+				});
+			} 
+		});
+		//restore HR
+		$(".thr .text-success").click(function(){
+			var 	file_no = $(this).attr("data"),
+					hr_id = $(this).attr("id"),
+					datanya="&file_no="+file_no+"&hr_id="+hr_id;	
+			var r = confirm("Restore ["+file_no+"]? ");
+			if (r == true) {
+				$.ajax({url:"form/deleted-action.php",data:"op=reshr"+datanya,cache:false,success: function(msg){
+					if(msg=="success"){
+						alert("Data has been Restore !!");
+						location.reload();
+					}else{alert("Cannot Restore !!");}}
 				});
 			} 
 		});
@@ -95,11 +173,12 @@ include("form/navigasi.php");
 					if($a=="person"){
 						echo 
 						'<thead>
-							<tr><th width="80px">No.</th>
+							<tr>
+							<th width="10px"></th>
+							<th width="80px">No.</th>
 							<th>File No.</th>
 							<th>Name</th>
 							<th>Coo</th>
-							<th width="10px"></th>
 							</tr>
 						</thead>
 						<tbody class="tperson" >';
@@ -109,12 +188,23 @@ include("form/navigasi.php");
 							WHERE `person`.`active` = '3' ORDER BY `file_no` ASC; ")or die(mysql_error());
 						while($data=mysql_fetch_array($qry)){
 							echo '
-							<tr>				
+							<tr>
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-xs btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"> <span class="caret"></span></button>
+										<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+											<li role="presentation">
+												<a href="#" class="text-success" data="'.$data['file_no'].'"><i class="fa fa-refresh"></i> Restore</a>
+											</li>
+											<li role="presentation">
+											   <a href="#" class="text-danger" data="'.$data['file_no'].'" title="Delete '.$data['name'].'"><i class="fa fa-trash"></i> Delete</a>
+											</li>
+										</ul>
+								</td>
 								<td align="right">'.$no++.'.</td>
 								<td>'.$data['file_no'].'</td>
 								<td>'.$data['name'].'</td>
 								<td>'.$data['country_name'].'</td>
-								<td><button class="btn btn-sm btn-danger" id="'.$data['file_no'].'" title="Delete '.$data['name'].'"><i class="fa fa-trash"></i></button></td>
 							</tr>';
 						}
 						echo'</tbody>';
@@ -122,13 +212,14 @@ include("form/navigasi.php");
 					elseif($a=="ia"){
 						echo 
 						'<thead>
-							<tr><th width="80px">No.</th>
+							<tr>
+							<th width="10px"></th>
+							<th width="80px">No.</th>
 							<th>File No.</th>
 							<th>Name</th>
 							<th>Date Assessment</th>
 							<th>Location Assessment</th>
 							<th>Assessment by</th>
-							<th width="10px"></th>
 							</tr>
 						</thead>
 						<tbody class="tia" >';
@@ -137,14 +228,25 @@ include("form/navigasi.php");
 						while($data=mysql_fetch_array($qry)){
 							$assessment = explode(";",$data['assessment']);
 							echo '
-							<tr>				
+							<tr>
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-xs btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"> <span class="caret"></span></button>
+										<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+											<li role="presentation">
+												<a href="#" class="text-success" data="'.$data['file_no'].'"><i class="fa fa-refresh"></i> Restore</a>
+											</li>
+											<li role="presentation">
+											   <a href="#" class="text-danger" data="'.$data['file_no'].'" title="Delete '.$data['name'].'"><i class="fa fa-trash"></i> Delete</a>
+											</li>
+										</ul>
+								</td>
 								<td align="right">'.$no++.'.</td>
 								<td >'.$data['file_no'].'</td>
 								<td>'.$data['name'].'</td>
 								<td width="150px" align="center">'.$assessment[0].'</td>
 								<td>'.$assessment[1].'</td>
 								<td>'.$assessment[2].'</td>
-								<td><button class="btn btn-sm btn-danger" id="'.$data['file_no'].'" title="Delete '.$data['name'].'"><i class="fa fa-trash"></i></button></td>
 							</tr>';
 						}
 						echo'</tbody>';	
@@ -153,6 +255,7 @@ include("form/navigasi.php");
 						echo'
 						<thead>
 						<tr>
+							<th width="10px"> </th>
 							<th>No.</th>
 							<th>File No.</th>
 							<th>Name </th>
@@ -161,13 +264,13 @@ include("form/navigasi.php");
 							<th>Location</th>
 							<th>Verified by</th>
 							<th>Verified Date</th>
-							<th ></th>
 						</tr>
 						</thead>
 						<tbody class="tse">
 						';
 						$no = 0;
-						$qry = mysql_query("SELECT `se`.`file_no`,`person`.`name`,`se`.`doa`,`se`.`assessment_data`,`se`.`verification` 
+						$qry = mysql_query("SELECT 		
+											`se`.`se_id`, `se`.`file_no`, `person`.`name`, `se`.`doa`, `se`.`assessment_data`, `se`.`verification` 
 											FROM `se` INNER JOIN `person` ON `se`.`file_no`=`person`.`file_no` WHERE `se`.`status`='0';") or die(mysql_error());
 						while($data=mysql_fetch_array($qry)){
 							$no++;
@@ -180,6 +283,18 @@ include("form/navigasi.php");
 							
 							echo'
 							<tr>
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-xs btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"> <span class="caret"></span></button>
+										<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+											<li role="presentation">
+												<a href="#" class="text-success" data="'.$data['file_no'].'" id="'.$data['se_id'].'"><i class="fa fa-refresh"></i> Restore</a>
+											</li>
+											<li role="presentation">
+											   <a href="#" class="text-danger" data="'.$data['file_no'].'" id="'.$data['se_id'].'" title="Delete '.$data['name'].'"><i class="fa fa-trash"></i> Delete</a>
+											</li>
+										</ul>
+								</td>
 								<td align="right">'.$no.'.</td>
 								<td>'.$data['file_no'].'</td>
 								<td>'.$data['name'].'</td>
@@ -188,8 +303,6 @@ include("form/navigasi.php");
 								<td>'.$location.'</td>
 								<td>'.$verified_by.'</td>
 								<td>'.$verified_date.'</td>
-								<td align="center">
-								<button class="btn btn-sm btn-danger" id="'.$data['file_no'].'"  title="Delete '.$data['file_no'].'"><i class="fa fa-trash"></i></button></td>
 							</tr>';
 						}
 						echo'</tbody>';
@@ -198,6 +311,7 @@ include("form/navigasi.php");
 						echo'
 						<thead>
 						<tr>
+							<th width="10px"></th>
 							<th>No</th>
 							<th>File No</th>
 							<th>Name</th>
@@ -205,7 +319,6 @@ include("form/navigasi.php");
 							<th>Location</th>
 							<th>Case Worker</th>
 							<th>Organization</th>
-							<th>Action</th>
 						</tr>
 						</thead>
 						<tbody class="tbia">
@@ -217,6 +330,18 @@ include("form/navigasi.php");
 							$assessment = explode(";",$data['assessment']);
 							echo'
 							<tr>
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-xs btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"> <span class="caret"></span></button>
+										<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+											<li role="presentation">
+												<a href="#" class="text-success" data="'.$data['file_no'].'"><i class="fa fa-refresh"></i> Restore</a>
+											</li>
+											<li role="presentation">
+											   <a href="#" class="text-danger" data="'.$data['file_no'].'" title="Delete '.$data['name'].'"><i class="fa fa-trash"></i> Delete</a>
+											</li>
+										</ul>
+								</td>
 								<td align="right">'.$no.'.</td>
 								<td>'.$data['file_no'].'</td>
 								<td>'.$data['name'].'</td>
@@ -224,9 +349,6 @@ include("form/navigasi.php");
 								<td>'.$assessment[0].'</td>
 								<td>'.$assessment[1].'</td>
 								<td>'.$assessment[2].'</td>
-								<td align="center">
-									<button class="btn btn-sm btn-danger btn-sm" id="'.$data['file_no'].'" title="Delete '.$data['name'].'"><i class="fa fa-trash"></i></button>
-								</td>
 							</tr>
 							';
 						}
@@ -236,48 +358,53 @@ include("form/navigasi.php");
 						echo'
 						<thead>
 						<tr>
+							<th width="10px"></th>
 							<th >No.</th>
 							<th>File No</th>
 							<th>Name</th>
 							<th>Report Date</th>
 							<th>Reported</th>
 							<th>Location</th>
-							<th>Action</th>
 						</tr>
 						</thead>
 						<tbody class="thr">
 						';
 						$no = 0;
-						$qry = mysql_query("SELECT `hr`.`file_no`, `person`.`name`,`hr`.`report_date`, `hr`.`basic` FROM `hr`
+						$qry = mysql_query("SELECT `hr`.`hr_id`, `hr`.`file_no`, `person`.`name`,`hr`.`report_date`, 
+											`hr`.`location`,`hr`.`reported` FROM `hr`
 											INNER JOIN `person` ON `hr`.`file_no` = `person`.`file_no` WHERE `hr`.`status`='0'") or die(mysql_error());
 						while($data=mysql_fetch_array($qry)){
 							$no++;
 							$basic=explode(";",$data['basic']);
 							echo'
 							<tr>
+								<td>
+									<div class="dropdown">
+										<button class="btn btn-xs btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"> <span class="caret"></span></button>
+										<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+											<li role="presentation">
+												<a href="#" class="text-success" data="'.$data['file_no'].'" id="'.$data['hr_id'].'"><i class="fa fa-refresh"></i> Restore</a>
+											</li>
+											<li role="presentation">
+											   <a href="#" class="text-danger" data="'.$data['file_no'].'" id="'.$data['hr_id'].'" title="Delete '.$data['name'].'"><i class="fa fa-trash"></i> Delete</a>
+											</li>
+										</ul>
+								</td>
 								<td width="50px" align="right">'.$no.'.</td>
 								<td>'.$data['file_no'].'</td>
 								<td>'.$data['name'].'</td>
 								<td>'.$data['report_date'].'</td>
-								<td>'.$basic[2].'</td>
-								<td>'.$basic[0].'</td>
-								<td width="80px" align="center">
-									<button class="btn btn-danger btn-sm" id="'.$data['file_no'].'" title="Delete '.$data['name'].'"><i class="fa fa-trash"></i></button>
-								</td>
+								<td>'.Balikin($data['reported']).'</td>
+								<td>'.Balikin($data['location']).'</td>
 							</tr>
 							';
 						}
 						echo'</tbody>';
-					}
-					
+					}	
 				}
-				
 				?>
-				
-				
 			</table>
 		</div>
 		</div>
-		
 	</div>
 </div><!-- page-wrapper -->

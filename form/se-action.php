@@ -6,44 +6,72 @@ $file_no = $_GET['file_no'];
 
 if($op == "check"){
 	$file_no = $_GET['file_no'];
-	$a = $_GET['a'];
-	if($a==0){
-		$qry = mysql_query("SELECT COUNT(*) AS `ada` FROM `person` WHERE `file_no`='$file_no';") or die(mysql_error());
-		$qry2 = mysql_query("SELECT COUNT(*) AS `ada` FROM `se` WHERE `file_no`='$file_no' ;") or die(mysql_error());
-		
-		$person = mysql_fetch_array($qry);
-		$se = mysql_fetch_array($qry2);
-		
-		if($person['ada'] > 0 AND $se['ada'] > 0){
-			echo "inuse";
+	$id_data = $_GET['id_data'];
+	
+	$qry = mysql_query("SELECT COUNT(*) AS `ada` FROM `person` WHERE `file_no`='$file_no';") or die(mysql_error());
+	$person = mysql_fetch_array($qry);
+	
+		if($person['ada']>0){
+			//cek first assessment
+			$qry2 = mysql_query(
+						"SELECT COUNT(*) AS `ada` FROM `se` WHERE `file_no`='$file_no' AND `status`='1' AND `id`='0';"
+						) or die(mysql_error());
+			$se = mysql_fetch_array($qry2);
+			
+			//new assessment
+			if($id_data==0){
+				if($se['ada']>0){echo "inuse";} //new assessment (sudah ada)
+				else{echo "avail";}	 //new assessment (tersedia)
+			}
+			//reassessment
+			elseif($id_data==1){
+				if($se['ada']>0){echo "avail";}  //re-assessment (tersedia)
+				else{echo "nodatase";} //re-assessment (ditolak) karena belum ada SE
+			}
 		}
-		elseif($person['ada'] > 0 AND $se['ada'] == 0){
-			echo "avail";
-		}
-		elseif($person['ada'] == 0 AND $se['ada'] == 0){
-			echo "nodata";
-		}
+		//person belum ada
+		else{echo "nodataperson";}
+	
+	
+	
+	
+	//if($a==0){
+		//$qry = mysql_query("SELECT COUNT(*) AS `ada` FROM `person` WHERE `file_no`='$file_no';") or die(mysql_error());
+		//$qry2 = mysql_query("SELECT COUNT(*) AS `ada` FROM `se` WHERE `file_no`='$file_no' ;") or die(mysql_error());
+		
+		//$person = mysql_fetch_array($qry);
+		//$se = mysql_fetch_array($qry2);
+		
+		//if($person['ada'] > 0 AND $se['ada'] > 0){
+			//echo "inuse";
+		//}
+		//elseif($person['ada'] > 0 AND $se['ada'] == 0){
+			//echo "avail";
+		//}
+		//elseif($person['ada'] == 0 AND $se['ada'] == 0){
+			//echo "nodata";
+		//}
 		
 		
-	}
-	elseif($a==1){
-		$qry = mysql_query("SELECT COUNT(*) AS `ada` FROM `person` WHERE `file_no`='$file_no';") or die(mysql_error());
-		$qry2 = mysql_query("SELECT COUNT(*) AS `ada` FROM `se` WHERE `file_no`='$file_no' AND `status`='0';") or die(mysql_error());
+	//}
+	//elseif($a==1){
+		//$qry = mysql_query("SELECT COUNT(*) AS `ada` FROM `person` WHERE `file_no`='$file_no';") or die(mysql_error());
+		//$qry2 = mysql_query("SELECT COUNT(*) AS `ada` FROM `se` WHERE `file_no`='$file_no' AND `status`='0';") or die(mysql_error());
 		
-		$person = mysql_fetch_array($qry);
-		$se = mysql_fetch_array($qry2);
+		//$person = mysql_fetch_array($qry);
+		//$se = mysql_fetch_array($qry2);
 
-		if($person['ada'] > 0 AND $se['ada'] > 0){
-			echo "inuse";
-		}
-		elseif($person['ada'] > 0 AND $se['ada'] == 0){
-			echo "avail";
-		}
-		elseif($person['ada'] == 0 AND $se['ada'] == 0){
-			echo "nodata";
-		}
+		//if($person['ada'] > 0 AND $se['ada'] > 0){
+			//echo "inuse";
+		//}
+		//elseif($person['ada'] > 0 AND $se['ada'] == 0){
+			//echo "avail";
+		//}
+		//elseif($person['ada'] == 0 AND $se['ada'] == 0){
+			//echo "nodata";
+		//}
 
-	}	
+	//}	
 }
 elseif($op=="nextAssessment"){
 	$file_no=$_GET['file_no'];
@@ -69,7 +97,13 @@ elseif($op == "lastAssessment"){
 	$file_no = $_GET['file_no'];
 	$qry = mysql_query("SELECT max(`doa`) as `doa` FROM `se` WHERE `file_no`='$file_no' AND `status`='1'")or die(mysql_error());
 	$data = mysql_fetch_array($qry);
-	echo $data['doa'];
+   $doa = $data['doa'];
+
+	$qry2 = mysql_query("SELECT `assessment_data` FROM `se` WHERE `file_no`='$file_no' AND `doa`='$doa' AND `status`='1' ")or die(mysql_error());
+	$data2 = mysql_fetch_array($qry2);
+	$a =explode(";",$data2['assessment_data']);
+	$last = $a[5];
+   echo $doa.";".$last;
 	
 }
 elseif($op == "addassessment"){

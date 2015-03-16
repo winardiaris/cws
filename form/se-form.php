@@ -83,30 +83,34 @@ else{
 		//check available
 		$("#file_no").change(function(){
 			var  	file_no = $(this).val(),
-					a = $("input:radio[name=id_data]:checked").val(),
-					datanya = "&file_no="+file_no+"&a="+a;
+					id_data = $("input:radio[name=id_data]:checked").val(),
+					datanya = "&file_no="+file_no+"&id_data="+id_data;
 			
          //last assessment
-			if( a > 0){
 				$.ajax({url: "form/se-action.php",data: "op=lastAssessment"+datanya,cache: false,
-					success: function(s){				
-						$("#last_assessment").val(s);
+					success: function(s){
+						var d = s.split(";");
+						$("#last_assessment").val(d[0]);
+						$("#last_home_visit").val(d[1]);
 					}
 				});
-			}
 			
 			$.ajax({url: "form/se-action.php",data: "op=check"+datanya,cache: false,
-				success: function(msg){
-					if(msg=="inuse"){
-						$("#a").addClass("text-warning").removeClass("text-success text-danger").html("<i class='fa fa-warning'></i> In use");
-					}
-					else if(msg=="avail"){
-						$("#a").addClass("text-success").removeClass("text-danger text-warning").html("<i class='fa fa-check'></i> Available");
-					}
-					else{
-						$("#a").addClass("text-danger").removeClass("text-success text-warning").html("<i class='fa fa-warning'></i> No Data");
-					}
+			success: function(msg){
+				if(msg=="inuse"){
+					$("#a").addClass("text-warning").removeClass("text-success text-danger nodataperson nodata").html("<i class='fa fa-warning'></i> In use");
 				}
+				else if(msg=="avail"){
+					$("#a").addClass("text-success").removeClass("text-danger text-warning nodataperson nodata").html("<i class='fa fa-check'></i> Available");				
+					$("#family").load("form/hr-action.php","op=getData"+datanya);
+				}
+				else if(msg=="nodataperson"){
+					$("#a").addClass("text-danger nodataperson").removeClass("text-success text-warning nodata").html("<i class='fa fa-warning'></i> No Data Person");
+				}
+				else if(msg=="nodatase"){
+					$("#a").addClass("text-danger nodata").removeClass("text-success text-warning nodataperson").html("<i class='fa fa-warning'></i> No Data SE");
+				}
+			}
 			});
 		});
 		//next assessment
@@ -129,9 +133,14 @@ else{
 				alert("File Number in use");
 				$("#file_no").val("").focus();
 			}
-			else if($("#a").hasClass("text-danger")){
-				var r = confirm("No Data for ["+file_no+"], Add new Data?");
+			else if($("#a").hasClass("nodataperson")){
+				var r = confirm("No Data Person for ["+file_no+"], Add new Data?");
 				if (r == true) {window.location="?page=person-form";} 
+				else {$("#file_no").val("").focus();}
+			}
+			else if($("#a").hasClass("nodata")){
+				var r = confirm("No Data for ["+file_no+"], Add new Data?");
+				if (r == true) {window.location="?page=se-form";} 
 				else {$("#file_no").val("").focus();}
 			}
 			else{
@@ -169,9 +178,14 @@ else{
 				alert("File Number in use");
 				$("#file_no").val("").focus();
 			}
-			else if($("#a").hasClass("text-danger")){
-				var r = confirm("No Data for ["+file_no+"], Add new Data?");
+			else if($("#a").hasClass("nodataperson")){
+				var r = confirm("No Data Person for ["+file_no+"], Add new Data?");
 				if (r == true) {window.location="?page=person-form";} 
+				else {$("#file_no").val("").focus();}
+			}
+			else if($("#a").hasClass("nodata")){
+				var r = confirm("No Data for ["+file_no+"], Add new Data?");
+				if (r == true) {window.location="?page=se-form";} 
 				else {$("#file_no").val("").focus();}
 			}
 			else{
@@ -451,13 +465,13 @@ else{
 			<div class="col-lg-4">
 				<label># of home visit(s) and date:</label>
 				<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-					<input type="text" class="form-control" id="home_visit" placeholder="yyyy-mm-dd" value="<?php if($edit==1){echo $assessment[5];} ?>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					<input type="text" class="form-control" id="home_visit" placeholder="yyyy-mm-dd" value="<?php if($edit==1){echo $assessment[5];}else{echo $TODAY;} ?>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 				</div>
 			</div>
 			<div class="col-lg-4">
 				<label>Date of last home visit:</label>
 				<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-					<input type="text" class="form-control" id="last_home_visit" placeholder="yyyy-mm-dd" value="<?php if($edit==1){echo $assessment[6];} ?>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					<input type="text" class="form-control" id="last_home_visit" placeholder="yyyy-mm-dd" value="<?php if($edit==1){echo $assessment[6];} ?>"<?php if(isset($_GET['a'])){echo "disabled";}?>><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 				</div>
 			</div>
 			<div class="col-lg-12">

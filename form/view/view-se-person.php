@@ -361,6 +361,8 @@ if(isset($_GET['file_no'])){
 
 
 <?php
+      //comment
+		echo '<label>Comment:</label>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>';
 	}
 	else{
 		echo "No data SE for File Number: ".$_GET['file_no'];

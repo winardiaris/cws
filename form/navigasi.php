@@ -1,13 +1,16 @@
 <?php include ("inc/access.php"); ?>
 <!-- Navigation -->
-	<nav class="navbar navbar-default " role="navigation" style="margin-bottom: 0">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
 		<!-- /.navbar-header -->
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<button type="button" class="navbar-toggle btn-circle" data-toggle="collapse" data-target=".navbar-collapse">
 				<span class="sr-only">Toggle navigation</span>
+				<i class="fa fa-bars"></i>
+<!--
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
+-->
 			</button>
 			<a href="index.php">
 			<img src="img/logo.svg" class="navbar-logo">
@@ -32,4 +35,5 @@
 		
 		
 		<?php  include("sidebar.php"); ?>
-        </nav>
+	</nav>
+	<div class="col-lg-12" id="fix-atas"></div>

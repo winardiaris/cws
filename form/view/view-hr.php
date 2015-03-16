@@ -51,24 +51,24 @@ if(isset($_GET['file_no']) AND isset($_GET['id'])){
 
 
 <?php 
-	$q=mysql_query("SELECT * FROM `hr_data` WHERE `hr_id`='$hr_id'")or die(mysql_error());
-	while($d=mysql_fetch_array($q)){
-	$id = explode(".",$d['person_id']);
-	if(count($id)==2){
-		$x = mysql_query("SELECT * FROM `reported_family` WHERE `id`='".$id[1]."' ;")or die(mysql_error());
-		$y = mysql_fetch_array($x);
-		$z = explode(";",$y['value']);
-		$name = $z[0];
-		$age = $z[1];
-		if($z[2]=="M"){$sex = "Male";}else{$sex="Female";}
-	}elseif(count($id)==1){
-		$x = mysql_query("SELECT * FROM `person` WHERE `file_no`='".$id[0]."' ;")or die(mysql_error());
-		$y = mysql_fetch_array($x);
-		$name = $y['name'];
-		$age = $y['age'];
-		if($y['sex']=="M"){$sex = "Male";}else{$sex="Female";}
-	}
-	
+		$q=mysql_query("SELECT * FROM `hr_data` WHERE `hr_id`='$hr_id'")or die(mysql_error());
+		while($d=mysql_fetch_array($q)){
+		$id = explode(".",$d['person_id']);
+		if(count($id)==2){
+			$x = mysql_query("SELECT * FROM `reported_family` WHERE `id`='".$id[1]."' ;")or die(mysql_error());
+			$y = mysql_fetch_array($x);
+			$z = explode(";",$y['value']);
+			$name = $z[0];
+			$age = $z[1];
+			if($z[2]=="M"){$sex = "Male";}else{$sex="Female";}
+		}elseif(count($id)==1){
+			$x = mysql_query("SELECT * FROM `person` WHERE `file_no`='".$id[0]."' ;")or die(mysql_error());
+			$y = mysql_fetch_array($x);
+			$name = $y['name'];
+			$age = $y['age'];
+			if($y['sex']=="M"){$sex = "Male";}else{$sex="Female";}
+		}
+		
 		
 ?>		
 		<hr>
@@ -133,11 +133,9 @@ if(isset($_GET['file_no']) AND isset($_GET['id'])){
 		</table>
 
 <?php		
-	}
-?>
-
-				
-<?php
+		}
+	   // comment 
+		echo '<label>Comment:</label>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>';
 	}
 	else{
 		echo "No data HR for File Number: ".$_GET['file_no'];
