@@ -1,6 +1,6 @@
 <?php
+$file_id = 5;
 include ("../inc/conf.php");
-include ("function.php");
 $op = $_GET['op'];
 
 if($op == "check"){
@@ -28,10 +28,7 @@ elseif($op == "saveassessment"){
 	
 	$save = mysql_query("INSERT INTO `bia` (`file_no`,`doa`,`assessment`,`created`) VALUES ('$file_no','$doa','$value','$NOW') ;") or die(mysql_error());
 	
-	if($save){
-		echo "success";
-		setHistory($_SESSION['user_id'],"bia_form","Save  BIA Assessment for File No [$file_no]",$NOW);
-	}
+	if($save){echo "success";}
 	else{echo "error";}
 }
 elseif($op == "updateassessment"){
@@ -41,10 +38,7 @@ elseif($op == "updateassessment"){
 	
 	$save = mysql_query("UPDATE `bia` SET `doa`='$doa', `assessment`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1' ;") or die(mysql_error());
 	
-	if($save){
-		echo "success";
-		setHistory($_SESSION['user_id'],"bia_form","Update  BIA Assessment for File No [$file_no]",$NOW);
-	}
+	if($save){echo "success";}
 	else{echo "error";}
 }
 elseif($op == "savehistory"){
@@ -52,26 +46,15 @@ elseif($op == "savehistory"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query(" UPDATE `bia` SET `personal_history`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
-	if($save){
-		echo "success";
-		setHistory($_SESSION['user_id'],"bia_form","Save/Update  BIA Personal history for File No [$file_no]",$NOW);
-	}
+	if($save){echo "success";}
 	else{echo "error";}
 }
 elseif($op == "savetoiv"){
 	$file_no = $_GET['file_no'];;
-	$toiv1 = htmlspecialchars($_GET['toiv1']);
-	$toiv2 = htmlspecialchars($_GET['toiv2']);
-	$toiv3 = htmlspecialchars($_GET['toiv3']);
-	$toiv4 = htmlspecialchars($_GET['toiv4']);
-	$toiv5 = htmlspecialchars($_GET['toiv5']);
-	$toiv6 = htmlspecialchars($_GET['toiv6']);
-	$save = mysql_query(" UPDATE `bia` SET `toiv1`='$toiv1',`toiv2`='$toiv2',`toiv3`='$toiv3',`toiv4`='$toiv4',`toiv5`='$toiv5',`toiv6`='$toiv6',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
+	$value = htmlspecialchars($_GET['value']);
+	$save = mysql_query(" UPDATE `bia` SET `toiv`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
-	if($save){
-		echo "success";
-		setHistory($_SESSION['user_id'],"bia_form","Save/Update  BIA Types of identified vulnerabilities for File No [$file_no]",$NOW);
-	}
+	if($save){echo "success";}
 	else{echo "error";}
 }
 elseif($op == "saveedu"){
@@ -79,10 +62,7 @@ elseif($op == "saveedu"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query(" UPDATE `bia` SET `edu`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
-	if($save){
-		echo "success";
-		setHistory($_SESSION['user_id'],"bia_form","Save/Update  BIA Education for File No [$file_no]",$NOW);
-	}
+	if($save){echo "success";}
 	else{echo "error";}
 }
 elseif($op == "savehealth"){
@@ -90,10 +70,7 @@ elseif($op == "savehealth"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query(" UPDATE `bia` SET `health`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
-	if($save){
-		echo "success";
-		setHistory($_SESSION['user_id'],"bia_form","Save/Update  BIA Health for File No [$file_no]",$NOW);
-	}
+	if($save){echo "success";}
 	else{echo "error";}
 }
 elseif($op == "savepsy"){
@@ -101,11 +78,7 @@ elseif($op == "savepsy"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query(" UPDATE `bia` SET `psy`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
-	if($save){
-		echo "success";
-		setHistory($_SESSION['user_id'],"bia_form","Save/Update  BIA Psychosocial conditions for File No [$file_no]",$NOW);
-	}
-	
+	if($save){echo "success";}
 	else{echo "error";}
 }
 elseif($op == "saveinter"){
@@ -113,10 +86,7 @@ elseif($op == "saveinter"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query(" UPDATE `bia` SET `interaction`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
-	if($save){
-		echo "success";
-		setHistory($_SESSION['user_id'],"bia_form","Save/Update  BIA Interaction for File No [$file_no]",$NOW);
-	}
+	if($save){echo "success";}
 	else{echo "error";}
 }
 elseif($op == "saveliva"){
@@ -124,10 +94,7 @@ elseif($op == "saveliva"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query(" UPDATE `bia` SET `living_a`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
-	if($save){
-		echo "success";
-		setHistory($_SESSION['user_id'],"bia_form","Save/Update  BIA Living condition A. Suggested Questions for File No [$file_no]",$NOW);
-	}
+	if($save){echo "success";}
 	else{echo "error";}
 }
 elseif($op == "savelivb"){
@@ -135,10 +102,7 @@ elseif($op == "savelivb"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query(" UPDATE `bia` SET `living_b`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
-	if($save){
-		echo "success";
-		setHistory($_SESSION['user_id'],"bia_form","Save/Update  BIA Living condition B. Description of the house for File No [$file_no]",$NOW);
-	}
+	if($save){echo "success";}
 	else{echo "error";}
 }
 elseif($op == "savelivc"){
@@ -146,10 +110,7 @@ elseif($op == "savelivc"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query(" UPDATE `bia` SET `living_c`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
-	if($save){
-		echo "success";
-		setHistory($_SESSION['user_id'],"bia_form","Save/Update  BIA Living condition C. House facilities for File No [$file_no]",$NOW);
-	}
+	if($save){echo "success";}
 	else{echo "error";}
 }
 elseif($op == "savelivd"){
@@ -157,10 +118,7 @@ elseif($op == "savelivd"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query(" UPDATE `bia` SET `living_d`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
-	if($save){
-		echo "success";
-		setHistory($_SESSION['user_id'],"bia_form","Save/Update  BIA Living condition D. Security & Safety for File No [$file_no]",$NOW);
-	}
+	if($save){echo "success";}
 	else{echo "error";}
 }
 elseif($op == "savelive"){
@@ -168,10 +126,7 @@ elseif($op == "savelive"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query(" UPDATE `bia` SET `living_e`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
-	if($save){
-		echo "success";
-		setHistory($_SESSION['user_id'],"bia_form","Save/Update  BIA Living condition E. Documentation & Security for File No [$file_no]",$NOW);
-	}
+	if($save){echo "success";}
 	else{echo "error";}
 }
 elseif($op == "savefin"){
@@ -179,10 +134,7 @@ elseif($op == "savefin"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query(" UPDATE `bia` SET `financial`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
-	if($save){
-		echo "success";
-		setHistory($_SESSION['user_id'],"bia_form","Save/Update  BIA Financial Situation and Supporting System for File No [$file_no]",$NOW);
-	}
+	if($save){echo "success";}
 	else{echo "error";}
 }
 elseif($op == "savecws"){
@@ -190,10 +142,7 @@ elseif($op == "savecws"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query(" UPDATE `bia` SET `cws_analysis`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
-	if($save){
-		echo "success";
-		setHistory($_SESSION['user_id'],"bia_form","Save/Update  BIA CWS - Analysis of information & conclusions by Caseworker for File No [$file_no]",$NOW);
-	}
+	if($save){echo "success";}
 	else{echo "error";}
 }
 elseif($op == "saveopt"){
@@ -201,19 +150,13 @@ elseif($op == "saveopt"){
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query(" UPDATE `bia` SET `optional`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
-	if($save){
-		echo "success";
-		setHistory($_SESSION['user_id'],"bia_form","Save/Update  BIA CWS - Analysis of information & conclusions by Caseworker for File No [$file_no]",$NOW);
-	}
+	if($save){echo "success";}
 	else{echo "error";}
 }
 elseif($op == "del"){
 	$file_no = $_GET['file_no'];
 	$del = mysql_query("UPDATE `bia` SET `status`='0' WHERE  `file_no`='$file_no' AND `status`='1' ;  ") or die(mysql_error());
-	if($del){
-		echo "success";
-		setHistory($_SESSION['user_id'],"bia_data","Delete  BIA data for File No [$file_no]",$NOW);
-	}
+	if($del){echo "success";}
 	else{echo "error";}
 }
 ?>

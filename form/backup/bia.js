@@ -66,11 +66,11 @@ $(document).ready(function(){
 			}
 			else{	
 				var	doa = $("#date_assessment").val(),
-					location = ubahSimbol($("#location_assessment").val()),
-					cworker = ubahSimbol($("#case_worker").val()),
-					org = ubahSimbol($("#org").val()),
-					inorg = ubahSimbol($("#inorg").val()),
-					ioc = ubahSimbol($('input:radio[name=ioc]:checked').val());
+					location = $("#location_assessment").val(),
+					cworker = $("#case_worker").val(),
+					org = $("#org").val(),
+					inorg = $("#inorg").val(),
+					ioc = $('input:radio[name=ioc]:checked').val();
 					
 					if(ioc == "other"){
 						var others = $("#others").val();
@@ -110,14 +110,14 @@ $(document).ready(function(){
 			}
 			else{	
 				var	doa = $("#date_assessment").val(),
-					location = ubahSimbol($("#location_assessment").val()),
-					cworker = ubahSimbol($("#case_worker").val()),
-					org = ubahSimbol($("#org").val()),
-					inorg = ubahSimbol($("#inorg").val()),
-					ioc = ubahSimbol($('input:radio[name=ioc]:checked').val());
+					location = $("#location_assessment").val(),
+					cworker = $("#case_worker").val(),
+					org = $("#org").val(),
+					inorg = $("#inorg").val(),
+					ioc = $('input:radio[name=ioc]:checked').val();
 					
 					if(ioc == "other"){
-						var others = ubahSimbol($("#others").val());
+						var others = $("#others").val();
 						var datanya = "&file_no="+file_no+"&doa="+doa+"&value="+location+";"+cworker+";"+org+";"+inorg+";"+ioc+";"+others;
 					}
 					
@@ -139,9 +139,9 @@ $(document).ready(function(){
 		//Personal history
 		$("#save_2").click(function(){
 			var	file_no = $("#file_no").val(),
-				person1 = ubahSimbol($("#person1").val()),
-				person2 = ubahSimbol($("#person2").val()),
-				person3 = ubahSimbol($("#person3").val()),
+				person1 = $("#person1").val(),
+				person2 = $("#person2").val(),
+				person3 = $("#person3").val(),
 				datanya = "&file_no="+file_no+"&value="+person1+";"+person2+";"+person3;
 				$.ajax({url:"form/bia-action.php",data:"op=savehistory"+datanya,cache:false,success: function(msg){
 					if(msg=="success"){
@@ -154,37 +154,9 @@ $(document).ready(function(){
 		//Types of identified vulnerabilities
 		$("#save_3").click(function(){
 			var	file_no = $("#file_no").val(),
-				toiv1a = $("#toiv1a:checked").length, toiv1b = $("#toiv1b:checked").length, toiv1c = $("#toiv1c:checked").length, toiv1d = ubahSimbol($("#toiv1d").val()),
-				toiv2a = $("#toiv2a:checked").length, toiv2b = $("#toiv2b:checked").length, toiv2c = $("#toiv2c:checked").length, toiv2d = ubahSimbol($("#toiv2d").val()),
-				toiv3a = $("#toiv3a:checked").length, toiv3b = $("#toiv3b:checked").length, toiv3c = $("#toiv3c:checked").length, toiv3d = ubahSimbol($("#toiv3d").val()),
-				toiv4a = $("#toiv4a:checked").length, toiv4b = $("#toiv4b:checked").length, toiv4c = $("#toiv4c:checked").length, toiv4d = ubahSimbol($("#toiv4d").val()),
-				toiv5a = $("#toiv5a:checked").length, toiv5b = $("#toiv5b:checked").length, toiv5c = $("#toiv5c:checked").length, toiv5d = ubahSimbol($("#toiv5d").val()),
-				toiv6a = $("#toiv6a:checked").length, toiv6b = $("#toiv6b:checked").length, toiv6c = $("#toiv6c:checked").length, toiv6d = ubahSimbol($("#toiv6d").val()),
-				toiv7a = $("#toiv7a:checked").length, toiv7b = $("#toiv7b:checked").length, toiv7c = $("#toiv7c:checked").length, toiv7d = ubahSimbol($("#toiv7d").val()),
-				toiv8a = $("#toiv8a:checked").length, toiv8b = $("#toiv8b:checked").length, toiv8c = $("#toiv8c:checked").length, toiv8d = ubahSimbol($("#toiv8d").val()),
-				toiv9a = $("#toiv9a:checked").length, toiv9b = $("#toiv9b:checked").length, toiv9c = $("#toiv9c:checked").length, toiv9d = ubahSimbol($("#toiv9d").val()),
-				toiv10a = $("#toiv10a:checked").length, toiv10b = $("#toiv10b:checked").length, toiv10c = $("#toiv10c:checked").length, toiv10d = ubahSimbol($("#toiv10d").val()),
-				toiv11a = $("#toiv11a:checked").length, toiv11b = $("#toiv11b:checked").length, toiv11c = $("#toiv11c:checked").length, toiv11d = ubahSimbol($("#toiv11d").val()), 
-				toiv12a = $("#toiv12a:checked").length, toiv12b = $("#toiv12b:checked").length, toiv12c = $("#toiv12c:checked").length, toiv12d = ubahSimbol($("#toiv12d").val()), 
-				toiv13a = $("#toiv13a:checked").length, toiv13b = $("#toiv13b:checked").length, toiv13c = $("#toiv13c:checked").length, toiv13d = ubahSimbol($("#toiv13d").val()), 
-				toiv14a = $("#toiv14a:checked").length, toiv14b = $("#toiv14b:checked").length, toiv14c = $("#toiv14c:checked").length, toiv14d = ubahSimbol($("#toiv14d").val()), 
-				toiv15a = $("#toiv15a:checked").length, toiv15b = $("#toiv15b:checked").length, toiv15c = $("#toiv15c:checked").length, toiv15d = ubahSimbol($("#toiv15d").val()), 
-				toiv16a = $("#toiv16a:checked").length, toiv16b = $("#toiv16b:checked").length, toiv16c = $("#toiv16c:checked").length, toiv16d = ubahSimbol($("#toiv16d").val()), 
-				toiv17a = $("#toiv17a:checked").length, toiv17b = $("#toiv17b:checked").length, toiv17c = $("#toiv17c:checked").length, toiv17d = ubahSimbol($("#toiv17d").val()), 
-				toiv18a = $("#toiv18a:checked").length, toiv18b = $("#toiv18b:checked").length, toiv18c = $("#toiv18c:checked").length, toiv18d = ubahSimbol($("#toiv18d").val()), 
-				toiv19a = $("#toiv19a:checked").length, toiv19b = $("#toiv19b:checked").length, toiv19c = $("#toiv19c:checked").length, toiv19d = ubahSimbol($("#toiv19d").val()), 
-				toiv20a = $("#toiv20a:checked").length, toiv20b = $("#toiv20b:checked").length, toiv20c = $("#toiv20c:checked").length, toiv20d = ubahSimbol($("#toiv20d").val()), 
-				toiv21a = $("#toiv21a:checked").length, toiv21b = $("#toiv21b:checked").length, toiv21c = $("#toiv21c:checked").length, toiv21d = ubahSimbol($("#toiv21d").val()), 
-				toiv22a = $("#toiv22a:checked").length, toiv22b = $("#toiv22b:checked").length, toiv22c = $("#toiv22c:checked").length, toiv22d = ubahSimbol($("#toiv22d").val()), 
-				toiv23a = $("#toiv23a:checked").length, toiv23b = $("#toiv23b:checked").length, toiv23c = $("#toiv23c:checked").length, toiv23d = ubahSimbol($("#toiv23d").val()), 
-				toiv24a = $("#toiv24a:checked").length, toiv24b = $("#toiv24b:checked").length, toiv24c = $("#toiv24c:checked").length, toiv24d = ubahSimbol($("#toiv24d").val()), 
-				toiv25a = $("#toiv25a:checked").length, toiv25b = $("#toiv25b:checked").length, toiv25c = $("#toiv25c:checked").length, toiv25d = ubahSimbol($("#toiv25d").val()), 
-				toiv26a = $("#toiv26a:checked").length, toiv26b = $("#toiv26b:checked").length, toiv26c = $("#toiv26c:checked").length, toiv26d = ubahSimbol($("#toiv26d").val()), 
-				toiv27a = $("#toiv27a:checked").length, toiv27b = $("#toiv27b:checked").length, toiv27c = $("#toiv27c:checked").length, toiv27d = ubahSimbol($("#toiv27d").val()), 
-				toiv28a = $("#toiv28a:checked").length, toiv28b = $("#toiv28b:checked").length, toiv28c = $("#toiv28c:checked").length, toiv28d = ubahSimbol($("#toiv28d").val()), 
-				toiv29a = $("#toiv29a:checked").length, toiv29b = $("#toiv29b:checked").length, toiv29c = $("#toiv29c:checked").length, toiv29d = ubahSimbol($("#toiv29d").val());
+				toiv1a = $("#toiv1a:checked").length, toiv1b = $("#toiv1b:checked").length, toiv1c = $("#toiv1c:checked").length, toiv1d = $("#toiv1d").val(), toiv2a = $("#toiv2a:checked").length, toiv2b = $("#toiv2b:checked").length, toiv2c = $("#toiv2c:checked").length, toiv2d = $("#toiv2d").val(), toiv3a = $("#toiv3a:checked").length, toiv3b = $("#toiv3b:checked").length, toiv3c = $("#toiv3c:checked").length, toiv3d = $("#toiv3d").val(), toiv4a = $("#toiv4a:checked").length, toiv4b = $("#toiv4b:checked").length, toiv4c = $("#toiv4c:checked").length, toiv4d = $("#toiv4d").val(), toiv5a = $("#toiv5a:checked").length, toiv5b = $("#toiv5b:checked").length, toiv5c = $("#toiv5c:checked").length, toiv5d = $("#toiv5d").val(), toiv6a = $("#toiv6a:checked").length, toiv6b = $("#toiv6b:checked").length, toiv6c = $("#toiv6c:checked").length, toiv6d = $("#toiv6d").val(), toiv7a = $("#toiv7a:checked").length, toiv7b = $("#toiv7b:checked").length, toiv7c = $("#toiv7c:checked").length, toiv7d = $("#toiv7d").val(), toiv8a = $("#toiv8a:checked").length, toiv8b = $("#toiv8b:checked").length, toiv8c = $("#toiv8c:checked").length, toiv8d = $("#toiv8d").val(), toiv9a = $("#toiv9a:checked").length, toiv9b = $("#toiv9b:checked").length, toiv9c = $("#toiv9c:checked").length, toiv9d = $("#toiv9d").val(), toiv10a = $("#toiv10a:checked").length, toiv10b = $("#toiv10b:checked").length, toiv10c = $("#toiv10c:checked").length, toiv10d = $("#toiv10d").val(), toiv11a = $("#toiv11a:checked").length, toiv11b = $("#toiv11b:checked").length, toiv11c = $("#toiv11c:checked").length, toiv11d = $("#toiv11d").val(), toiv12a = $("#toiv12a:checked").length, toiv12b = $("#toiv12b:checked").length, toiv12c = $("#toiv12c:checked").length, toiv12d = $("#toiv12d").val(), toiv13a = $("#toiv13a:checked").length, toiv13b = $("#toiv13b:checked").length, toiv13c = $("#toiv13c:checked").length, toiv13d = $("#toiv13d").val(), toiv14a = $("#toiv14a:checked").length, toiv14b = $("#toiv14b:checked").length, toiv14c = $("#toiv14c:checked").length, toiv14d = $("#toiv14d").val(), toiv15a = $("#toiv15a:checked").length, toiv15b = $("#toiv15b:checked").length, toiv15c = $("#toiv15c:checked").length, toiv15d = $("#toiv15d").val(), toiv16a = $("#toiv16a:checked").length, toiv16b = $("#toiv16b:checked").length, toiv16c = $("#toiv16c:checked").length, toiv16d = $("#toiv16d").val(), toiv17a = $("#toiv17a:checked").length, toiv17b = $("#toiv17b:checked").length, toiv17c = $("#toiv17c:checked").length, toiv17d = $("#toiv17d").val(), toiv18a = $("#toiv18a:checked").length, toiv18b = $("#toiv18b:checked").length, toiv18c = $("#toiv18c:checked").length, toiv18d = $("#toiv18d").val(), toiv19a = $("#toiv19a:checked").length, toiv19b = $("#toiv19b:checked").length, toiv19c = $("#toiv19c:checked").length, toiv19d = $("#toiv19d").val(), toiv20a = $("#toiv20a:checked").length, toiv20b = $("#toiv20b:checked").length, toiv20c = $("#toiv20c:checked").length, toiv20d = $("#toiv20d").val(), toiv21a = $("#toiv21a:checked").length, toiv21b = $("#toiv21b:checked").length, toiv21c = $("#toiv21c:checked").length, toiv21d = $("#toiv21d").val(), toiv22a = $("#toiv22a:checked").length, toiv22b = $("#toiv22b:checked").length, toiv22c = $("#toiv22c:checked").length, toiv22d = $("#toiv22d").val(), toiv23a = $("#toiv23a:checked").length, toiv23b = $("#toiv23b:checked").length, toiv23c = $("#toiv23c:checked").length, toiv23d = $("#toiv23d").val(), toiv24a = $("#toiv24a:checked").length, toiv24b = $("#toiv24b:checked").length, toiv24c = $("#toiv24c:checked").length, toiv24d = $("#toiv24d").val(), toiv25a = $("#toiv25a:checked").length, toiv25b = $("#toiv25b:checked").length, toiv25c = $("#toiv25c:checked").length, toiv25d = $("#toiv25d").val(), toiv26a = $("#toiv26a:checked").length, toiv26b = $("#toiv26b:checked").length, toiv26c = $("#toiv26c:checked").length, toiv26d = $("#toiv26d").val(), toiv27a = $("#toiv27a:checked").length, toiv27b = $("#toiv27b:checked").length, toiv27c = $("#toiv27c:checked").length, toiv27d = $("#toiv27d").val(), toiv28a = $("#toiv28a:checked").length, toiv28b = $("#toiv28b:checked").length, toiv28c = $("#toiv28c:checked").length, toiv28d = $("#toiv28d").val(), toiv29a = $("#toiv29a:checked").length, toiv29b = $("#toiv29b:checked").length, toiv29c = $("#toiv29c:checked").length, toiv29d = $("#toiv29d").val();
 				
-			var datanya = "&file_no="+file_no+"&toiv1="+toiv1a+";"+toiv1b+";"+toiv1c+";"+toiv1d+";"+toiv2a+";"+toiv2b+";"+toiv2c+";"+toiv2d+";"+toiv3a+";"+toiv3b+";"+toiv3c+";"+toiv3d+";"+toiv4a+";"+toiv4b+";"+toiv4c+";"+toiv4d+";"+toiv5a+";"+toiv5b+";"+toiv5c+";"+toiv5d+"&toiv2="+toiv6a+";"+toiv6b+";"+toiv6c+";"+toiv6d+";"+toiv7a+";"+toiv7b+";"+toiv7c+";"+toiv7d+";"+toiv8a+";"+toiv8b+";"+toiv8c+";"+toiv8d+";"+toiv9a+";"+toiv9b+";"+toiv9c+";"+toiv9d+";"+toiv10a+";"+toiv10b+";"+toiv10c+";"+toiv10d+"&toiv3="+toiv11a+";"+toiv11b+";"+toiv11c+";"+toiv11d+";"+toiv12a+";"+toiv12b+";"+toiv12c+";"+toiv12d+";"+toiv13a+";"+toiv13b+";"+toiv13c+";"+toiv13d+";"+toiv14a+";"+toiv14b+";"+toiv14c+";"+toiv14d+";"+toiv15a+";"+toiv15b+";"+toiv15c+";"+toiv15d+"&toiv4="+toiv16a+";"+toiv16b+";"+toiv16c+";"+toiv16d+";"+toiv17a+";"+toiv17b+";"+toiv17c+";"+toiv17d+";"+toiv18a+";"+toiv18b+";"+toiv18c+";"+toiv18d+";"+toiv19a+";"+toiv19b+";"+toiv19c+";"+toiv19d+";"+toiv20a+";"+toiv20b+";"+toiv20c+";"+toiv20d+"&toiv5="+toiv21a+";"+toiv21b+";"+toiv21c+";"+toiv21d+";"+toiv22a+";"+toiv22b+";"+toiv22c+";"+toiv22d+";"+toiv23a+";"+toiv23b+";"+toiv23c+";"+toiv23d+";"+toiv24a+";"+toiv24b+";"+toiv24c+";"+toiv24d+";"+toiv25a+";"+toiv25b+";"+toiv25c+";"+toiv25d+"&toiv6="+toiv26a+";"+toiv26b+";"+toiv26c+";"+toiv26d+";"+toiv27a+";"+toiv27b+";"+toiv27c+";"+toiv27d+";"+toiv28a+";"+toiv28b+";"+toiv28c+";"+toiv28d+";"+toiv29a+";"+toiv29b+";"+toiv29c+";"+toiv29d;
+			var datanya = "&file_no="+file_no+"&value="+toiv1a+";"+toiv1b+";"+toiv1c+";"+toiv1d+";"+toiv2a+";"+toiv2b+";"+toiv2c+";"+toiv2d+";"+toiv3a+";"+toiv3b+";"+toiv3c+";"+toiv3d+";"+toiv4a+";"+toiv4b+";"+toiv4c+";"+toiv4d+";"+toiv5a+";"+toiv5b+";"+toiv5c+";"+toiv5d+";"+toiv6a+";"+toiv6b+";"+toiv6c+";"+toiv6d+";"+toiv7a+";"+toiv7b+";"+toiv7c+";"+toiv7d+";"+toiv8a+";"+toiv8b+";"+toiv8c+";"+toiv8d+";"+toiv9a+";"+toiv9b+";"+toiv9c+";"+toiv9d+";"+toiv10a+";"+toiv10b+";"+toiv10c+";"+toiv10d+";"+toiv11a+";"+toiv11b+";"+toiv11c+";"+toiv11d+";"+toiv12a+";"+toiv12b+";"+toiv12c+";"+toiv12d+";"+toiv13a+";"+toiv13b+";"+toiv13c+";"+toiv13d+";"+toiv14a+";"+toiv14b+";"+toiv14c+";"+toiv14d+";"+toiv15a+";"+toiv15b+";"+toiv15c+";"+toiv15d+";"+toiv16a+";"+toiv16b+";"+toiv16c+";"+toiv16d+";"+toiv17a+";"+toiv17b+";"+toiv17c+";"+toiv17d+";"+toiv18a+";"+toiv18b+";"+toiv18c+";"+toiv18d+";"+toiv19a+";"+toiv19b+";"+toiv19c+";"+toiv19d+";"+toiv20a+";"+toiv20b+";"+toiv20c+";"+toiv20d+";"+toiv21a+";"+toiv21b+";"+toiv21c+";"+toiv21d+";"+toiv22a+";"+toiv22b+";"+toiv22c+";"+toiv22d+";"+toiv23a+";"+toiv23b+";"+toiv23c+";"+toiv23d+";"+toiv24a+";"+toiv24b+";"+toiv24c+";"+toiv24d+";"+toiv25a+";"+toiv25b+";"+toiv25c+";"+toiv25d+";"+toiv26a+";"+toiv26b+";"+toiv26c+";"+toiv26d+";"+toiv27a+";"+toiv27b+";"+toiv27c+";"+toiv27d+";"+toiv28a+";"+toiv28b+";"+toiv28c+";"+toiv28d+";"+toiv29a+";"+toiv29b+";"+toiv29c+";"+toiv29d;
 			
 			
 				$.ajax({url:"form/bia-action.php",data:"op=savetoiv"+datanya,cache:false,success: function(msg){
@@ -280,18 +252,7 @@ $(document).ready(function(){
 		//b
 		$("#save_living_b").click(function(){
 			var	file_no = $("#file_no").val(),
-				livb1 = $("#livb1:checked").length,
-				livb2 = $("#livb2:checked").length,
-				livb3 = $("#livb3:checked").length,
-				livb4 = $("#livb4:checked").length,
-				livb5 = $("#livb5:checked").length,
-				livb6 = $("#livb6:checked").length,
-				livb7 = $("#livb7:checked").length,
-				livb8 = $("#livb8:checked").length,
-				livb9 = $("#livb9:checked").length,
-				livb10 = $("#livb10:checked").length,
-				livb11 = $("#livb11:checked").length,
-				livb12 = $("#livb12:checked").length,
+				livb1 = $("#livb1:checked").length,livb2 = $("#livb2:checked").length,livb3 = $("#livb3:checked").length,livb4 = $("#livb4:checked").length,livb5 = $("#livb5:checked").length,livb6 = $("#livb6:checked").length,livb7 = $("#livb7:checked").length,livb8 = $("#livb8:checked").length,livb9 = $("#livb9:checked").length,livb10 = $("#livb10:checked").length,livb11 = $("#livb11:checked").length,livb12 = $("#livb12:checked").length,
 				livb13 = $("#livb13").val();
 			var datanya = "&file_no="+file_no+"&value="+livb1+";"+livb2+";"+livb3+";"+livb4+";"+livb5+";"+livb6+";"+livb7+";"+livb8+";"+livb9+";"+livb10+";"+livb11+";"+livb12+";"+livb13;
 			
@@ -404,6 +365,20 @@ $(document).ready(function(){
 						$("#collapseoptional").removeClass("in");
 						window.location="?page=bia-data";
 					}else{alert("Data not saved !!");}}
+			});
+		});
+		
+		
+		//comment
+		$("#comment").change(function(){
+			var	file_no = $("#file_no").val(),comments = $(this).val();
+			var 	datanya = "&file_no="+file_no+"&comment="+comments;
+			$.ajax({url: "form/general-action.php",data: "op=bia_comment"+datanya,cache: false,
+				beforeSend:function(){$("#t").text("Saving data...")},
+				success: function(msg){
+					if(msg=="success"){$("#t").text("Data saved");}
+					else{$("#t").text("Data not saved !!");}
+				}
 			});
 		});
 

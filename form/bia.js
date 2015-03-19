@@ -137,36 +137,92 @@ $(document).ready(function(){
 			}
 		});
 		//Personal history
+		$("#person1").change(function(){
+			datanya = "&file_no="+file_no+"&value="+$(this).val();
+			$.ajax({url:"form/bia-action.php",data:"op=saveph1"+datanya,cache:false,
+				beforeSend:function(){$("#thistory").text("Saving data...")},
+				success: function(msg){
+					if(msg=="success"){$("#thistory").text("Data saved");}
+					else{$("#thistory").text("Data not saved");}
+				}
+			});
+		});
+		$("#person2").change(function(){
+			datanya = "&file_no="+file_no+"&value="+$(this).val();
+			$.ajax({url:"form/bia-action.php",data:"op=saveph2"+datanya,cache:false,
+				beforeSend:function(){$("#thistory").text("Saving data...")},
+				success: function(msg){
+					if(msg=="success"){$("#thistory").text("Data saved");}
+					else{$("#thistory").text("Data not saved");}
+				}
+			});
+		});
+		$("#person3").change(function(){
+			datanya = "&file_no="+file_no+"&value="+$(this).val();
+			$.ajax({url:"form/bia-action.php",data:"op=saveph3"+datanya,cache:false,
+				beforeSend:function(){$("#thistory").text("Saving data...")},
+				success: function(msg){
+					if(msg=="success"){$("#thistory").text("Data saved");}
+					else{$("#thistory").text("Data not saved");}
+				}
+			});
+		});
 		$("#save_2").click(function(){
-			var	file_no = $("#file_no").val(),
-				person1 = $("#person1").val(),
-				person2 = $("#person2").val(),
-				person3 = $("#person3").val(),
-				datanya = "&file_no="+file_no+"&value="+person1+";"+person2+";"+person3;
-				$.ajax({url:"form/bia-action.php",data:"op=savehistory"+datanya,cache:false,success: function(msg){
-					if(msg=="success"){
-						alert("Data has been saved !!");
-						$("#collapsePersonal").removeClass("in");
-						$("#collapseIdentified").addClass("in");
-					}else{alert("Data not saved !!");}}
-				});
+			alert("Data has been saved !!");
+			$("#collapsePersonal").removeClass("in");
+			$("#collapseIdentified").addClass("in");
+			$("#thistory").text('');
+			document.location.href="#collapseIdentified";
 		});
 		//Types of identified vulnerabilities
-		$("#save_3").click(function(){
-			var	file_no = $("#file_no").val(),
-				toiv1a = $("#toiv1a:checked").length, toiv1b = $("#toiv1b:checked").length, toiv1c = $("#toiv1c:checked").length, toiv1d = $("#toiv1d").val(), toiv2a = $("#toiv2a:checked").length, toiv2b = $("#toiv2b:checked").length, toiv2c = $("#toiv2c:checked").length, toiv2d = $("#toiv2d").val(), toiv3a = $("#toiv3a:checked").length, toiv3b = $("#toiv3b:checked").length, toiv3c = $("#toiv3c:checked").length, toiv3d = $("#toiv3d").val(), toiv4a = $("#toiv4a:checked").length, toiv4b = $("#toiv4b:checked").length, toiv4c = $("#toiv4c:checked").length, toiv4d = $("#toiv4d").val(), toiv5a = $("#toiv5a:checked").length, toiv5b = $("#toiv5b:checked").length, toiv5c = $("#toiv5c:checked").length, toiv5d = $("#toiv5d").val(), toiv6a = $("#toiv6a:checked").length, toiv6b = $("#toiv6b:checked").length, toiv6c = $("#toiv6c:checked").length, toiv6d = $("#toiv6d").val(), toiv7a = $("#toiv7a:checked").length, toiv7b = $("#toiv7b:checked").length, toiv7c = $("#toiv7c:checked").length, toiv7d = $("#toiv7d").val(), toiv8a = $("#toiv8a:checked").length, toiv8b = $("#toiv8b:checked").length, toiv8c = $("#toiv8c:checked").length, toiv8d = $("#toiv8d").val(), toiv9a = $("#toiv9a:checked").length, toiv9b = $("#toiv9b:checked").length, toiv9c = $("#toiv9c:checked").length, toiv9d = $("#toiv9d").val(), toiv10a = $("#toiv10a:checked").length, toiv10b = $("#toiv10b:checked").length, toiv10c = $("#toiv10c:checked").length, toiv10d = $("#toiv10d").val(), toiv11a = $("#toiv11a:checked").length, toiv11b = $("#toiv11b:checked").length, toiv11c = $("#toiv11c:checked").length, toiv11d = $("#toiv11d").val(), toiv12a = $("#toiv12a:checked").length, toiv12b = $("#toiv12b:checked").length, toiv12c = $("#toiv12c:checked").length, toiv12d = $("#toiv12d").val(), toiv13a = $("#toiv13a:checked").length, toiv13b = $("#toiv13b:checked").length, toiv13c = $("#toiv13c:checked").length, toiv13d = $("#toiv13d").val(), toiv14a = $("#toiv14a:checked").length, toiv14b = $("#toiv14b:checked").length, toiv14c = $("#toiv14c:checked").length, toiv14d = $("#toiv14d").val(), toiv15a = $("#toiv15a:checked").length, toiv15b = $("#toiv15b:checked").length, toiv15c = $("#toiv15c:checked").length, toiv15d = $("#toiv15d").val(), toiv16a = $("#toiv16a:checked").length, toiv16b = $("#toiv16b:checked").length, toiv16c = $("#toiv16c:checked").length, toiv16d = $("#toiv16d").val(), toiv17a = $("#toiv17a:checked").length, toiv17b = $("#toiv17b:checked").length, toiv17c = $("#toiv17c:checked").length, toiv17d = $("#toiv17d").val(), toiv18a = $("#toiv18a:checked").length, toiv18b = $("#toiv18b:checked").length, toiv18c = $("#toiv18c:checked").length, toiv18d = $("#toiv18d").val(), toiv19a = $("#toiv19a:checked").length, toiv19b = $("#toiv19b:checked").length, toiv19c = $("#toiv19c:checked").length, toiv19d = $("#toiv19d").val(), toiv20a = $("#toiv20a:checked").length, toiv20b = $("#toiv20b:checked").length, toiv20c = $("#toiv20c:checked").length, toiv20d = $("#toiv20d").val(), toiv21a = $("#toiv21a:checked").length, toiv21b = $("#toiv21b:checked").length, toiv21c = $("#toiv21c:checked").length, toiv21d = $("#toiv21d").val(), toiv22a = $("#toiv22a:checked").length, toiv22b = $("#toiv22b:checked").length, toiv22c = $("#toiv22c:checked").length, toiv22d = $("#toiv22d").val(), toiv23a = $("#toiv23a:checked").length, toiv23b = $("#toiv23b:checked").length, toiv23c = $("#toiv23c:checked").length, toiv23d = $("#toiv23d").val(), toiv24a = $("#toiv24a:checked").length, toiv24b = $("#toiv24b:checked").length, toiv24c = $("#toiv24c:checked").length, toiv24d = $("#toiv24d").val(), toiv25a = $("#toiv25a:checked").length, toiv25b = $("#toiv25b:checked").length, toiv25c = $("#toiv25c:checked").length, toiv25d = $("#toiv25d").val(), toiv26a = $("#toiv26a:checked").length, toiv26b = $("#toiv26b:checked").length, toiv26c = $("#toiv26c:checked").length, toiv26d = $("#toiv26d").val(), toiv27a = $("#toiv27a:checked").length, toiv27b = $("#toiv27b:checked").length, toiv27c = $("#toiv27c:checked").length, toiv27d = $("#toiv27d").val(), toiv28a = $("#toiv28a:checked").length, toiv28b = $("#toiv28b:checked").length, toiv28c = $("#toiv28c:checked").length, toiv28d = $("#toiv28d").val(), toiv29a = $("#toiv29a:checked").length, toiv29b = $("#toiv29b:checked").length, toiv29c = $("#toiv29c:checked").length, toiv29d = $("#toiv29d").val();
-				
-			var datanya = "&file_no="+file_no+"&value="+toiv1a+";"+toiv1b+";"+toiv1c+";"+toiv1d+";"+toiv2a+";"+toiv2b+";"+toiv2c+";"+toiv2d+";"+toiv3a+";"+toiv3b+";"+toiv3c+";"+toiv3d+";"+toiv4a+";"+toiv4b+";"+toiv4c+";"+toiv4d+";"+toiv5a+";"+toiv5b+";"+toiv5c+";"+toiv5d+";"+toiv6a+";"+toiv6b+";"+toiv6c+";"+toiv6d+";"+toiv7a+";"+toiv7b+";"+toiv7c+";"+toiv7d+";"+toiv8a+";"+toiv8b+";"+toiv8c+";"+toiv8d+";"+toiv9a+";"+toiv9b+";"+toiv9c+";"+toiv9d+";"+toiv10a+";"+toiv10b+";"+toiv10c+";"+toiv10d+";"+toiv11a+";"+toiv11b+";"+toiv11c+";"+toiv11d+";"+toiv12a+";"+toiv12b+";"+toiv12c+";"+toiv12d+";"+toiv13a+";"+toiv13b+";"+toiv13c+";"+toiv13d+";"+toiv14a+";"+toiv14b+";"+toiv14c+";"+toiv14d+";"+toiv15a+";"+toiv15b+";"+toiv15c+";"+toiv15d+";"+toiv16a+";"+toiv16b+";"+toiv16c+";"+toiv16d+";"+toiv17a+";"+toiv17b+";"+toiv17c+";"+toiv17d+";"+toiv18a+";"+toiv18b+";"+toiv18c+";"+toiv18d+";"+toiv19a+";"+toiv19b+";"+toiv19c+";"+toiv19d+";"+toiv20a+";"+toiv20b+";"+toiv20c+";"+toiv20d+";"+toiv21a+";"+toiv21b+";"+toiv21c+";"+toiv21d+";"+toiv22a+";"+toiv22b+";"+toiv22c+";"+toiv22d+";"+toiv23a+";"+toiv23b+";"+toiv23c+";"+toiv23d+";"+toiv24a+";"+toiv24b+";"+toiv24c+";"+toiv24d+";"+toiv25a+";"+toiv25b+";"+toiv25c+";"+toiv25d+";"+toiv26a+";"+toiv26b+";"+toiv26c+";"+toiv26d+";"+toiv27a+";"+toiv27b+";"+toiv27c+";"+toiv27d+";"+toiv28a+";"+toiv28b+";"+toiv28c+";"+toiv28d+";"+toiv29a+";"+toiv29b+";"+toiv29c+";"+toiv29d;
-			
-			
-				$.ajax({url:"form/bia-action.php",data:"op=savetoiv"+datanya,cache:false,success: function(msg){
-					if(msg=="success"){
-						alert("Data has been saved !!");
-						$("#collapseIdentified").removeClass("in");
-						$("#collapseEdu").addClass("in");
-					}else{alert("Data not saved !!");}}
-				});
-		});
+		$("#toiva1d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva1a:checked").length,b=$("#toiva1b:checked").length,c=$("#toiva1c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva1"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+
+		$("#toiva2d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva2a:checked").length,b=$("#toiva2b:checked").length,c=$("#toiva2c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva2"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+		
+		$("#toiva3d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva3a:checked").length,b=$("#toiva3b:checked").length,c=$("#toiva3c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva3"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+		
+		$("#toiva4d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva4a:checked").length,b=$("#toiva4b:checked").length,c=$("#toiva4c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva4"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+		
+		$("#toiva5d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva5a:checked").length,b=$("#toiva5b:checked").length,c=$("#toiva5c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva5"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+		
+		$("#toiva6d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva6a:checked").length,b=$("#toiva6b:checked").length,c=$("#toiva6c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva6"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+		
+		$("#toiva7d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva7a:checked").length,b=$("#toiva7b:checked").length,c=$("#toiva7c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva7"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+		
+		$("#toiva8d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva8a:checked").length,b=$("#toiva8b:checked").length,c=$("#toiva8c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva8"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+		
+		$("#toiva9d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva9a:checked").length,b=$("#toiva9b:checked").length,c=$("#toiva9c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva9"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+		
+		$("#toiva10d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva10a:checked").length,b=$("#toiva10b:checked").length,c=$("#toiva10c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva10"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+		
+		$("#toiva11d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva11a:checked").length,b=$("#toiva11b:checked").length,c=$("#toiva11c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva11"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+		
+		$("#toiva12d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva12a:checked").length,b=$("#toiva12b:checked").length,c=$("#toiva12c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva12"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+		
+		$("#toiva13d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva13a:checked").length,b=$("#toiva13b:checked").length,c=$("#toiva13c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva13"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+		
+		$("#toiva14d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva14a:checked").length,b=$("#toiva14b:checked").length,c=$("#toiva14c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva14"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+		
+		$("#toiva15d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva15a:checked").length,b=$("#toiva15b:checked").length,c=$("#toiva15c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva15"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+		
+		$("#toiva16d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva16a:checked").length,b=$("#toiva16b:checked").length,c=$("#toiva16c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva16"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+		
+		$("#toiva17d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva17a:checked").length,b=$("#toiva17b:checked").length,c=$("#toiva17c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva17"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+		
+		$("#toiva18d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva18a:checked").length,b=$("#toiva18b:checked").length,c=$("#toiva18c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva18"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+		
+		$("#toiva19d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva19a:checked").length,b=$("#toiva19b:checked").length,c=$("#toiva19c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva19"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+		
+		$("#toiva20d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva20a:checked").length,b=$("#toiva20b:checked").length,c=$("#toiva20c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva20"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+		
+		$("#toiva21d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva21a:checked").length,b=$("#toiva21b:checked").length,c=$("#toiva21c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva21"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+		
+		$("#toiva22d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva22a:checked").length,b=$("#toiva22b:checked").length,c=$("#toiva22c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva22"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
+
+
+		
+		
+		
 		// education
 		$("#save_4").click(function(){
 			var	file_no = $("#file_no").val(),

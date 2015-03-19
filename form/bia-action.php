@@ -1,6 +1,7 @@
 <?php
 $file_id = 5;
 include ("../inc/conf.php");
+include ("function.php");
 $op = $_GET['op'];
 
 if($op == "check"){
@@ -24,7 +25,7 @@ if($op == "check"){
 elseif($op == "saveassessment"){
 	$file_no = $_GET['file_no'];
 	$doa = $_GET['doa'];
-	$value = htmlspecialchars($_GET['value']);
+	$value = UbahSimbol(htmlspecialchars($_GET['value']));
 	
 	$save = mysql_query("INSERT INTO `bia` (`file_no`,`doa`,`assessment`,`created`) VALUES ('$file_no','$doa','$value','$NOW') ;") or die(mysql_error());
 	
@@ -34,32 +35,95 @@ elseif($op == "saveassessment"){
 elseif($op == "updateassessment"){
 	$file_no = $_GET['file_no'];
 	$doa = $_GET['doa'];
-	$value = htmlspecialchars($_GET['value']);
+	$value = UbahSimbol(htmlspecialchars($_GET['value']));
 	
 	$save = mysql_query("UPDATE `bia` SET `doa`='$doa', `assessment`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1' ;") or die(mysql_error());
 	
 	if($save){echo "success";}
 	else{echo "error";}
 }
-elseif($op == "savehistory"){
+elseif($op == "saveph1"){
 	$file_no = $_GET['file_no'];;
-	$value = htmlspecialchars($_GET['value']);
-	$save = mysql_query(" UPDATE `bia` SET `personal_history`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
+	$value = UbahSimbol(htmlspecialchars($_GET['value']));
+	$save = mysql_query(" UPDATE `bia` SET `ph1`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
 	if($save){echo "success";}
 	else{echo "error";}
 }
-elseif($op == "savetoiv"){
+elseif($op == "saveph2"){
 	$file_no = $_GET['file_no'];;
-	$value = htmlspecialchars($_GET['value']);
-	$save = mysql_query(" UPDATE `bia` SET `toiv`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
+	$value = UbahSimbol(htmlspecialchars($_GET['value']));
+	$save = mysql_query(" UPDATE `bia` SET `ph2`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
 	if($save){echo "success";}
 	else{echo "error";}
 }
+elseif($op == "saveph3"){
+	$file_no = $_GET['file_no'];;
+	$value = UbahSimbol(htmlspecialchars($_GET['value']));
+	$save = mysql_query(" UPDATE `bia` SET `ph3`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
+	
+	if($save){echo "success";}
+	else{echo "error";}
+}
+
+elseif($op == "savetoiva1"){
+	$file_no = $_GET['file_no'];;
+	$value = UbahSimbol(htmlspecialchars($_GET['value']));
+	$save = mysql_query(" UPDATE `bia` SET `toiva1`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
+	if($save){echo "success";}
+	else{echo "error";}
+}                           
+	elseif($op == "savetoiva2"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva2`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoiva3"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva3`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoiva4"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva4`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoiva5"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva5`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoiva6"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva6`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoiva7"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva7`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoiva8"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva8`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoiva9"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva9`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoiva10"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva10`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoiva11"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva11`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoiva12"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva12`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoiva13"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva13`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoiva14"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva14`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoiva15"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva15`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoiva16"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva16`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoiva17"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva17`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoiva18"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva18`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoiva19"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva19`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoiva20"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva20`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoiva21"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva21`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoiva22"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva22`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+
+
+
+
+
+
 elseif($op == "saveedu"){
 	$file_no = $_GET['file_no'];;
-	$value = htmlspecialchars($_GET['value']);
+	$value = UbahSimbol(htmlspecialchars($_GET['value']));
 	$save = mysql_query(" UPDATE `bia` SET `edu`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
 	if($save){echo "success";}
@@ -67,7 +131,7 @@ elseif($op == "saveedu"){
 }
 elseif($op == "savehealth"){
 	$file_no = $_GET['file_no'];;
-	$value = htmlspecialchars($_GET['value']);
+	$value = UbahSimbol(htmlspecialchars($_GET['value']));
 	$save = mysql_query(" UPDATE `bia` SET `health`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
 	if($save){echo "success";}
@@ -75,7 +139,7 @@ elseif($op == "savehealth"){
 }
 elseif($op == "savepsy"){
 	$file_no = $_GET['file_no'];;
-	$value = htmlspecialchars($_GET['value']);
+	$value = UbahSimbol(htmlspecialchars($_GET['value']));
 	$save = mysql_query(" UPDATE `bia` SET `psy`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
 	if($save){echo "success";}
@@ -83,7 +147,7 @@ elseif($op == "savepsy"){
 }
 elseif($op == "saveinter"){
 	$file_no = $_GET['file_no'];;
-	$value = htmlspecialchars($_GET['value']);
+	$value = UbahSimbol(htmlspecialchars($_GET['value']));
 	$save = mysql_query(" UPDATE `bia` SET `interaction`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
 	if($save){echo "success";}
@@ -91,7 +155,7 @@ elseif($op == "saveinter"){
 }
 elseif($op == "saveliva"){
 	$file_no = $_GET['file_no'];;
-	$value = htmlspecialchars($_GET['value']);
+	$value = UbahSimbol(htmlspecialchars($_GET['value']));
 	$save = mysql_query(" UPDATE `bia` SET `living_a`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
 	if($save){echo "success";}
@@ -99,7 +163,7 @@ elseif($op == "saveliva"){
 }
 elseif($op == "savelivb"){
 	$file_no = $_GET['file_no'];;
-	$value = htmlspecialchars($_GET['value']);
+	$value = UbahSimbol(htmlspecialchars($_GET['value']));
 	$save = mysql_query(" UPDATE `bia` SET `living_b`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
 	if($save){echo "success";}
@@ -107,7 +171,7 @@ elseif($op == "savelivb"){
 }
 elseif($op == "savelivc"){
 	$file_no = $_GET['file_no'];;
-	$value = htmlspecialchars($_GET['value']);
+	$value = UbahSimbol(htmlspecialchars($_GET['value']));
 	$save = mysql_query(" UPDATE `bia` SET `living_c`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
 	if($save){echo "success";}
@@ -115,7 +179,7 @@ elseif($op == "savelivc"){
 }
 elseif($op == "savelivd"){
 	$file_no = $_GET['file_no'];;
-	$value = htmlspecialchars($_GET['value']);
+	$value = UbahSimbol(htmlspecialchars($_GET['value']));
 	$save = mysql_query(" UPDATE `bia` SET `living_d`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
 	if($save){echo "success";}
@@ -123,7 +187,7 @@ elseif($op == "savelivd"){
 }
 elseif($op == "savelive"){
 	$file_no = $_GET['file_no'];;
-	$value = htmlspecialchars($_GET['value']);
+	$value = UbahSimbol(htmlspecialchars($_GET['value']));
 	$save = mysql_query(" UPDATE `bia` SET `living_e`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
 	if($save){echo "success";}
@@ -131,7 +195,7 @@ elseif($op == "savelive"){
 }
 elseif($op == "savefin"){
 	$file_no = $_GET['file_no'];;
-	$value = htmlspecialchars($_GET['value']);
+	$value = UbahSimbol(htmlspecialchars($_GET['value']));
 	$save = mysql_query(" UPDATE `bia` SET `financial`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
 	if($save){echo "success";}
@@ -139,7 +203,7 @@ elseif($op == "savefin"){
 }
 elseif($op == "savecws"){
 	$file_no = $_GET['file_no'];;
-	$value = htmlspecialchars($_GET['value']);
+	$value = UbahSimbol(htmlspecialchars($_GET['value']));
 	$save = mysql_query(" UPDATE `bia` SET `cws_analysis`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
 	if($save){echo "success";}
@@ -147,7 +211,7 @@ elseif($op == "savecws"){
 }
 elseif($op == "saveopt"){
 	$file_no = $_GET['file_no'];
-	$value = htmlspecialchars($_GET['value']);
+	$value = UbahSimbol(htmlspecialchars($_GET['value']));
 	$save = mysql_query(" UPDATE `bia` SET `optional`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
 	
 	if($save){echo "success";}

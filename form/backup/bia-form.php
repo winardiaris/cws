@@ -1,6 +1,5 @@
 <?php 
 $R="R8";$W="W8";
-setHistory($_SESSION['user_id'],"bia_form","Open BIA Form",$NOW);
 include("form/navigasi.php");
 if(isset($_GET['op'])){
 	if(isset($_GET['file_no'])){
@@ -21,7 +20,8 @@ if(isset($_GET['op'])){
 		$cws=explode(";",$data['cws_analysis']);
 		$opt=explode(";",$data['optional']);
 		
-
+		
+		
 		$button = '<button class="btn btn-success" id="update_1"><i class="fa fa-refresh"></i> Update</button>';
 		$edit = 1;
 	}
@@ -49,7 +49,7 @@ else{
 			<div class="col-lg-4">
 				<div class="form-group">
 					<label>File No: <span  id="a"></span> </label>
-					<input class="form-control" id="file_no" <?php if($edit==1){echo 'value="'.balikinSimbol($data['file_no']).'" disabled';}?>>
+					<input class="form-control" id="file_no" <?php if($edit==1){echo 'value="'.$data['file_no'].'" disabled';}?>>
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -61,25 +61,25 @@ else{
 			<div class="col-lg-4">
 				<div class="form-group">
 					<label>Location</label>
-					<input class="form-control" id="location_assessment" <?php if($edit==1){echo 'value="'.balikinSimbol($assessment[0]).'" ';}?>>
+					<input class="form-control" id="location_assessment" <?php if($edit==1){echo 'value="'.$assessment[0].'" ';}?>>
 				</div>
 			</div>
 			<div class="col-lg-4">
 				<div class="form-group">
 					<label>Case Worker</label>
-					<input class="form-control" id="case_worker" <?php if($edit==1){echo 'value="'.balikinSimbol($assessment[1]).'" ';}?>>
+					<input class="form-control" id="case_worker" <?php if($edit==1){echo 'value="'.$assessment[1].'" ';}?>>
 				</div>
 			</div>
 			<div class="col-lg-4">
 				<div class="form-group">
 					<label>Organization</label>
-					<input class="form-control" id="org" <?php if($edit==1){echo 'value="'.balikinSimbol($assessment[2]).'" ';}?>>
+					<input class="form-control" id="org" <?php if($edit==1){echo 'value="'.$assessment[2].'" ';}?>>
 				</div>
 			</div>
 			<div class="col-lg-4">
 				<div class="form-group">
 					<label>Interpreter name & organization</label>
-					<input class="form-control" id="inorg" <?php if($edit==1){echo 'value="'.balikinSimbol($assessment[3]).'" ';}?>>
+					<input class="form-control" id="inorg" <?php if($edit==1){echo 'value="'.$assessment[3].'" ';}?>>
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -88,7 +88,7 @@ else{
 					<label class="radio-inline"><input type="radio" name="ioc"  value="UNHCR" <?php if($edit==1){if($assessment[4]=="UNHCR"){echo"checked";}  } ?>>UNHCR</label><br>
 					<label class="radio-inline"><input type="radio" name="ioc"  value="CWS" <?php if($edit==1){if($assessment[4]=="CWS"){echo"checked";}  } ?>>CWS</label><br>
 					<label class="radio-inline"><input type="radio" name="ioc"  value="other" id="other" <?php if($edit==1){if($assessment[4]=="other"){echo"checked";}  } ?>>Other</label>
-					<input class="form-control" style="padding:5px;height:25px;width:150px;" placeholder="(Name, if other)" id="others" <?php if($edit==1){if($assessment[4]=="other"){echo 'value="'.balikinSimbol($assessment[5]).'" ';}}?>>
+					<input class="form-control" style="padding:5px;height:25px;width:150px;" placeholder="(Name, if other)" id="others" <?php if($edit==1){if($assessment[4]=="other"){echo 'value="'.$assessment[5].'" ';}}?>>
 					<br><?php echo $button;?>
 				</div>
 			</div>
@@ -1300,7 +1300,13 @@ else{
 		</div>
 		</div>
 	</div>
-	
+<?php
+// comment 
+if($edit==1 AND $_SESSION['group_id']==1){
+echo '<div class="col-lg-12" ><label>Comment:</label><textarea class="form-control" id="comment">'; echo Balikin($data['comment']); echo'</textarea><br><small id="t"></small></div> ';
+}
+?>	
 </div>
+
 </div><!-- row -->
 </div><!-- page-wrapper -->

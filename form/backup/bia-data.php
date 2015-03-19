@@ -1,14 +1,14 @@
 <?php
 $R="R9";$W="W9";
-setHistory($_SESSION['user_id'],"bia_data","Open BIA Data",$NOW);
 include("form/navigasi.php") ;
 
 ?>
 <script>
 	$(document).ready(function(){
-		$("button.btn-danger").click(function(){
+		$("a.delete").click(function(){
 			var file_no = $(this).attr("id"),datanya="&file_no="+file_no;	
 			var r = confirm("Remove ["+file_no+"]? ");
+			
 			
 			if (r == true) {
 				$.ajax({url:"form/bia-action.php",data:"op=del"+datanya,cache:false,success: function(msg){
@@ -25,10 +25,11 @@ include("form/navigasi.php") ;
 <div id="page-wrapper">
 <div class="row">
 	<div class="col-lg-12"><h3 class="page-header">Data Best Interest Assessment Report for Temporary Care</h3></div>
-	<div class="col-lg-12"><div class="table-responsive">
+	<div class="col-lg-12"><div class="">
 	<table class="table table-striped table-bordered table-hover" id="dataTables">
 		<thead>
 		<tr>
+			<th></th>
 			<th>No</th>
 			<th>File No</th>
 			<th>Name</th>
@@ -36,7 +37,6 @@ include("form/navigasi.php") ;
 			<th>Location</th>
 			<th>Case Worker</th>
 			<th>Organization</th>
-			<th>Action</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -48,6 +48,22 @@ include("form/navigasi.php") ;
 				$assessment = explode(";",$data['assessment']);
 				echo'
 				<tr>
+					<td width="10px">
+						<div class="dropdown">
+						  <button class="btn btn-xs btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+						    <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+						   <li role="presentation">
+								<a role="menuitem" tabindex="-1" href="form/view/view.php?op=bia&file_no='.$data['file_no'].'"  title="View '.$file_no.'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-eye"></i> View</a></li>
+						   <li role="presentation">
+								<a role="menuitem" tabindex="-1" href="?page=bia-form&op=edit&file_no='.$data['file_no'].'"><i class="fa fa-edit"></i> Edit</a></li>
+						   <li role="presentation">
+								<a role="menuitem" tabindex="-1" class="delete text-danger" href="" id="'.$data['file_no'].'"><i class="fa fa-trash"></i> Delete</a>
+							</li>
+						  </ul>
+						</div>
+					</td>
 					<td align="right">'.$no.'.</td>
 					<td>'.$data['file_no'].'</td>
 					<td>'.$data['name'].'</td>
@@ -55,10 +71,6 @@ include("form/navigasi.php") ;
 					<td>'.$assessment[0].'</td>
 					<td>'.$assessment[1].'</td>
 					<td>'.$assessment[2].'</td>
-					<td align="center">
-						<a  href="?page=bia-form&op=edit&file_no='.$data['file_no'].'" class="btn  btn-sm btn-primary btn-sm"  title="Edit '.$data['name'].'"><i class="fa fa-edit"></i></a>
-						<button class="btn btn-sm btn-danger btn-sm" id="'.$data['file_no'].'" title="Delete '.$data['name'].'"><i class="fa fa-trash"></i></button>
-					</td>
 				</tr>
 				';
 			}
