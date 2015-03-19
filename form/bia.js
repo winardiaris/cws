@@ -220,7 +220,31 @@ $(document).ready(function(){
 		$("#toiva22d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva22a:checked").length,b=$("#toiva22b:checked").length,c=$("#toiva22c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva22"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
 
 
+		$("#toiva22d").change(function(){ var file_no=$("#file_no").val(), a=$("#toiva22a:checked").length,b=$("#toiva22b:checked").length,c=$("#toiva22c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoiva22"+datanya,cache:false, beforeSend:function(){$("#ttoiva").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoiva").text("Data saved");}else{$("#ttoiva").text("Data not saved !!");}}}); });
 		
+		$("#toivb1d").change(function(){ var file_no=$("#file_no").val(), a=$("#toivb1a:checked").length,b=$("#toivb1b:checked").length,c=$("#toivb1c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoivb1"+datanya,cache:false, beforeSend:function(){$("#ttoivb").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoivb").text("Data saved");}else{$("#ttoivb").text("Data not saved !!");}}}); }); 
+
+		//toivb
+		$("#toivb2d").change(function(){ var file_no=$("#file_no").val(), a=$("#toivb2a:checked").length,b=$("#toivb2b:checked").length,c=$("#toivb2c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoivb2"+datanya,cache:false, beforeSend:function(){$("#ttoivb").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoivb").text("Data saved");}else{$("#ttoivb").text("Data not saved !!");}}}); }); 
+		
+		$("#toivb3d").change(function(){ var file_no=$("#file_no").val(), a=$("#toivb3a:checked").length,b=$("#toivb3b:checked").length,c=$("#toivb3c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoivb3"+datanya,cache:false, beforeSend:function(){$("#ttoivb").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoivb").text("Data saved");}else{$("#ttoivb").text("Data not saved !!");}}}); }); 
+		
+		$("#toivb4d").change(function(){ var file_no=$("#file_no").val(), a=$("#toivb4a:checked").length,b=$("#toivb4b:checked").length,c=$("#toivb4c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoivb4"+datanya,cache:false, beforeSend:function(){$("#ttoivb").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoivb").text("Data saved");}else{$("#ttoivb").text("Data not saved !!");}}}); }); 
+		
+		$("#toivb5d").change(function(){ var file_no=$("#file_no").val(), a=$("#toivb5a:checked").length,b=$("#toivb5b:checked").length,c=$("#toivb5c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoivb5"+datanya,cache:false, beforeSend:function(){$("#ttoivb").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoivb").text("Data saved");}else{$("#ttoivb").text("Data not saved !!");}}}); }); 
+		
+		$("#toivb6d").change(function(){ var file_no=$("#file_no").val(), a=$("#toivb6a:checked").length,b=$("#toivb6b:checked").length,c=$("#toivb6c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoivb6"+datanya,cache:false, beforeSend:function(){$("#ttoivb").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoivb").text("Data saved");}else{$("#ttoivb").text("Data not saved !!");}}}); }); 
+		
+		$("#toivb7d").change(function(){ var file_no=$("#file_no").val(), a=$("#toivb7a:checked").length,b=$("#toivb7b:checked").length,c=$("#toivb7c:checked").length,d=$(this).val(), datanya="&file_no="+file_no+"&value="+a+";"+b+";"+c+";"+d; $.ajax({url:"form/bia-action.php",data:"op=savetoivb7"+datanya,cache:false, beforeSend:function(){$("#ttoivb").text("Saving data...")}, success:function(msg){if(msg=="success"){$("#ttoivb").text("Data saved");}else{$("#ttoivb").text("Data not saved !!");}}}); }); 
+		
+		$("#save_3").click(function(){
+			 $("#ttoiva").text('');
+			 $("#ttoivb").text('');
+			 alert("Data has been saved !!");
+			 $("#collapseIdentified").removeClass("in");
+			 $("#collapseEdu").addClass("in");
+			 document.location.href="#collapseEdu";
+		});
 		
 		
 		// education
@@ -234,6 +258,7 @@ $(document).ready(function(){
 						alert("Data has been saved !!");
 						$("#collapseEdu").removeClass("in");
 						$("#collapseHealth").addClass("in");
+						document.location.href="#collapseHealth";
 					}else{alert("Data not saved !!");}}
 				});
 		});
@@ -253,6 +278,7 @@ $(document).ready(function(){
 						alert("Data has been saved !!");
 						$("#collapseHealth").removeClass("in");
 						$("#collapsePsy").addClass("in");
+						document.location.href="#collapsePsy";
 					}else{alert("Data not saved !!");}}
 				});
 		});
@@ -268,6 +294,7 @@ $(document).ready(function(){
 						alert("Data has been saved !!");
 						$("#collapsePsy").removeClass("in");
 						$("#collapseInteraction").addClass("in");
+						document.location.href="#collapseInteraction";
 					}else{alert("Data not saved !!");}}
 				});
 		});
@@ -282,6 +309,7 @@ $(document).ready(function(){
 						alert("Data has been saved !!");
 						$("#collapseInteraction").removeClass("in");
 						$("#collapseLiving").addClass("in");
+						document.location.href="#collapseLiving";
 					}else{alert("Data not saved !!");}}
 				});
 		});
@@ -394,6 +422,7 @@ $(document).ready(function(){
 						alert("Data has been saved !!");
 						$("#collapseFinancial").removeClass("in");
 						$("#collapseCWS").addClass("in");
+						document.location.href="#collapseCWS";
 					}else{alert("Data not saved !!");}}
 			});
 		});
@@ -409,6 +438,7 @@ $(document).ready(function(){
 						alert("Data has been saved !!");
 						$("#collapseCWS").removeClass("in");
 						$("#collapseoptional").addClass("in");
+						document.location.href="#collapseoptional";
 					}else{alert("Data not saved !!");}}
 			});
 		});

@@ -5,34 +5,34 @@ if(isset($_GET['op'])){
 	if(isset($_GET['file_no'])){
 		$qry = mysql_query("SELECT * FROM `bia` WHERE `file_no`='".$_GET['file_no']."' AND `status`='1'") or die(mysql_error());
 		$data = mysql_fetch_array($qry);
-		$assessment=explode(";",$data['assessment']);
+		$assessment=explode(";",Balikin($data['assessment']));
 		
 		//toiv
-		$toiva1=explode(";",$data['toiva1']);$toiva2=explode(";",$data['toiva2']);$toiva3=explode(";",$data['toiva3']);
-		$toiva4=explode(";",$data['toiva4']);$toiva5=explode(";",$data['toiva5']);$toiva6=explode(";",$data['toiva6']);
-		$toiva7=explode(";",$data['toiva7']);$toiva8=explode(";",$data['toiva8']);$toiva9=explode(";",$data['toiva9']);
-		$toiva10=explode(";",$data['toiva10']);$toiva11=explode(";",$data['toiva11']);$toiva12=explode(";",$data['toiva12']);
-		$toiva13=explode(";",$data['toiva13']);$toiva14=explode(";",$data['toiva14']);$toiva15=explode(";",$data['toiva15']);
-		$toiva16=explode(";",$data['toiva16']);$toiva17=explode(";",$data['toiva17']);$toiva18=explode(";",$data['toiva18']);
-		$toiva19=explode(";",$data['toiva19']);$toiva20=explode(";",$data['toiva20']);$toiva21=explode(";",$data['toiva21']);
-		$toiva22=explode(";",$data['toiva22']);
+		$toiva1=explode(";",Balikin($data['toiva1']));$toiva2=explode(";",Balikin($data['toiva2']));$toiva3=explode(";",Balikin($data['toiva3']));
+		$toiva4=explode(";",Balikin($data['toiva4']));$toiva5=explode(";",Balikin($data['toiva5']));$toiva6=explode(";",Balikin($data['toiva6']));
+		$toiva7=explode(";",Balikin($data['toiva7']));$toiva8=explode(";",Balikin($data['toiva8']));$toiva9=explode(";",Balikin($data['toiva9']));
+		$toiva10=explode(";",Balikin($data['toiva10']));$toiva11=explode(";",Balikin($data['toiva11']));$toiva12=explode(";",Balikin($data['toiva12']));
+		$toiva13=explode(";",Balikin($data['toiva13']));$toiva14=explode(";",Balikin($data['toiva14']));$toiva15=explode(";",Balikin($data['toiva15']));
+		$toiva16=explode(";",Balikin($data['toiva16']));$toiva17=explode(";",Balikin($data['toiva17']));$toiva18=explode(";",Balikin($data['toiva18']));
+		$toiva19=explode(";",Balikin($data['toiva19']));$toiva20=explode(";",Balikin($data['toiva20']));$toiva21=explode(";",Balikin($data['toiva21']));
+		$toiva22=explode(";",Balikin($data['toiva22']));
+		//toivb
+		$toivb1=explode(";",Balikin($data['toivb1']));$toivb2=explode(";",Balikin($data['toivb2']));$toivb3=explode(";",Balikin($data['toivb3']));
+		$toivb4=explode(";",Balikin($data['toivb4']));$toivb5=explode(";",Balikin($data['toivb5']));$toivb6=explode(";",Balikin($data['toivb6']));
+		$toivb7=explode(";",Balikin($data['toivb7']));
 		
-		$toivb1=explode(";",$data['toivb1']);$toivb2=explode(";",$data['toivb2']);$toivb3=explode(";",$data['toivb3']);
-		$toivb4=explode(";",$data['toivb4']);$toivb5=explode(";",$data['toivb5']);$toivb6=explode(";",$data['toivb6']);
-		$toivb7=explode(";",$data['toivb7']);
 		
-		
-		$edu=explode(";",$data['edu']);
-		$health=explode(";",$data['health']);
-		$psy=explode(";",$data['psy']);
-		$liva=explode(";",$data['living_a']);
-		$livb=explode(";",$data['living_b']);
-		$livc=explode(";",$data['living_c']);
-		$livd=explode(";",$data['living_d']);
-		$live=explode(";",$data['living_e']);
-		$fin=explode(";",$data['financial']);
-		$cws=explode(";",$data['cws_analysis']);
-		$opt=explode(";",$data['optional']);
+		$edu=explode(";",Balikin($data['edu']));
+		$health=explode(";",Balikin($data['health']));
+		$psy=explode(";",Balikin($data['psy']));
+		$liva=explode(";",Balikin($data['living_a']));
+		$livb=explode(";",Balikin($data['living_b']));
+		$livc=explode(";",Balikin($data['living_c']));
+		$livd=explode(";",Balikin($data['living_d']));
+		$live=explode(";",Balikin($data['living_e']));
+		$fin=explode(";",Balikin($data['financial']));
+		$cws=explode(";",Balikin($data['cws_analysis']));
+		$opt=explode(";",Balikin($data['optional']));
 		
 		
 		
@@ -382,72 +382,72 @@ else{
 					<tr>
 						<td><label>1. Girl without protection</label></td>
 						<td>
-							<label><input type="checkbox" id="toiv23a" <?php if($edit==1){if($toiv[88]=="1"){echo "checked";}}?>> CoO</label>
-							<label><input type="checkbox" id="toiv23b" <?php if($edit==1){if($toiv[89]=="1"){echo "checked";}}?>> During flight </label>
-							<label><input type="checkbox" id="toiv23c" <?php if($edit==1){if($toiv[90]=="1"){echo "checked";}}?>> CoA</label>
+							<label><input type="checkbox" id="toivb1a" <?php if($edit==1){if($toivb1[0]=="1"){echo "checked";}}?>> CoO</label>
+							<label><input type="checkbox" id="toivb1b" <?php if($edit==1){if($toivb1[1]=="1"){echo "checked";}}?>> During flight </label>
+							<label><input type="checkbox" id="toivb1c" <?php if($edit==1){if($toivb1[2]=="1"){echo "checked";}}?>> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="toiv23d" <?php if($edit==1){echo $toiv[91];}?>></textarea></td>
+							<textarea class="form-control" id="toivb1d" ><?php if($edit==1){echo $toivb1[3];}?></textarea></td>
 					</tr>
 					<tr>
 						<td><label>2. Pregnant girl</label></td>
 						<td>
-							<label><input type="checkbox" id="toiv24a" <?php if($edit==1){if($toiv[92]=="1"){echo "checked";}}?>> CoO</label>
-							<label><input type="checkbox" id="toiv24b" <?php if($edit==1){if($toiv[93]=="1"){echo "checked";}}?>> During flight </label>
-							<label><input type="checkbox" id="toiv24c" <?php if($edit==1){if($toiv[94]=="1"){echo "checked";}}?>> CoA</label>
+							<label><input type="checkbox" id="toivb2a" <?php if($edit==1){if($toivb2[0]=="1"){echo "checked";}}?>> CoO</label>
+							<label><input type="checkbox" id="toivb2b" <?php if($edit==1){if($toivb2[1]=="1"){echo "checked";}}?>> During flight </label>
+							<label><input type="checkbox" id="toivb2c" <?php if($edit==1){if($toivb2[2]=="1"){echo "checked";}}?>> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="toiv24d"><?php if($edit==1){echo $toiv[95];}?></textarea></td>
+							<textarea class="form-control" id="toivb2d" ><?php if($edit==1){echo $toivb2[3];}?></textarea></td>
 					</tr>
 					<tr>
 						<td><label>3. Adolescent parent</label></td>
 						<td>
-							<label><input type="checkbox" id="toiv25a" <?php if($edit==1){if($toiv[96]=="1"){echo "checked";}}?>> CoO</label>
-							<label><input type="checkbox" id="toiv25b" <?php if($edit==1){if($toiv[97]=="1"){echo "checked";}}?>> During flight </label>
-							<label><input type="checkbox" id="toiv25c" <?php if($edit==1){if($toiv[98]=="1"){echo "checked";}}?>> CoA</label>
+							<label><input type="checkbox" id="toivb3a" <?php if($edit==1){if($toivb3[0]=="1"){echo "checked";}}?>> CoO</label>
+							<label><input type="checkbox" id="toivb3b" <?php if($edit==1){if($toivb3[1]=="1"){echo "checked";}}?>> During flight </label>
+							<label><input type="checkbox" id="toivb3c" <?php if($edit==1){if($toivb3[2]=="1"){echo "checked";}}?>> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="toiv25d"><?php if($edit==1){echo $toiv[99];}?></textarea></td>
+							<textarea class="form-control" id="toivb3d" ><?php if($edit==1){echo $toivb3[3];}?></textarea></td>
 					</tr>
 					<tr>
 						<td><label>4. Victim of rape / sexual abuses</label></td>
 						<td>
-							<label><input type="checkbox" id="toiv26a" <?php if($edit==1){if($toiv[100]=="1"){echo "checked";}}?>> CoO</label>
-							<label><input type="checkbox" id="toiv26b" <?php if($edit==1){if($toiv[101]=="1"){echo "checked";}}?>> During flight </label>
-							<label><input type="checkbox" id="toiv26c" <?php if($edit==1){if($toiv[102]=="1"){echo "checked";}}?>> CoA</label>
+							<label><input type="checkbox" id="toivb4a" <?php if($edit==1){if($toivb4[0]=="1"){echo "checked";}}?>> CoO</label>
+							<label><input type="checkbox" id="toivb4b" <?php if($edit==1){if($toivb4[1]=="1"){echo "checked";}}?>> During flight </label>
+							<label><input type="checkbox" id="toivb4c" <?php if($edit==1){if($toivb4[2]=="1"){echo "checked";}}?>> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="toiv26d"><?php if($edit==1){echo $toiv[103];}?></textarea></td>
+							<textarea class="form-control" id="toivb4d" ><?php if($edit==1){echo $toivb4[3];}?></textarea></td>
 					</tr>
 					<tr>
 						<td><label>5. Engaging in survival sex</label></td>
 						<td>
-							<label><input type="checkbox" id="toiv27a" <?php if($edit==1){if($toiv[104]=="1"){echo "checked";}}?>> CoO</label>
-							<label><input type="checkbox" id="toiv27b" <?php if($edit==1){if($toiv[105]=="1"){echo "checked";}}?>> During flight </label>
-							<label><input type="checkbox" id="toiv27c" <?php if($edit==1){if($toiv[106]=="1"){echo "checked";}}?>> CoA</label>
+							<label><input type="checkbox" id="toivb5a" <?php if($edit==1){if($toivb5[0]=="1"){echo "checked";}}?>> CoO</label>
+							<label><input type="checkbox" id="toivb5b" <?php if($edit==1){if($toivb5[1]=="1"){echo "checked";}}?>> During flight </label>
+							<label><input type="checkbox" id="toivb5c" <?php if($edit==1){if($toivb5[2]=="1"){echo "checked";}}?>> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="toiv27d"><?php if($edit==1){echo $toiv[107];}?></textarea></td>
+							<textarea class="form-control" id="toivb5d" ><?php if($edit==1){echo $toivb5[3];}?></textarea></td>
 					</tr>
 					<tr>
 						<td><label>6. Other forms of GBVs</label></td>
 						<td>
-							<label><input type="checkbox" id="toiv28a" <?php if($edit==1){if($toiv[108]=="1"){echo "checked";}}?>> CoO</label>
-							<label><input type="checkbox" id="toiv28b" <?php if($edit==1){if($toiv[109]=="1"){echo "checked";}}?>> During flight </label>
-							<label><input type="checkbox" id="toiv28c" <?php if($edit==1){if($toiv[110]=="1"){echo "checked";}}?>> CoA</label>
+							<label><input type="checkbox" id="toivb6a" <?php if($edit==1){if($toivb6[0]=="1"){echo "checked";}}?>> CoO</label>
+							<label><input type="checkbox" id="toivb6b" <?php if($edit==1){if($toivb6[1]=="1"){echo "checked";}}?>> During flight </label>
+							<label><input type="checkbox" id="toivb6c" <?php if($edit==1){if($toivb6[2]=="1"){echo "checked";}}?>> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="toiv28d"><?php if($edit==1){echo $toiv[111];}?></textarea></td>
+							<textarea class="form-control" id="toivb6d" ><?php if($edit==1){echo $toivb6[3];}?></textarea></td>
 					</tr>
 					<tr>
 						<td><label>7. Victim of forced marriage</label></td>
 						<td>
-							<label><input type="checkbox" id="toiv29a" <?php if($edit==1){if($toiv[112]=="1"){echo "checked";}}?>> CoO</label>
-							<label><input type="checkbox" id="toiv29b" <?php if($edit==1){if($toiv[113]=="1"){echo "checked";}}?>> During flight </label>
-							<label><input type="checkbox" id="toiv29c" <?php if($edit==1){if($toiv[114]=="1"){echo "checked";}}?>> CoA</label>
+							<label><input type="checkbox" id="toivb7a" <?php if($edit==1){if($toivb7[0]=="1"){echo "checked";}}?>> CoO</label>
+							<label><input type="checkbox" id="toivb7b" <?php if($edit==1){if($toivb7[1]=="1"){echo "checked";}}?>> During flight </label>
+							<label><input type="checkbox" id="toivb7c" <?php if($edit==1){if($toivb7[2]=="1"){echo "checked";}}?>> CoA</label>
 						</td>
 						<td><label>Observations:</label>
-							<textarea class="form-control" id="toiv29d"><?php if($edit==1){echo $toiv[115];}?></textarea></td>
+							<textarea class="form-control" id="toivb7d" ><?php if($edit==1){echo $toivb7[3];}?></textarea></td>
 					</tr>
 					<tr><td colspan="3"><small id="ttoivb"></small></td></tr>
 					

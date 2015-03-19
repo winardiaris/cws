@@ -117,6 +117,20 @@ elseif($op == "savetoiva1"){
 	elseif($op == "savetoiva22"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toiva22`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
 
 
+//toivb
+	elseif($op == "savetoivb1"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toivb1`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+
+	elseif($op == "savetoivb2"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toivb2`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoivb3"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toivb3`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoivb4"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toivb4`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoivb5"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toivb5`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoivb6"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toivb6`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
+	
+	elseif($op == "savetoivb7"){ $file_no = $_GET['file_no']; $value = UbahSimbol(htmlspecialchars($_GET['value'])); $save = mysql_query(" UPDATE `bia` SET `toivb7`='$value',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error()); if($save){echo "success";} else{echo "error";} }
 
 
 

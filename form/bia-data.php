@@ -45,7 +45,7 @@ include("form/navigasi.php") ;
 			$qry = mysql_query("SELECT `bia`.`file_no`,`bia`.`doa`,`bia`.`assessment`,`person`.`name` FROM `bia` INNER JOIN `person` ON `bia`.`file_no`=`person`.`file_no` WHERE `bia`.`status`='1' ") or die(mysql_error());
 			while($data=mysql_fetch_array($qry)){
 				$no++;
-				$assessment = explode(";",$data['assessment']);
+				$assessment = explode(";",Balikin($data['assessment']));
 				echo'
 				<tr>
 					<td width="10px">
