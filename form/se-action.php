@@ -11,6 +11,7 @@ if($op == "check"){
 	$qry = mysql_query("SELECT COUNT(*) AS `ada` FROM `person` WHERE `file_no`='$file_no';") or die(mysql_error());
 	$person = mysql_fetch_array($qry);
 	
+	setHistory($_SESSION['user_id'],"se_form","Check Available for File No [$file_no]",$NOW);
 		if($person['ada']>0){
 			//cek first assessment
 			$qry2 = mysql_query(
@@ -33,45 +34,6 @@ if($op == "check"){
 		else{echo "nodataperson";}
 	
 	
-	
-	
-	//if($a==0){
-		//$qry = mysql_query("SELECT COUNT(*) AS `ada` FROM `person` WHERE `file_no`='$file_no';") or die(mysql_error());
-		//$qry2 = mysql_query("SELECT COUNT(*) AS `ada` FROM `se` WHERE `file_no`='$file_no' ;") or die(mysql_error());
-		
-		//$person = mysql_fetch_array($qry);
-		//$se = mysql_fetch_array($qry2);
-		
-		//if($person['ada'] > 0 AND $se['ada'] > 0){
-			//echo "inuse";
-		//}
-		//elseif($person['ada'] > 0 AND $se['ada'] == 0){
-			//echo "avail";
-		//}
-		//elseif($person['ada'] == 0 AND $se['ada'] == 0){
-			//echo "nodata";
-		//}
-		
-		
-	//}
-	//elseif($a==1){
-		//$qry = mysql_query("SELECT COUNT(*) AS `ada` FROM `person` WHERE `file_no`='$file_no';") or die(mysql_error());
-		//$qry2 = mysql_query("SELECT COUNT(*) AS `ada` FROM `se` WHERE `file_no`='$file_no' AND `status`='0';") or die(mysql_error());
-		
-		//$person = mysql_fetch_array($qry);
-		//$se = mysql_fetch_array($qry2);
-
-		//if($person['ada'] > 0 AND $se['ada'] > 0){
-			//echo "inuse";
-		//}
-		//elseif($person['ada'] > 0 AND $se['ada'] == 0){
-			//echo "avail";
-		//}
-		//elseif($person['ada'] == 0 AND $se['ada'] == 0){
-			//echo "nodata";
-		//}
-
-	//}	
 }
 elseif($op=="nextAssessment"){
 	$file_no=$_GET['file_no'];

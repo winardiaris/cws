@@ -1,17 +1,14 @@
 <?php 
 $LOCATION = "person_data";
-setHistory($_SESSION['user_id'],$LOCATION,"Open Personal Data",$NOW);
-
-
 $R="R3";$W="W3";
 include("form/navigasi.php") ;
 
 if(isset($_GET['active'])){
 	$active = $_GET['active'];
-	if($active == "1"){$header = "(Active)";}
-	elseif($active == "2"){$header = "(Terminated)";}
-	elseif($active == "3"){$header = "(Deleted)";}
-	elseif($active == "4"){$header = "(Inactive)";}
+	if($active == "1"){$header = "(Active)"; setHistory($_SESSION['user_id'],$LOCATION,"Open Personal Data (Active)",$NOW);}
+	elseif($active == "2"){$header = "(Terminated)"; setHistory($_SESSION['user_id'],$LOCATION,"Open Personal Data (Terminated)",$NOW);}
+	elseif($active == "3"){$header = "(Deleted)"; setHistory($_SESSION['user_id'],$LOCATION,"Open Personal Data (Deleted)",$NOW);}
+	elseif($active == "4"){$header = "(Inactive)"; setHistory($_SESSION['user_id'],$LOCATION,"Open Personal Data (Inactive)",$NOW);}
 	
 }
 else{

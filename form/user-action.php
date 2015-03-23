@@ -6,7 +6,7 @@ if($op == "check"){
 	$user_name = $_GET['user_name'];
 	$qry = mysql_query("SELECT COUNT(*) AS `ada` FROM `user` WHERE `user_name`='$user_name';") or die(mysql_error());
 	$user = mysql_fetch_array($qry);
-	
+	setHistory($_SESSION['user_id'],"user_form","Check availabel user for username [$user_name] ",$NOW);
 	if($user['ada'] > 0){
 		echo "inuse";
 	}
@@ -24,7 +24,10 @@ elseif($op=="saveuser"){
 	$save = mysql_query("INSERT INTO `user` (`group_id`,`user_name`,`user_real_name`,`user_password`,`user_info`) 
 						VALUES('$group_id','$user_name','$user_real_name','$md5_password','$user_info')") or die(mysql_error());
 	
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"user_form","Save User for username [$user_name] ",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op=="updateuser"){
@@ -44,7 +47,10 @@ elseif($op=="updateuser"){
 						 `user_info`='$user_info',`last_change`='$NOW' WHERE `user_id`='$user_id';") or die(mysql_error());
 	}
 	
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"user_form","Update User for username [$user_name] ",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op=="updateusersetting"){
@@ -63,7 +69,10 @@ elseif($op=="updateusersetting"){
 						 `user_info`='$user_info',`last_change`='$NOW' WHERE `user_id`='$user_id';") or die(mysql_error());
 	}
 	
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"user_form","Update User Setting for username [$user_name] ",$NOW);
+	}
 	else{echo "error";}
 }
 
@@ -85,7 +94,10 @@ elseif($op=="saveusergroup"){
 	
 	$save =mysql_query("INSERT INTO `usergroup` (`group_name`,`group_access`) VALUES ('$group_name','$value')") or die(mysql_error());
 
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"usergroup_form","Save Usergroup for group name [$group_name] ",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op=="updateusergroup"){
@@ -95,7 +107,10 @@ elseif($op=="updateusergroup"){
 	
 	$save =mysql_query("UPDATE `usergroup` SET `group_name`='$group_name',`group_access`='$value' WHERE `group_id`='$group_id'") or die(mysql_error());
 
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"usergroup_form","Update Usergroup for group ID [$group_id] ",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op=="delusergroup"){
@@ -104,6 +119,7 @@ elseif($op=="delusergroup"){
 
 	if($del){
 		echo "success";
+		setHistory($_SESSION['user_id'],"usergroup_data","Delete Usergroup for group ID [$group_id] ",$NOW);
 	}
 	else{echo "error";}
 }
@@ -114,6 +130,7 @@ elseif($op=="deluser"){
 
 	if($del){
 		echo "success";
+		setHistory($_SESSION['user_id'],"user_data","Delete User for User ID [$user_id] ",$NOW);
 	}
 	else{echo "error";}
 }

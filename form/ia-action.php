@@ -12,6 +12,7 @@ if($op == "check"){
 	$person = mysql_fetch_array($qry);
 	$ia = mysql_fetch_array($qry2);
 	
+	setHistory($_SESSION['user_id'],"ia_form","Check Available for File No [$file_no]",$NOW);
 	if($person['ada'] > 0 AND $ia['ada'] > 0){
 		echo "inuse";
 	}
@@ -100,7 +101,7 @@ elseif($op == "del"){
 	$del = mysql_query("UPDATE `ia` SET `status`='0' WHERE  `file_no`='$file_no' AND `status`='1' ;  ") or die(mysql_error());
 	if($del){
 		echo "success";
-		setHistory($_SESSION['user_id'],"ia_form","Delete IA Data for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"ia_data","Delete IA Data for File No [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }

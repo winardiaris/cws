@@ -4,7 +4,6 @@ include ("../inc/conf.php");
 include ("function.php");
 $op = $_GET['op'];
 
-
 if($op == "check"){
 	$file_no = $_GET['file_no'];
 	$id_data = $_GET['id_data'];
@@ -73,7 +72,10 @@ elseif($op=="save_basic"){
 				VALUES('$file_no','$id_data','$report_date','$location','$ics','$reported','$NOW');"
 			) or die(mysql_error());
 	
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"hr_form","Save Basic data for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op=="update_basic"){
@@ -96,7 +98,10 @@ elseif($op=="update_basic"){
 				AND `hr_id`='$hr_id'"
 			) or die(mysql_error());
 	
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"hr_form","Update Basic data for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 
@@ -119,7 +124,10 @@ elseif($op=="save_hr1"){
 		$save = mysql_query("INSERT INTO `hr_data` (`hr_id`,`person_id`,`situation`,`id_data`,`hr1`,`created`) VALUES ('$hr_id','$person_id','$situation','$id_data','$val','$NOW') ")or die(mysql_error());
 	}
 
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"hr_form","Save/Update Chronology/Situation reported for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op=="save_hr2"){
@@ -140,7 +148,10 @@ elseif($op=="save_hr2"){
 		$save = mysql_query("INSERT INTO `hr_data` (`hr_id`,`person_id`,`situation`,`id_data`,`hr2`,`created`) VALUES ('$hr_id','$person_id','$situation','$id_data','$val','$NOW') ")or die(mysql_error());
 	}
 
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"hr_form","Save/Update Action taken for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op=="save_hr3"){
@@ -161,7 +172,10 @@ elseif($op=="save_hr3"){
 		$save = mysql_query("INSERT INTO `hr_data` (`hr_id`,`person_id`,`situation`,`id_data`,`hr3`,`created`) VALUES ('$hr_id','$person_id','$situation','$id_data','$val','$NOW') ")or die(mysql_error());
 	}
 
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"hr_form","Save/Update Budget estimate for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op=="save_hr4"){
@@ -182,7 +196,10 @@ elseif($op=="save_hr4"){
 		$save = mysql_query("INSERT INTO `hr_data` (`hr_id`,`person_id`,`situation`,`id_data`,`hr4`,`created`) VALUES ('$hr_id','$person_id','$situation','$id_data','$val','$NOW') ")or die(mysql_error());
 	}
 
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"hr_form","Save/Update Risk happened when the recommended procedure is not conducted for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op=="save_hr5"){
@@ -203,7 +220,10 @@ elseif($op=="save_hr5"){
 		$save = mysql_query("INSERT INTO `hr_data` (`hr_id`,`person_id`,`situation`,`id_data`,`hr5`,`created`) VALUES ('$hr_id','$person_id','$situation','$id_data','$val','$NOW') ")or die(mysql_error());
 	}
 
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"hr_form","Save/Update Concomitant illnesses that would affect treatment of the disease for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op=="save_hr6"){
@@ -224,7 +244,10 @@ elseif($op=="save_hr6"){
 		$save = mysql_query("INSERT INTO `hr_data` (`hr_id`,`person_id`,`situation`,`id_data`,`hr6`,`created`) VALUES ('$hr_id','$person_id','$situation','$id_data','$val','$NOW') ")or die(mysql_error());
 	}
 
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"hr_form","Save/Update How long the procedure will take for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op=="save_hr7"){
@@ -245,13 +268,19 @@ elseif($op=="save_hr7"){
 		$save = mysql_query("INSERT INTO `hr_data` (`hr_id`,`person_id`,`situation`,`id_data`,`hr7`,`created`) VALUES ('$hr_id','$person_id','$situation','$id_data','$val','$NOW') ")or die(mysql_error());
 	}
 
-	if($save){echo "success";}
+	if($save){
+		echo "success";
+		setHistory($_SESSION['user_id'],"hr_form","Save/Update Suggestion for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 elseif($op == "del"){
 	$hr_id = $_GET['hr_id'];
 	$del = mysql_query("UPDATE `hr` SET `status`='0' WHERE  `hr_id`='$hr_id' AND `status`='1' ;  ") or die(mysql_error());
-	if($del){echo "success";}
+	if($del){
+		echo "success";
+		setHistory($_SESSION['user_id'],"hr_data","Delete HR data for File No [$file_no]",$NOW);
+	}
 	else{echo "error";}
 }
 ?>

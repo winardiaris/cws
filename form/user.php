@@ -1,10 +1,10 @@
 <?php 
 $R="R12";$W="W12";
 include("form/navigasi.php");
+setHistory($_SESSION['user_id'],"user_data","Open User Data",$NOW);
 ?>
 <script>
 $(document).ready(function(){
-	
 	//test
 	$(".delete").click(function(){
 		var 	user_id = $(this).attr("id"),

@@ -90,16 +90,19 @@ $(document).ready(function(){
 <?php
 if(isset($_GET['op'])){
 	if($_GET['op']=="edit"){
-	
+	   $group_id = $_GET['group_id'];
 		$qry = mysql_query("SELECT * FROM `usergroup` WHERE `group_id`='".$_GET['group_id']."'") or die(mysql_error());
 		$data=mysql_fetch_array($qry);
 		$access=explode(";",$data['group_access']);
 		
 		$edit = 1;
 		$button = '<button class="btn btn-primary" id="update_group"><i class="fa fa-refresh"></i> Update</button><br>';
-	}else{
+		setHistory($_SESSION['user_id'],"usergroup_form","Open Usergroup Form for Group ID [$group_id] ",$NOW);
+	}
+	else{
 		$edit = 0;
 		$button = '<button class="btn btn-success" id="save_group"><i class="fa fa-save"></i> Save</button><br>';
+		setHistory($_SESSION['user_id'],"usergroup_form","Open Usergroup Form",$NOW);
 	}
 	
 	
@@ -227,6 +230,7 @@ else{
 				<?php
 				$qry = mysql_query("SELECT * FROM `usergroup`") or die(mysql_error());
 				$no = 0;
+				setHistory($_SESSION['user_id'],"usergroup_data","Open Usergroup Data ",$NOW);
 				while($data=mysql_fetch_array($qry)){
 					$no++;
 				echo'

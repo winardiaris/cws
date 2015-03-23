@@ -51,12 +51,14 @@ include("form/navigasi.php") ;
 				<?php
 					$no = 0;
 					if($_GET['a']==1){
+						setHistory($_SESSION['user_id'],"hr_data","Open HR Data (First-Assessment)",$NOW);
 						$qry = mysql_query("
 							SELECT `hr`.`hr_id`,`hr`.`file_no`, `person`.`name`,`hr`.`report_date`, `hr`.`location` ,`hr`.`reported` 
 							FROM `hr`
 							INNER JOIN `person` ON `hr`.`file_no` = `person`.`file_no` WHERE `hr`.`status`='1' AND `hr`.`id_data`='0'") or die(mysql_error());
 					}
 					elseif($_GET['a']==2){
+						setHistory($_SESSION['user_id'],"hr_data","Open HR Data (Re-Assessment)",$NOW);
 						 $qry = mysql_query("
 							SELECT `hr`.`hr_id`,`hr`.`file_no`, `person`.`name`,`hr`.`report_date`, `hr`.`location` ,`hr`.`reported` 
 							FROM `hr`

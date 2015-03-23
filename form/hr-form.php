@@ -12,11 +12,19 @@ if(isset($_GET['op'])){
 		
 		$button = '<button class="btn btn-success" id="update_hr1"><i class="fa fa-refresh"></i> Update</button>';
 		$edit = 1;
+		setHistory($_SESSION['user_id'],"hr_form","Open HR form for File no [$file_no]",$NOW);
 	}
 }
 else{
 		$button = '<button class="btn btn-success" id="save_hr1"><i class="fa fa-save"></i> Save</button>';
 		$edit = 0;
+		if(isset($_GET['a'])){
+			setHistory($_SESSION['user_id'],"hr_form","Open HR form (Re-Assessment)",$NOW);
+		}
+		else{
+			setHistory($_SESSION['user_id'],"hr_form","Open HR form (New-Assessment)",$NOW);
+		}
+		
 }
 	
 ?>

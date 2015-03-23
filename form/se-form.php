@@ -1,7 +1,13 @@
 <?php 
 $R="R6";$W="W6";
-setHistory($_SESSION['user_id'],"se_form","Open SE Form",$NOW);
 include("form/navigasi.php");
+if(isset($_GET['a'])){
+	setHistory($_SESSION['user_id'],"se_form","Open SE Form (Re-Assessment)",$NOW);
+}
+else{
+	setHistory($_SESSION['user_id'],"se_form","Open SE Form (New-Assessment)",$NOW);
+}
+
 
 if(isset($_GET['op'])){
 	if(isset($_GET['file_no']) AND isset($_GET['se_id'])){

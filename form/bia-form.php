@@ -3,6 +3,7 @@ $R="R8";$W="W8";
 include("form/navigasi.php");
 if(isset($_GET['op'])){
 	if(isset($_GET['file_no'])){
+		$file_no = $_GET['file_no'];
 		$qry = mysql_query("SELECT * FROM `bia` WHERE `file_no`='".$_GET['file_no']."' AND `status`='1'") or die(mysql_error());
 		$data = mysql_fetch_array($qry);
 		$assessment=explode(";",Balikin($data['assessment']));
@@ -34,15 +35,16 @@ if(isset($_GET['op'])){
 		$cws=explode(";",Balikin($data['cws_analysis']));
 		$opt=explode(";",Balikin($data['optional']));
 		
-		
-		
 		$button = '<button class="btn btn-success" id="update_1"><i class="fa fa-refresh"></i> Update</button>';
 		$edit = 1;
+		
+		setHistory($_SESSION['user_id'],"bia_form","Open BIA Form for File no [$file_no] ",$NOW);
 	}
 }
 else{
 		$button = '<button class="btn btn-success" id="save_1"><i class="fa fa-save"></i> Save</button>';
 		$edit = 0;
+		setHistory($_SESSION['user_id'],"bia_form","Open BIA form",$NOW);
 }
 ?>
 <script src="form/bia.js"></script>

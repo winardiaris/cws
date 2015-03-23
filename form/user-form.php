@@ -20,12 +20,14 @@ if(isset($_GET['op'])){
 		$user_info = $data['user_info'];
 		
 		$edit=1;
+		setHistory($_SESSION['user_id'],"user_form","Open User form for User ID [$user_id] ",$NOW);
 	}
 }
 else{
 		$header = "User Add";
 		$button = '<button  id="user_save" class="btn btn-success"><i class="fa fa-save"></i> Save</button>';
 		$edit=0;
+		setHistory($_SESSION['user_id'],"user_form","Open User Form",$NOW);
 }
 
 

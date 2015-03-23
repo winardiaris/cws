@@ -1,6 +1,7 @@
 <?php 
 $R="R13";$W="W13";
 include("form/navigasi.php");
+setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 ?>
 <script>
 	$(document).ready(function(){
