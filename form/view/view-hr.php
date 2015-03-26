@@ -1,7 +1,16 @@
 <?php
 include("../../inc/conf.php");
 include("../function.php") ;
-
+?>
+<html>
+<head>
+	<link href="<?php echo $URL ?>css/bootstrap.css" rel="stylesheet">
+	<link href="<?php echo $URL ?>css/custom.css" rel="stylesheet">
+	<link href="<?php echo $URL ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<button class="btn print btn-sm btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>	
+<?php
 if(isset($_GET['file_no']) AND isset($_GET['id'])){
 	$file_no = $_GET['file_no'];
 	$hr_id = $_GET['id'];
@@ -142,3 +151,5 @@ if(isset($_GET['file_no']) AND isset($_GET['id'])){
 	}	
 }
 ?>
+</body>
+</html>

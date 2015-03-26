@@ -73,15 +73,15 @@ include("form/navigasi.php") ;
 						<tr>
 							<td width="10px">
 								<div class="dropdown">
-								  <button class="btn btn-xs btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+								  <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 								    <span class="caret"></span>
 								  </button>
 								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 								   <li role="presentation">
-										<a role="menuitem" tabindex="-1" href="form/view/view.php?op=hr&file_no='.$data['file_no'].'&id='.$data['hr_id'].'"  title="View '.$file_no.'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-eye"></i> View this</a></li>';
+										<a role="menuitem" tabindex="-1" href="form/view/view-hr.php?file_no='.$data['file_no'].'&id='.$data['hr_id'].'"  title="View '.$file_no.'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-eye"></i> View this</a></li>';
 									if($_GET['a']==1){
 										echo '<li role="presentation">
-										<a role="menuitem" tabindex="-1" href="form/view/view.php?op=hr&file_no='.$data['file_no'].'&a=all"  title="View '.$file_no.'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-eye"></i> View all</a></li>';
+										<a role="menuitem" tabindex="-1" href="form/view/view-hr-all.php?file_no='.$data['file_no'].'&a=all"  title="View '.$file_no.'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-eye"></i> View all</a></li>';
 										
 									}
 								  echo' <li role="presentation">

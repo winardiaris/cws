@@ -64,7 +64,7 @@ else{
 							<tr >
 								<td  width="30px" align="center">
 									<div class="dropdown">
-									  <button class="btn btn-primary btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span class="caret"></span></button>
+									  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span class="caret"></span></button>
 									  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 									    <li role="presentation"><a role="menuitem" tabindex="-1" href="form/view/?file_no='.$file_no.'"  title="View '.$file_no.'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-eye"></i> View</a></li>
 									    <li role="presentation"><a role="menuitem" tabindex="-1" href="?page=person-form&op=edit&file_no='.$file_no.'"><i class="fa fa-edit"></i> Edit</a></li>

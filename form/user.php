@@ -59,7 +59,7 @@ $(document).ready(function(){
 							<tr>
 								<td width="30px">
 									<div class="dropdown">
-									  <button class="btn btn-primary btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span class="caret"></span></button>
+									  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span class="caret"></span></button>
 									  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 									    <li role="presentation">
 											<a role="menuitem" tabindex="-1" href="?page=user-form&op=edit&user_id='.$data['user_id'].'"><i class="fa fa-edit"></i> Edit</a>

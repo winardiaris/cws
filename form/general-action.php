@@ -134,4 +134,7 @@ elseif($op=="hr_comment"){
 	}
 	else{echo "error";}
 }
+else{
+	echo "nothing";
+}
 ?>

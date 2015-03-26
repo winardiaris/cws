@@ -1,6 +1,15 @@
 <?php
 include("../../inc/conf.php");
 include("../function.php") ;
+?>
+<html>
+<head>
+	<link href="<?php echo $URL ?>css/bootstrap.css" rel="stylesheet">
+	<link href="<?php echo $URL ?>css/custom.css" rel="stylesheet">
+	<link href="<?php echo $URL ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+<body class="view">
+<?php
 if(isset($_GET['file_no'])){
    $file_no = $_GET['file_no'];
 	$qry = mysql_query("SELECT * FROM `se` WHERE `file_no`='".$_GET['file_no']."' ORDER BY `se_id` ") or die(mysql_error());
@@ -29,18 +38,6 @@ if(isset($_GET['file_no'])){
 			$verification=explode(";",$data['verification']);
 			
 			$edit = 1;
-		
-		
-		
-		
-			
-		
-
-
-
-	
-	
-	
 	
 ?>
 <hr>
@@ -371,6 +368,22 @@ if(isset($_GET['file_no'])){
 		// comment 
 		echo '<label>Comment:</label>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>';
 		}
+		//== panel
+		if(empty($_GET['p'])){
+			$link =  "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"."&p=hide";
+			$file = "SE_".$file_no."_all";
+			echo'
+			<form action="../pdfin.php" method="post">
+			<div class="atas">
+				<input type="text" name="link" value="'.$link.'" hidden>
+				<input type="text" name="file" value="'.$file.'" hidden>
+			   <button class="btn print btn-sm btn-primary" onclick="window.print()">Print</button>
+				<input type="submit" value="Get PDF" class="btn btn-sm btn-default hidden">
+			</div>
+			</form>';
+		}
+		//==panel
+		
 	}
 	else{
 		echo "No data SE for File Number: ".$_GET['file_no'];
@@ -378,3 +391,5 @@ if(isset($_GET['file_no'])){
 	}	
 }
 ?>
+</body>
+</html>

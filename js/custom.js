@@ -35,9 +35,7 @@ function ubahSimbol(str) {
     var str1 = str1.replace(/1=1/g, "x1smdgan1x");  
     var str1 = str1.replace(/!/g, "xserux");  
     var str1 = str1.replace(/</g, "xkkirix");  
-    var str1 = str1.replace(/>/g, "xkkananx");  
-    var str1 = str1.replace(/(/g, "xkkurix");  
-    var str1 = str1.replace(/)/g, "xkkurnanx");  
+    var str1 = str1.replace(/>/g, "xkkananx");    
     var str1 = str1.replace(/%/g, "xpersenx");  
 	
 	return str1;
@@ -60,21 +58,11 @@ function balikinSimbol(str){
     var str1 = str1.replace(/x1smdg1x/g,"1=1"); 
     var str1 = str1.replace(/xserux/g,"!"); 
     var str1 = str1.replace(/xkkirix/g,"<"); 
-    var str1 = str1.replace(/xkkananx/g,">"); 
-    var str1 = str1.replace(/xkkurix/g,"("); 
-    var str1 = str1.replace(/xkkurnanx/g,")"); 
+    var str1 = str1.replace(/xkkananx/g,">");  
     var str1 = str1.replace(/xpersenx/g,"%"); 
     
 	return str1;
 }
 
-
-
-
-$(document).ready(function(){
-	$("*:disabled").click(function(){
-		alert("Read Only !");
-	});
-});
 
 

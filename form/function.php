@@ -151,6 +151,7 @@ function Balikin($str){
 
 
 
+
 if(isset($_GET['op'])){
 	$op = $_GET['op'];
 	if($op=="setHistory"){

@@ -237,7 +237,7 @@ else{
 				<tr>
                <td width="30px">
 						<div class="dropdown">
-						  <button class="btn btn-primary btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span class="caret"></span></button>
+						  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span class="caret"></span></button>
 						  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 						    <li role="presentation">
 								<a role="menuitem" tabindex="-1" href="?page=user-group&op=edit&group_id='.$data['group_id'].'" ><i class="fa fa-edit"></i> Edit</a>

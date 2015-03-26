@@ -3,7 +3,6 @@
 	
 	include ("function.php");
 ?>
-<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -48,9 +47,11 @@
    
 </head>
 <body >
-<script> $(document).ready(function() {$('#dataTables').dataTable();});</script>
+<script> $(document).ready(function() {$('#dataTables').dataTable(); $("*:disabled").click(function(){
+		alert("Read Only !");
+	});});</script>
 <div id="wrapper"><!-- /#wrapper -->
 
-<div id="divpopup" name="divpopup" class="wrapper" style="display:none" onClick="window.framepopup.location='<?php echo $URL; ?>loading.html';setdisplay(divpopup,0); return false"><div class="col-lg-12"><a href=# id="iframebtn" onClick="window.framepopup.location='<?php echo $URL; ?>loading.html\';setdisplay(divpopup,0); return false"><button type="button" class="btn   btn-close btn-circle"><i class="fa fa-close"></i></button></a><iframe id="framepopup" name="framepopup"  src="loading.html"></iframe></div></div>
+<div id="divpopup" name="divpopup" class="wrapper" style="display:none" onClick="window.framepopup.location='<?php echo $URL; ?>loading.html';setdisplay(divpopup,0); return false"><div class="col-lg-12"><a href=# id="iframebtn" onClick="window.framepopup.location='<?php echo $URL; ?>loading.html';setdisplay(divpopup,0); return false"><button type="button" class="btn   btn-close btn-circle"><i class="fa fa-close"></i></button></a><iframe id="framepopup" name="framepopup"  src="loading.html"></iframe></div></div>
 
 	

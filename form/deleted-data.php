@@ -192,7 +192,7 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 							<tr>
 								<td>
 									<div class="dropdown">
-										<button class="btn btn-xs btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"> <span class="caret"></span></button>
+										<button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"> <span class="caret"></span></button>
 										<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 											<li role="presentation">
 												<a href="#" class="text-success" data="'.$data['file_no'].'"><i class="fa fa-refresh"></i> Restore</a>
@@ -232,7 +232,7 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 							<tr>
 								<td>
 									<div class="dropdown">
-										<button class="btn btn-xs btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"> <span class="caret"></span></button>
+										<button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"> <span class="caret"></span></button>
 										<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 											<li role="presentation">
 												<a href="#" class="text-success" data="'.$data['file_no'].'"><i class="fa fa-refresh"></i> Restore</a>
@@ -286,7 +286,7 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 							<tr>
 								<td>
 									<div class="dropdown">
-										<button class="btn btn-xs btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"> <span class="caret"></span></button>
+										<button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"> <span class="caret"></span></button>
 										<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 											<li role="presentation">
 												<a href="#" class="text-success" data="'.$data['file_no'].'" id="'.$data['se_id'].'"><i class="fa fa-refresh"></i> Restore</a>
@@ -333,7 +333,7 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 							<tr>
 								<td>
 									<div class="dropdown">
-										<button class="btn btn-xs btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"> <span class="caret"></span></button>
+										<button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"> <span class="caret"></span></button>
 										<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 											<li role="presentation">
 												<a href="#" class="text-success" data="'.$data['file_no'].'"><i class="fa fa-refresh"></i> Restore</a>
@@ -381,7 +381,7 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 							<tr>
 								<td>
 									<div class="dropdown">
-										<button class="btn btn-xs btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"> <span class="caret"></span></button>
+										<button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"> <span class="caret"></span></button>
 										<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 											<li role="presentation">
 												<a href="#" class="text-success" data="'.$data['file_no'].'" id="'.$data['hr_id'].'"><i class="fa fa-refresh"></i> Restore</a>
