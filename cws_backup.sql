@@ -164,7 +164,7 @@ CREATE TABLE `hr` (
 
 LOCK TABLES `hr` WRITE;
 /*!40000 ALTER TABLE `hr` DISABLE KEYS */;
-INSERT INTO `hr` VALUES (1,'120','0','2015-03-24','xpsijixJakartaxpsijix','xstrix','aris xgmringx dadang','2015-03-11 19:43:10','2015-03-11 19:43:49','1','ini komen hr'),(2,'120','1','2015-04-04','jakarta','xstrix','xstrix','2015-03-11 22:40:58',NULL,'1',NULL),(3,'120','1','2015-05-22','jakarta','xstrix','xstrix','2015-03-11 22:42:02',NULL,'1','ini komen hr reassessment'),(4,'123','0','2015-03-04','jakarta','xstrix','xstrix','2015-03-16 11:50:37',NULL,'1',NULL);
+INSERT INTO `hr` VALUES (1,'120','0','2015-03-24','Jakarta','xstrix','dadang','2015-03-11 19:43:10','2015-03-26 23:51:44','1','ini komen hr'),(2,'120','1','2015-04-04','jakarta','xstrix','xstrix','2015-03-11 22:40:58',NULL,'1',NULL),(3,'120','1','2015-05-22','jakarta','xstrix','xstrix','2015-03-11 22:42:02',NULL,'1','ini komen hr reassessment'),(4,'123','0','2015-03-04','jakarta','xstrix','xstrix','2015-03-16 11:50:37',NULL,'1',NULL);
 /*!40000 ALTER TABLE `hr` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -414,7 +414,7 @@ CREATE TABLE `system_log` (
   `log_message` text NOT NULL,
   `log_time` datetime NOT NULL,
   PRIMARY KEY (`log_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -423,6 +423,7 @@ CREATE TABLE `system_log` (
 
 LOCK TABLES `system_log` WRITE;
 /*!40000 ALTER TABLE `system_log` DISABLE KEYS */;
+INSERT INTO `system_log` VALUES (1,2,'login','Login Succes','2015-03-26 21:01:47'),(2,2,'dashboard','Open Dasboard','2015-03-26 21:01:48'),(3,2,'login','Login Succes','2015-03-26 21:10:21'),(4,2,'dashboard','Open Dasboard','2015-03-26 21:10:22'),(5,2,'se_data','Open SE Data (First Assessment)','2015-03-26 21:11:08'),(6,0,'se_data','Open SE Data (First Assessment)','2015-03-26 21:13:06'),(7,2,'hr_data','Open HR Data (First-Assessment)','2015-03-26 21:21:23'),(8,2,'hr_data','Open HR Data (First-Assessment)','2015-03-26 21:22:41'),(9,2,'se_data','Open SE Data (First Assessment)','2015-03-26 21:22:44'),(10,2,'se_data','Open SE Data (First Assessment)','2015-03-26 21:23:53'),(11,2,'se_data','Open SE Data (First Assessment)','2015-03-26 21:24:16'),(12,2,'login','Login Succes','2015-03-26 23:36:54'),(13,2,'dashboard','Open Dasboard','2015-03-26 23:36:57'),(14,2,'se_data','Open SE Data (First Assessment)','2015-03-26 23:37:38'),(15,2,'ia_data','Open IA Data','2015-03-26 23:37:49'),(16,2,'se_data','Open SE Data (First Assessment)','2015-03-26 23:38:38'),(17,2,'login','Logout Succes','2015-03-26 23:40:01'),(18,2,'login','Login Succes','2015-03-26 23:40:28'),(19,2,'dashboard','Open Dasboard','2015-03-26 23:40:29'),(20,2,'se_data','Open SE Data (First Assessment)','2015-03-26 23:40:33'),(21,2,'hr_data','Open HR Data (First-Assessment)','2015-03-26 23:49:37'),(22,2,'hr_form','Open HR form for File no [120]','2015-03-26 23:51:33'),(23,2,'hr_form','Update Basic data for File No [120]','2015-03-26 23:51:44'),(24,2,'hr_form','Open HR form (Re-Assessment)','2015-03-26 23:51:51'),(25,2,'hr_data','Open HR Data (First-Assessment)','2015-03-26 23:51:54'),(26,2,'hr_data','Open HR Data (Re-Assessment)','2015-03-26 23:51:59'),(27,2,'hr_data','Open HR Data (First-Assessment)','2015-03-26 23:52:03'),(28,2,'se_data','Open SE Data (First Assessment)','2015-03-26 23:52:16'),(29,2,'person_data','Open Personal Data (Active)','2015-03-26 23:52:34'),(30,2,'se_data','Open SE Data (First Assessment)','2015-03-26 23:52:41'),(31,2,'se_data','Open SE Data (First Assessment)','2015-03-27 00:02:56'),(32,2,'se_data','Open SE Data (First Assessment)','2015-03-27 00:03:52'),(33,2,'se_data','Open SE Data (First Assessment)','2015-03-27 00:04:39'),(34,2,'se_data','Open SE Data (First Assessment)','2015-03-27 00:05:46'),(35,2,'se_data','Open SE Data (First Assessment)','2015-03-27 00:06:43'),(36,2,'se_data','Open SE Data (First Assessment)','2015-03-27 00:07:24'),(37,2,'se_data','Open SE Data (First Assessment)','2015-03-27 00:09:07'),(38,2,'se_data','Open SE Data (First Assessment)','2015-03-27 00:09:53'),(39,2,'se_data','Open SE Data (First Assessment)','2015-03-27 00:10:57'),(40,0,'se_data','Open SE Data (First Assessment)','2015-03-27 01:04:27'),(41,2,'login','Login Succes','2015-03-27 01:04:32'),(42,2,'dashboard','Open Dasboard','2015-03-27 01:04:34'),(43,2,'dashboard','Open Dasboard','2015-03-27 01:04:36'),(44,2,'se_data','Open SE Data (First Assessment)','2015-03-27 01:04:39'),(45,2,'se_data','Open SE Data (First Assessment)','2015-03-27 01:05:29'),(46,2,'se_data','Open SE Data (First Assessment)','2015-03-27 01:07:57'),(47,2,'se_data','Open SE Data (First Assessment)','2015-03-27 01:08:30'),(48,2,'se_data','Open SE Data (First Assessment)','2015-03-27 01:09:05'),(49,2,'se_data','Open SE Data (First Assessment)','2015-03-27 01:09:52'),(50,2,'se_data','Open SE Data (First Assessment)','2015-03-27 01:12:12'),(51,2,'se_data','Open SE Data (First Assessment)','2015-03-27 01:12:42'),(52,2,'se_data','Open SE Data (First Assessment)','2015-03-27 01:13:37'),(53,2,'se_data','Open SE Data (First Assessment)','2015-03-27 01:15:25'),(54,2,'se_data','Open SE Data (First Assessment)','2015-03-27 01:17:02'),(55,2,'se_data','Open SE Data (First Assessment)','2015-03-27 01:19:40'),(56,2,'se_data','Open SE Data (First Assessment)','2015-03-27 01:20:14'),(57,2,'se_data','Open SE Data (First Assessment)','2015-03-27 01:21:21'),(58,2,'se_data','Open SE Data (First Assessment)','2015-03-27 01:22:04'),(59,2,'se_data','Open SE Data (First Assessment)','2015-03-27 01:22:52'),(60,2,'se_data','Open SE Data (First Assessment)','2015-03-27 01:24:14'),(61,2,'se_data','Open SE Data (First Assessment)','2015-03-27 01:25:07');
 /*!40000 ALTER TABLE `system_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -453,7 +454,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,1,'cws','cws','23abe62a446fc05ce0a6c810f4045308','','2015-03-26 17:46:12',NULL,'2015-01-27 16:35:36'),(2,1,'aris','Aris Winardi','288077f055be4fadc3804a69422dd4f8','-','2015-03-26 19:13:31',NULL,'2015-03-05 00:09:30'),(6,5,'user','user','ee11cbb19052e40b07aac0ca060c23ee','','2015-03-26 18:56:03',NULL,NULL);
+INSERT INTO `user` VALUES (1,1,'cws','cws','23abe62a446fc05ce0a6c810f4045308','','2015-03-26 17:46:12',NULL,'2015-01-27 16:35:36'),(2,1,'aris','Aris Winardi','288077f055be4fadc3804a69422dd4f8','-','2015-03-27 01:04:32',NULL,'2015-03-05 00:09:30'),(6,5,'user','user','ee11cbb19052e40b07aac0ca060c23ee','','2015-03-26 18:56:03',NULL,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -517,4 +518,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-26 20:05:18
+-- Dump completed on 2015-03-27  1:26:05

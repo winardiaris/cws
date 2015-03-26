@@ -2,24 +2,22 @@
 //ob_start();
 include("../inc/conf.php");
 
-	$link = $_POST['link'];
-	$file = $_POST['file'];
-	$css = '<style>'.file_get_contents('../css/pdfin.css').'</style>'; /// here call you external css file 
-	$content = file_get_contents($link);
-   $files = (string)$URL.'pdf/'.$file.'.pdf';
-    // convert in PDF
-    require_once(dirname(__FILE__).'/../html2pdf/html2pdf.class.php');
-    try
-    {
-        $html2pdf = new HTML2PDF('P', 'A4', 'en');
-        //$html2pdf->setDefaultFont('Arial');
-        //$html2pdf->pdf->SetDisplayMode('fullpage');
-        $html2pdf->writeHTML($css.$content, isset($_GET['vuehtml']));
-        $html2pdf->Output($files,'D');
-    }
-    catch(HTML2PDF_exception $e) {
-        echo $e;
-        exit;
-    }
+$link = $_POST['link'];
+$file = $_POST['file'];
 
+define('PATH','../mpdf/'); //mpdf directory
+include(PATH . "mpdf.php");
+$mpdf=new mPDF('utf-8', 'A4'); // Create new mPDF Document
+
+$content = file_get_contents($link); //content 
+$stylesheet = file_get_contents('../css/pdfin.css');   //css
+
+$html = ob_get_contents(); //Proses untuk mengambil hasil dari OB..
+ob_end_clean();
+
+//Here convert the encode for UTF-8, if you prefer the ISO-8859-1 just change for $mpdf->WriteHTML($html);
+$mpdf->WriteHTML($stylesheet,1);
+$mpdf->WriteHTML($content);
+$mpdf->Output($file.".pdf" ,'D');
+exit;
 ?>
