@@ -1,6 +1,6 @@
 <?php 
 $LOCATION = "dashboard";
-setHistory($_SESSION['user_id'],$LOCATION,"Open Dasboard",$NOW);
+setHistory($_SESSION['user_id'],$LOCATION,"Open Dashboard",$NOW);
 $R="R1";$W="W1";
 //cek login
 include("form/navigasi.php") 
@@ -98,8 +98,39 @@ include("form/navigasi.php")
 		</div>
 	</div>
 	</div>
-	<div class="col-lg-12 well" ><a href="?page=chart" ><i class="fa fa-pie-chart"></i> View All Chart >></a></div>
-	
+	<div class="col-lg-12" ><a href="?page=chart" ><i class="fa fa-pie-chart"></i> View All Chart >></a></div>
+<!--
+	//history
+-->
+	<div class="col-lg-12">
+		<h3>Your History</h3>
+		<hr>
+	<table class="table table-striped table-bordered table-hover" id="dataTables">
+		<thead>
+		<tr>
+			<th>No</th>
+			<th>History</th>
+			<th>Time</th>
+		</tr>
+		</thead>
+		<tbody>
+		<?php
+			$user_id=$_SESSION['user_id'];
+			$no=1;
+			$qry = mysql_query("SELECT * FROM `system_log` WHERE `user_id`='$user_id' ORDER BY `log_time` DESC")or die(mysql_error());
+			while($data=mysql_fetch_array($qry)){
+				echo'
+				<tr>
+					<td align="right">'.$no++.'.</td>
+					<td>'.$data['log_message'].'</td>
+					<td align="center" width="150px">'.$data['log_time'].'</td>
+				</tr>
+				';
+			}
+		?>
+		</tbody>
+	</table>
+</div>
 	
 </div>
 </div><!-- page-wrapper -->
