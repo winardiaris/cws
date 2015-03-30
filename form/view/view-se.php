@@ -78,7 +78,6 @@ if(isset($_GET['file_no']) AND isset($_GET['id'])){
 		</tr>
 	</table>
 	
-<hr>
 <h5>Background Information and Assessment Purpose</h5>
 	<table border="1" class="table table-bordered">
 		<tr>
@@ -92,7 +91,6 @@ if(isset($_GET['file_no']) AND isset($_GET['id'])){
 			<td ><p style="margin-left:15px"><?php if($edit==1){echo $background[1];} ?></p></td>
 		</tr>
 	</table>
-	<hr>
 <h5>Living Condition <small>(to be filled in after home visits)</small></h5>
 <h5>A. GENERAL</h5>
 	<table border="1" class="table table-bordered">
@@ -199,7 +197,6 @@ if(isset($_GET['file_no']) AND isset($_GET['id'])){
 		</tr>
 	</table>
 	
-<hr>
 <h5>B. PERSON WITH SPECIFIC NEEDS</h5>
 	<table border="1" class="table table-bordered">
 		<tr>
@@ -255,7 +252,6 @@ if(isset($_GET['file_no']) AND isset($_GET['id'])){
 		
 	</table>
 	
-<hr>
 <h5>Financial And Other Support System Available To The Person Of Concern</h5>
 	<table border="1" class="table table-bordered">
 		<tr>
@@ -344,7 +340,6 @@ if(isset($_GET['file_no']) AND isset($_GET['id'])){
 		</tr>
 		
 	</table>
-<hr>
 <h5>Assessment verified by:</h5>		
 	<table border="1" class="table table-bordered">
 		<tr>
@@ -365,6 +360,7 @@ if(isset($_GET['file_no']) AND isset($_GET['id'])){
 
 <?php
 		echo '<b>Comment:</b>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>';
+		echo '<div class="page-break"></div>';
 		
 		//== panel
 		if(empty($_GET['a'])){
@@ -375,8 +371,8 @@ if(isset($_GET['file_no']) AND isset($_GET['id'])){
 			<div class="atas">
 				<input type="text" name="link" value="'.$link.'" hidden>
 				<input type="text" name="file" value="'.$file.'" hidden>
-			   <button class="btn print btn-sm btn-primary" onclick="window.print()">Print</button>
-				<input type="submit" value="Get PDF" class="btn btn-sm btn-default " >
+			   <button class="btn print btn-sm btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
+				<button type="submit" class="btn btn-sm btn-default " ><i class="fa fa-download"></i> Get PDF</button>
 			</div>
 			</form>';
 		}
@@ -385,6 +381,7 @@ if(isset($_GET['file_no']) AND isset($_GET['id'])){
 	}
 	else{
 		echo "No data SE for File Number: ".$_GET['file_no'];
+		echo '<div class="page-break"></div>';
 		
 	}	
 }

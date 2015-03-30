@@ -21,27 +21,27 @@ include("../function.php") ;
 ?>
 
 <div class="photos" ><img src="<?php echo $photo; ?>"></div><br>
-<h3>Personal Information</h3>
+<h4>Personal Information</h4>
 <hr>
 <table class="table table-bordered">
 <tr>
-	<td width="15%"><label>File No:</label></td>
-	<td width="35%"><?php echo $data['file_no'];?></td>
-	<td width="15%"><label>Status:</label></td>
-	<td width="35%"><?php echo $data['status'];?></td>
+	<td ><b>File No:</b></td>
+	<td><?php echo $data['file_no'];?></td>
+	<td ><b>Status:</b></td>
+	<td ><?php echo $data['status'];?></td>
 </tr>
 <tr>
-	<td><label>Name:</label></td>
+	<td><b>Name:</b></td>
 	<td><?php echo $data['name'];?></td>
-	<td><label>Date & port arrival:</label></td>
+	<td><b>Date & port arrival:</b></td>
 	<td><?php echo $split[1].", ".$split[0];?></td>
 </tr>
 <tr>
-	<td><label>Country of Origin:</label></td>
+	<td><b>Country of Origin:</b></td>
 	<td><?php echo $data['country_name'];?></td>
-	<td><label>Education:</label></td>
+	<td><b>Education:</b></td>
 	<td>
-		<label>Formal:</label><br>
+		<b>Formal:</b><br>
 		<?php if($edu1[0]==1){$tedu1 .="Elementary School, ";}
 				elseif($edu1[1]==1){$tedu1 .= "Junior High School, ";} 
 				elseif($edu1[2]==1){$tedu1 .= "Senior High School, ";} 
@@ -50,8 +50,8 @@ include("../function.php") ;
 				echo $tedu1;
 		?>
 		<br>
-		<label>Informal:</label><br>
-		<label>CWS:</label><br>
+		<b>Informal:</b><br>
+		<b>CWS:</b><br>
 		<?php		
 				if($edu2[0]==1){$tedu2 .="English, ";}
 				elseif($edu2[1]==1){$tedu2 .= "Bahasa Indonesia, ";} 
@@ -61,7 +61,7 @@ include("../function.php") ;
 				echo $tedu2;
 		?>
 		<br>
-		<label>Insitution:</label><br>
+		<b>Insitution:</b><br>
 		<?php		
 				if($edu3[0]==1){$tedu3 .="English, ";}
 				elseif($edu3[1]==1){$tedu3 .= "Art, ";} 
@@ -70,45 +70,44 @@ include("../function.php") ;
 	</td>
 </tr>
 <tr>
-	<td><label>Date of Birth / Age:</label></td>
+	<td><b>Date of Birth / Age:</b></td>
 	<td><?php echo $data['dob']." / ".$data['age'];?></td>
-	<td><label>Skills:</label></td>
+	<td><b>Skills:</b></td>
 	<td><?php echo $data['skill'];?></td>
 </tr>
 <tr>
-	<td><label>Sex:</label></td>
+	<td><b>Sex:</b></td>
 	<td><?php if($data['sex']=="M"){echo "Male";}else{echo "Female";}?></td>
-	<td><label>Mother of Tongue:</label></td>
+	<td><b>Mother of Tongue:</b></td>
 	<td><?php echo $data['mot'];?></td>
 </tr>
 <tr>
-	<td><label>Marital Status:</label></td>
+	<td><b>Marital Status:</b></td>
 	<td><?php echo $data['marital'];?></td>
-	<td><label>Knowledge of other languages:</label></td>
+	<td><b>Knowledge of other languages:</b></td>
 	<td><?php echo $data['known_language'];?></td>
 </tr>
 <tr>
-	<td><label>Address (in detail):</label></td>
+	<td><b>Address (in detail):</b></td>
 	<td><?php echo getAddress($data['address']);?></td>
-	<td><label>Previous occupation:</label></td>
+	<td><b>Previous occupation:</b></td>
 	<td><?php echo $data['previous_occupation'];?></td>
 </tr>
 <tr>
-	<td><label>Phone No:</label></td>
+	<td><b>Phone No:</b></td>
 	<td><?php echo $data['phone'];?></td>
-	<td><label>Willingness to volunteer:</label></td>
+	<td><b>Willingness to volunteer:</b></td>
 	<td><?php echo $data['volunteer'];?></td>
 </tr>
 <tr>
-	<td><label>Active Status:</label></td>
+	<td><b>Active Status:</b></td>
 	<td><?php if($data['active']==1){echo"Active";}elseif($data['active']==2){echo"Terminated";}else{echo"Deleted";}?></td>
-	<td><label>Date of recognition:</label></td>
+	<td><b>Date of recognition:</b></td>
 	<td><?php echo $data['date_recognition'];?></td>
 </tr>
 </table>
 
-<h4>Reported family member</h4>
-<hr>
+<h5>Reported family member</h5>
 <table class="table table-bordered">
 <tr>
 	<th width="10px">No</th>
@@ -148,7 +147,7 @@ include("../function.php") ;
 </table>
 <?php
 // comment 
-echo '<label>Comment:</label>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>';
+echo '<b>Comment:</b>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>';
+echo '<div class="page-break"></div>';
 ?>
-<hr>
 

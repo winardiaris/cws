@@ -46,7 +46,7 @@ if(isset($_GET['file_no'])){
 
 
 <h4>Socio Economic Assessment Report  </h4>
-
+<hr>
 <h5>Assessment Remaks</h5>
 	<table border="1" class="table table-bordered">
 		<tr>
@@ -365,7 +365,6 @@ if(isset($_GET['file_no'])){
 			<td colspan="5"><?php if($edit==1){echo $verification[3];} ?></td>
 		</tr>
 	</table>
-<hr>
 
 <?php
 		// comment 
@@ -380,7 +379,7 @@ if(isset($_GET['file_no'])){
 			<div class="atas">
 				<input type="text" name="link" value="'.$link.'" hidden>
 				<input type="text" name="file" value="'.$file.'" hidden>
-			   <button class="btn print btn-sm btn-primary" onclick="window.print()">Print</button>
+			   <button class="btn print btn-sm btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
 				<input type="submit" value="Get PDF" class="btn btn-sm btn-default ">
 			</div>
 			</form>';
@@ -390,6 +389,7 @@ if(isset($_GET['file_no'])){
 	}
 	else{
 		echo "No data SE for File Number: ".$_GET['file_no'];
+		echo '<div class="page-break"></div>';
 		
 	}	
 }

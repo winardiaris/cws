@@ -13,13 +13,17 @@ if(empty($_GET['a'])){
 <body class="view">';
 }
 
-if(isset($_GET['file_no']) AND isset($_GET['id'])){
+if(isset($_GET['file_no'])){
 	$file_no = $_GET['file_no'];
-	$hr_id = $_GET['id'];
 	
-	$qry = mysql_query("SELECT * FROM `hr` WHERE `file_no`='$file_no' AND `status`='1' AND `hr_id`='$hr_id'") or die(mysql_error());
+	$qq = mysql_query("SELECT max(`report_date`) AS `max` FROM `hr` WHERE `file_no`='$file_no'")or die(mysql_error());
+	$aa = mysql_fetch_array($qq);
+	$max = $aa['max'];
+	
+	$qry = mysql_query("SELECT * FROM `hr` WHERE `file_no`='$file_no' AND `status`='1' AND `report_date`='$max'") or die(mysql_error());
 	$data = mysql_fetch_array($qry);
 	$count=mysql_num_rows($qry);
+	$hr_id = $data['hr_id'];
 	
 	$edit = 1;
 	if($count>0){

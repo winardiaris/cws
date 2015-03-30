@@ -38,6 +38,7 @@ if(isset($_GET['file_no'])){
 ?>	
 
 <h4>Initial Assessment</h4>
+<hr>
 <table class="table table-bordered" border="1">
 	<tr>
 		<td width="25%"><b>File No:</b></td>
@@ -237,6 +238,7 @@ if(isset($_GET['file_no'])){
 <?php
 	// comment 
 	echo '<b>Comment:</b>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>';
+	echo '<div class="page-break"></div>';
 	
 	//== panel
 		if(empty($_GET['a'])){
@@ -247,8 +249,8 @@ if(isset($_GET['file_no'])){
 			<div class="atas">
 				<input type="text" name="link" value="'.$link.'" hidden>
 				<input type="text" name="file" value="'.$file.'" hidden>
-			   <button class="btn print btn-sm btn-primary" onclick="window.print()">Print</button>
-				<input type="submit" value="Get PDF" class="btn btn-sm btn-default " >
+			   <button class="btn print btn-sm btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
+				<button type="submit" class="btn btn-sm btn-default " ><i class="fa fa-download"></i> Get PDF</button>
 			</div>
 			</form>';
 		}
@@ -256,6 +258,7 @@ if(isset($_GET['file_no'])){
 	}
 	else{
 		echo "No data IA for File Number: ".$_GET['file_no'];
+		echo '<div class="page-break"></div>';
 		
 	}	
 }

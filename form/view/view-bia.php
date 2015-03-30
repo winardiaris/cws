@@ -53,7 +53,7 @@ if(isset($_GET['file_no'])){
 	if($count>0){
 ?>
 <h4>Best Interest Assessment Report for Temporary Care</h4>
-
+<hr>
 <h5>Date of Assessment</h5>
 <table class="table table-bordered">
 	<tr>
@@ -1120,6 +1120,7 @@ if(isset($_GET['file_no'])){
 <?php
 		// comment 
 		echo '<b>Comment:</b>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>';
+		echo '<div class="page-break"></div>';
 		//== panel
 		if(empty($_GET['a'])){
 			$link =  "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"."&a=hide";
@@ -1129,8 +1130,8 @@ if(isset($_GET['file_no'])){
 			<div class="atas">
 				<input type="text" name="link" value="'.$link.'" hidden>
 				<input type="text" name="file" value="'.$file.'" hidden>
-			   <button class="btn print btn-sm btn-primary" onclick="window.print()">Print</button>
-				<input type="submit" value="Get PDF" class="btn btn-sm btn-default " >
+			   <button class="btn print btn-sm btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
+				<button type="submit" class="btn btn-sm btn-default " ><i class="fa fa-download"></i> Get PDF</button>
 			</div>
 			</form>';
 		}
@@ -1138,6 +1139,7 @@ if(isset($_GET['file_no'])){
 	}
 	else{
 		echo "No data BIA for File Number: ".$_GET['file_no'];
+		echo '<div class="page-break"></div>';
 	}	
 }
 

@@ -6,12 +6,45 @@ include("../function.php") ;
 <head>
 	<link href="<?php echo $URL ?>css/bootstrap.css" rel="stylesheet">
 	<link href="<?php echo $URL ?>css/custom.css" rel="stylesheet">
+	<script src="<?php echo $URL ?>js/jquery.js"></script>
 	<link href="<?php echo $URL ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body class="view">
+<script>
+$(document).ready(function(){
+	var 	content = $("#content"),
+			file_no = $("#file_no").val(),
+			id = $("#id").val(),
+			tperson = $("#tperson"),
+			tia = $("#tia"),
+			tse = $("#tse"),
+			tbia = $("#tbia"),
+			thr = $("#thr");
+		tperson.load("view-personal.php?file_no="+file_no);
+<?php 
+	if(isset($_GET['ia'])){
+		echo 'tia.load("view-ia.php?file_no="+file_no+"&a=hide");';
+	}
+	
+	if(isset($_GET['se'])){
+		echo 'tse.load("view-se-person.php?file_no="+file_no+"&p=hide");';
+	}
+	
+	if(isset($_GET['bia'])){
+		echo 'tbia.load("view-bia.php?file_no="+file_no+"&a=hide");';
+	}
+	
+	if(isset($_GET['hr'])){
+		echo 'thr.load("view-hr-person.php?file_no="+file_no+"&a=hide");';
+	}
+?>	
+});
+
+	
+</script>
 	<div class=" atas">
 		<form method="get" action="" style="float:left;">
-			<label class="checkbox-inline"><input type="checkbox" name="person" <?php if(isset($_GET['person'])){ echo "checked='checked'";} ?>> Personal </label>
+			<label class="checkbox-inline"><input type="checkbox" name="person" checked> Personal </label>
 			<label class="checkbox-inline"><input type="checkbox" name="ia" <?php if(isset($_GET['ia'])){ echo "checked='checked'";} ?>> IA </label>
 			<label class="checkbox-inline"><input type="checkbox" name="se" <?php if(isset($_GET['se'])){ echo "checked='checked'";} ?>> SE </label>
 			<label class="checkbox-inline"><input type="checkbox" name="bia" <?php if(isset($_GET['bia'])){ echo "checked='checked'";} ?>> BIA </label>
@@ -27,8 +60,8 @@ include("../function.php") ;
 					$file = "Person_".$_GET['file_no']."_".$TODAY;
 					
 					echo '
-					<input type="text" name="link" value="'.$link.'" hidden >
-					<input type="text" name="file" value="'.$file.'" hidden >
+					<input type="text" name="link" value="'.$link.'" >
+					<input type="text" name="file" value="'.$file.'" >
 					<button type="submit"  class="btn btn-sm btn-default " ><i class="fa fa-download"></i> Get PDF</button>';
 				}
 			?>
@@ -37,37 +70,11 @@ include("../function.php") ;
 
 <div id="page-print">
 	<div id="content">
-		<?php
-			if(isset($_GET['person'])){
-				$person = $URL."form/view/view-personal.php?file_no=".$_GET['file_no']."&a=hide";
-				$cperson = file_get_contents($person);
-				echo $cperson;
-			}
-
-			if(isset($_GET['ia'])){
-				$a = $URL."form/view/view-ia.php?file_no=".$_GET['file_no']."&a=hide";
-				$ca = file_get_contents($a);
-				echo $ca;
-			}
-			
-			if(isset($_GET['se'])){
-				$b = $URL."form/view/view-se-person.php?file_no=".$_GET['file_no']."&a=hide";
-				$cb = file_get_contents($b);
-				echo $cb;
-			}
-			
-			if(isset($_GET['bia'])){
-				$c = $URL."form/view/view-bia.php?file_no=".$_GET['file_no']."&a=hide";
-				$cc = file_get_contents($c);
-				echo $cc;
-			}
-			
-			if(isset($_GET['hr'])){
-				$d = $URL."form/view/view-hr-person.php?file_no=".$_GET['file_no']."&a=hide";
-				$cd = file_get_contents($d);
-				echo $cd;
-			}
-		?>
+	<div id="tperson"></div>
+	<div id="tia"></div>
+	<div id="tse"></div>
+	<div id="tbia"></div>
+	<div id="thr"></div>
 	</div> 
 </div>
 </body>

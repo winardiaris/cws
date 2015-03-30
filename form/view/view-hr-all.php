@@ -23,7 +23,7 @@ if(isset($_GET['file_no'])){
 			$hr_id = $data['hr_id'];
 ?>			
 			<h4>Health Report File Number : <?php echo $_GET['file_no']?></h4>
-			
+			<hr>
 			<h5>Basic</h5>
 			<table class="table table-bordered" >
 				<tr>
@@ -161,8 +161,8 @@ if(isset($_GET['file_no'])){
 			<div class="atas">
 				<input type="text" name="link" value="'.$link.'" hidden>
 				<input type="text" name="file" value="'.$file.'" hidden>
-			   <button class="btn print btn-sm btn-primary" onclick="window.print()">Print</button>
-				<input type="submit" value="Get PDF" class="btn btn-sm btn-default " >
+			   <button class="btn print btn-sm btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
+				<button type="submit" class="btn btn-sm btn-default " ><i class="fa fa-download"></i> Get PDF</button>
 			</div>
 			</form>';
 		}
@@ -170,6 +170,7 @@ if(isset($_GET['file_no'])){
 	}
 	else{
 		echo "No data HR for File Number: ".$_GET['file_no'];
+		echo '<div class="page-break"></div>';
 	}
 }
 
