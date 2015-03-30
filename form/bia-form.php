@@ -774,7 +774,7 @@ else{
 							<label class="radio-inline"><input type="radio" name="psy18a" value="0" <?php if($edit==1){if($psy[27]=="0"){echo "checked";}}?>> No</label>
 							</div>
 						</td>
-						<td><textarea class="form-control" id="psy18b"><?php if($edit==1){echo $psy[21];}?></textarea></td>
+						<td><textarea class="form-control" id="psy18b"><?php if($edit==1){echo $psy[28];}?></textarea></td>
 					</tr>
 				</table>
 			</div>

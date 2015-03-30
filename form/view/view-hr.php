@@ -1,16 +1,18 @@
 <?php
 include("../../inc/conf.php");
 include("../function.php") ;
-?>
-<html>
-<head>
-	<link href="<?php echo $URL ?>css/bootstrap.css" rel="stylesheet">
-	<link href="<?php echo $URL ?>css/custom.css" rel="stylesheet">
-	<link href="<?php echo $URL ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+if(empty($_GET['a'])){
+	echo '
+<html><head>
+	
+	<link href="'.$URL.'css/bootstrap.css" rel="stylesheet">
+	<link href="'.$URL.'css/custom.css" rel="stylesheet">
+	<link href="'.$URL.'font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
-<body>
-	<button class="btn print btn-sm btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>	
-<?php
+<body class="view">';
+}
+
 if(isset($_GET['file_no']) AND isset($_GET['id'])){
 	$file_no = $_GET['file_no'];
 	$hr_id = $_GET['id'];
@@ -23,45 +25,49 @@ if(isset($_GET['file_no']) AND isset($_GET['id'])){
 	if($count>0){
 	
 ?>
-<hr>
-<h3>Health Report</h3>
-<hr>
-<h4>Basic</h4>
+
+<h4>Health Report</h4>
+
+<h5>Basic</h5>
 <table class="table table-bordered" >
 	<tr>
 		<td>
-			<label>File No: </label>
+			<b>File No: </b>
 			<?php if($edit==1){echo $data['file_no'];} ?>
 		</td>
 		<td>
-			<label>IC’s Personal information:</label>
+			<b>IC’s Personal information:</b>
 			<?php if($edit==1){echo Balikin($data['ics']);} ?>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<label>Report Update: </label>
+			<b>Report Update: </b>
 			<?php if($edit==1){echo $data['report_date'];} ?>
 		</td>
 		<td>
-			<label>Reported by: </label>
+			<b>Reported by: </b>
 			<?php if($edit==1){echo Balikin($data['reported']);} ?>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<label>Location: </label>
+			<b>Location: </b>
 			<?php if($edit==1){echo Balikin($data['location']);} ?>
 		</td>
 		<td></td>
 
 	</tr>
 </table>
+<div class="page-break"></div>
 
 
 <?php 
 		$q=mysql_query("SELECT * FROM `hr_data` WHERE `hr_id`='$hr_id'")or die(mysql_error());
+		$a=0;
+		$counts=mysql_num_rows($q);
 		while($d=mysql_fetch_array($q)){
+			$a++;
 		$id = explode(".",$d['person_id']);
 		if(count($id)==2){
 			$x = mysql_query("SELECT * FROM `reported_family` WHERE `id`='".$id[1]."' ;")or die(mysql_error());
@@ -80,76 +86,98 @@ if(isset($_GET['file_no']) AND isset($_GET['id'])){
 		
 		
 ?>		
-		<hr>
-		<h4>Health Report</h4>
+		
+		<h5>Health Report</h5>
 		<table class="table table-bordered" >
 			<tr>
 				<?php 
 					echo "
-					<td><label>Name: </label> ".$name."</td>
-					<td><label>Age: </label> ".$age."</td>
-					<td><label>Gender :</label> ".$sex."</td>";
+					<td><b>Name: </b> ".$name."</td>
+					<td><b>Age: </b> ".$age."</td>
+					<td><b>Gender :</b> ".$sex."</td>";
 				?>
 			</tr>
 			<tr>
-				<td colspan="3"><label>Situation:</label></td>
+				<td colspan="3"><b>Situation:</b></td>
 			</tr>
 			<tr>
 				<td colspan="3"><p style="margin-left:15px;"><?php if($edit==1){echo Balikin($d['situation']);} ?></p></td>
 			</tr>
 			<tr>
-				<td colspan="3"><label>1. Chronology/ Situation reported:</label></td>
+				<td colspan="3"><b>1. Chronology/ Situation reported:</b></td>
 			</tr>
 			<tr>
 				<td colspan="3"><p style="margin-left:15px;"><?php if($edit==1){echo Balikin($d['hr1']);} ?></p></td>
 			</tr>
 			<tr>
-				<td colspan="3"><label>2. Action taken:</label></td>
+				<td colspan="3"><b>2. Action taken:</b></td>
 			</tr>
 			<tr>
 				<td colspan="3"><p style="margin-left:15px;"><?php if($edit==1){echo Balikin($d['hr2']);} ?></p></td>
 			</tr>
 			<tr>
-				<td colspan="3"><label>3. Budget estimate:</label></td>
+				<td colspan="3"><b>3. Budget estimate:</b></td>
 			</tr>
 			<tr>
 				<td colspan="3"><p style="margin-left:15px;"><?php if($edit==1){echo Balikin($d['hr3']);} ?></p></td>
 			</tr>
 			<tr>
-				<td colspan="3"><label>4. Risk happened when the recommended procedure is not conducted: </label></td>
+				<td colspan="3"><b>4. Risk happened when the recommended procedure is not conducted: </b></td>
 			</tr>
 			<tr>
 				<td colspan="3"><p style="margin-left:15px;"><?php if($edit==1){echo Balikin($d['hr4']);} ?></p></td>
 			</tr>
 			<tr>
-				<td colspan="3"><label>5. Concomitant illnesses that would affect treatment of the disease:</label></td>
+				<td colspan="3"><b>5. Concomitant illnesses that would affect treatment of the disease:</b></td>
 			</tr>
 			<tr>
 				<td colspan="3"><p style="margin-left:15px;"><?php if($edit==1){echo Balikin($d['hr5']);} ?></p></td>
 			</tr>
 			<tr>
-				<td colspan="3"><label>6. How long the procedure will take: </label></td>
+				<td colspan="3"><b>6. How long the procedure will take: </b></td>
 			</tr>
 			<tr>
 				<td colspan="3"><p style="margin-left:15px;"><?php if($edit==1){echo Balikin($d['hr6']);} ?></p></td>
 			</tr>
 			<tr>
-				<td colspan="3"><label>7. Suggestion: </label></td>
+				<td colspan="3"><b>7. Suggestion: </b></td>
 			</tr>
 			<tr>
 				<td colspan="3"><p style="margin-left:15px;"><?php if($edit==1){echo Balikin($d['hr7']);} ?></p></td>
 			</tr>
 		</table>
 
-<?php		
+<?php	
+		if($a != $counts){
+			echo '<div class="page-break"></div>';
+		}
+	
 		}
 	   // comment 
-		echo '<label>Comment:</label>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>';
+		echo '<b>Comment:</b>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>';
+		
+		//== panel
+		if(empty($_GET['a'])){
+			$link =  "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"."&a=hide";
+			$file = "HR_".$data['file_no']."_".$data['report_date'];
+			echo'
+			<form action="../pdfin.php" method="post">
+			<div class="atas">
+				<input type="text" name="link" value="'.$link.'" hidden>
+				<input type="text" name="file" value="'.$file.'" hidden>
+			   <button class="btn print btn-sm btn-primary" onclick="window.print()">Print</button>
+				<input type="submit" value="Get PDF" class="btn btn-sm btn-default " >
+			</div>
+			</form>';
+		}
+		//==panel
 	}
 	else{
 		echo "No data HR for File Number: ".$_GET['file_no'];
 	}	
 }
+if(empty($_GET['a'])){
+	echo'</body>
+</html>';
+}
 ?>
-</body>
-</html>

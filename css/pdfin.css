@@ -10,6 +10,11 @@ html {
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
+table th,
+table td{
+	vertical-align:top;
+	padding:3px;
+}
 body {
   margin: 0;
   font-size:12pt;

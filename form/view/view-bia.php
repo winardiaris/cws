@@ -1,16 +1,18 @@
 <?php 
 include("../../inc/conf.php");
 include("../function.php") ;
-?>
-<html>
-<head>
-	<link href="<?php echo $URL ?>css/bootstrap.css" rel="stylesheet">
-	<link href="<?php echo $URL ?>css/custom.css" rel="stylesheet">
-	<link href="<?php echo $URL ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+if(empty($_GET['a'])){
+	echo '
+<html><head>
+	
+	<link href="'.$URL.'css/bootstrap.css" rel="stylesheet">
+	<link href="'.$URL.'css/custom.css" rel="stylesheet">
+	<link href="'.$URL.'font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
-<body>
-	<button class="btn print btn-sm btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>	
-<?php	
+<body class="view">';
+}
+
 if(isset($_GET['file_no'])){
 	$qry = mysql_query("SELECT * FROM `bia` WHERE `file_no`='".$_GET['file_no']."' AND `status`='1'") or die(mysql_error());
 	$data = mysql_fetch_array($qry);
@@ -50,453 +52,449 @@ if(isset($_GET['file_no'])){
 	
 	if($count>0){
 ?>
-<div class="table-responsive">
-<h3>Best Interest Assessment Report for Temporary Care</h3>
-<hr>
+<h4>Best Interest Assessment Report for Temporary Care</h4>
 
-<h4>Date of Assessment</h4>
+<h5>Date of Assessment</h5>
 <table class="table table-bordered">
 	<tr>
-		<td valign="top"><label>File No:</label></td>
+		<td valign="top"><b>File No:</b></td>
 		<td valign="top"><?php if($edit==1){echo $data['file_no'];}?></td>
 		
-		<td valign="top"><label>Date of Assessment: </label></td>
+		<td valign="top"><b>Date of Assessment: </b></td>
 		<td valign="top"><?php if($edit==1){echo $data['doa'];}?></td>
 	</tr>
 	<tr>	
-		<td valign="top"><label>Location</label></td>
+		<td valign="top"><b>Location</b></td>
 		<td valign="top"><?php if($edit==1){echo $assessment[0];}?></td>
 	
 	
-		<td valign="top"><label>Case Worker</label></td>
+		<td valign="top"><b>Case Worker</b></td>
 		<td valign="top"><?php if($edit==1){echo $assessment[1];}?></td>
 	</tr>
 	<tr>	
-		<td valign="top"><label>Organization</label></td>
+		<td valign="top"><b>Organization</b></td>
 		<td valign="top"><?php if($edit==1){echo $assessment[2];}?></td>
 		
-		<td valign="top"><label>Interpreter name & organization</label></td>
+		<td valign="top"><b>Interpreter name & organization</b></td>
 		<td valign="top"><?php if($edit==1){echo $assessment[3];}?></td>
 	</tr>
 	<tr >
-		<td valign="top"><label>Identification of child</label></td>
+		<td valign="top"><b>Identification of child</b></td>
 		<td valign="top" colspan="3">
-			<label class="radio-inline"><input disabled type="radio" name="ioc"  value="UNHCR" <?php if($edit==1){if($assessment[4]=="UNHCR"){echo"checked";}  } ?>>UNHCR</label>
-			<label class="radio-inline"><input disabled type="radio" name="ioc"  value="CWS" <?php if($edit==1){if($assessment[4]=="CWS"){echo"checked";}  } ?>>CWS</label>
-			<label class="radio-inline"><input disabled type="radio" name="ioc"  value="other" id="other" <?php if($edit==1){if($assessment[4]=="other"){echo"checked";}  } ?>>Other: <?php if($edit==1){if($assessment[4]=="other"){echo $assessment[5];}}?></label>
+			<b class="radio-inline"><input disabled type="radio" name="ioc"  value="UNHCR" <?php if($edit==1){if($assessment[4]=="UNHCR"){echo"checked='checked'";}  } ?>>UNHCR</b>
+			<b class="radio-inline"><input disabled type="radio" name="ioc"  value="CWS" <?php if($edit==1){if($assessment[4]=="CWS"){echo"checked='checked'";}  } ?>>CWS</b>
+			<b class="radio-inline"><input disabled type="radio" name="ioc"  value="other" id="other" <?php if($edit==1){if($assessment[4]=="other"){echo"checked='checked'";}  } ?>>Other: <?php if($edit==1){if($assessment[4]=="other"){echo $assessment[5];}}?></b>
 		</td>
 	</tr>
 	
 </table>
 
-<hr>
-<h4>Personal history<br><small>( Background(Brief history describing hardships or trauma experienced))</small></h4>
+<h5>Personal history<br><small>( Background(Brief history describing hardships or trauma experienced))</small></h5>
 <table class="table table-bordered">
 	<tr>
-		<td valign="top"><label>1. In the Country of Origin</label></td>
+		<td valign="top"><b>1. In the Country of Origin</b></td>
 	</tr>
 	<tr>
 		<td valign="top"><?php if($edit==1){echo $data['ph1']; } ?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>2. During the flight</label></td>
+		<td valign="top"><b>2. During the flight</b></td>
 	</tr>
 	<tr>
 		<td valign="top"><?php if($edit==1){echo $data['ph2']; } ?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>3. In the country of Asylum</label></td>
+		<td valign="top"><b>3. In the country of Asylum</b></td>
 	</tr>
 	<tr>
-		<td valign="top"><?php if($edit==1){echo $data['ph3']; } ?></td>
+		<td valign="top"><?php if($edit==1){echo $data['ph4']; } ?></td>
 	</tr>
 </table>
 
-<hr>
-<h4>Types of identified vulnerabilities</h4>
+<h5>Types of identified vulnerabilities</h5>
 <table class="table table-bordered">
 	<tr>
-		<td valign="top" ><label>Child at risk of deportation</label></td>
-		<td valign="top" width="150px">
-			<label><input type="checkbox" disabled id="toiva1a" <?php if($edit==1){if($toiva1[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva1b" <?php if($edit==1){if($toiva1[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva1c" <?php if($edit==1){if($toiva1[2]=="1"){echo "checked";}}?>> CoA</label><br>
+		<td valign="top" width="20%"><b>Child at risk of deportation</b></td>
+		<td valign="top" width="20%">
+			<b><input type="checkbox" disabled id="toiva1a" <?php if($edit==1){if($toiva1[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva1b" <?php if($edit==1){if($toiva1[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva1c" <?php if($edit==1){if($toiva1[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva1[3];}?></td>
+		<td width="60%"><b>Observations:</b><br><?php if($edit==1){echo $toiva1[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Child without legal documentation</label></td>
+		<td valign="top"><b>Child without legal documentation</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva2a" <?php if($edit==1){if($toiva2[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva2b" <?php if($edit==1){if($toiva2[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva2c" <?php if($edit==1){if($toiva2[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva2a" <?php if($edit==1){if($toiva2[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva2b" <?php if($edit==1){if($toiva2[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva2c" <?php if($edit==1){if($toiva2[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva2[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva2[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Street Children</label></td>
+		<td valign="top"><b>Street Children</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva1a" <?php if($edit==1){if($toiva3[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva3b" <?php if($edit==1){if($toiva3[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva3c" <?php if($edit==1){if($toiva3[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva3a" <?php if($edit==1){if($toiva3[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva3b" <?php if($edit==1){if($toiva3[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva3c" <?php if($edit==1){if($toiva3[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva3[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva3[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Medical Case</label></td>
+		<td valign="top"><b>Medical Case</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva4a" <?php if($edit==1){if($toiva4[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva4b" <?php if($edit==1){if($toiva4[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva4c" <?php if($edit==1){if($toiva4[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva4a" <?php if($edit==1){if($toiva4[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva4b" <?php if($edit==1){if($toiva4[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva4c" <?php if($edit==1){if($toiva4[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva4[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva4[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Disabled child:</label></td>
+		<td valign="top"><b>Disabled child:</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva5a" <?php if($edit==1){if($toiva5[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva5b" <?php if($edit==1){if($toiva5[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva5c" <?php if($edit==1){if($toiva5[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva5a" <?php if($edit==1){if($toiva5[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva5b" <?php if($edit==1){if($toiva5[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva5c" <?php if($edit==1){if($toiva5[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva5[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva5[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Victim of violence</label></td>
+		<td valign="top"><b>Victim of violence</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva6a" <?php if($edit==1){if($toiva6[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva6b" <?php if($edit==1){if($toiva6[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva6c" <?php if($edit==1){if($toiva6[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva6a" <?php if($edit==1){if($toiva6[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva6b" <?php if($edit==1){if($toiva6[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva6c" <?php if($edit==1){if($toiva6[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva6[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva6[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Victim of sexual violence</label></td>
+		<td valign="top"><b>Victim of sexual violence</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva7a" <?php if($edit==1){if($toiva7[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva7b" <?php if($edit==1){if($toiva7[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva7c" <?php if($edit==1){if($toiva7[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva7a" <?php if($edit==1){if($toiva7[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva7b" <?php if($edit==1){if($toiva7[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva7c" <?php if($edit==1){if($toiva7[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva7[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva7[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Victim of trafficking</label></td>
+		<td valign="top"><b>Victim of trafficking</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva8a" <?php if($edit==1){if($toiva8[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva8b" <?php if($edit==1){if($toiva8[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva8c" <?php if($edit==1){if($toiva8[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva8a" <?php if($edit==1){if($toiva8[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva8b" <?php if($edit==1){if($toiva8[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva8c" <?php if($edit==1){if($toiva8[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva8[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva8[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Victim of Child Labour</label></td>
+		<td valign="top"><b>Victim of Child Labour</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva9a" <?php if($edit==1){if($toiva9[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva9b" <?php if($edit==1){if($toiva9[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva9c" <?php if($edit==1){if($toiva9[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva9a" <?php if($edit==1){if($toiva9[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva9b" <?php if($edit==1){if($toiva9[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva9c" <?php if($edit==1){if($toiva9[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva9[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva9[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Victim of forced Labour</label></td>
+		<td valign="top"><b>Victim of forced Labour</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva10a" <?php if($edit==1){if($toiva10[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva10b" <?php if($edit==1){if($toiva10[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva10c" <?php if($edit==1){if($toiva10[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva10a" <?php if($edit==1){if($toiva10[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva10b" <?php if($edit==1){if($toiva10[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva10c" <?php if($edit==1){if($toiva10[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva10[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva10[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Victim of exploitation</label></td>
+		<td valign="top"><b>Victim of exploitation</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva11a" <?php if($edit==1){if($toiva11[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva11b" <?php if($edit==1){if($toiva11[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva11c" <?php if($edit==1){if($toiva11[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva11a" <?php if($edit==1){if($toiva11[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva11b" <?php if($edit==1){if($toiva11[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva11c" <?php if($edit==1){if($toiva11[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva11[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva11[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Victim of prostitution</label></td>
+		<td valign="top"><b>Victim of prostitution</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva12a" <?php if($edit==1){if($toiva12[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva12b" <?php if($edit==1){if($toiva12[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva12c" <?php if($edit==1){if($toiva12[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva12a" <?php if($edit==1){if($toiva12[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva12b" <?php if($edit==1){if($toiva12[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva12c" <?php if($edit==1){if($toiva12[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva12[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva12[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Minor victim used or recruited by smugglers</label></td>
+		<td valign="top"><b>Minor victim used or recruited by smugglers</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva13a" <?php if($edit==1){if($toiva13[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva13b" <?php if($edit==1){if($toiva13[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva13c" <?php if($edit==1){if($toiva13[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva13a" <?php if($edit==1){if($toiva13[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva13b" <?php if($edit==1){if($toiva13[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva13c" <?php if($edit==1){if($toiva13[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva13[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva13[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Minor in conflict with the Law</label></td>
+		<td valign="top"><b>Minor in conflict with the Law</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva14a" <?php if($edit==1){if($toiva14[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva14b" <?php if($edit==1){if($toiva14[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva14c" <?php if($edit==1){if($toiva14[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva14a" <?php if($edit==1){if($toiva14[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva14b" <?php if($edit==1){if($toiva14[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva14c" <?php if($edit==1){if($toiva14[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva14[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva14[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>In hiding <small>(e.g. fear of being identified or found)</small></label></td>
+		<td valign="top"><b>In hiding <small>(e.g. fear of being identified or found)</small></b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva15a" <?php if($edit==1){if($toiva15[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva15b" <?php if($edit==1){if($toiva15[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva15c" <?php if($edit==1){if($toiva15[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva15a" <?php if($edit==1){if($toiva15[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva15b" <?php if($edit==1){if($toiva15[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva15c" <?php if($edit==1){if($toiva15[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva15[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva15[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Experiencing rejection by community</label></td>
+		<td valign="top"><b>Experiencing rejection by community</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva16a" <?php if($edit==1){if($toiva16[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva16b" <?php if($edit==1){if($toiva16[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva16c" <?php if($edit==1){if($toiva16[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva16a" <?php if($edit==1){if($toiva16[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva16b" <?php if($edit==1){if($toiva16[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva16c" <?php if($edit==1){if($toiva16[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva16[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva16[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Bodily injured</label></td>
+		<td valign="top"><b>Bodily injured</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva17a" <?php if($edit==1){if($toiva17[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva17b" <?php if($edit==1){if($toiva17[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva17c" <?php if($edit==1){if($toiva17[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva17a" <?php if($edit==1){if($toiva17[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva17b" <?php if($edit==1){if($toiva17[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva17c" <?php if($edit==1){if($toiva17[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva17[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva17[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Victim of severe beatings</label></td>
+		<td valign="top"><b>Victim of severe beatings</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva18a" <?php if($edit==1){if($toiva18[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva18b" <?php if($edit==1){if($toiva18[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva18c" <?php if($edit==1){if($toiva18[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva18a" <?php if($edit==1){if($toiva18[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva18b" <?php if($edit==1){if($toiva18[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva18c" <?php if($edit==1){if($toiva18[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva18[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva18[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Lack of basic needs <small>(food, water, shelter)</small></label></td>
+		<td valign="top"><b>Lack of basic needs <small>(food, water, shelter)</small></b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva19a" <?php if($edit==1){if($toiva19[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva19b" <?php if($edit==1){if($toiva19[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva19c" <?php if($edit==1){if($toiva19[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva19a" <?php if($edit==1){if($toiva19[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva19b" <?php if($edit==1){if($toiva19[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva19c" <?php if($edit==1){if($toiva19[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva19[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva19[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Victim of rape / sexual abuses</label></td>
+		<td valign="top"><b>Victim of rape / sexual abuses</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva20a" <?php if($edit==1){if($toiva20[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva20b" <?php if($edit==1){if($toiva20[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva20c" <?php if($edit==1){if($toiva20[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva20a" <?php if($edit==1){if($toiva20[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva20b" <?php if($edit==1){if($toiva20[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva20c" <?php if($edit==1){if($toiva20[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva20[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva20[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Unsafe in community <br><small>(a.g. abuse by family or community, domestic violence)</small></label></td>
+		<td valign="top"><b>Unsafe in community <br><small>(a.g. abuse by family or community, domestic violence)</small></b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva21a" <?php if($edit==1){if($toiva21[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva21b" <?php if($edit==1){if($toiva21[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva21c" <?php if($edit==1){if($toiva21[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva21a" <?php if($edit==1){if($toiva21[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva21b" <?php if($edit==1){if($toiva21[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva21c" <?php if($edit==1){if($toiva21[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva21[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva21[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Other <small>(explain)</small></label></td>
+		<td valign="top"><b>Other <small>(explain)</small></b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toiva22a" <?php if($edit==1){if($toiva22[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toiva22b" <?php if($edit==1){if($toiva22[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toiva22c" <?php if($edit==1){if($toiva22[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toiva22a" <?php if($edit==1){if($toiva22[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toiva22b" <?php if($edit==1){if($toiva22[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toiva22c" <?php if($edit==1){if($toiva22[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toiva22[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toiva22[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top" colspan="3" class="info" ><label>Special attention: Girls at risk <small>(can be cumulated with previous section)</small></label></td>
+		<td valign="top" colspan="3" class="info" ><b>Special attention: Girls at risk <small>(can be cumulated with previous section)</small></b></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Girl without protection</label></td>
+		<td valign="top"><b>Girl without protection</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toivb1a" <?php if($edit==1){if($toivb1[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toivb1b" <?php if($edit==1){if($toivb1[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toivb1c" <?php if($edit==1){if($toivb1[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toivb1a" <?php if($edit==1){if($toivb1[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toivb1b" <?php if($edit==1){if($toivb1[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toivb1c" <?php if($edit==1){if($toivb1[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toivb1[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toivb1[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Pregnant girl</label></td>
+		<td valign="top"><b>Pregnant girl</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toivb2a" <?php if($edit==1){if($toivb2[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toivb2b" <?php if($edit==1){if($toivb2[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toivb2c" <?php if($edit==1){if($toivb2[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toivb2a" <?php if($edit==1){if($toivb2[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toivb2b" <?php if($edit==1){if($toivb2[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toivb2c" <?php if($edit==1){if($toivb2[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toivb2[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toivb2[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Adolescent parent</label></td>
-		<td <td valign="top" >
-			<label><input type="checkbox" disabled id="toivb3a" <?php if($edit==1){if($toivb3[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toivb3b" <?php if($edit==1){if($toivb3[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toivb3c" <?php if($edit==1){if($toivb3[2]=="1"){echo "checked";}}?>> CoA</label><br>
-		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toivb3[3];}?></td>
-	</tr>
-	<tr>
-		<td valign="top"><label>Victim of rape / sexual abuses</label></td>
+		<td valign="top"><b>Adolescent parent</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toivb4a" <?php if($edit==1){if($toivb4[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toivb4b" <?php if($edit==1){if($toivb4[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toivb4c" <?php if($edit==1){if($toivb4[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toivb3a" <?php if($edit==1){if($toivb3[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toivb3b" <?php if($edit==1){if($toivb3[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toivb3c" <?php if($edit==1){if($toivb3[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toivb4[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toivb3[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Engaging in survival sex</label></td>
+		<td valign="top"><b>Victim of rape / sexual abuses</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toivb5a" <?php if($edit==1){if($toivb5[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toivb5b" <?php if($edit==1){if($toivb5[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toivb5c" <?php if($edit==1){if($toivb5[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toivb4a" <?php if($edit==1){if($toivb4[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toivb4b" <?php if($edit==1){if($toivb4[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toivb4c" <?php if($edit==1){if($toivb4[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toivb5[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toivb4[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Other forms of GBVs</label></td>
+		<td valign="top"><b>Engaging in survival sex</b></td>
 		<td valign="top" >
-			<label><input type="checkbox" disabled id="toivb6a" <?php if($edit==1){if($toivb6[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toivb6b" <?php if($edit==1){if($toivb6[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toivb6c" <?php if($edit==1){if($toivb6[2]=="1"){echo "checked";}}?>> CoA</label><br>
+			<b><input type="checkbox" disabled id="toivb5a" <?php if($edit==1){if($toivb5[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toivb5b" <?php if($edit==1){if($toivb5[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toivb5c" <?php if($edit==1){if($toivb5[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toivb6[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toivb5[3];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Victim of forced marriage</label></td>
-		<<td valign="top" >
-			<label><input type="checkbox" disabled id="toivb6a" <?php if($edit==1){if($toivb6[0]=="1"){echo "checked";}}?>> CoO</label><br>
-			<label><input type="checkbox" disabled id="toivb6b" <?php if($edit==1){if($toivb6[1]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input type="checkbox" disabled id="toivb6c" <?php if($edit==1){if($toivb6[2]=="1"){echo "checked";}}?>> CoA</label><br>
+		<td valign="top"><b>Other forms of GBVs</b></td>
+		<td valign="top" >
+			<b><input type="checkbox" disabled id="toivb6a" <?php if($edit==1){if($toivb6[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toivb6b" <?php if($edit==1){if($toivb6[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toivb6c" <?php if($edit==1){if($toivb6[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
 		</td>
-		<td><label>Observations:</label><br><?php if($edit==1){echo $toivb6[3];}?></td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toivb6[3];}?></td>
+	</tr>
+	<tr>
+		<td valign="top"><b>Victim of forced marriage</b></td>
+		<td valign="top" >
+			<b><input type="checkbox" disabled id="toivb6a" <?php if($edit==1){if($toivb6[0]=="1"){echo "checked='checked'";}}?>> CoO</b><br>
+			<b><input type="checkbox" disabled id="toivb6b" <?php if($edit==1){if($toivb6[1]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input type="checkbox" disabled id="toivb6c" <?php if($edit==1){if($toivb6[2]=="1"){echo "checked='checked'";}}?>> CoA</b><br>
+		</td>
+		<td><b>Observations:</b><br><?php if($edit==1){echo $toivb6[3];}?></td>
 	</tr>
 	
 </table>
-			
-<hr>			
-<h4>Education</h4>	
+					
+<h5>Education</h5>	
 <table class="table table-bordered">
 	<tr>
-		<td valign="top" width="200px"><label>Suggested questions</label></td>
-		<td valign="top"><label>*Did you go to school prior to the separation?</label><br>
+		<td valign="top" width="200px"><b>Suggested questions</b></td>
+		<td valign="top"><b>*Did you go to school prior to the separation?</b><br>
 			<p style="margin-left:15px;"><?php if($edit==1){echo $edu[0];}?></p>
-			<label>	*Do you like to go to school?</label><br>
+			<b>	*Do you like to go to school?</b><br>
 			<p style="margin-left:15px;"><?php if($edit==1){echo $edu[1];}?></p>
-			<label>	*How do you spend your time? What do you like to do? <small>(Language, Computer, etc.)</small> </label> <br>
+			<b>	*How do you spend your time? What do you like to do? <small>(Language, Computer, etc.)</small> </b> <br>
 			<p style="margin-left:15px;"><?php if($edit==1){echo $edu[2];}?></p>
-			<label>	Observations</label></br>
+			<b>	Observations</b></br>
 			<p style="margin-left:15px;"><?php if($edit==1){echo $edu[3];}?></p>
 		</td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Level of education / grade</label></td>
+		<td valign="top"><b>Level of education / grade</b></td>
 		<td valign="top"><?php if($edit==1){echo $edu[4];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Skills & Occupation</label></td>
+		<td valign="top"><b>Skills & Occupation</b></td>
 		<td valign="top"><?php if($edit==1){echo $edu[5];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Previous occupation, if any</label></td>
+		<td valign="top"><b>Previous occupation, if any</b></td>
 		<td valign="top"><?php if($edit==1){echo $edu[6];}?></td>
 	</tr>
 </table>
 			
-<hr>
-<h4>Health</h4>		
+<h5>Health</h5>		
 <table class="table table-bordered">
 	<tr>
 		<td valign="top" colspan="3">
-			<label>Suggested questions:</label>
+			<b>Suggested questions:</b>
 			<p style="margin-left:15px;"><?php if($edit==1){echo $health[0];}?></p>
-			<label><i>Observation:</i></label><br>
+			<b><i>Observation:</i></b><br>
 			<p style="margin-left:15px;"><?php if($edit==1){echo $health[1];}?></p>
 		</td>
 	</tr>
 	<tr>
 		<td valign="top" width="300px">
 			<Label>Whether medical attention is being</Label><br>
-			<label class="checkbox-inline"><input disabled type="radio" value="0" name="health3" <?php if($edit==1){if($health[2]=="0"){echo "checked";}}?>> Received</label>
-			<label class="checkbox-inline"><input disabled type="radio" value="1" name="health3" <?php if($edit==1){if($health[2]=="1"){echo "checked";}}?>> Required</label>
+			<b class="checkbox-inline"><input disabled type="radio" value="0" name="health4" <?php if($edit==1){if($health[2]=="0"){echo "checked='checked'";}}?>> Received</b>
+			<b class="checkbox-inline"><input disabled type="radio" value="1" name="health4" <?php if($edit==1){if($health[2]=="1"){echo "checked='checked'";}}?>> Required</b>
 		</td>
 		<td valign="top" colspan="2">
-			<label><i>Observation:</i></label><br>
+			<b><i>Observation:</i></b><br>
 			<?php if($edit==1){echo $health[3];}?>
 		</td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Physical Health problems</label></td>
+		<td valign="top"><b>Physical Health problems</b></td>
 		<td valign="top" width="150px">
-			<label><input disabled type="checkbox" id="health5a" <?php if($edit==1){if($health[4]=="1"){echo "checked";}}?>> Past history </label><br>
-			<label><input disabled type="checkbox" id="health5b" <?php if($edit==1){if($health[5]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input disabled type="checkbox" id="health5c" <?php if($edit==1){if($health[6]=="1"){echo "checked";}}?>> At present</label><br>
+			<b><input disabled type="checkbox" id="health5a" <?php if($edit==1){if($health[4]=="1"){echo "checked='checked'";}}?>> Past history </b><br>
+			<b><input disabled type="checkbox" id="health5b" <?php if($edit==1){if($health[5]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input disabled type="checkbox" id="health5c" <?php if($edit==1){if($health[6]=="1"){echo "checked='checked'";}}?>> At present</b><br>
 		</td>
 		<td valign="top">
-			<label><i>Observation:</i></label><br>
+			<b><i>Observation:</i></b><br>
 			<?php if($edit==1){echo $health[7];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Child with HIV/AIDS</label></td>
+		<td valign="top"><b>Child with HIV/AIDS</b></td>
 		<td valign="top" >
-			<label><input disabled type="checkbox" id="health6a" <?php if($edit==1){if($health[8]=="1"){echo "checked";}}?>> Past history </label><br>
-			<label><input disabled type="checkbox" id="health6b" <?php if($edit==1){if($health[9]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input disabled type="checkbox" id="health6c" <?php if($edit==1){if($health[10]=="1"){echo "checked";}}?>> At present</label><br>
+			<b><input disabled type="checkbox" id="health6a" <?php if($edit==1){if($health[8]=="1"){echo "checked='checked'";}}?>> Past history </b><br>
+			<b><input disabled type="checkbox" id="health6b" <?php if($edit==1){if($health[9]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input disabled type="checkbox" id="health6c" <?php if($edit==1){if($health[10]=="1"){echo "checked='checked'";}}?>> At present</b><br>
 		</td>
 		<td valign="top">
-			<label><i>Observation:</i></label><br>
+			<b><i>Observation:</i></b><br>
 			<?php if($edit==1){echo $health[11];}?></td>
 			
 	</tr>
 	<tr>
-		<td valign="top"><label>Addictions <i>(Drugs, alcohol, etc.)</i></label></td>
+		<td valign="top"><b>Addictions <i>(Drugs, alcohol, etc.)</i></b></td>
 		<td valign="top" >
-			<label><input disabled type="checkbox" id="health7a" <?php if($edit==1){if($health[12]=="1"){echo "checked";}}?>> Past history </label><br>
-			<label><input disabled type="checkbox" id="health7b" <?php if($edit==1){if($health[13]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input disabled type="checkbox" id="health7c" <?php if($edit==1){if($health[14]=="1"){echo "checked";}}?>> At present</label><br>
+			<b><input disabled type="checkbox" id="health7a" <?php if($edit==1){if($health[12]=="1"){echo "checked='checked'";}}?>> Past history </b><br>
+			<b><input disabled type="checkbox" id="health7b" <?php if($edit==1){if($health[13]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input disabled type="checkbox" id="health7c" <?php if($edit==1){if($health[14]=="1"){echo "checked='checked'";}}?>> At present</b><br>
 		</td>
 		<td valign="top">
-			<label><i>Observation:</i></label><br>
+			<b><i>Observation:</i></b><br>
 			<?php if($edit==1){echo $health[15];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Hearing impairment</label></td>
+		<td valign="top"><b>Hearing impairment</b></td>
 		<td valign="top" >
-			<label><input disabled type="checkbox" id="health8a" <?php if($edit==1){if($health[16]=="1"){echo "checked";}}?>> Past history </label><br>
-			<label><input disabled type="checkbox" id="health8b" <?php if($edit==1){if($health[17]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input disabled type="checkbox" id="health8c" <?php if($edit==1){if($health[18]=="1"){echo "checked";}}?>> At present</label><br>
+			<b><input disabled type="checkbox" id="health8a" <?php if($edit==1){if($health[16]=="1"){echo "checked='checked'";}}?>> Past history </b><br>
+			<b><input disabled type="checkbox" id="health8b" <?php if($edit==1){if($health[17]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input disabled type="checkbox" id="health8c" <?php if($edit==1){if($health[18]=="1"){echo "checked='checked'";}}?>> At present</b><br>
 		</td>
 		<td valign="top">
-			<label><i>Observation:</i></label><br>
+			<b><i>Observation:</i></b><br>
 			<?php if($edit==1){echo $health[19];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Mental disability</label></td>
+		<td valign="top"><b>Mental disability</b></td>
 		<td valign="top" style="max-width:200px;">
-			<label><input disabled type="checkbox" id="health9a" <?php if($edit==1){if($health[20]=="1"){echo "checked";}}?>> Past history </label><br>
-			<label><input disabled type="checkbox" id="health9b" <?php if($edit==1){if($health[21]=="1"){echo "checked";}}?>> During flight </label><br>
-			<label><input disabled type="checkbox" id="health9c" <?php if($edit==1){if($health[22]=="1"){echo "checked";}}?>> At present</label><br>
+			<b><input disabled type="checkbox" id="health9a" <?php if($edit==1){if($health[20]=="1"){echo "checked='checked'";}}?>> Past history </b><br>
+			<b><input disabled type="checkbox" id="health9b" <?php if($edit==1){if($health[21]=="1"){echo "checked='checked'";}}?>> During flight </b><br>
+			<b><input disabled type="checkbox" id="health9c" <?php if($edit==1){if($health[22]=="1"){echo "checked='checked'";}}?>> At present</b><br>
 		</td>
 		<td valign="top">
-			<label><i>Observation:</i></label><br>
+			<b><i>Observation:</i></b><br>
 			<?php if($edit==1){echo $health[23];}?></td>
 	</tr>
 	
 </table>
 		
-<hr>
-<h4>Psychosocial conditions</a><br> <small class="text-danger">(This part can be filled by Psychosocial workers)</small></h4>
+<h5>Psychosocial conditions</h5><br> <small class="text-danger">(This part can be filled by Psychosocial workers)</small>
+<!--
+//aaaa
+-->
 <table class="table table-bordered">
 	<tr>
-		<td valign="top"><label>Date of Face-to-Face interview</label><i>(If different from BIA date)</i><br>
+		<td valign="top"><b>Date of Face-to-Face interview</b><i>(If different from BIA date)</i><br>
 				<b><?php if($edit==1){echo $psy[0];}?></b>
 		</td>
 	</tr>
@@ -505,48 +503,47 @@ if(isset($_GET['file_no'])){
 	</tr>
 	<tr>
 		<td valign="top">
-			<label>Is the Child able to form and maintain relationships with family/friends?</label>
+			<b>Is the Child able to form and maintain relationships with family/friends?</b>
 			<p style="margin-left:15px;"><?php if($edit==1){echo $psy[1];}?></p>
 		</td>
 	</tr>
 	<tr>
 		<td valign="top">
-			<label>What are the Child’s favorite activities?</label>
+			<b>What are the Child’s favorite activities?</b>
 		    <p style="margin-left:15px;"><?php if($edit==1){echo $psy[2];}?></p>
 		</td>
 	</tr>
 	<tr>
 		<td valign="top">
-			<label>Hobbies & interests</label>
+			<b>Hobbies & interests</b>
 		   <p style="margin-left:15px;"><?php if($edit==1){echo $psy[3];}?></p>
 		</td>
 	</tr>
 	<tr>
 		<td valign="top">
-			<label>Daily Activities - How child occupy himself daily?</label>
+			<b>Daily Activities - How child occupy himself daily?</b>
 			<p style="margin-left:15px;"><?php if($edit==1){echo $psy[4];}?></p>
 		</td>
 	</tr>
 	<tr>
 		<td valign="top" >
-			<label>*Do you feel healthy?</label><br>
+			<b>*Do you feel healthy?</b><br>
 			<i> If not, please, explain type of sickness/how you feel physically.</i> 
 			<p style="margin-left:15px;"><?php if($edit==1){echo $psy[5];}?></p>
 		</td>
 	</tr>
 	<tr>
 		<td valign="top" >
-			<label>*Do you have access to medical care?</label><br><i>If not, explain why?</i> 
+			<b>*Do you have access to medical care?</b><br><i>If not, explain why?</i> 
 			<p style="margin-left:15px;"><?php if($edit==1){echo $psy[6];}?></p>
 		</td>
 	</tr>
 	
 </table>
 
-<hr>
 <table class="table table-bordered">
 	<tr>
-		<td valign="top" colspan="3" class="info"><label>Mental status assessment</label></td>
+		<td valign="top" colspan="3" class="info"><b>Mental status assessment</b></td>
 	</tr>
 	<tr><td valign="top" colspan="3" ></td></tr>
 	<tr class="success">
@@ -555,123 +552,122 @@ if(isset($_GET['file_no'])){
 		<th>Observations</th>
 	</tr>
 	<tr>
-		<td valign="top" width="300px"><label>Eating problem</label><br><i> (characterized by a compulsion to overeat or avoiding food)</i></td>
+		<td valign="top" width="300px"><b>Eating problem</b><br><i> (characterized by a compulsion to overeat or avoiding food)</i></td>
 		<td valign="top" width="30px">
 			<div class="form-group">
-			<label class="radio-inline"><input disabled type="radio" name="psy8a" value="1" <?php if($edit==1){if($psy[7]=="1"){echo "checked";}}?>> Yes</label><br>
-			<label class="radio-inline"><input disabled type="radio" name="psy8a" value="0" <?php if($edit==1){if($psy[7]=="0"){echo "checked";}}?>> No</label>
+			<b class="radio-inline"><input disabled type="radio" name="psy8a" value="1" <?php if($edit==1){if($psy[7]=="1"){echo "checked='checked'";}}?>> Yes</b><br>
+			<b class="radio-inline"><input disabled type="radio" name="psy8a" value="0" <?php if($edit==1){if($psy[7]=="0"){echo "checked='checked'";}}?>> No</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $psy[8];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Depressed</label><br><label><i>(a person experiences deep, unshakable sadness and diminished interest in nearly all activities)</i></label></td>
+		<td valign="top"><b>Depressed</b><br><b><i>(a person experiences deep, unshakable sadness and diminished interest in nearly all activities)</i></b></td>
 		<td valign="top">
 			<div class="form-group">
-			<label class="radio-inline"><input disabled type="radio" name="psy9a" value="1" <?php if($edit==1){if($psy[9]=="1"){echo "checked";}}?>> Yes</label><br>
-			<label class="radio-inline"><input disabled type="radio" name="psy9a" value="0" <?php if($edit==1){if($psy[9]=="0"){echo "checked";}}?>> No</label>
+			<b class="radio-inline"><input disabled type="radio" name="psy9a" value="1" <?php if($edit==1){if($psy[9]=="1"){echo "checked='checked'";}}?>> Yes</b><br>
+			<b class="radio-inline"><input disabled type="radio" name="psy9a" value="0" <?php if($edit==1){if($psy[9]=="0"){echo "checked='checked'";}}?>> No</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $psy[10];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Sleeping disturbance</label><br><i>(Any condition that interferes with sleep)</i></td>
+		<td valign="top"><b>Sleeping disturbance</b><br><i>(Any condition that interferes with sleep)</i></td>
 		<td valign="top">
 			<div class="form-group">
-			<label class="radio-inline"><input disabled type="radio" name="psy10a" value="1" <?php if($edit==1){if($psy[11]=="1"){echo "checked";}}?>> Yes</label><br>
-			<label class="radio-inline"><input disabled type="radio" name="psy10a" value="0" <?php if($edit==1){if($psy[11]=="0"){echo "checked";}}?>> No</label>
+			<b class="radio-inline"><input disabled type="radio" name="psy10a" value="1" <?php if($edit==1){if($psy[11]=="1"){echo "checked='checked'";}}?>> Yes</b><br>
+			<b class="radio-inline"><input disabled type="radio" name="psy10a" value="0" <?php if($edit==1){if($psy[11]=="0"){echo "checked='checked'";}}?>> No</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $psy[12];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Easily get angry</label></td>
+		<td valign="top"><b>Easily get angry</b></td>
 		<td valign="top">
 			<div class="form-group">
-			<label class="radio-inline"><input disabled type="radio" name="psy11a" value="1" <?php if($edit==1){if($psy[13]=="1"){echo "checked";}}?>> Yes</label><br>
-			<label class="radio-inline"><input disabled type="radio" name="psy11a" value="0" <?php if($edit==1){if($psy[13]=="0"){echo "checked";}}?>> No</label>
+			<b class="radio-inline"><input disabled type="radio" name="psy11a" value="1" <?php if($edit==1){if($psy[13]=="1"){echo "checked='checked'";}}?>> Yes</b><br>
+			<b class="radio-inline"><input disabled type="radio" name="psy11a" value="0" <?php if($edit==1){if($psy[13]=="0"){echo "checked='checked'";}}?>> No</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $psy[14];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Confused </label><br><i>(disoriented mentally; being unable to think with clarity or act with understanding and intelligence)</i></td>
+		<td valign="top"><b>Confused </b><br><i>(disoriented mentally; being unable to think with clarity or act with understanding and intelligence)</i></td>
 		<td valign="top">
 			<div class="form-group">
-			<label class="radio-inline"><input disabled type="radio" name="psy12a" value="1" <?php if($edit==1){if($psy[15]=="1"){echo "checked";}}?>> Yes</label><br>
-			<label class="radio-inline"><input disabled type="radio" name="psy12a" value="0" <?php if($edit==1){if($psy[15]=="0"){echo "checked";}}?>> No</label>
+			<b class="radio-inline"><input disabled type="radio" name="psy12a" value="1" <?php if($edit==1){if($psy[15]=="1"){echo "checked='checked'";}}?>> Yes</b><br>
+			<b class="radio-inline"><input disabled type="radio" name="psy12a" value="0" <?php if($edit==1){if($psy[15]=="0"){echo "checked='checked'";}}?>> No</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $psy[16];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Lack of concentration </label><br><i>(inability to direct one's thinking in whatever direction one would intend))</i></td>
+		<td valign="top"><b>Lack of concentration </b><br><i>(inability to direct one's thinking in whatever direction one would intend))</i></td>
 		<td valign="top">
 			<div class="form-group">
-			<label class="radio-inline"><input disabled type="radio" name="psy13a" value="1" <?php if($edit==1){if($psy[17]=="1"){echo "checked";}}?>> Yes</label><br>
-			<label class="radio-inline"><input disabled type="radio" name="psy13a" value="0" <?php if($edit==1){if($psy[17]=="0"){echo "checked";}}?>> No</label>
+			<b class="radio-inline"><input disabled type="radio" name="psy13a" value="1" <?php if($edit==1){if($psy[17]=="1"){echo "checked='checked'";}}?>> Yes</b><br>
+			<b class="radio-inline"><input disabled type="radio" name="psy13a" value="0" <?php if($edit==1){if($psy[17]=="0"){echo "checked='checked'";}}?>> No</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $psy[18];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Feeling hopeless</label><br><i>(without hope; despairing)</i></td>
+		<td valign="top"><b>Feeling hopeless</b><br><i>(without hope; despairing)</i></td>
 		<td valign="top">
 			<div class="form-group">
-			<label class="radio-inline"><input disabled type="radio" name="psy14a" value="1" <?php if($edit==1){if($psy[19]=="1"){echo "checked";}}?>> Yes</label><br>
-			<label class="radio-inline"><input disabled type="radio" name="psy14a" value="0" <?php if($edit==1){if($psy[19]=="0"){echo "checked";}}?>> No</label>
+			<b class="radio-inline"><input disabled type="radio" name="psy14a" value="1" <?php if($edit==1){if($psy[19]=="1"){echo "checked='checked'";}}?>> Yes</b><br>
+			<b class="radio-inline"><input disabled type="radio" name="psy14a" value="0" <?php if($edit==1){if($psy[19]=="0"){echo "checked='checked'";}}?>> No</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $psy[20];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Feeling unworthy </label><br><i>(his/her sense of meaning is undermined)</i></td>
+		<td valign="top"><b>Feeling unworthy </b><br><i>(his/her sense of meaning is undermined)</i></td>
 		<td valign="top">
 			<div class="form-group">
-			<label class="radio-inline"><input disabled type="radio" name="psy15a" value="1" <?php if($edit==1){if($psy[21]=="1"){echo "checked";}}?>> Yes</label><br>
-			<label class="radio-inline"><input disabled type="radio" name="psy15a" value="0" <?php if($edit==1){if($psy[21]=="0"){echo "checked";}}?>> No</label>
+			<b class="radio-inline"><input disabled type="radio" name="psy15a" value="1" <?php if($edit==1){if($psy[21]=="1"){echo "checked='checked'";}}?>> Yes</b><br>
+			<b class="radio-inline"><input disabled type="radio" name="psy15a" value="0" <?php if($edit==1){if($psy[21]=="0"){echo "checked='checked'";}}?>> No</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $psy[22];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Lack of trust to others </label></td>
+		<td valign="top"><b>Lack of trust to others </b></td>
 		<td valign="top">
 			<div class="form-group">
-			<label class="radio-inline"><input disabled type="radio" name="psy16a" value="1" <?php if($edit==1){if($psy[23]=="1"){echo "checked";}}?>> Yes</label><br>
-			<label class="radio-inline"><input disabled type="radio" name="psy16a" value="0" <?php if($edit==1){if($psy[23]=="0"){echo "checked";}}?>> No</label>
+			<b class="radio-inline"><input disabled type="radio" name="psy16a" value="1" <?php if($edit==1){if($psy[23]=="1"){echo "checked='checked'";}}?>> Yes</b><br>
+			<b class="radio-inline"><input disabled type="radio" name="psy16a" value="0" <?php if($edit==1){if($psy[23]=="0"){echo "checked='checked'";}}?>> No</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $psy[24];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Deprived from community/others </label></td>
+		<td valign="top"><b>Deprived from community/others </b></td>
 		<td valign="top">
 			<div class="form-group">
-			<label class="radio-inline"><input disabled type="radio" name="psy17a" value="1" <?php if($edit==1){if($psy[25]=="1"){echo "checked";}}?>> Yes</label><br>
-			<label class="radio-inline"><input disabled type="radio" name="psy17a" value="0" <?php if($edit==1){if($psy[25]=="0"){echo "checked";}}?>> No</label>
+			<b class="radio-inline"><input disabled type="radio" name="psy17a" value="1" <?php if($edit==1){if($psy[25]=="1"){echo "checked='checked'";}}?>> Yes</b><br>
+			<b class="radio-inline"><input disabled type="radio" name="psy17a" value="0" <?php if($edit==1){if($psy[25]=="0"){echo "checked='checked'";}}?>> No</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $psy[26];}?></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Coping Mechanism </label><br><i>(an adaptation to environmental stress that is based on conscious or unconscious choice and that enhances control over behaviour or gives psychological comfort)</i></td>
+		<td valign="top"><b>Coping Mechanism </b><br><i>(an adaptation to environmental stress that is based on conscious or unconscious choice and that enhances control over behaviour or gives psychological comfort)</i></td>
 		<td valign="top">
 			<div class="form-group">
-			<label class="radio-inline"><input disabled type="radio" name="psy18a" value="1" <?php if($edit==1){if($psy[27]=="1"){echo "checked";}}?>> Yes</label><br>
-			<label class="radio-inline"><input disabled type="radio" name="psy18a" value="0" <?php if($edit==1){if($psy[27]=="0"){echo "checked";}}?>> No</label>
+			<b class="radio-inline"><input disabled type="radio" name="psy18a" value="1" <?php if($edit==1){if($psy[27]=="1"){echo "checked='checked'";}}?>> Yes</b><br>
+			<b class="radio-inline"><input disabled type="radio" name="psy18a" value="0" <?php if($edit==1){if($psy[27]=="0"){echo "checked='checked'";}}?>> No</b>
 			</div>
 		</td>
-		<td valign="top"><?php if($edit==1){echo $psy[21];}?></td>
+		<td valign="top"><?php if($edit==1){echo $psy[28];}?></td>
 	</tr>
 </table>
 
-<hr>
-<h4>INTERACTION <br><small> with the person during the interview</small><br><small><i></i>Simple Description of the Child AS or refugee as he appears - (describe what you see; highlight the positive, not just the negative; Avoid labels.)</small>
-</h4>
+<h5>INTERACTION <br><small> with the person during the interview</small><br><small><i></i>Simple Description of the Child AS or refugee as he appears - (describe what you see; highlight the positive, not just the negative; Avoid bs.)</small>
+</h5>
 <table class="table table-bordered">
 	<tr>
-		<td valign="top"><label>Mood, attitude, appearance, speech, affect, thought consent</label></td>
+		<td valign="top"><b>Mood, attitude, appearance, speech, affect, thought consent</b></td>
 	</tr>
 	<tr>
 		<td valign="top">
@@ -681,19 +677,19 @@ if(isset($_GET['file_no'])){
 </table>
 
 
-<hr>
-<h4>Living conditions in place of residence</h4>
 
-<label>a). Suggested Questions:</label>
+<h5>Living conditions in place of residence</h5>
+
+<b>a). Suggested Questions:</b>
 <table class="table table-bordered">
 	<tr>
-		<td valign="top"><label>With whom do you currently live?  <i>(Note names, ages, gender)</i> How long have you been living here?Is there an adult in <i>(name/location in country of asylum)</i> who is looking after you?  <i>If so, note name, relationship, contact information.</i> How did you find this place to stay? How is your relationship with your caretaker and/or housemates? </label></td>
+		<td valign="top"><b>With whom do you currently live?  <i>(Note names, ages, gender)</i> How long have you been living here?Is there an adult in <i>(name/location in country of asylum)</i> who is looking after you?  <i>If so, note name, relationship, contact information.</i> How did you find this place to stay? How is your relationship with your caretaker and/or housemates? </b></td>
 	</tr>
 	<tr>
 		<td valign="top"><p style="margin-left:15px;"><?php if($edit==1){echo $liva[0];}?></p></td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Do you like to stay with this family? How often do you eat? Where do you sleep? How do you feel living here? Are you happy here? Do you think you have enough food? If not, please explain. Who prepares the food? Do you have access to clean water? Are appropriate sanitation facilities in place, where you live in? </label></td>
+		<td valign="top"><b>Do you like to stay with this family? How often do you eat? Where do you sleep? How do you feel living here? Are you happy here? Do you think you have enough food? If not, please explain. Who prepares the food? Do you have access to clean water? Are appropriate sanitation facilities in place, where you live in? </b></td>
 	</tr>
 	<tr>
 		<td valign="top">
@@ -702,144 +698,144 @@ if(isset($_GET['file_no'])){
 		</td>
 	</tr>
 	<tr>
-		<td valign="top"><label>Responses:</label></td>
+		<td valign="top"><b>Responses:</b></td>
 	</tr>
 	<tr>
 		<td valign="top"><p style="margin-left:15px;"><?php if($edit==1){echo $liva[2];}?></p></td>
 	</tr>
 	<tr>
 		<td valign="top">
-			<label>Type of housing</label> 
-			<label class="radio-inline"><input disabled type="radio" name="liva4" value="CWS" <?php if($edit==1){if($liva[3]=="CWS"){echo "checked";}}?>> CWS</label>
-			<label class="radio-inline"><input disabled type="radio" name="liva4" value="House" <?php if($edit==1){if($liva[3]=="House"){echo "checked";}}?>> House</label>
+			<b>Type of housing</b> 
+			<b class="radio-inline"><input disabled type="radio" name="liva4" value="CWS" <?php if($edit==1){if($liva[3]=="CWS"){echo "checked='checked'";}}?>> CWS</b>
+			<b class="radio-inline"><input disabled type="radio" name="liva4" value="House" <?php if($edit==1){if($liva[3]=="House"){echo "checked='checked'";}}?>> House</b>
 			<br><small class="text-danger">(If CWS shelter is tick, no need to fill up part b, c& d)</small>
 		</td>
 	</tr>
 	<tr>
 		<td valign="top">
-			<label>Number of Person Living in the Same Room/House</label><br>
+			<b>Number of Person Living in the Same Room/House</b><br>
 			<p style="margin-left:15px;"><?php if($edit==1){echo $liva[4];}?></p>
 		</td>
 	</tr>
 	<tr>
 		<td valign="top">
-			<label>Neighbourhood/Relationship with around People</label><br>
+			<b>Neighbourhood/Relationship with around People</b><br>
 			<p style="margin-left:15px;"><?php if($edit==1){echo $liva[5];}?></p>
 		</td>
 	</tr>
 </table>
 					
-<label>b). Description of the house</label>
+<b>b). Description of the house</b>
 <table class="table table-bordered">
 	<tr>
 		<td valign="top">
-			<label><input disabled type="checkbox" id="livb1" <?php if($edit==1){if($livb[0]=="1"){echo "checked";}}?>> Bedroom</label> <br>
-			<label><input disabled type="checkbox" id="livb2" <?php if($edit==1){if($livb[1]=="1"){echo "checked";}}?>> Bathroom</label><br>
-			<label><input disabled type="checkbox" id="livb3" <?php if($edit==1){if($livb[2]=="1"){echo "checked";}}?>> Electricity</label><br>
-			<label><input disabled type="checkbox" id="livb4" <?php if($edit==1){if($livb[3]=="1"){echo "checked";}}?>> Guest room</label><br>
-			<label><input disabled type="checkbox" id="livb5" <?php if($edit==1){if($livb[4]=="1"){echo "checked";}}?>> Terrace</label><br>
-			<label><input disabled type="checkbox" id="livb6" <?php if($edit==1){if($livb[5]=="1"){echo "checked";}}?>> Direct access to public transportation</label><br>
+			<b><input disabled type="checkbox" id="livb1" <?php if($edit==1){if($livb[0]=="1"){echo "checked='checked'";}}?>> Bedroom</b> <br>
+			<b><input disabled type="checkbox" id="livb2" <?php if($edit==1){if($livb[1]=="1"){echo "checked='checked'";}}?>> Bathroom</b><br>
+			<b><input disabled type="checkbox" id="livb3" <?php if($edit==1){if($livb[2]=="1"){echo "checked='checked'";}}?>> Electricity</b><br>
+			<b><input disabled type="checkbox" id="livb4" <?php if($edit==1){if($livb[3]=="1"){echo "checked='checked'";}}?>> Guest room</b><br>
+			<b><input disabled type="checkbox" id="livb5" <?php if($edit==1){if($livb[4]=="1"){echo "checked='checked'";}}?>> Terrace</b><br>
+			<b><input disabled type="checkbox" id="livb6" <?php if($edit==1){if($livb[5]=="1"){echo "checked='checked'";}}?>> Direct access to public transportation</b><br>
 		</td><td valign="top">
-			<label><input disabled type="checkbox" id="livb7" <?php if($edit==1){if($livb[6]=="1"){echo "checked";}}?>> Living room</label><br>
-			<label><input disabled type="checkbox" id="livb8" <?php if($edit==1){if($livb[7]=="1"){echo "checked";}}?>> Backyard</label><br>
-			<label><input disabled type="checkbox" id="livb9" <?php if($edit==1){if($livb[8]=="1"){echo "checked";}}?>> Dining room</label><br>
-			<label><input disabled type="checkbox" id="livb10" <?php if($edit==1){if($livb[9]=="1"){echo "checked";}}?>> Piped Clean & Safe Water</label><br>
-			<label><input disabled type="checkbox" id="livb11" <?php if($edit==1){if($livb[10]=="1"){echo "checked";}}?>> Kitchen</label><br>
-			<label><input disabled type="checkbox" id="livb12" <?php if($edit==1){if($livb[11]=="1"){echo "checked";}}?>> Dug Well Water</label><br> 
+			<b><input disabled type="checkbox" id="livb7" <?php if($edit==1){if($livb[6]=="1"){echo "checked='checked'";}}?>> Living room</b><br>
+			<b><input disabled type="checkbox" id="livb8" <?php if($edit==1){if($livb[7]=="1"){echo "checked='checked'";}}?>> Backyard</b><br>
+			<b><input disabled type="checkbox" id="livb9" <?php if($edit==1){if($livb[8]=="1"){echo "checked='checked'";}}?>> Dining room</b><br>
+			<b><input disabled type="checkbox" id="livb10" <?php if($edit==1){if($livb[9]=="1"){echo "checked='checked'";}}?>> Piped Clean & Safe Water</b><br>
+			<b><input disabled type="checkbox" id="livb11" <?php if($edit==1){if($livb[10]=="1"){echo "checked='checked'";}}?>> Kitchen</b><br>
+			<b><input disabled type="checkbox" id="livb12" <?php if($edit==1){if($livb[11]=="1"){echo "checked='checked'";}}?>> Dug Well Water</b><br> 
 			
 		</td>
 	</tr>
 	<tr>
 		<td valign="top" colspan="2">
-			<label>Remarks:</label><br>
+			<b>Remarks:</b><br>
 			<?php if($edit==1){echo $livb[12];}?>
 		</td>
 	</tr>
 </table>
 	
-<label>c). House facilities </label>
+<b>c). House facilities </b>
 
 <table class="table table-bordered">
 	<tr>
-		<td valign="top"><label><input disabled type="checkbox" id="livc1a" <?php if($edit==1){if($livc[0]=="1"){echo "checked";}}?>>Fan</label></td>
-		<td valign="top"><label><input disabled type="radio" name="livc1b" value="0" <?php if($edit==1){if($livc[1]=="1"){echo "checked";}}?>> Private</label>
-			<label><input disabled type="radio" name="livc1b" value="1" <?php if($edit==1){if($livc[1]=="0"){echo "checked";}}?>> House owner</label>
+		<td valign="top"><b><input disabled type="checkbox" id="livc1a" <?php if($edit==1){if($livc[0]=="1"){echo "checked='checked'";}}?>>Fan</b></td>
+		<td valign="top"><b><input disabled type="radio" name="livc1b" value="0" <?php if($edit==1){if($livc[1]=="1"){echo "checked='checked'";}}?>> Private</b>
+			<b><input disabled type="radio" name="livc1b" value="1" <?php if($edit==1){if($livc[1]=="0"){echo "checked='checked'";}}?>> House owner</b>
 		</td>
 
-		<td valign="top"><label><input disabled type="checkbox" id="livc2a" <?php if($edit==1){if($livc[2]=="1"){echo "checked";}}?>>TV set</label></td>
-		<td valign="top"><label><input disabled type="radio" name="livc2b" value="0" <?php if($edit==1){if($livc[3]=="0"){echo "checked";}}?>> Private</label>
-			<label><input disabled type="radio" name="livc2b" value="1" <?php if($edit==1){if($livc[3]=="1"){echo "checked";}}?>> House owner</label>
+		<td valign="top"><b><input disabled type="checkbox" id="livc2a" <?php if($edit==1){if($livc[2]=="1"){echo "checked='checked'";}}?>>TV set</b></td>
+		<td valign="top"><b><input disabled type="radio" name="livc2b" value="0" <?php if($edit==1){if($livc[3]=="0"){echo "checked='checked'";}}?>> Private</b>
+			<b><input disabled type="radio" name="livc2b" value="1" <?php if($edit==1){if($livc[3]=="1"){echo "checked='checked'";}}?>> House owner</b>
 		</td>
 	</tr>
 	<tr>
-		<td valign="top"><label><input disabled type="checkbox" id="livc3a" <?php if($edit==1){if($livc[4]=="1"){echo "checked";}}?>>Telephone (mobile)</label></td>
-		<td valign="top"><label><input disabled type="radio" name="livc3b" value="0" <?php if($edit==1){if($livc[5]=="0"){echo "checked";}}?>> Private</label>
-			<label><input disabled type="radio" name="livc3b" value="1" <?php if($edit==1){if($livc[5]=="1"){echo "checked";}}?>> House owner</label>
+		<td valign="top"><b><input disabled type="checkbox" id="livc3a" <?php if($edit==1){if($livc[4]=="1"){echo "checked='checked'";}}?>>Telephone (mobile)</b></td>
+		<td valign="top"><b><input disabled type="radio" name="livc3b" value="0" <?php if($edit==1){if($livc[5]=="0"){echo "checked='checked'";}}?>> Private</b>
+			<b><input disabled type="radio" name="livc3b" value="1" <?php if($edit==1){if($livc[5]=="1"){echo "checked='checked'";}}?>> House owner</b>
 		</td>
 
-		<td valign="top"><label><input disabled type="checkbox" id="livc4a" <?php if($edit==1){if($livc[6]=="1"){echo "checked";}}?>>Radio</label></td>
-		<td valign="top"><label><input disabled type="radio" name="livc4b" value="0" <?php if($edit==1){if($livc[7]=="0"){echo "checked";}}?>> Private</label>
-			<label><input disabled type="radio" name="livc4b" value="1" <?php if($edit==1){if($livc[7]=="1"){echo "checked";}}?>> House owner</label>
+		<td valign="top"><b><input disabled type="checkbox" id="livc4a" <?php if($edit==1){if($livc[6]=="1"){echo "checked='checked'";}}?>>Radio</b></td>
+		<td valign="top"><b><input disabled type="radio" name="livc4b" value="0" <?php if($edit==1){if($livc[7]=="0"){echo "checked='checked'";}}?>> Private</b>
+			<b><input disabled type="radio" name="livc4b" value="1" <?php if($edit==1){if($livc[7]=="1"){echo "checked='checked'";}}?>> House owner</b>
 		</td>
 	</tr>
 	<tr>
-		<td valign="top"><label><input disabled type="checkbox" id="livc5a" <?php if($edit==1){if($livc[8]=="1"){echo "checked";}}?>>Furniture</label></td>
-		<td valign="top"><label><input disabled type="radio" name="livc5b" value="0" <?php if($edit==1){if($livc[9]=="0"){echo "checked";}}?>> Private</label>
-			<label><input disabled type="radio" name="livc5b" value="1" <?php if($edit==1){if($livc[9]=="1"){echo "checked";}}?>> House owner</label>
+		<td valign="top"><b><input disabled type="checkbox" id="livc5a" <?php if($edit==1){if($livc[8]=="1"){echo "checked='checked'";}}?>>Furniture</b></td>
+		<td valign="top"><b><input disabled type="radio" name="livc5b" value="0" <?php if($edit==1){if($livc[9]=="0"){echo "checked='checked'";}}?>> Private</b>
+			<b><input disabled type="radio" name="livc5b" value="1" <?php if($edit==1){if($livc[9]=="1"){echo "checked='checked'";}}?>> House owner</b>
 		</td>
 
-		<td valign="top"><label><input disabled type="checkbox" id="livc6a" <?php if($edit==1){if($livc[10]=="1"){echo "checked";}}?>>Refrigerator</label></td>
-		<td valign="top"><label><input disabled type="radio" name="livc6b" value="0" <?php if($edit==1){if($livc[11]=="0"){echo "checked";}}?>> Private</label>
-			<label><input disabled type="radio" name="livc6b" value="1" <?php if($edit==1){if($livc[11]=="1"){echo "checked";}}?>> House owner</label>
+		<td valign="top"><b><input disabled type="checkbox" id="livc6a" <?php if($edit==1){if($livc[10]=="1"){echo "checked='checked'";}}?>>Refrigerator</b></td>
+		<td valign="top"><b><input disabled type="radio" name="livc6b" value="0" <?php if($edit==1){if($livc[11]=="0"){echo "checked='checked'";}}?>> Private</b>
+			<b><input disabled type="radio" name="livc6b" value="1" <?php if($edit==1){if($livc[11]=="1"){echo "checked='checked'";}}?>> House owner</b>
 		</td>
 	</tr>
 	<tr>
-		<td valign="top"><label><input disabled type="checkbox" id="livc7a" <?php if($edit==1){if($livc[12]=="1"){echo "checked";}}?>>Satellite/Cable TV</label></td>
-		<td valign="top"><label><input disabled type="radio" name="livc7b" value="0" <?php if($edit==1){if($livc[13]=="0"){echo "checked";}}?>> Private</label>
-			<label><input disabled type="radio" name="livc7b" value="1" <?php if($edit==1){if($livc[13]=="1"){echo "checked";}}?>> House owner</label>
+		<td valign="top"><b><input disabled type="checkbox" id="livc7a" <?php if($edit==1){if($livc[12]=="1"){echo "checked='checked'";}}?>>Satellite/Cable TV</b></td>
+		<td valign="top"><b><input disabled type="radio" name="livc7b" value="0" <?php if($edit==1){if($livc[13]=="0"){echo "checked='checked'";}}?>> Private</b>
+			<b><input disabled type="radio" name="livc7b" value="1" <?php if($edit==1){if($livc[13]=="1"){echo "checked='checked'";}}?>> House owner</b>
 		</td>
 
-		<td valign="top"><label><input disabled type="checkbox" id="livc8a" <?php if($edit==1){if($livc[14]=="1"){echo "checked";}}?>>Washing machine</label></td>
-		<td valign="top"><label><input disabled type="radio" name="livc8b" value="0" <?php if($edit==1){if($livc[15]=="0"){echo "checked";}}?>> Private</label>
-			<label><input disabled type="radio" name="livc8b" value="1" <?php if($edit==1){if($livc[15]=="1"){echo "checked";}}?>> House owner</label>
+		<td valign="top"><b><input disabled type="checkbox" id="livc8a" <?php if($edit==1){if($livc[14]=="1"){echo "checked='checked'";}}?>>Washing machine</b></td>
+		<td valign="top"><b><input disabled type="radio" name="livc8b" value="0" <?php if($edit==1){if($livc[15]=="0"){echo "checked='checked'";}}?>> Private</b>
+			<b><input disabled type="radio" name="livc8b" value="1" <?php if($edit==1){if($livc[15]=="1"){echo "checked='checked'";}}?>> House owner</b>
 		</td>
 	</tr>
 	<tr>
-		<td valign="top"><label><input disabled type="checkbox" id="livc9a" <?php if($edit==1){if($livc[16]=="1"){echo "checked";}}?>>Computer</label></td>
-		<td valign="top"><label><input disabled type="radio" name="livc9b" value="0" <?php if($edit==1){if($livc[17]=="0"){echo "checked";}}?>> Private</label>
-			<label><input disabled type="radio" name="livc9b" value="1" <?php if($edit==1){if($livc[17]=="1"){echo "checked";}}?>> House owner</label>
+		<td valign="top"><b><input disabled type="checkbox" id="livc9a" <?php if($edit==1){if($livc[16]=="1"){echo "checked='checked'";}}?>>Computer</b></td>
+		<td valign="top"><b><input disabled type="radio" name="livc9b" value="0" <?php if($edit==1){if($livc[17]=="0"){echo "checked='checked'";}}?>> Private</b>
+			<b><input disabled type="radio" name="livc9b" value="1" <?php if($edit==1){if($livc[17]=="1"){echo "checked='checked'";}}?>> House owner</b>
 		</td>
 
-		<td valign="top"><label><input disabled type="checkbox" id="livc10a" <?php if($edit==1){if($livc[18]=="1"){echo "checked";}}?>>Internet connection</label></td>
-		<td valign="top"><label><input disabled type="radio" name="livc10b" value="0" <?php if($edit==1){if($livc[19]=="0"){echo "checked";}}?>> Private</label>
-			<label><input disabled type="radio" name="livc10b" value="1" <?php if($edit==1){if($livc[19]=="1"){echo "checked";}}?>> House owner</label>
+		<td valign="top"><b><input disabled type="checkbox" id="livc10a" <?php if($edit==1){if($livc[18]=="1"){echo "checked='checked'";}}?>>Internet connection</b></td>
+		<td valign="top"><b><input disabled type="radio" name="livc10b" value="0" <?php if($edit==1){if($livc[19]=="0"){echo "checked='checked'";}}?>> Private</b>
+			<b><input disabled type="radio" name="livc10b" value="1" <?php if($edit==1){if($livc[19]=="1"){echo "checked='checked'";}}?>> House owner</b>
 		</td>
 	</tr>
 	<tr>
-		<td valign="top"><label><input disabled type="checkbox" id="livc11a" <?php if($edit==1){if($livc[20]=="1"){echo "checked";}}?>>Kitchen Utensils</label></td>
-		<td valign="top"><label><input disabled type="radio" name="livc11b" value="0" <?php if($edit==1){if($livc[21]=="0"){echo "checked";}}?>> Private</label>
-			<label><input disabled type="radio" name="livc11b" value="1" <?php if($edit==1){if($livc[21]=="1"){echo "checked";}}?>> House owner</label>
+		<td valign="top"><b><input disabled type="checkbox" id="livc11a" <?php if($edit==1){if($livc[20]=="1"){echo "checked='checked'";}}?>>Kitchen Utensils</b></td>
+		<td valign="top"><b><input disabled type="radio" name="livc11b" value="0" <?php if($edit==1){if($livc[21]=="0"){echo "checked='checked'";}}?>> Private</b>
+			<b><input disabled type="radio" name="livc11b" value="1" <?php if($edit==1){if($livc[21]=="1"){echo "checked='checked'";}}?>> House owner</b>
 		</td>
 	
-		<td valign="top"><label><input disabled type="checkbox" id="livc12a" <?php if($edit==1){if($livc[22]=="1"){echo "checked";}}?>>Other</label></td>
-		<td valign="top"><label><input disabled type="radio" name="livc12b" value="0" <?php if($edit==1){if($livc[23]=="0"){echo "checked";}}?>> Private</label>
-			<label><input disabled type="radio" name="livc12b" value="1" <?php if($edit==1){if($livc[23]=="1"){echo "checked";}}?>> House owner</label>
+		<td valign="top"><b><input disabled type="checkbox" id="livc12a" <?php if($edit==1){if($livc[22]=="1"){echo "checked='checked'";}}?>>Other</b></td>
+		<td valign="top"><b><input disabled type="radio" name="livc12b" value="0" <?php if($edit==1){if($livc[23]=="0"){echo "checked='checked'";}}?>> Private</b>
+			<b><input disabled type="radio" name="livc12b" value="1" <?php if($edit==1){if($livc[23]=="1"){echo "checked='checked'";}}?>> House owner</b>
 		</td>
 	</tr>
 </table>
 
-<label>d). Security & Safety</label>
+<b>d). Security & Safety</b>
 <table class="table table-bordered">
 	<tr>
 		<td valign="top">
-			<label><input disabled type="checkbox" id="livd1" <?php if($edit==1){if($livd[0]=="1"){echo "checked";}}?>>Fenced Accommodation</label><br>
-			<label><input disabled type="checkbox" id="livd2" <?php if($edit==1){if($livd[1]=="1"){echo "checked";}}?>>Secured Gate(s)</label><br>
-			<label><input disabled type="checkbox" id="livd3" <?php if($edit==1){if($livd[2]=="1"){echo "checked";}}?>>Health Facilities </label><br>
-			<label><input disabled type="checkbox" id="livd4" <?php if($edit==1){if($livd[3]=="1"){echo "checked";}}?>>Police station access</label><br>
+			<b><input disabled type="checkbox" id="livd1" <?php if($edit==1){if($livd[0]=="1"){echo "checked='checked'";}}?>>Fenced Accommodation</b><br>
+			<b><input disabled type="checkbox" id="livd2" <?php if($edit==1){if($livd[1]=="1"){echo "checked='checked'";}}?>>Secured Gate(s)</b><br>
+			<b><input disabled type="checkbox" id="livd3" <?php if($edit==1){if($livd[2]=="1"){echo "checked='checked'";}}?>>Health Facilities </b><br>
+			<b><input disabled type="checkbox" id="livd4" <?php if($edit==1){if($livd[3]=="1"){echo "checked='checked'";}}?>>Police station access</b><br>
 		</td><td valign="top">
-			<label><input disabled type="checkbox" id="livd5" <?php if($edit==1){if($livd[4]=="1"){echo "checked";}}?>>Secured Doors & Windows</label><br>
-			<label><input disabled type="checkbox" id="livd6" <?php if($edit==1){if($livd[5]=="1"){echo "checked";}}?>>Multiple Entry/Exit points in the building</label><br>
-			<label><input disabled type="checkbox" id="livd7" <?php if($edit==1){if($livd[6]=="1"){echo "checked";}}?>>Fire Extinguisher</label>
+			<b><input disabled type="checkbox" id="livd5" <?php if($edit==1){if($livd[4]=="1"){echo "checked='checked'";}}?>>Secured Doors & Windows</b><br>
+			<b><input disabled type="checkbox" id="livd6" <?php if($edit==1){if($livd[5]=="1"){echo "checked='checked'";}}?>>Multiple Entry/Exit points in the building</b><br>
+			<b><input disabled type="checkbox" id="livd7" <?php if($edit==1){if($livd[6]=="1"){echo "checked='checked'";}}?>>Fire Extinguisher</b>
 		</td>	
 	</tr>
 	<tr>
@@ -850,19 +846,19 @@ if(isset($_GET['file_no'])){
 	</tr>
 </table>
 
-<label>e). Documentation & Security</label>
+<b>e). Documentation & Security</b>
 <table class="table table-bordered">
 	<tr>
 		<td valign="top">
-			<label>Suggested Questions</label><br>
+			<b>Suggested Questions</b><br>
 			<?php if($edit==1){echo $live[0];} ?>
 		</td>
 	</tr>
 	<tr>
 		<td valign="top">
-			<label><input disabled type="checkbox" id="live2" <?php if($edit==1){if($live[1]==1){echo "checked";}}?>>Registered to neighbourhood/local authorities </label><br>
-			<label><input disabled type="checkbox" id="live3" <?php if($edit==1){if($live[2]==1){echo "checked";}}?>>Attestation Letter</label><br>
-			<label><input disabled type="checkbox" id="live4" <?php if($edit==1){if($live[3]==1){echo "checked";}}?>>Valid Passports and/or other recognized travel documents</label>
+			<b><input disabled type="checkbox" id="live2" <?php if($edit==1){if($live[1]==1){echo "checked='checked'";}}?>>Registered to neighbourhood/local authorities </b><br>
+			<b><input disabled type="checkbox" id="live3" <?php if($edit==1){if($live[2]==1){echo "checked='checked'";}}?>>Attestation Letter</b><br>
+			<b><input disabled type="checkbox" id="live4" <?php if($edit==1){if($live[3]==1){echo "checked='checked'";}}?>>Valid Passports and/or other recognized travel documents</b>
 		</td>
 	</tr>
 	<tr>
@@ -873,51 +869,51 @@ if(isset($_GET['file_no'])){
 	</tr>
 </table>
 
-<hr>
-<h4>Financial Situation and Supporting System</h4>
+
+<h5>Financial Situation and Supporting System</h5>
 <table class="table table-bordered" >
 	<tr>
 		<td valign="top" colspan="4">
-			<label>How the child survived from Date of Arrival to the date of Assessment</label><br>
+			<b>How the child survived from Date of Arrival to the date of Assessment</b><br>
 			<?php if($edit==1){echo $fin[0];}?>
 		</td>
 	</tr>
 	<tr>
-		<td valign="top" width="200px"><label>Expenses </label></td>
+		<td valign="top" width="200px"><b>Expenses </b></td>
 		<td valign="top"width="160px">Amount (weekly in IDR): <br><b><?php if($edit==1){echo $fin[1];}?></b></td>
 		<td valign="top" >
-			<label>Remarks:</label><br>
+			<b>Remarks:</b><br>
 			<?php if($edit==1){echo $fin[2];}?>
 		</td>
 	</tr>
 	<tr>
 		<td valign="top">
-			<label>Resources </label><br>
-			<label><input disabled type="checkbox" id="fin4" <?php if($edit==1){if($fin[3]){echo "checked";}}?>> Personal income</label><br> 
-			<label><input disabled type="checkbox" id="fin5" <?php if($edit==1){if($fin[4]){echo "checked";}}?>> CWS</label><br> 
-			<label><input disabled type="checkbox" id="fin6" <?php if($edit==1){if($fin[5]){echo "checked";}}?>> Employment Situationr</label><br> 
-			<label><input disabled type="checkbox" id="fin7" <?php if($edit==1){if($fin[6]){echo "checked";}}?>> Family abroad (where?)</label><br> 
-			<label><input disabled type="checkbox" id="fin8" <?php if($edit==1){if($fin[7]){echo "checked";}}?>> Assistance received (from?)</label><br> 
-			<label><input disabled type="checkbox" id="fin9" <?php if($edit==1){if($fin[8]){echo "checked";}}?>> Government</label><br> 
-			<label><input disabled type="checkbox" id="fin10" <?php if($edit==1){if($fin[9]){echo "checked";}}?>> Other</label><br> 
+			<b>Resources </b><br>
+			<b><input disabled type="checkbox" id="fin4" <?php if($edit==1){if($fin[3]){echo "checked='checked'";}}?>> Personal income</b><br> 
+			<b><input disabled type="checkbox" id="fin5" <?php if($edit==1){if($fin[4]){echo "checked='checked'";}}?>> CWS</b><br> 
+			<b><input disabled type="checkbox" id="fin6" <?php if($edit==1){if($fin[5]){echo "checked='checked'";}}?>> Employment Situationr</b><br> 
+			<b><input disabled type="checkbox" id="fin7" <?php if($edit==1){if($fin[6]){echo "checked='checked'";}}?>> Family abroad (where?)</b><br> 
+			<b><input disabled type="checkbox" id="fin8" <?php if($edit==1){if($fin[7]){echo "checked='checked'";}}?>> Assistance received (from?)</b><br> 
+			<b><input disabled type="checkbox" id="fin9" <?php if($edit==1){if($fin[8]){echo "checked='checked'";}}?>> Government</b><br> 
+			<b><input disabled type="checkbox" id="fin10" <?php if($edit==1){if($fin[9]){echo "checked='checked'";}}?>> Other</b><br> 
 		</td>
 		<td valign="top">Amount (weekly in IDR): <br><b><?php if($edit==1){echo $fin[10];}?></b></td>
 		<td valign="top">
-			<label>Remarks</label><br>
+			<b>Remarks</b><br>
 			<?php if($edit==1){echo $fin[11];}?>
 		</td>
 	</tr>
 	
 </table>
 
-<hr>
-<h4>CWS - Analysis of information & conclusions by Caseworker</h4>
+
+<h5>CWS - Analysis of information & conclusions by Caseworker</h5>
 <table class="table table-bordered" >
 	<tr>
 		<td colspan="3">
-			<label>Children at risk : Risk rating </label>
+			<b>Children at risk : Risk rating </b>
 			<div class="well well-sm">
-				<label>Instructions</label>
+				<b>Instructions</b>
 				<p>
 					<b>Risk rating box:</b> After completing each risk category, staff will be asked to indicate whether the person of concern is believed to be at high (H), medium (M), or low (L) risk as defined below:
 					<ul>
@@ -941,9 +937,9 @@ if(isset($_GET['file_no'])){
 		<td valign="top">Boy at risk</td>
 		<td valign="top">
 			<div class="checkbox">
-				<label><input disabled type="radio" name="cws1" value="L" <?php if($edit==1){if($cws[0]=="L"){echo "checked";}}?>> L</label>
-				<label><input disabled type="radio" name="cws1" value="M" <?php if($edit==1){if($cws[0]=="M"){echo "checked";}}?>> M</label>
-				<label ><input disabled type="radio" name="cws1" value="H" <?php if($edit==1){if($cws[0]=="H"){echo "checked";}}?>> H</label>
+				<b><input disabled type="radio" name="cws1" value="L" <?php if($edit==1){if($cws[0]=="L"){echo "checked='checked'";}}?>> L</b>
+				<b><input disabled type="radio" name="cws1" value="M" <?php if($edit==1){if($cws[0]=="M"){echo "checked='checked'";}}?>> M</b>
+				<b ><input disabled type="radio" name="cws1" value="H" <?php if($edit==1){if($cws[0]=="H"){echo "checked='checked'";}}?>> H</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $cws[1];}?></td>
@@ -952,9 +948,9 @@ if(isset($_GET['file_no'])){
 		<td valign="top">Girl at risk</td>
 		<td valign="top">
 			<div class="checkbox">
-				<label><input disabled type="radio" name="cws2" value="L" <?php if($edit==1){if($cws[2]=="L"){echo "checked";}}?>> L</label>
-				<label><input disabled type="radio" name="cws2" value="M" <?php if($edit==1){if($cws[2]=="M"){echo "checked";}}?>> M</label>
-				<label><input disabled type="radio" name="cws2" value="H" <?php if($edit==1){if($cws[3]=="H"){echo "checked";}}?>> H</label>
+				<b><input disabled type="radio" name="cws2" value="L" <?php if($edit==1){if($cws[2]=="L"){echo "checked='checked'";}}?>> L</b>
+				<b><input disabled type="radio" name="cws2" value="M" <?php if($edit==1){if($cws[2]=="M"){echo "checked='checked'";}}?>> M</b>
+				<b><input disabled type="radio" name="cws2" value="H" <?php if($edit==1){if($cws[3]=="H"){echo "checked='checked'";}}?>> H</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $cws[3];}?></td>
@@ -972,9 +968,9 @@ if(isset($_GET['file_no'])){
 		<td valign="top">Legal protection <br><small>(including documentation)</small> </td>
 		<td valign="top">
 			<div class="checkbox">
-				<label><input disabled type="radio" name="cws3" value="L" <?php if($edit==1){if($cws[4]=="L"){echo "checked";}}?>> L</label>
-				<label><input disabled type="radio" name="cws3" value="M" <?php if($edit==1){if($cws[4]=="M"){echo "checked";}}?>> M</label>
-				<label><input disabled type="radio" name="cws3" value="H" <?php if($edit==1){if($cws[4]=="H"){echo "checked";}}?>> H</label>
+				<b><input disabled type="radio" name="cws3" value="L" <?php if($edit==1){if($cws[4]=="L"){echo "checked='checked'";}}?>> L</b>
+				<b><input disabled type="radio" name="cws3" value="M" <?php if($edit==1){if($cws[4]=="M"){echo "checked='checked'";}}?>> M</b>
+				<b><input disabled type="radio" name="cws3" value="H" <?php if($edit==1){if($cws[4]=="H"){echo "checked='checked'";}}?>> H</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $cws[5];}?></td>
@@ -983,9 +979,9 @@ if(isset($_GET['file_no'])){
 		<td valign="top">RSD </td>
 		<td valign="top">
 			<div class="checkbox">
-				<label><input disabled type="radio" name="cws4" value="L" <?php if($edit==1){if($cws[6]=="L"){echo "checked";}}?>> L</label>
-				<label><input disabled type="radio" name="cws4" value="M" <?php if($edit==1){if($cws[6]=="M"){echo "checked";}}?>> M</label>
-				<label><input disabled type="radio" name="cws4" value="H" <?php if($edit==1){if($cws[6]=="H"){echo "checked";}}?>> H</label>
+				<b><input disabled type="radio" name="cws4" value="L" <?php if($edit==1){if($cws[6]=="L"){echo "checked='checked'";}}?>> L</b>
+				<b><input disabled type="radio" name="cws4" value="M" <?php if($edit==1){if($cws[6]=="M"){echo "checked='checked'";}}?>> M</b>
+				<b><input disabled type="radio" name="cws4" value="H" <?php if($edit==1){if($cws[6]=="H"){echo "checked='checked'";}}?>> H</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $cws[7];}?></td>
@@ -994,9 +990,9 @@ if(isset($_GET['file_no'])){
 		<td valign="top">Basic needs <br><small>(food, water)</small> </td>
 		<td valign="top">
 			<div class="checkbox">
-				<label><input disabled type="radio" name="cws5" value="L" <?php if($edit==1){if($cws[8]=="L"){echo "checked";}}?>> L</label>
-				<label><input disabled type="radio" name="cws5" value="M" <?php if($edit==1){if($cws[8]=="M"){echo "checked";}}?>> M</label>
-				<label><input disabled type="radio" name="cws5" value="H" <?php if($edit==1){if($cws[8]=="H"){echo "checked";}}?>> H</label>
+				<b><input disabled type="radio" name="cws5" value="L" <?php if($edit==1){if($cws[8]=="L"){echo "checked='checked'";}}?>> L</b>
+				<b><input disabled type="radio" name="cws5" value="M" <?php if($edit==1){if($cws[8]=="M"){echo "checked='checked'";}}?>> M</b>
+				<b><input disabled type="radio" name="cws5" value="H" <?php if($edit==1){if($cws[8]=="H"){echo "checked='checked'";}}?>> H</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $cws[9];}?></td>
@@ -1005,9 +1001,9 @@ if(isset($_GET['file_no'])){
 		<td valign="top">Education</td>
 		<td valign="top">
 			<div class="checkbox">
-				<label><input disabled type="radio" name="cws6" value="L" <?php if($edit==1){if($cws[10]=="L"){echo "checked";}}?>> L</label>
-				<label><input disabled type="radio" name="cws6" value="M" <?php if($edit==1){if($cws[10]=="M"){echo "checked";}}?>> M</label>
-				<label><input disabled type="radio" name="cws6" value="H" <?php if($edit==1){if($cws[10]=="H"){echo "checked";}}?>> H</label>
+				<b><input disabled type="radio" name="cws6" value="L" <?php if($edit==1){if($cws[10]=="L"){echo "checked='checked'";}}?>> L</b>
+				<b><input disabled type="radio" name="cws6" value="M" <?php if($edit==1){if($cws[10]=="M"){echo "checked='checked'";}}?>> M</b>
+				<b><input disabled type="radio" name="cws6" value="H" <?php if($edit==1){if($cws[10]=="H"){echo "checked='checked'";}}?>> H</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $cws[11];}?></td>
@@ -1016,9 +1012,9 @@ if(isset($_GET['file_no'])){
 		<td valign="top">SGBVs</td>
 		<td valign="top">
 			<div class="checkbox">
-				<label><input disabled type="radio" name="cws7" value="L" <?php if($edit==1){if($cws[12]=="L"){echo "checked";}}?>> L</label>
-				<label><input disabled type="radio" name="cws7" value="M" <?php if($edit==1){if($cws[12]=="M"){echo "checked";}}?>> M</label>
-				<label><input disabled type="radio" name="cws7" value="H" <?php if($edit==1){if($cws[12]=="H"){echo "checked";}}?>> H</label>
+				<b><input disabled type="radio" name="cws7" value="L" <?php if($edit==1){if($cws[12]=="L"){echo "checked='checked'";}}?>> L</b>
+				<b><input disabled type="radio" name="cws7" value="M" <?php if($edit==1){if($cws[12]=="M"){echo "checked='checked'";}}?>> M</b>
+				<b><input disabled type="radio" name="cws7" value="H" <?php if($edit==1){if($cws[12]=="H"){echo "checked='checked'";}}?>> H</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $cws[13];}?></td>
@@ -1027,9 +1023,9 @@ if(isset($_GET['file_no'])){
 		<td valign="top">Medical assitance</td>
 		<td valign="top">
 			<div class="checkbox">
-				<label><input disabled type="radio" name="cws8" value="L" <?php if($edit==1){if($cws[14]=="L"){echo "checked";}}?>> L</label>
-				<label><input disabled type="radio" name="cws8" value="M" <?php if($edit==1){if($cws[14]=="M"){echo "checked";}}?>> M</label>
-				<label><input disabled type="radio" name="cws8" value="H" <?php if($edit==1){if($cws[14]=="H"){echo "checked";}}?>> H</label>
+				<b><input disabled type="radio" name="cws8" value="L" <?php if($edit==1){if($cws[14]=="L"){echo "checked='checked'";}}?>> L</b>
+				<b><input disabled type="radio" name="cws8" value="M" <?php if($edit==1){if($cws[14]=="M"){echo "checked='checked'";}}?>> M</b>
+				<b><input disabled type="radio" name="cws8" value="H" <?php if($edit==1){if($cws[14]=="H"){echo "checked='checked'";}}?>> H</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $cws[15];}?></td>
@@ -1038,9 +1034,9 @@ if(isset($_GET['file_no'])){
 		<td valign="top">Psychosocial</td>
 		<td valign="top">
 			<div class="checkbox">
-				<label><input disabled type="radio" name="cws9" value="L" <?php if($edit==1){if($cws[16]=="L"){echo "checked";}}?>> L</label>
-				<label><input disabled type="radio" name="cws9" value="M" <?php if($edit==1){if($cws[16]=="M"){echo "checked";}}?>> M</label>
-				<label><input disabled type="radio" name="cws9" value="H" <?php if($edit==1){if($cws[16]=="H"){echo "checked";}}?>> H</label>
+				<b><input disabled type="radio" name="cws9" value="L" <?php if($edit==1){if($cws[16]=="L"){echo "checked='checked'";}}?>> L</b>
+				<b><input disabled type="radio" name="cws9" value="M" <?php if($edit==1){if($cws[16]=="M"){echo "checked='checked'";}}?>> M</b>
+				<b><input disabled type="radio" name="cws9" value="H" <?php if($edit==1){if($cws[16]=="H"){echo "checked='checked'";}}?>> H</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $cws[17];}?></td>
@@ -1049,9 +1045,9 @@ if(isset($_GET['file_no'])){
 		<td valign="top">Material assitance <br><small>(shelter, NFI, financial)</small></td>
 		<td valign="top">
 			<div class="checkbox">
-				<label><input disabled type="radio" name="cws10" value="L" <?php if($edit==1){if($cws[18]=="L"){echo "checked";}}?>> L</label>
-				<label><input disabled type="radio" name="cws10" value="M" <?php if($edit==1){if($cws[18]=="M"){echo "checked";}}?>> M</label>
-				<label><input disabled type="radio" name="cws10" value="H" <?php if($edit==1){if($cws[18]=="H"){echo "checked";}}?>> H</label>
+				<b><input disabled type="radio" name="cws10" value="L" <?php if($edit==1){if($cws[18]=="L"){echo "checked='checked'";}}?>> L</b>
+				<b><input disabled type="radio" name="cws10" value="M" <?php if($edit==1){if($cws[18]=="M"){echo "checked='checked'";}}?>> M</b>
+				<b><input disabled type="radio" name="cws10" value="H" <?php if($edit==1){if($cws[18]=="H"){echo "checked='checked'";}}?>> H</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $cws[19];}?></td>
@@ -1060,9 +1056,9 @@ if(isset($_GET['file_no'])){
 		<td valign="top">Recreational activities / Community activities</td>
 		<td valign="top">
 			<div class="checkbox">
-				<label><input disabled type="radio" name="cws11" value="L" <?php if($edit==1){if($cws[20]=="L"){echo "checked";}}?>> L</label>
-				<label><input disabled type="radio" name="cws11" value="M" <?php if($edit==1){if($cws[20]=="M"){echo "checked";}}?>> M</label>
-				<label><input disabled type="radio" name="cws11" value="H" <?php if($edit==1){if($cws[20]=="H"){echo "checked";}}?>> H</label>
+				<b><input disabled type="radio" name="cws11" value="L" <?php if($edit==1){if($cws[20]=="L"){echo "checked='checked'";}}?>> L</b>
+				<b><input disabled type="radio" name="cws11" value="M" <?php if($edit==1){if($cws[20]=="M"){echo "checked='checked'";}}?>> M</b>
+				<b><input disabled type="radio" name="cws11" value="H" <?php if($edit==1){if($cws[20]=="H"){echo "checked='checked'";}}?>> H</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $cws[21];}?></td>
@@ -1071,9 +1067,9 @@ if(isset($_GET['file_no'])){
 		<td valign="top">Regular Home visits</td>
 		<td valign="top">
 			<div class="checkbox">
-				<label><input disabled type="radio" name="cws12" value="L" <?php if($edit==1){if($cws[22]=="L"){echo "checked";}}?>> L</label>
-				<label><input disabled type="radio" name="cws12" value="M" <?php if($edit==1){if($cws[22]=="M"){echo "checked";}}?>> M</label>
-				<label><input disabled type="radio" name="cws12" value="H" <?php if($edit==1){if($cws[22]=="H"){echo "checked";}}?>> H</label>
+				<b><input disabled type="radio" name="cws12" value="L" <?php if($edit==1){if($cws[22]=="L"){echo "checked='checked'";}}?>> L</b>
+				<b><input disabled type="radio" name="cws12" value="M" <?php if($edit==1){if($cws[22]=="M"){echo "checked='checked'";}}?>> M</b>
+				<b><input disabled type="radio" name="cws12" value="H" <?php if($edit==1){if($cws[22]=="H"){echo "checked='checked'";}}?>> H</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $cws[23];}?></td>
@@ -1082,9 +1078,9 @@ if(isset($_GET['file_no'])){
 		<td valign="top">Family tracing</td>
 		<td valign="top">
 			<div class="checkbox">
-				<label><input disabled type="radio" name="cws13" value="L" <?php if($edit==1){if($cws[24]=="L"){echo "checked";}}?>> L</label>
-				<label><input disabled type="radio" name="cws13" value="M" <?php if($edit==1){if($cws[24]=="M"){echo "checked";}}?>> M</label>
-				<label><input disabled type="radio" name="cws13" value="H" <?php if($edit==1){if($cws[24]=="H"){echo "checked";}}?>> H</label>
+				<b><input disabled type="radio" name="cws13" value="L" <?php if($edit==1){if($cws[24]=="L"){echo "checked='checked'";}}?>> L</b>
+				<b><input disabled type="radio" name="cws13" value="M" <?php if($edit==1){if($cws[24]=="M"){echo "checked='checked'";}}?>> M</b>
+				<b><input disabled type="radio" name="cws13" value="H" <?php if($edit==1){if($cws[24]=="H"){echo "checked='checked'";}}?>> H</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $cws[25];}?></td>
@@ -1093,9 +1089,9 @@ if(isset($_GET['file_no'])){
 		<td valign="top">Durable solution</td>
 		<td valign="top">
 			<div class="checkbox">
-				<label><input disabled type="radio" name="cws14" value="L" <?php if($edit==1){if($cws[26]=="L"){echo "checked";}}?>> L</label>
-				<label><input disabled type="radio" name="cws14" value="M" <?php if($edit==1){if($cws[26]=="M"){echo "checked";}}?>> M</label>
-				<label><input disabled type="radio" name="cws14" value="H" <?php if($edit==1){if($cws[26]=="H"){echo "checked";}}?>> H</label>
+				<b><input disabled type="radio" name="cws14" value="L" <?php if($edit==1){if($cws[26]=="L"){echo "checked='checked'";}}?>> L</b>
+				<b><input disabled type="radio" name="cws14" value="M" <?php if($edit==1){if($cws[26]=="M"){echo "checked='checked'";}}?>> M</b>
+				<b><input disabled type="radio" name="cws14" value="H" <?php if($edit==1){if($cws[26]=="H"){echo "checked='checked'";}}?>> H</b>
 			</div>
 		</td>
 		<td valign="top"><?php if($edit==1){echo $cws[27];}?></td>
@@ -1106,29 +1102,48 @@ if(isset($_GET['file_no'])){
 	</tr>
 </table>
 
-<hr>
-<h4>Optional</h4>
+
+<h5>Optional</h5>
 <table class="table table-bordered">
 	<tr>
-		<td><label>UNHCR</label><br><small>Child Protection officer or <br>Community Services -  Follow up <br>& Conclusions</small></td>
+		<td><b>UNHCR</b><br><small>Child Protection officer or <br>Community Services -  Follow up <br>& Conclusions</small></td>
 		<td>Conclusions: <br><?php if($edit==1){echo $opt[0];}?> </td>
 		<td>CSO or CP name & date: <br><?php if($edit==1){echo $opt[1];}?> </td>
 	</tr>
 	<tr>
-		<td><label>Panel conclusion</label><br><small>(Optional –for complicated cases,<br> only if necessary)</small></td>
+		<td><b>Panel conclusion</b><br><small>(Optional –for complicated cases,<br> only if necessary)</small></td>
 		<td>Final conclusions: <br><?php if($edit==1){echo $opt[2];}?></td>
 		<td>CSO or CP name & date: <br><?php if($edit==1){echo $opt[3];}?></td>
 	</tr>
 </table>	
-</div>
+
 <?php
 		// comment 
-		echo '<label>Comment:</label>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>';
+		echo '<b>Comment:</b>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>';
+		//== panel
+		if(empty($_GET['a'])){
+			$link =  "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"."&a=hide";
+			$file = "BIA_".$data['file_no']."_".$data['doa'];
+			echo'
+			<form action="../pdfin.php" method="post">
+			<div class="atas">
+				<input type="text" name="link" value="'.$link.'" hidden>
+				<input type="text" name="file" value="'.$file.'" hidden>
+			   <button class="btn print btn-sm btn-primary" onclick="window.print()">Print</button>
+				<input type="submit" value="Get PDF" class="btn btn-sm btn-default " >
+			</div>
+			</form>';
+		}
+		//==panel
 	}
 	else{
 		echo "No data BIA for File Number: ".$_GET['file_no'];
 	}	
 }
+
+if(empty($_GET['a'])){
+	echo'</body>
+</html>';
+}
 ?>
-</body>
-</html>
+
