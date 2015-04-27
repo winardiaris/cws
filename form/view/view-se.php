@@ -38,9 +38,13 @@ if(isset($_GET['file_no']) AND isset($_GET['id'])){
 	$recommend=explode(";",$data['recommend']);
 	$verification=explode(";",$data['verification']);
 	
+	$q = mysql_query("SELECT * FROM `person` WHERE `file_no`='".$_GET['file_no']."'") or die(mysql_error());
+	$person = mysql_fetch_array($q);
+	
 	$edit = 1;
 	
 	if($count>0){
+		include ("header.php");
 ?>
 <h4>Socio Economic Assessment Report  </h4>
 <hr>
@@ -70,11 +74,15 @@ if(isset($_GET['file_no']) AND isset($_GET['id'])){
 			<td ><b>Interpreter:</b></td>
 			<td ><?php if($edit==1){echo $assessment[4];} ?></td>
 			
-			<td ><b># of home visit(s) and date:</b></td>
+			<td ><b># of home visit(s):</b></td>
 			<td ><?php if($edit==1){echo $assessment[5];} ?></td>
 			
 			<td ><b>Date of last home visit:</b></td>
 			<td ><?php if($edit==1){echo $assessment[6];} ?></td>
+		</tr>
+		<tr>
+			<td><label>Status:</label></td>
+			<td><?php if($edit==1){echo $person['status'];} ?></td>
 		</tr>
 	</table>
 	
@@ -346,11 +354,11 @@ if(isset($_GET['file_no']) AND isset($_GET['id'])){
 			<td width="16%"><b>Name:</b></td>
 			<td width="16%"><?php if($edit==1){echo $verification[0];} ?></td>
 			
-			<td width="16%"><b>Signature:</b></td>
+			<td width="16%"><b>Phone Number:</b></td>
 			<td width="16%"><?php if($edit==1){echo $verification[1];} ?></td>
 			
-			<td width="16%"><b>Date:</b></td>
-			<td width="16%"><?php if($edit==1){echo $verification[2];} ?></td>
+			<td width="16%"><b>Next Assessment:</b></td>
+			<td width="16%"><?php if($edit==1){echo $data['nextassessment'];} ?></td>
 		</tr>
 		<tr>
 			<td ><b>Remarks by reviewing officer: </b></td>

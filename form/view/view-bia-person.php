@@ -51,7 +51,6 @@ if(isset($_GET['file_no'])){
 	$edit = 1;
 	
 	if($count>0){
-		include ("header.php");
 ?>
 <h4>Best Interest Assessment Report for Temporary Care</h4>
 <hr>

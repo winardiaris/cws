@@ -14,6 +14,8 @@ if(isset($_GET['op'])){
 		$edu2=explode(",",$edu[1]);
 		$edu3=explode(",",$edu[2]);
 		
+		$date_recognition=explode("|",$data['date_recognition']);
+		
 		$address = explode(";",$data['address']);
 		$wilayah = explode(".",$address[0]); $prov = $wilayah[0]; $kota = $prov.".".$wilayah[1]; $kec = $kota.".".$wilayah[2];
 		$disable = "disabled";
@@ -105,7 +107,7 @@ else{
 				
 				education = $("#edu1a:checked").length+","+$("#edu1b:checked").length+","+$("#edu1c:checked").length+","+$("#edu1d:checked").length+","+$("#edu1e:checked").length+"|"+$("#edu2a:checked").length+","+$("#edu2b:checked").length+","+$("#edu2c:checked").length+","+$("#edu2d:checked").length+","+$("#edu2e:checked").length+"|"+$("#edu3a:checked").length+","+$("#edu3b:checked").length, 
 				
-				skill = $("#skill").val(), mot = $("#mot").val(), known_language = $("#known_language").val(), previous_occupation = $("#previous_occupation").val(), volunteer = $("#volunteer").val(), date_recognition = $("#date_recognition").val(), status_active = $("#status_active").val();
+				skill = $("#skill").val(), mot = $("#mot").val(), known_language = $("#known_language").val(), previous_occupation = $("#previous_occupation").val(), volunteer = $("#volunteer").val(), date_recognition = $("#date_recognition").val()+"|"+$("#date_recognition2").val(), status_active = $("#status_active").val();
 				
 				var datanya = "&file_no="+file_no+"&name="+name+"&coo="+coo+"&dob="+dob+"&age="+age+"&sex="+sex+"&marital="+marital+"&address="+address+"&phone="+phone+"&photo="+photo+"&status="+status+"&arrival="+arrival+"&date_arrival="+date_arrival+"&education="+education+"&skill="+skill+"&mot="+mot+"&known_language="+known_language+"&previous_occupation="+previous_occupation+"&volunteer="+volunteer+"&date_recognition="+date_recognition+"&status_active="+status_active;
 				
@@ -128,7 +130,7 @@ else{
 			
 			education = $("#edu1a:checked").length+","+$("#edu1b:checked").length+","+$("#edu1c:checked").length+","+$("#edu1d:checked").length+","+$("#edu1e:checked").length+"|"+$("#edu2a:checked").length+","+$("#edu2b:checked").length+","+$("#edu2c:checked").length+","+$("#edu2d:checked").length+","+$("#edu2e:checked").length+"|"+$("#edu3a:checked").length+","+$("#edu3b:checked").length, 
 			
-			skill = $("#skill").val(), mot = $("#mot").val(), known_language = $("#known_language").val(), previous_occupation = $("#previous_occupation").val(), volunteer = $("#volunteer").val(), date_recognition = $("#date_recognition").val(), status_active = $("#status_active").val();
+			skill = $("#skill").val(), mot = $("#mot").val(), known_language = $("#known_language").val(), previous_occupation = $("#previous_occupation").val(), volunteer = $("#volunteer").val(), date_recognition = $("#date_recognition").val()+"|"+$("#date_recognition2").val(), status_active = $("#status_active").val();
 				
 			var datanya = "&file_no="+file_no+"&name="+name+"&coo="+coo+"&dob="+dob+"&age="+age+"&sex="+sex+"&marital="+marital+"&address="+address+"&phone="+phone+"&photo="+photo+"&status="+status+"&arrival="+arrival+"&date_arrival="+date_arrival+"&education="+education+"&skill="+skill+"&mot="+mot+"&known_language="+known_language+"&previous_occupation="+previous_occupation+"&volunteer="+volunteer+"&date_recognition="+date_recognition+"&status_active="+status_active;
 			
@@ -338,7 +340,7 @@ else{
 					</tr>
 					<tr>
 						
-						<td ><label>Mother of Tongue:</label></td>
+						<td ><label>Mother Tongue:</label></td>
 						<td><input class="form-control" name="mother-tongue" id="mot" value="<?php if($edit==1){ echo $data['mot'];}?>"></td>
 					</tr>
 					<tr>
@@ -360,8 +362,15 @@ else{
 						
 						<td ><label>Date of recognition:</label></td>
 						<td>
-							<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-								<input type="text" class="form-control" name="birth" id="date_recognition" placeholder="yyyy-mm-dd" value="<?php if($edit==1){ echo $data['date_recognition'];}?>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+							<div class="row col-lg-6">
+							   <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+									<input type="text" class="form-control" name="birth" id="date_recognition" placeholder="yyyy-mm-dd" value="<?php if($edit==1){ echo $date_recognition[0];}?>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+								</div>
+							</div>
+							<div class="row col-lg-6">
+							   <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+									<input type="text" class="form-control" name="birth" id="date_recognition2" placeholder="yyyy-mm-dd" value="<?php if($edit==1){ echo $date_recognition[1];}?>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+								</div>
 							</div>
 						</td>
 					</tr>

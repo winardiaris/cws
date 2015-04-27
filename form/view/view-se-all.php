@@ -19,6 +19,7 @@ if(isset($_GET['file_no'])){
 	$count = mysql_num_rows($qry);
 
    if($count>0){
+		include ("header.php");
       echo "<small id='found'>Found $count Data for $file_no</small>";
 	   while($data = mysql_fetch_array($qry)){
 			$assessment = explode(";",$data['assessment_data']);
@@ -39,6 +40,9 @@ if(isset($_GET['file_no'])){
 			$com=explode(",",$support_system[2]);
 			$recommend=explode(";",$data['recommend']);
 			$verification=explode(";",$data['verification']);
+			
+			$q = mysql_query("SELECT * FROM `person` WHERE `file_no`='".$_GET['file_no']."'") or die(mysql_error());
+			$person = mysql_fetch_array($q);
 			
 			$edit = 1;
 	
@@ -73,11 +77,15 @@ if(isset($_GET['file_no'])){
 			<td><b>Interpreter:</b></td>
 			<td><?php if($edit==1){echo $assessment[4];} ?></td>
 			
-			<td><b># of home visit(s) and date:</b></td>
+			<td><b># of home visit(s):</b></td>
 			<td><?php if($edit==1){echo $assessment[5];} ?></td>
 			
 			<td><b>Date of last home visit:</b></td>
 			<td><?php if($edit==1){echo $assessment[6];} ?></td>
+		</tr>
+		<tr>
+			<td><label>Status:</label></td>
+			<td><?php if($edit==1){echo $person['status'];} ?></td>
 		</tr>
 	</table>
 	
@@ -354,11 +362,11 @@ if(isset($_GET['file_no'])){
 			<td width="16%"><b>Name:</b></td>
 			<td width="16%"><?php if($edit==1){echo $verification[0];} ?></td>
 			
-			<td width="16%"><b>Signature:</b></td>
+			<td width="16%"><b>Phone Number:</b></td>
 			<td width="16%"><?php if($edit==1){echo $verification[1];} ?></td>
 			
-			<td width="16%"><b>Date:</b></td>
-			<td width="16%"><?php if($edit==1){echo $verification[2];} ?></td>
+			<td width="16%"><b>Next Assessment:</b></td>
+			<td width="16%"><?php if($edit==1){echo $data['nextassessment'];} ?></td>
 		</tr>
 		<tr>
 			<td><b>Remarks by reviewing officer: </b></td>
@@ -380,7 +388,7 @@ if(isset($_GET['file_no'])){
 				<input type="text" name="link" value="'.$link.'" hidden>
 				<input type="text" name="file" value="'.$file.'" hidden>
 			   <button class="btn print btn-sm btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
-				<input type="submit" value="Get PDF" class="btn btn-sm btn-default ">
+			   <button class="btn print btn-sm btn-default" type="submit" ><i class="fa fa-download"></i> Get PDF</button>
 			</div>
 			</form>';
 		}

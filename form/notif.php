@@ -6,13 +6,13 @@
 	<ul class="dropdown-menu dropdown-alerts">
 	<?php
 	$MONTH = date("Y-m");
-	$qse = mysql_query("SELECT * FROM `se` WHERE `dore` like '%$MONTH%' ")or die(mysql_error());
+	$qse = mysql_query("SELECT * FROM `se` WHERE `nextassessment` like '%$MONTH%' ")or die(mysql_error());
 	$count = mysql_num_rows($qse);
 	$i=0;
 		while($se=mysql_fetch_array($qse)){
 			$i++;
 			$date1 = new DateTime($TODAY);
-		   $date2 = new DateTime($se['dore']);
+		   $date2 = new DateTime($se['nextassessment']);
 		   $difference = $date1->diff($date2);
 		   $day =  $difference->days;
 		   if($date1 <= $date2){

@@ -43,6 +43,7 @@ else{
 				<th>Sex</th>
 				<th>Address</th>
 				<th>Phone</th>
+				<th>Status</th>
 				<th>Data</th>
 				</tr>
 			</thead>
@@ -50,7 +51,7 @@ else{
 				<?php
 					$no=0;
 					$qry = mysql_query("
-					SELECT `person`.`file_no`,`person`.`name`,`master_country`.`country_name` ,`person`.`sex`,`person`.`address`,`person`.`phone`,`person`.`active` FROM `person`
+					SELECT `person`.`file_no`,`person`.`name`,`master_country`.`country_name` ,`person`.`sex`,`person`.`address`,`person`.`phone`,`person`.`active`, `person`.`status` FROM `person`
 					INNER JOIN `master_country` ON `person`.`coo` = `master_country`.`country_id` 
 					WHERE `person`.`active` = '$active' ORDER BY `file_no` ASC;
 					
@@ -66,7 +67,7 @@ else{
 									<div class="dropdown">
 									  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><span class="caret"></span></button>
 									  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-									    <li role="presentation"><a role="menuitem" tabindex="-1" href="form/view/?file_no='.$file_no.'&a=hide"  title="View '.$file_no.'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-eye"></i> View</a></li>
+									    <li role="presentation"><a role="menuitem" tabindex="-1" href="form/view/?file_no='.$file_no.'&a=hide&person=on"  title="View '.$file_no.'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-eye"></i> View</a></li>
 									    <li role="presentation"><a role="menuitem" tabindex="-1" href="?page=person-form&op=edit&file_no='.$file_no.'"><i class="fa fa-edit"></i> Edit</a></li>
 									  </ul>
 									</div>
@@ -78,6 +79,7 @@ else{
 								<td>'.$data['sex'].'</td>
 								<td>'.getAddress($data['address']).'. </td>
 								<td>'.$data['phone'].'</td>
+								<td>'.$data['status'].'</td>
 								<td>'.getData($file_no).'</td>
 							</tr>
 						';

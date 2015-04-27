@@ -23,7 +23,7 @@ if(isset($_GET['file_no']) AND isset($_GET['id'])){
 	
 	$edit = 1;
 	if($count>0){
-	
+		include ("header.php");
 ?>
 
 <h4>Health Report</h4>

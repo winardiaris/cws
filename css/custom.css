@@ -84,14 +84,15 @@ body.view{
 .photo img{
 	height:100%;
 	border-radius:10px;
-	margin:0 auto 0 auto;
+	margin: auto 0 auto;
 	border:3px solid #fff;
 	box-shadow:0px 3px 10px rgba(0,0,0,0.4);
 }
 .photo{
 	height:120px;
 	width:100px;
-	margin:10px auto 10px auto;
+	margin:30px auto 0 auto;
+	
 	
 }
 .photos img{

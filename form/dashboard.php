@@ -68,33 +68,33 @@ include("form/navigasi.php")
 -->
 	<div class="col-lg-6">
 	<div class="panel panel-default">
-		<div class="panel-heading"><i class="fa fa-pie-chart"></i> Person Gender (Active)</div>
+		<div class="panel-heading"><i class="fa fa-pie-chart"></i> Status </div>
 		<div class="panel-body">
-			<div id="chart_sex" style="height: 250px;"></div>
+			<div id="chart_status" style="height: 250px;"></div>
 		</div>
 	</div>
 	</div>
 	<div class="col-lg-6">
 	<div class="panel panel-default">
-		<div class="panel-heading"><i class="fa fa-pie-chart"></i> Person Marital Status (Active)</div>
+		<div class="panel-heading"><i class="fa fa-pie-chart"></i> Mapping Province</div>
 		<div class="panel-body">
-			<div id="chart_marital_status_a" style="height: 250px;"></div>
+			<div id="chart_province" style="height: 250px;"></div>
 		</div>
 	</div>
 	</div>
 	<div class="col-lg-6">
 	<div class="panel panel-default">
-		<div class="panel-heading"><i class="fa fa-pie-chart"></i> Personal Age (Active)</div>
+		<div class="panel-heading"><i class="fa fa-pie-chart"></i> Gender </div>
 		<div class="panel-body">
-			<div id="chart_age" style="height: 250px;"></div>
+			<div id="chart_gender" style="height: 250px;"></div>
 		</div>
 	</div>
 	</div>
-	<div class="col-lg-6">
+	<div class="col-lg-12">
 	<div class="panel panel-default">
-		<div class="panel-heading"><i class="fa fa-pie-chart"></i> Mapping Propinsi </div>
+		<div class="panel-heading"><i class="fa fa-pie-chart"></i> Country of Origin</div>
 		<div class="panel-body">
-			<div id="chart_propinsi" style="height: 250px;"></div>
+			<div id="chart_coo" style="height: 300px;"></div>
 		</div>
 	</div>
 	</div>
@@ -146,7 +146,7 @@ $(function() {
 	];';
 	
 	?>
-    var plotObj = $.plot($("#chart_sex"), data, {
+    var plotObj = $.plot($("#chart_gender"), data, {
         series: {
             pie: {
                 show: true,
@@ -174,77 +174,22 @@ $(function() {
     });
 
 });
-//marital
 $(function() {
-	<?php
-	$ms = mysql_query("SELECT * FROM `marital_status`");
-	while($m=mysql_fetch_array($ms)){
-		$marital = $marital."SUM( IF( `marital`='".$m['marital_id']."',  1 , 0 ) ) AS `".$m['marital_id']."`,";
-	}
-	$ma = substr($marital,0,strlen($marital)-1);
-	$qmar = mysql_query("SELECT ".$ma." FROM  `person` WHERE `active`='1'") or die( mysql_error());
-	$mar=mysql_fetch_array($qmar);
-	echo'
-	var data = [
-	{label: \'Single ['.$mar['SI'].'] \', data:'.$mar['SI'].'},
-	{label: \'Married ['.$mar['MA'].']\', data:'.$mar['MA'].'},
-	{label: \'Engaged ['.$mar['EN'].']\', data:'.$mar['EN'].'},
-	{label: \'Widower ['.$mar['WR'].']\', data:'.$mar['WR'].'},
-	{label: \'Widow ['.$mar['WW'].']\', data:'.$mar['WW'].'}
-	];';
-	
-	?>
-    var plotObj = $.plot($("#chart_marital_status_a"), data, {
-        series: {
-            pie: {
-                show: true,
-                label: {
-		            show:true,
-		            radius: 0.8,
-		            formatter: function (label, series) {                
-		                return '<div class="label-chart">' +label + ' : ' +Math.round(series.percent) +'%</div>';
-		            }
-		        }
-            }
-        },
-        grid: {
-            hoverable: true
-        },
-        tooltip: true,
-        tooltipOpts: {
-            content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
-            shifts: {
-                x: 20,
-                y: 0
-            },
-            defaultTheme: false
-        }
-    });
-
-});
-//AGE
-$(function chartage() {
 	<?php
 
 	$qage = mysql_query("
 			SELECT
-			SUM(IF(`age`<='4',1,0)) AS `age_4`,
-			SUM(IF(`age`<='11',1,0)) AS `age_11`,
-			SUM(IF(`age`<='17',1,0)) AS `age_17`,
-			SUM(IF(`age`<='59',1,0)) AS `age_59`,
-			SUM(IF(`age`>'60',1,0)) AS `age_60_plus`
+			SUM(IF(`status`='Refugee',1,0)) AS `Ref`,
+			SUM(IF(`status`<='Asylum Seeker',1,0)) AS `Asy`
 			FROM  `person` WHERE `active`='1'") or die( mysql_error());
 	$mage=mysql_fetch_array($qage);
 	echo'
 	var data = [
-	{label: \' 0-4 ['.$mage['age_4'].'] \', data:'.$mage['age_4'].'},
-	{label: \' 5-11 ['.$mage['age_11'].']\', data:'.$mage['age_11'].'},
-	{label: \' 12-17  ['.$mage['age_17'].']\', data:'.$mage['age_17'].'},
-	{label: \' 18-59  ['.$mage['age_59'].']\', data:'.$mage['age_59'].'},
-	{label: \' 60+ ['.$mage['age_60_plus'].']\', data:'.$mage['age_60_plus'].'}
+	{label: \' Refugee ['.$mage['Ref'].'] \', data:'.$mage['Ref'].'},
+	{label: \' Asylum Seeker ['.$mage['Asy'].']\', data:'.$mage['Asy'].'}
 	];';
 	?>
-    var plotObj = $.plot($("#chart_age"), data, {
+    var plotObj = $.plot($("#chart_status"), data, {
         series: {
 			pie: {
                 show: true,
@@ -267,7 +212,6 @@ $(function chartage() {
     });
 
 });
-//Propinsi
 $(function() {
 	<?php
 	$qry = mysql_query("SELECT SUM(IF(`address` LIKE '31%',1,0)) AS `dki`,SUM(IF(`address` LIKE '32%',1,0)) AS `jabar`,SUM(IF(`address` LIKE '36%',1,0)) AS `banten` FROM  `person` WHERE `active`='1'") or die( mysql_error());
@@ -280,7 +224,7 @@ $(function() {
 	];';
 	
 	?>
-    var plotObj = $.plot($("#chart_propinsi"), data, {
+    var plotObj = $.plot($("#chart_province"), data, {
         series: {pie: {
                 show: true,
                 label: {
@@ -300,4 +244,50 @@ $(function() {
     });
 
 });
+$(function () {
+<?php
+	$qry =  mysql_query("SELECT DISTINCT `person`.`coo` , `master_country`.`country_name` AS `name` FROM `person` inner join `master_country` ON `person`.`coo`=`master_country`.`country_id` ORDER BY `master_country`.`country_name`  ;") or die(mysql_error());
+		$ccoo = mysql_num_rows($qry);
+      $as = 1;
+		while($coo=mysql_fetch_array($qry)){
+			$str .=", SUM(IF(`coo`='".$coo['coo']."',1,0)) AS `".$as++."` ";
+			$name .=",".$coo['name'];
+		}
+		$str1 =  substr($str,1,strlen($str));
+		$name1 =  explode(",",substr($name,1,strlen($name)));
+		//echo $str1;
+		$qry2 = mysql_query("SELECT $str1 FROM `person` WHERE `person`.`active`='1'")or die(mysql_error());
+		$c = mysql_num_fields($qry2);	
+		$data = mysql_fetch_array($qry2);
+		for($i=0;$i<$c;$i++){
+			$data2 .=",\n\t\t [".$i.",".$data[$i]."]";
+			$label .=",\n\t\t[".$i.",'".$name1[$i]."']";	
+		}
+		print( "var data = [".substr($data2,1,strlen($data2))."\n];\n\n");
+		print( "var ticks = [".substr($label,1,strlen($label))."\n];\n\n");
+?>
+		var dataset = [{ label: "People by Country Origin", data: data, color: "#00C3D1" }];
+		var options = {
+            series: {
+                bars: {
+                    show: true
+                }
+            },
+            bars: {
+                align: "center",
+                barWidth: 0.7
+            },
+            xaxis: {
+                axisLabelUseCanvas: true,
+                axisLabelFontSizePixels: 12,
+                axisLabelFontFamily: 'Verdana, Arial',
+                axisLabelPadding: 10,
+                ticks: ticks
+            }
+        };
+     $.plot($("#chart_coo"), dataset, options);
+
+   
+});
+
 </script>

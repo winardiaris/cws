@@ -19,6 +19,8 @@ if(isset($_GET['file_no'])){
 	$count=mysql_num_rows($qry);
 	$edit = 1;
 	if($count>0){
+		include ("header.php");
+		
 		while($data = mysql_fetch_array($qry)){
 			$hr_id = $data['hr_id'];
 ?>			

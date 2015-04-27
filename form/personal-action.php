@@ -15,7 +15,8 @@ if($op == "saveperson"){
 	
 	$photo=$_GET['photo'];
 	
-	$save = mysql_query("INSERT INTO `person` VALUES('$file_no','$name','$coo','$dob','$age','$sex','$marital','$address','$phone','$photo','$status','$arrival2','$education','$skill','$mot','$known_language','$previous_occupation','$volunteer','$date_recognition','$status_active','$NOW','');") or die(mysql_error());
+	$save = mysql_query("INSERT INTO `person` 
+	VALUES('$file_no','$name','$coo','$dob','$age','$sex','$marital','$address','$phone','$photo','$status','$arrival2','$education','$skill','$mot','$known_language','$previous_occupation','$volunteer','$date_recognition','$status_active','$NOW','','');") or die(mysql_error());
 	
 	if($save){
 		echo "success";

@@ -32,6 +32,9 @@ if(isset($_GET['op'])){
 		$recommend=explode(";",$data['recommend']);
 		$verification=explode(";",$data['verification']);
 		
+		
+		$q = mysql_query("SELECT * FROM `person` WHERE `file_no`='".$_GET['file_no']."'") or die(mysql_error());
+		$person = mysql_fetch_array($q);
 		//
 		$disable = "disabled";
 		$button = '<button type="submit" class="btn btn-success" id="update_assessment" ><i class="fa fa-refresh"></i> Update </button>';
@@ -81,9 +84,13 @@ else{
 				else{col4b.slideDown();window.location="#col4a";}
 			}
 		});
-		var file_no = $("#file_no").val(),
-				 doa = $("#doa").val();	 
-			$("#nextassessment").load("form/se-action.php?op=nextAssessment&file_no="+file_no+"&doa="+doa);
+		var 	file_no = $("#file_no").val(),
+				doa = $("#doa").val();	
+			$.ajax({url:"form/se-action.php",data:"op=nextAssessment&file_no="+file_no+"&doa="+doa,cache: false,
+					success: function(s){
+						$('#nextassessment').val(s);
+					}  
+        });
 		
 
 		//check available
@@ -100,6 +107,20 @@ else{
 						$("#last_home_visit").val(d[1]);
 					}
 				});
+			
+			//next
+			$.ajax({url:"form/se-action.php",data:"op=nextAssessment&file_no="+file_no+"&doa="+doa,cache: false,
+					success: function(s){
+						$('#nextassessment').val(s);
+					}  
+        });	
+        
+			//next
+			$.ajax({url:"form/se-action.php",data:"op=getStatus&file_no="+file_no,cache: false,
+					success: function(s){
+						$('#status').val(s);
+					}  
+        });	
 			
 			$.ajax({url: "form/se-action.php",data: "op=check"+datanya,cache: false,
 			success: function(msg){
@@ -123,7 +144,11 @@ else{
 		$("#doa").change(function(){
 			var file_no = $("#file_no").val(),
 				 doa = $(this).val();	 
-			$("#nextassessment").load("form/se-action.php?op=nextAssessment&file_no="+file_no+"&doa="+doa);
+			$.ajax({url:"form/se-action.php",data:"op=nextAssessment&file_no="+file_no+"&doa="+doa,cache: false,
+					success: function(s){
+						$('#nextassessment').val(s);
+					}  
+        });
 		});
 		
 		//save  of assessment
@@ -150,9 +175,9 @@ else{
 				else {$("#file_no").val("").focus();}
 			}
 			else{
-				var doa = $("#doa").val(),dore=$("#dore").text(),by = $("#interviewer").val(),location = $("#location").val(),last = $("#last_assessment").val(),asst = $("#assistance").val(),inter = $("#interpreter").val(),home = $("#home_visit").val(),last_visit = $("#last_home_visit").val();
+				var doa = $("#doa").val(),nextassessment=$("#nextassessment").val(),by = $("#interviewer").val(),location = $("#location").val(),last = $("#last_assessment").val(),asst = $("#assistance").val(),inter = $("#interpreter").val(),home = $("#home_visit").val(),last_visit = $("#last_home_visit").val();
 					
-				var datanya = "&file_no="+file_no+"&a="+a+"&doa="+doa+"&dore="+dore+"&value="+by+";"+location+";"+last+";"+asst+";"+inter+";"+home+";"+last_visit;
+				var datanya = "&file_no="+file_no+"&a="+a+"&doa="+doa+"&nextassessment="+nextassessment+"&value="+by+";"+location+";"+last+";"+asst+";"+inter+";"+home+";"+last_visit;
 				$.ajax({url: "form/se-action.php",data: "op=addassessment"+datanya,cache: false,
 					success: function(msg){
 						if(msg=="success"){
@@ -195,9 +220,9 @@ else{
 				else {$("#file_no").val("").focus();}
 			}
 			else{
-				var doa = $("#doa").val(),dore = $("#dore").text(),by = $("#interviewer").val(),location = $("#location").val(),last = $("#last_assessment").val(),asst = $("#assistance").val(),inter = $("#interpreter").val(),home = $("#home_visit").val(),last_visit = $("#last_home_visit").val();
+				var doa = $("#doa").val(),nextassessment = $("#nextassessment").val(),by = $("#interviewer").val(),location = $("#location").val(),last = $("#last_assessment").val(),asst = $("#assistance").val(),inter = $("#interpreter").val(),home = $("#home_visit").val(),last_visit = $("#last_home_visit").val();
 					
-				var datanya = "&se_id="+se_id+"&file_no="+file_no+"&doa="+doa+"&dore="+dore+"&value="+by+";"+location+";"+last+";"+asst+";"+inter+";"+home+";"+last_visit;
+				var datanya = "&se_id="+se_id+"&file_no="+file_no+"&doa="+doa+"&nextassessment="+nextassessment+"&value="+by+";"+location+";"+last+";"+asst+";"+inter+";"+home+";"+last_visit;
 				$.ajax({url: "form/se-action.php",data: "op=updateassessment"+datanya,cache: false,
 					success: function(msg){
 						if(msg=="success"){
@@ -469,10 +494,8 @@ else{
 				</div>
 			</div>
 			<div class="col-lg-4">
-				<label># of home visit(s) and date:</label>
-				<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-					<input type="text" class="form-control" id="home_visit" placeholder="yyyy-mm-dd" value="<?php if($edit==1){echo $assessment[5];}else{echo $TODAY;} ?>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-				</div>
+				<label># of home visit(s):</label>
+					<input type="number" class="form-control" id="home_visit" value="<?php if($edit==1){echo $assessment[5];} ?>">
 			</div>
 			<div class="col-lg-4">
 				<label>Date of last home visit:</label>
@@ -480,12 +503,13 @@ else{
 					<input type="text" class="form-control" id="last_home_visit" placeholder="yyyy-mm-dd" value="<?php if($edit==1){echo $assessment[6];} ?>"<?php if(isset($_GET['a'])){echo "disabled";}?>><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 				</div>
 			</div>
+			<div class="col-lg-4">
+				<label>Status:</label>
+				<input type="text" class="form-control" id="status" value="<?php if($edit==1){echo $person['status'];} ?>" disabled >
+			</div>
 			<div class="col-lg-12">
 				<div class="form-group">
-					<small id="nextassessment"></small>
-					<br>
 					<?php echo $button; ?>
-					
 				</div>
 			</div>
 
@@ -842,15 +866,15 @@ else{
 				</div>
 				<div class="col-lg-4">
 					<div class="form-group">
-						<label>Signature:</label>
+						<label>Phone Number:</label>
 						<input class="form-control" id="ver_sig" value="<?php if($edit==1){echo $verification[1];} ?>">
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="form-group">
-						<label>Date:</label>
-						<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-							<input type="text" class="form-control" id="ver_date" placeholder="yyyy-mm-dd" value="<?php if($edit==1){echo $verification[2];} ?>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						<label>Next Assessment:</label>
+						<div class="form-group" >
+							<input type="text" class="form-control " disabled  id="nextassessment" value="<?php if($edit==1){echo $verification[2];} ?>">
 						</div>
 					</div>
 				</div>

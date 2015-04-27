@@ -34,6 +34,7 @@ if(isset($_GET['file_no'])){
 	$edit=1;
 	
 	if($count>0){
+		include ("header.php");
 
 ?>	
 

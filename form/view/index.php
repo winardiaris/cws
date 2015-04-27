@@ -38,6 +38,8 @@ include("../function.php") ;
 <div id="page-print">
 	<div id="content">
 		<?php
+			include ("header.php");
+			
 			if(isset($_GET['person'])){
 				$person = $URL."form/view/view-personal.php?file_no=".$_GET['file_no']."&a=hide";
 				$cperson = file_get_contents($person);
@@ -57,7 +59,7 @@ include("../function.php") ;
 			}
 			
 			if(isset($_GET['bia'])){
-				$c = $URL."form/view/view-bia.php?file_no=".$_GET['file_no']."&a=hide";
+				$c = $URL."form/view/view-bia-person.php?file_no=".$_GET['file_no']."&a=hide";
 				$cc = file_get_contents($c);
 				echo $cc;
 			}
@@ -67,6 +69,7 @@ include("../function.php") ;
 				$cd = file_get_contents($d);
 				echo $cd;
 			}
+			include ("footer.php");
 		?>
 	</div> 
 </div>

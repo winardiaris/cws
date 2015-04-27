@@ -9,7 +9,7 @@
 </div>
 <script>
 //AGE
-$(function chartage() {
+$(function() {
 	<?php
 
 	$qage = mysql_query("

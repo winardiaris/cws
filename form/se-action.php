@@ -53,7 +53,7 @@ elseif($op=="nextAssessment"){
 	$a = date("Y-m-d", $a);
 	$b = strtotime("-2 week",strtotime($a));
 	$next = date("Y-m-d", $b);	
-	echo "Next Assessment: <span id='dore'>".$next."</span>";
+	echo $next;
 }
 elseif($op == "lastAssessment"){
 	$file_no = $_GET['file_no'];
@@ -64,17 +64,17 @@ elseif($op == "lastAssessment"){
 	$qry2 = mysql_query("SELECT `assessment_data` FROM `se` WHERE `file_no`='$file_no' AND `doa`='$doa' AND `status`='1' ")or die(mysql_error());
 	$data2 = mysql_fetch_array($qry2);
 	$a =explode(";",$data2['assessment_data']);
-	$last = $a[5];
+	$last = $a[6];
    echo $doa.";".$last;
 	
 }
 elseif($op == "addassessment"){
 	$file_no = $_GET['file_no'];
 	$doa = $_GET['doa'];
-	$dore = $_GET['dore'];
+	$nextassessment = $_GET['nextassessment'];
 	$a = $_GET['a'];
 	$value = htmlspecialchars($_GET['value']);
-	$save = mysql_query("INSERT INTO `se` (`file_no`,`id`,`doa`,`dore`,`assessment_data`,`created`) VALUES('$file_no','$a','$doa','$dore','$value','$NOW') ;") or die(mysql_error());
+	$save = mysql_query("INSERT INTO `se` (`file_no`,`id`,`doa`,`nextassessment`,`assessment_data`,`created`) VALUES('$file_no','$a','$doa','$nextassessment','$value','$NOW') ;") or die(mysql_error());
 	
 	if($save){
 		echo "success";
@@ -92,9 +92,9 @@ elseif($op == "updateassessment"){
 	$file_no = $_GET['file_no'];
 	$se_id = $_GET['se_id'];
 	$doa = $_GET['doa'];
-	$dore = $_GET['dore'];
+	$nextassessment = $_GET['nextassessment'];
 	$value = htmlspecialchars($_GET['value']);
-	$save = mysql_query("UPDATE `se` SET `doa`='$doa',`dore`='$dore',`assessment_data`='$value', `last_change`='$NOW' WHERE `file_no`='$file_no' AND `se_id`='$se_id';") or die(mysql_error());
+	$save = mysql_query("UPDATE `se` SET `doa`='$doa',`nextassessment`='$nextassessment',`assessment_data`='$value', `last_change`='$NOW' WHERE `file_no`='$file_no' AND `se_id`='$se_id';") or die(mysql_error());
 	
 	if($save){
 		echo "success";
@@ -187,5 +187,11 @@ elseif($op == "del"){
 		setHistory($_SESSION['user_id'],"se_data","Delete SE Data for File No [$file_no]",$NOW);
 	}
 	else{echo "error";}
+}
+elseif($op == "getStatus"){
+	$file_no = $_GET['file_no'];
+	$qry = mysql_query("select `status` from `person` where `file_no`='$file_no'")or die(mysql_error());
+	$data = mysql_fetch_array($qry);
+	echo $data['status'];
 }
 ?>

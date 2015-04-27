@@ -20,9 +20,15 @@ include("../function.php") ;
 	}
 ?>
 
-<div class="photos" ><img src="<?php echo $photo; ?>"></div><br>
-<h4>Personal Information</h4>
+
+
 <hr>
+<table  style="border:none !important;" width="100%">
+<tr>
+	<td valign="bottom"><h4>Personal Information</h4></td>
+	<td align="right"><img src="<?php echo $photo; ?>" style="height:120px;width:100px;"><br></td>
+</tr>
+</table>
 <table class="table table-bordered">
 <tr>
 	<td ><b>File No:</b></td>
@@ -78,7 +84,7 @@ include("../function.php") ;
 <tr>
 	<td><b>Sex:</b></td>
 	<td><?php if($data['sex']=="M"){echo "Male";}else{echo "Female";}?></td>
-	<td><b>Mother of Tongue:</b></td>
+	<td><b>Mother Tongue:</b></td>
 	<td><?php echo $data['mot'];?></td>
 </tr>
 <tr>

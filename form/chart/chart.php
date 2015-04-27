@@ -15,9 +15,6 @@ include("form/navigasi.php") ;
 		
 	});
 </script>
-
-
-
 <div id="page-wrapper">
 <div class="row" >
 	<div class="col-lg-12"><h3 class="page-header">Chart </h3></div>
@@ -43,9 +40,10 @@ include("form/navigasi.php") ;
 		</select>
 		<small>Last Update<span class="text-primary">
 			<?php 
-				$qry = mysql_query("SELECT MAX(`last_change`) AS `update` FROM `person` ")or die(mysql_error());
+				$qry = mysql_query("SELECT MAX(`last_change`) AS `last_change`, MAX(`created`) AS `created` FROM `person` ")or die(mysql_error());
 				$data = mysql_fetch_array($qry);
-				echo $data['update'];
+				if( $data['last_change'] > $data['created'] ){echo $data['last_change'];}
+				else{echo $data['created'];}
 			?>
 			</span>
 		</small>

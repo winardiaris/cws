@@ -44,7 +44,7 @@ include("form/navigasi.php") ;
 					<th>Interviewer</th>
 					<th>Location</th>
 					<th>Verified by</th>
-					<th>Verified Date</th>
+					<th>Next Assessment</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -52,14 +52,13 @@ include("form/navigasi.php") ;
 					$no = 0;
 					if($_GET['a']==1){
 						setHistory($_SESSION['user_id'],"se_data","Open SE Data (First Assessment)",$NOW);
-						$qry = mysql_query("SELECT `se`.`se_id`, `se`.`file_no`, `person`.`name`, `se`.`doa`, `se`.`assessment_data`,
+						$qry = mysql_query("SELECT `se`.`se_id`, `se`.`file_no`, `person`.`name`, `se`.`doa`, `se`.`assessment_data`, `se`.`nextassessment`,
 										`se`.`verification` 
 										FROM `se` INNER JOIN `person` ON `se`.`file_no`=`person`.`file_no` WHERE `se`.`status`='1' AND `se`.`id`='0';") or die(mysql_error());
 					}
 					elseif($_GET['a']==2){
 						setHistory($_SESSION['user_id'],"se_data","Open SE Data (Re-assessment)",$NOW);
-						$qry = mysql_query("SELECT `se`.`se_id`, `se`.`file_no`, `person`.`name`, `se`.`doa`, `se`.`assessment_data`,
-										`se`.`verification` 
+						$qry = mysql_query("SELECT `se`.`se_id`, `se`.`file_no`, `person`.`name`, `se`.`doa`, `se`.`assessment_data`, `se`.`nextassessment`,		`se`.`verification` 
 										FROM `se` INNER JOIN `person` ON `se`.`file_no`=`person`.`file_no` WHERE `se`.`status`='1' AND `se`.`id`='1';") or die(mysql_error());
 					}
 					else{
@@ -72,7 +71,7 @@ include("form/navigasi.php") ;
 						$location = $assessment[1];
 						$verification = explode(";",$data['verification']);
 						$verified_by=$verification[0];
-						$verified_date=$verification[2];
+						
 						
 						echo'
 						<tr>
@@ -104,7 +103,7 @@ include("form/navigasi.php") ;
 							<td>'.$interviewer.'</td>
 							<td>'.$location.'</td>
 							<td>'.$verified_by.'</td>
-							<td>'.$verified_date.'</td>
+							<td>'.$data['nextassessment'].'</td>
 						</tr>
 						
 						';
