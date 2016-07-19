@@ -9,7 +9,8 @@
 	file conf.php yang ada dalam direktori inc.
 	ubah pada bagian :
 
-	```//server configuration
+	```
+  //server configuration
         $DBSERVER 	= 'localhost';
         $DBUSER 	= '';
         $DBPASSWORD = '';
