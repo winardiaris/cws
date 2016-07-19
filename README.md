@@ -1,15 +1,20 @@
-How to install.
+## Requirment
+- PHP 5.3
+- mysql 5.4
+
+
+## How to install.
 -	ektrak cws-master.zip 
 	ke direktori tempat web server melayani dokumen. Edit
 	file conf.php yang ada dalam direktori inc.
 	ubah pada bagian :
 
-	//server configuration
-	$DBSERVER 	= 'localhost';
-	$DBUSER 	= '';
-	$DBPASSWORD = '';
-	$DBDATABASE = 'cws';
-
+	```//server configuration
+        $DBSERVER 	= 'localhost';
+        $DBUSER 	= '';
+        $DBPASSWORD = '';
+        $DBDATABASE = 'cws';
+  ```
 - 	Kemudian buat sebuah database dengan konfigurasi sesuai
 	dengan yang diisikan dalam file conf.php. Isikan data 
 	yang ada dalam file cws_example.sql ke database yang baru dibuat.
