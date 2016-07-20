@@ -58,18 +58,30 @@ $(document).ready(function(){
 					<li id="M7"><a href="?page=se-data" <?php if($_GET['page']=="se-data") echo " class='active'"; ?>><i class="fa fa-table"></i> Data</a></li>
 				</ul><!-- /.nav-second-level -->
 			</li>
-			<li id="M45" <?php if($_GET['page']=="ia-form" OR $_GET['page']=="ia-data") echo " class='active'"; ?>>
-				<a href="#" title="Initial Assessment Form for Unaccompanied Minors"><i class="fa fa-user fa-fw" ></i> IA<span class="fa arrow"></span></a>
-				<ul class="nav nav-second-level">
-					<li id="M4"><a href="?page=ia-form" <?php if($_GET['page']=="ia-form") echo " class='active'"; ?>><i class="fa fa-list-alt"></i> Form</a></li>
-					<li id="M5"><a href="?page=ia-data" <?php if($_GET['page']=="ia-data") echo " class='active'"; ?>><i class="fa fa-table"></i>  Data</a></li>
-				</ul><!-- /.nav-second-level -->
-			</li>
-			<li id="M89" <?php if($_GET['page']=="bia-form" OR $_GET['page']=="bia-data") echo " class='active'"; ?>>
-				<a href="#" title="Best Interest Assessment Report for Temporary Care"><i class="fa fa-user fa-fw" ></i> BIA<span class="fa arrow"></span></a>
-				<ul class="nav nav-second-level">
-					<li id="M8"><a href="?page=bia-form" <?php if($_GET['page']=="bia-form") echo " class='active'"; ?>><i class="fa fa-list-alt"></i> Form</a></li>
-					<li id="M9"><a href="?page=bia-data" <?php if($_GET['page']=="bia-data") echo " class='active'"; ?>><i class="fa fa-table"></i> Data</a></li>
+			<li id="M45" <?php if($_GET['page']=="ia-form" OR $_GET['page']=="ia-data" OR $_GET['page']=="bia-form" OR $_GET['page']=="bia-data") echo " class='active'"; ?>>
+				<a href="#" ><i class="fa fa-user fa-fw" ></i> UAC<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+    			<li id="" <?php if($_GET['page']=="ia-form" OR $_GET['page']=="ia-data") echo " class='active'"; ?>>
+              <a href="?page=ia-data">Initial Assessment <span class="fa arrow"></span></a>
+              <ul class="nav nav-third-level">
+                <li id="M4"><a href="?page=ia-form" <?php if($_GET['page']=="ia-form") echo " class='active'"; ?>><i class="fa fa-list-alt"></i> Form</a></li>
+                <li id="M5"><a href="?page=ia-data" <?php if($_GET['page']=="ia-data") echo " class='active'"; ?>><i class="fa fa-table"></i>  Data</a></li>
+
+              </ul>
+          </li>
+          <li id="" <?php if($_GET['page']=="bia-form" OR $_GET['page']=="bia-data") echo " class='active'"; ?>>
+            <a href="#" title="Best Interest Assessment Report for Temporary Care">Best Interest Assessment<span class="fa arrow"></span></a>
+            <ul class="nav nav-third-level">
+              <li id="M8"><a href="?page=bia-form" <?php if($_GET['page']=="bia-form") echo " class='active'"; ?>><i class="fa fa-list-alt"></i> Form</a></li>
+              <li id="M9"><a href="?page=bia-data" <?php if($_GET['page']=="bia-data") echo " class='active'"; ?>><i class="fa fa-table"></i> Data</a></li>
+            </ul>
+          </li>
+          <li id=""> 
+            <a href="#" ><i class="fa fa-table"></i> Data Shelter 1</a> 
+          </li>
+          <li id=""> 
+            <a href="#" ><i class="fa fa-table"></i> Data Shelter 2</a> 
+          </li>
 				</ul><!-- /.nav-second-level -->
 			</li>
 			<li id="M1011" <?php if($_GET['page']=="hr-form" OR $_GET['page']=="hr-data") echo " class='active'"; ?>>
