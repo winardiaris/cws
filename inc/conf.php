@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set("Asia/Jakarta");
-$URL 	= "http://winardiaris.local/cws/";
+$URL 	= "http://192.168.1.199/cws/";
 $NAME 	= "CWS (Church World Service) Indonesia";
 $TODAY 	= date("Y-m-d");
 $NOW 	= date("Y-m-d H:i:s");
@@ -24,8 +24,8 @@ $iframe = '	<div id="divpopup" name="divpopup" class="wrapper" style="display:no
 
 //server configuration
 $DBSERVER 	= 'localhost';
-$DBUSER 	= 'simabes';
-$DBPASSWORD = 'simabes';
+$DBUSER 	= 'root';
+$DBPASSWORD = 'password';
 $DBDATABASE = 'cws';
 mysql_connect($DBSERVER,$DBUSER,$DBPASSWORD) or die(mysql_error());
 mysql_select_db($DBDATABASE) or die(mysql_error());

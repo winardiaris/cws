@@ -12,7 +12,7 @@
 				<span class="icon-bar"></span>
 -->
 			</button>
-			<a href="index.php">
+			<a href="?page=dashboard">
 			<img src="img/logo.svg" class="navbar-logo">
 			<span class="navbar-brand" ><?php echo $NAME ?></span></a>
 			<p class="navbar-text">Database System Protecting Urban Refugees Through Empowerment</p> 
