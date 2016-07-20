@@ -50,19 +50,19 @@ $(document).ready(function(){
 					<li id="M3"><a href="?page=person-data" <?php if($_GET['page']=="person-data") echo " class='active'"; ?>><i class="fa fa-table"></i>  Data</a></li>
 				</ul><!-- /.nav-second-level -->
 			</li>
+			<li id="M67" <?php if($_GET['page']=="se-form" OR $_GET['page']=="se-data") echo " class='active'"; ?>>
+				<a href="#" title="Socio Eeconomic Assessment Report"><i class="fa fa-user fa-fw" ></i> Assessment<span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level">
+					<li id="M6"><a href="?page=se-form" <?php if($_GET['page']=="se-form" AND empty($_GET['a'])) echo " class='active'"; ?>><i class="fa fa-list-alt"></i> Form</a></li>
+					<li id="M6"><a href="?page=se-form&a=reassesment" <?php if($_GET['page']=="se-form" AND isset($_GET['a'])) echo " class='active'"; ?>><i class="fa fa-list-alt"></i> Reassessment</a></li>
+					<li id="M7"><a href="?page=se-data" <?php if($_GET['page']=="se-data") echo " class='active'"; ?>><i class="fa fa-table"></i> Data</a></li>
+				</ul><!-- /.nav-second-level -->
+			</li>
 			<li id="M45" <?php if($_GET['page']=="ia-form" OR $_GET['page']=="ia-data") echo " class='active'"; ?>>
 				<a href="#" title="Initial Assessment Form for Unaccompanied Minors"><i class="fa fa-user fa-fw" ></i> IA<span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">
 					<li id="M4"><a href="?page=ia-form" <?php if($_GET['page']=="ia-form") echo " class='active'"; ?>><i class="fa fa-list-alt"></i> Form</a></li>
 					<li id="M5"><a href="?page=ia-data" <?php if($_GET['page']=="ia-data") echo " class='active'"; ?>><i class="fa fa-table"></i>  Data</a></li>
-				</ul><!-- /.nav-second-level -->
-			</li>
-			<li id="M67" <?php if($_GET['page']=="se-form" OR $_GET['page']=="se-data") echo " class='active'"; ?>>
-				<a href="#" title="Socio Eeconomic Assessment Report"><i class="fa fa-user fa-fw" ></i> SE<span class="fa arrow"></span></a>
-				<ul class="nav nav-second-level">
-					<li id="M6"><a href="?page=se-form" <?php if($_GET['page']=="se-form" AND empty($_GET['a'])) echo " class='active'"; ?>><i class="fa fa-list-alt"></i> Form</a></li>
-					<li id="M6"><a href="?page=se-form&a=reassesment" <?php if($_GET['page']=="se-form" AND isset($_GET['a'])) echo " class='active'"; ?>><i class="fa fa-list-alt"></i> Reassessment</a></li>
-					<li id="M7"><a href="?page=se-data" <?php if($_GET['page']=="se-data") echo " class='active'"; ?>><i class="fa fa-table"></i> Data</a></li>
 				</ul><!-- /.nav-second-level -->
 			</li>
 			<li id="M89" <?php if($_GET['page']=="bia-form" OR $_GET['page']=="bia-data") echo " class='active'"; ?>>
