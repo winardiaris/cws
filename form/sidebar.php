@@ -83,7 +83,22 @@ $(document).ready(function(){
             <a href="#" ><i class="fa fa-table"></i> Data Shelter 2</a> 
           </li>
 				</ul><!-- /.nav-second-level -->
-			</li>
+      </li>
+      <li id="" >
+        <a href="#"><i class="fa fa-user fa fw"></i> Assistance <span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li><a href=""><i class="fa fa-list-alt"></i> Form</a></li>
+          <li><a href=""><i class="fa fa-table"></i> Data</a></li>
+          <li>
+           <a href="#"><i class="fa fa-user fa fw"></i> Finance <span class="fa arrow"></span></a>
+            <ul class="nav nav-third-level"> 
+              <li id=""><a href="#"><i class="fa fa-table"></i> Day 1 MSA</a></li>
+              <li id=""><a href="#"><i class="fa fa-table"></i> Day 2 MSA</a></li>
+              <li id=""><a href="#"><i class="fa fa-table"></i> Data MSA</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
 			<li id="M1011" <?php if($_GET['page']=="hr-form" OR $_GET['page']=="hr-data") echo " class='active'"; ?>>
 				<a href="#" title="Health Report"><i class="fa fa-medkit fa-fw" ></i> HR<span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">
