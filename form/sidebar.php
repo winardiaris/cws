@@ -87,7 +87,7 @@ $(document).ready(function(){
       <li id="" >
         <a href="#"><i class="fa fa-user fa fw"></i> Assistance <span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
-          <li><a href=""><i class="fa fa-list-alt"></i> Form</a></li>
+          <li><a href="?page=assistance-form"><i class="fa fa-list-alt"></i> Form</a></li>
           <li><a href=""><i class="fa fa-table"></i> Data</a></li>
           <li>
            <a href="#"><i class="fa fa-user fa fw"></i> Finance <span class="fa arrow"></span></a>

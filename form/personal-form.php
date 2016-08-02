@@ -386,9 +386,11 @@ else{
 				</tbody>
 			</table>
 		</div>
-		<?php echo $button;?>
+    </div>
 		</div>
-		</div>
+    <div class="panel-footer">
+      <?php echo $button;?>
+    </div>
 		</div>
 		
 		</div>

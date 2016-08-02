@@ -507,14 +507,12 @@ else{
 				<label>Status:</label>
 				<input type="text" class="form-control" id="status" value="<?php if($edit==1){echo $person['status'];} ?>" disabled >
 			</div>
-			<div class="col-lg-12">
-				<div class="form-group">
-					<?php echo $button; ?>
-				</div>
-			</div>
 
 		</div><!-- panel body -->
+			<div class="panel-footer">
+					<?php echo $button; ?>
 		</div>
+			</div>
 		</div>
 		
 		
@@ -538,12 +536,14 @@ else{
 				<div class="form-group">
 				<label>Current Situation (Socio-economic):</label>
 				<textarea class="form-control" id="back2" rows="10"><?php if($edit==1){echo $background[1];} ?></textarea><br>
-				<button class="btn btn-success" id="save_back"><i class="fa fa-save"></i> Save</button>
 				</div>
 			</li>
 			</ol>
 		
-		</div>
+    </div>
+      <div class="panel-footer">
+				<button class="btn btn-success" id="save_back"><i class="fa fa-save"></i> Save</button>
+      </div>
 		</div>
 		</div><!-- panel panel-default -->
 		<!-- B panel -->

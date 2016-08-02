@@ -301,13 +301,14 @@ else{
 					<label>3. Do you have a valid passport and/ or other recognized travel documents? </label>
 					<textarea class="form-control" id="legal_doc_3"><?php if($edit==1){echo $legal_doc[2];} ?></textarea>
 				</div>
-				<button class="btn btn-success" type="submit" id="save_legal_doc" title="Legal Documentation"><i class="fa fa-save"></i> Save</button>
 			</div>
-		</div><!-- panel body -->
+    </div><!-- panel body -->
+    <div class="panel-footer">
+				<button class="btn btn-success" type="submit" id="save_legal_doc" title="Legal Documentation"><i class="fa fa-save"></i> Save</button>
+    </div>
 		</div>
 		</div>
 		<!-- B panel -->
-		<!-- C panel -->
 		<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
@@ -515,12 +516,14 @@ else{
 						
 						<i>Please be sure to inform the UAM of next steps and the follow up that s/he can expect.</i>
 						<br>
-						<button  class="btn btn-success" id="save_ia_doc" title="Save for (Visual inspection of the UAM’s current living environment) "><i class="fa fa-save"></i> Save</button>
 					</div>
 			</div>
 		</div>
+    <!-- panel body -->
+    <div class="panel-footer">
+        <button  class="btn btn-success" id="save_ia_doc" title="Save for (Visual inspection of the UAM’s current living environment) "><i class="fa fa-save"></i> Save</button>
+    </div>
 		</div>
-		<!-- panel body -->
 		</div>
 		<!-- C panel -->
 	</div>

@@ -44,7 +44,12 @@ if(!empty($_GET['page'])){
 		case "bia-data":
 		$view = "form/bia-data.php";
 		break;
-		
+
+    // ASSISTANCE -------
+    case "assistance-form":
+    $view = "form/assistance/form.php";
+    break;
+
 		// HR --------
 		case "hr-form":
 		$view = "form/hr-form.php";
