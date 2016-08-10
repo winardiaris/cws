@@ -47,7 +47,7 @@ if(isset($_SESSION['login'])){
 	}
 }
 else{
-	echo '<script>alert("You not logged !!");window.location="?page=login";</script>';
+	echo '<script>alert("Your session has expired !!");window.location="?page=login";</script>';
 	return false;
 }
 ?>
