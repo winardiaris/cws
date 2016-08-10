@@ -172,6 +172,9 @@ body.view{
 	display: block;
 	width: 100%;
 }
+input[type='number']{
+  text-align:right;
+}
 .page-break{
 	page-break-after: always;
 }
