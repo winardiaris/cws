@@ -79,6 +79,7 @@ function getWhoLastChange($file_no,$location){
 function UbahSimbol($str){
 	$str = trim(htmlentities(htmlspecialchars($str)));
 	$search = array ("'\''",
+						"'\"'",
 						"'%'",
 						"'@'",
 						"'_'",
@@ -93,19 +94,20 @@ function UbahSimbol($str){
 						"'-'",
 						"'_'");
 
-	$replace = array ("xpsijix",
+	$replace = array ("xpetiksatux",
+						"xpetikduax",
 						"xpersenx",
 						"xtkeongx",
 						"xgwahx",
 						"x1smdgan1x",
-						"xgmringx",
-						"xpentungx",
+						"xgaringx",
+						"xserux",
 						"xkkirix",
 						"xkkananx",
 						"xkkurix",
 						"xkkurnanx",
-						"xkommax",
-						"xstrix",
+						"xtitikkomax",
+						"xstripx",
 						"xstripbwhx");
 
 	$str = preg_replace($search,$replace,$str);
@@ -113,22 +115,24 @@ function UbahSimbol($str){
 	
 }
 function Balikin($str){
-	$search = array ("'xpsijix'",
+	$search = array ("'xpetiksatux'",
+						"'xpetikduax'",
 						"'xpersenx'",
 						"'xtkeongx'",
 						"'xgwahx'",
 						"'x1smdgan1x'",
-						"'xgmringx'",
-						"'xpentungx'",
+						"'xgaringx'",
+						"'xserux'",
 						"'xkkirix'",
 						"'xkkananx'",
 						"'xkkurix'",
 						"'xkkurnanx'",
-						"'xkommax'",
-						"'xstrix'",
+						"'xtitikkomax'",
+						"'xstripx'",
 						"'xstripbwhx'");
 
 	$replace = array ("'",
+						"\"",
 						"%",
 						"@",
 						"_",

@@ -29,6 +29,7 @@
 	<script src="<?php echo $URL ?>js/jquery.js"></script>
 	<script src="<?php echo $URL ?>js/jquery-ui.min.js"></script>
 	<script src="<?php echo $URL ?>js/jquery.md5.js"></script>
+	<script src="<?php echo $URL ?>js/he.js"></script>
 	
 	<script src="<?php echo $URL ?>js/bootstrap.min.js"></script>
 	<script src="<?php echo $URL ?>js/bootstrap-datepicker.js"></script>

@@ -83,13 +83,21 @@ include("form/navigasi.php")
 	</div>
 	</div>
 	<div class="col-lg-6">
-	<div class="panel panel-default">
-		<div class="panel-heading"><i class="fa fa-pie-chart"></i> Gender </div>
-		<div class="panel-body">
-			<div id="chart_gender" style="height: 250px;"></div>
-		</div>
-	</div>
-	</div>
+    <div class="panel panel-default">
+      <div class="panel-heading"><i class="fa fa-pie-chart"></i> Gender </div>
+      <div class="panel-body">
+        <div id="chart_gender" style="height: 250px;"></div>
+      </div>
+    </div>
+  </div>
+	<div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading"><i class="fa fa-pie-chart"></i> Class </div>
+      <div class="panel-body">
+        <div id="chart_class" style="height: 250px;"></div>
+      </div>
+    </div>
+  </div>
 	<div class="col-lg-12">
 	<div class="panel panel-default">
 		<div class="panel-heading"><i class="fa fa-pie-chart"></i> Country of Origin</div>
@@ -289,5 +297,41 @@ $(function () {
 
    
 });
+
+
+$(function() {
+	<?php
+	$qry = mysql_query("SELECT SUM(IF(`ea_class`='MC',1,0)) AS `MC`,SUM(IF(`ea_class`='CCC',1,0)) AS `CCC`,SUM(IF(`ea_class`='S1',1,0)) AS `S1`,SUM(IF(`ea_class`='S2',1,0)) AS `S2` FROM  `assistance` WHERE `status`='1'") or die( mysql_error());
+	$data=mysql_fetch_array($qry);
+	echo'
+	var data = [
+	{label: \'Manggarai Center ['.$data['MC'].'] \', data:'.$data['MC'].'},
+	{label: \'Ciputat Community Center ['.$data['CCC'].']\', data:'.$data['CCC'].'},
+	{label: \'Shelter 1  ['.$data['S1'].']\', data:'.$data['S1'].'},
+	{label: \'Shelter 2  ['.$data['S2'].']\', data:'.$data['S2'].'}
+	];';
+	
+	?>
+    var plotObj = $.plot($("#chart_class"), data, {
+        series: {pie: {
+                show: true,
+                label: {
+		            show:true,
+		            radius: 0.8,
+		            formatter: function (label, series) {                
+		                return '<div class="label-chart">' +label + ' : ' +Math.round(series.percent) +'%</div>';
+		            }
+		        }
+            }},
+        grid: {hoverable: true},
+        tooltip: true,
+        tooltipOpts: {content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+            shifts: {x: 20,y: 0},
+            defaultTheme: false
+        }
+    });
+
+});
+
 
 </script>
