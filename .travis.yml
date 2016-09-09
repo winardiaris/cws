@@ -1,0 +1,9 @@
+language: php
+
+install:
+  - pyrus install http://phptal.org/latest.tar.gz
+  - pear install pear/PHP_CodeSniffer
+  - phpenv rehash
+
+script:
+  - phpcs -p .
