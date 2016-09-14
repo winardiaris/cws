@@ -76,7 +76,7 @@ else{
 		//save assessment
 		$("#save_assessment").click(function(){
 			if(file_no == ""){
-				alert("Please insert File No");
+				alert("Please insert UNHCR Case Number");
 				$("#file_no").val("").focus();
 			}
 			else if($("#a").hasClass("text-warning")){
@@ -110,7 +110,7 @@ else{
 		//update assessment
 		$("#update_assessment").click(function(){
 			if(file_no == ""){
-				alert("Please insert File No");
+				alert("Please insert UNHCR Case Number");
 				$("#file_no").val("").focus();
 			}
 			else if($("#a").hasClass("text-warning")){
@@ -242,7 +242,7 @@ else{
 <div class=" row col-lg-12">
 	<div class="col-lg-2  ">
 		<div class="form-group">
-			<label>File No: <span  id="a"></span></label>
+			<label>UNHCR Case Number: <span  id="a"></span></label>
 			<input class="form-control"  name="file_no" id="file_no" <?php if($edit==1){echo 'value="'.$_GET['file_no'].'" '; echo $disable;} ?> > 
 		</div>			
 	</div>

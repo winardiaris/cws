@@ -11,7 +11,7 @@ if($op == "check"){
 	$person = mysql_fetch_array($qry);
 	$assistance = mysql_fetch_array($qry2);
 	
-	setHistory($_SESSION['user_id'],"assistance_form","Check Available for File No [$file_no]",$NOW);
+	setHistory($_SESSION['user_id'],"assistance_form","Check Available for UNHCR Case Number [$file_no]",$NOW);
 	if($person['ada'] > 0 AND $assistance['ada'] > 0){
 		echo "inuse";
 	}
@@ -28,7 +28,17 @@ elseif($op=="addassistance"){
   $save = mysql_query("insert into `assistance` (`file_no`,`rfa`,`created`) values('$file_no','$rfa','$NOW')" ) or die(mysql_error());
   if($save){
     echo 'success';
-    setHistory($_SESSION['user_id'],'assistance_form',"SAVE Assistance for File No [$file_no]",$NOW);
+    setHistory($_SESSION['user_id'],'assistance_form',"SAVE Assistance for UNHCR Case Number [$file_no]",$NOW);
+  }
+  else{echo"error";}
+}
+elseif($op=="update_assistance"){
+  $file_no=$_REQUEST['file_no'];
+  $rfa=$_REQUEST['rfa'];
+  $save = mysql_query("update `assistance` set `rfa`='$rfa', `created`='$NOW'  where `file_no`='$file_no'; " ) or die(mysql_error());
+  if($save){
+    echo 'success';
+    setHistory($_SESSION['user_id'],'assistance_form',"Update  Assistance for UNHCR Case Number [$file_no]",$NOW);
   }
   else{echo"error";}
 }
@@ -40,7 +50,7 @@ elseif($op=="save_financeassistance"){
   $save = mysql_query("update `assistance` set `fa_day`='$fa_day', `fa_type_value_amount`='$fa_type_value_amount', `uam`='$uam',`last_change`='$NOW' where `file_no`='$file_no' " ) or die(mysql_error());
   if($save){
     echo 'success';
-    setHistory($_SESSION['user_id'],'assistance_form',"save_financeassistance for File No [$file_no]",$NOW);
+    setHistory($_SESSION['user_id'],'assistance_form',"save_financeassistance for UNHCR Case Number [$file_no]",$NOW);
   }
   else{echo"error";}
 }
@@ -51,7 +61,7 @@ elseif($op=='save_healthassistance'){
   $save = mysql_query("update `assistance` set `ha_note`='$ha_note', `last_change`='$NOW' where `file_no`='$file_no' ") or die(mysql_error());
   if($save){
     echo 'success';
-    setHistory($_SESSION['user_id'],'assistance_form',"save_Health Assistance Note for File No [$file_no]",$NOW);
+    setHistory($_SESSION['user_id'],'assistance_form',"save_Health Assistance Note for UNHCR Case Number [$file_no]",$NOW);
   }
   else{echo"error";}
 }
@@ -62,7 +72,7 @@ elseif($op=='save_educationaccess'){
   $save = mysql_query("update `assistance` set `ea_class`='$ea_class', `ea_note`='$ea_note', `last_change`='$NOW' where  `file_no`='$file_no'") or die(mysql_error());
   if($save){
     echo 'success';
-    setHistory($_SESSION['user_id'],'assistance_form',"save_Educational Access for File No [$file_no]",$NOW);
+    setHistory($_SESSION['user_id'],'assistance_form',"save_Educational Access for UNHCR Case Number [$file_no]",$NOW);
   }
   else{echo"error";}
 }
@@ -72,7 +82,7 @@ elseif($op=='save_psychologicalcounselling'){
   $save = mysql_query("update `assistance` set `pc_note`='$pc_note',`last_change`='$NOW' where  `file_no`='$file_no'") or die(mysql_error());
   if($save){
     echo 'success';
-    setHistory($_SESSION['user_id'],'assistance_form',"save_Psychological Conselling for File No [$file_no]",$NOW);
+    setHistory($_SESSION['user_id'],'assistance_form',"save_Psychological Conselling for UNHCR Case Number [$file_no]",$NOW);
   }
   else{echo"error";}
 }

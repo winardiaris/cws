@@ -52,7 +52,7 @@ $(document).ready(function(){
 		$("#save_1").click(function(){
 			var	file_no = $("#file_no").val();
 			if(file_no == ""){
-				alert("Please insert File No");
+				alert("Please insert UNHCR Case Number");
 				$("#file_no").val("").focus();
 			}
 			else if($("#a").hasClass("text-warning")){
@@ -96,7 +96,7 @@ $(document).ready(function(){
 		$("#update_1").click(function(){
 			var	file_no = $("#file_no").val();
 			if(file_no == ""){
-				alert("Please insert File No");
+				alert("Please insert UNHCR Case Number");
 				$("#file_no").val("").focus();
 			}
 			else if($("#a").hasClass("text-warning")){

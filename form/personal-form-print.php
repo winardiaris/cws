@@ -52,7 +52,7 @@ include("function.php") ;
 	<hr>
 	<table class="table table-bordered">
 		<tr>
-			<td><label>File No:</label></td>
+			<td><label>UNHCR Case Number:</label></td>
 			<td><?php echo $data['file_no'];?></td>
 			<td><label>Status:</label></td>
 			<td><?php echo $data['status'];?></td>

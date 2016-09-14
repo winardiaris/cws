@@ -117,6 +117,40 @@ echo "//edit=1\n";
 			}
 
     });
+    //update_personalinformation
+    $("#update_personalinformation").click(function(){
+			if(file_no == ""){
+				alert("Please insert UNHCR Case Number");
+				$("#unhcr").val("").focus();
+			}
+			else if($("#a").hasClass("text-warning")){
+				alert("File Number in use");
+				$("#unhcr").val("").focus();
+			}
+			else if($("#a").hasClass("text-danger")){
+				var r = confirm("No Data for ["+file_no+"], Add new Data?");
+				if (r == true) {window.location="?page=person-form";} 
+				else {$("#unhcr").val("").focus();}
+			}
+			else{
+				var file_no = $("#unhcr").val();
+				var rfa = $("input[name='rfa']:checked").val();
+				var datanya = "&file_no="+file_no+"&rfa="+rfa;
+				$.ajax({url: "form/assistance/action.php",data: "op=update_assistance"+datanya,cache: false,
+					success: function(msg){
+						if(msg=="success"){
+							alert("Data has been saved !!");
+							$("a[href='#financeassistance']").click();
+							$("#unhcr").attr("disabled",true);
+							$("#a").html("");
+						}
+						else{alert("Data not saved !!");}
+					}
+				});
+			}
+
+    });
+    
     //save_financeassistance
     $("#save_financeassistance").click(function(){
         var file_no = $("#unhcr").val();

@@ -64,7 +64,7 @@ $(document).ready(function(){
 			reported = $("#reported").val();
 		var datanya = "&file_no="+file_no+"&report_date="+report_date+"&location="+location+"&ics="+ics+"&reported="+reported+"&id_data="+id_data;
 		if(file_no == ""){
-			alert("Please insert File No");
+			alert("Please insert UNHCR Case Number");
 			$("#file_no").val("").focus();
 		}
 		else if($("#a").hasClass("text-warning")){
@@ -125,7 +125,7 @@ $(document).ready(function(){
 			hr_id = $("#hr_id").val();
 		var datanya = "&file_no="+file_no+"&report_date="+report_date+"&location="+location+"&ics="+ics+"&reported="+reported+"&id_data="+id_data+"&hr_id="+hr_id;
 		if(file_no == ""){
-			alert("Please insert File No");
+			alert("Please insert UNHCR Case Number");
 			$("#file_no").val("").focus();
 		}
 		else if($("#a").hasClass("text-warning")){
@@ -349,9 +349,9 @@ $(document).ready(function(){
 						<table class="table table-hover">
 							<tbody>
 							<tr>
-								<td width="200px"><label>File No: *</label>  <span id="a"></span></td>
+								<td width="200px"><label>UNHCR Case Number: *</label>  <span id="a"></span></td>
 								<td>
-									<input  class="form-control" id="file_no" placeholder="File No / Name" <?php if($edit==1){echo 'value="'.$hr['file_no'].'" disabled';} ?>>
+									<input  class="form-control" id="file_no" placeholder="UNHCR Case Number / Name" <?php if($edit==1){echo 'value="'.$hr['file_no'].'" disabled';} ?>>
 								</td>
 							</tr>
 							<tr>

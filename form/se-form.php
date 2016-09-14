@@ -157,7 +157,7 @@ else{
 			var a = $("input:radio[name=id_data]:checked").val();
 			
 			if(file_no == ""){
-				alert("Please insert File No");
+				alert("Please insert UNHCR Case Number");
 				$("#file_no").val("").focus();
 			}
 			else if($("#a").hasClass("text-warning")){
@@ -202,7 +202,7 @@ else{
 			var file_no = $("#file_no").val(),se_id = $("#se_id").val();
 			
 			if(file_no == ""){
-				alert("Please insert File No");
+				alert("Please insert UNHCR Case Number");
 				$("#file_no").val("").focus();
 			}
 			else if($("#a").hasClass("text-warning")){
@@ -453,7 +453,7 @@ else{
 			</div>
 			<div class="col-lg-4">
 				<div class="form-group">
-					<label>File No: <span  id="a"></span></label>
+					<label>UNHCR Case Number: <span  id="a"></span></label>
 					<input class="form-control" id="file_no" <?php if($edit==1){echo 'value="'.$data['file_no'].'" '.$disable;}?>>
 				</div>
 			</div>

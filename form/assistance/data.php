@@ -15,7 +15,7 @@ include ('form/navigasi.php');
               <tr>
                 <th></th>
                 <th>No.</th>
-                <th>File No.</th>
+                <th>UNHCR Case Number.</th>
                 <th>RFA Day</th>
                 <th>Education Class</th>
               </tr>

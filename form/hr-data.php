@@ -40,7 +40,7 @@ include("form/navigasi.php") ;
 				<tr>
                <th></th>
 					<th >No.</th>
-					<th>File No</th>
+					<th>UNHCR Case Number</th>
 					<th>Name</th>
 					<th>Report Date </th>
 					<th>Reported</th>

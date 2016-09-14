@@ -12,7 +12,7 @@ if($op == "check"){
 	$person = mysql_fetch_array($qry);
 	$ia = mysql_fetch_array($qry2);
 	
-	setHistory($_SESSION['user_id'],"ia_form","Check Available for File No [$file_no]",$NOW);
+	setHistory($_SESSION['user_id'],"ia_form","Check Available for UNHCR Case Number [$file_no]",$NOW);
 	if($person['ada'] > 0 AND $ia['ada'] > 0){
 		echo "inuse";
 	}
@@ -30,7 +30,7 @@ elseif($op == "addassessment"){
 	
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"ia_form","Save IA Assessemnt for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"ia_form","Save IA Assessemnt for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -41,7 +41,7 @@ elseif($op == "updateassessment"){
 	
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"ia_form","Update IA Assessemnt for File No [$file_no]",$NOW);	
+		setHistory($_SESSION['user_id'],"ia_form","Update IA Assessemnt for UNHCR Case Number [$file_no]",$NOW);	
 	}
 	else{echo "error";}
 }
@@ -52,7 +52,7 @@ elseif($op == "savelegaldoc"){
 	
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"ia_form","Save/Update IA Legal Document for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"ia_form","Save/Update IA Legal Document for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -63,7 +63,7 @@ elseif($op == "addwhomliving"){
 	
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"ia_form","Add IA with whow living for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"ia_form","Add IA with whow living for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 	
@@ -74,7 +74,7 @@ elseif($op == "deletewhomliving"){
 	$del = mysql_query("DELETE FROM `with_whom_living` WHERE id='".$id."' AND file_no='".$file_no."' ;")or die(mysql_error());
 	if($del){
 		echo "success";
-		setHistory($_SESSION['user_id'],"ia_form","Delete IA with whow living for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"ia_form","Delete IA with whow living for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -92,7 +92,7 @@ elseif($op == "saveiadoc"){
 	
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"ia_form","Save/Update IA Current Living Condition for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"ia_form","Save/Update IA Current Living Condition for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -101,7 +101,7 @@ elseif($op == "del"){
 	$del = mysql_query("UPDATE `ia` SET `status`='0' WHERE  `file_no`='$file_no' AND `status`='1' ;  ") or die(mysql_error());
 	if($del){
 		echo "success";
-		setHistory($_SESSION['user_id'],"ia_data","Delete IA Data for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"ia_data","Delete IA Data for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }

@@ -11,7 +11,7 @@ if($op == "check"){
 	$qry = mysql_query("SELECT COUNT(*) AS `ada` FROM `person` WHERE `file_no`='$file_no';") or die(mysql_error());
 	$person = mysql_fetch_array($qry);
 	
-	setHistory($_SESSION['user_id'],"se_form","Check Available for File No [$file_no]",$NOW);
+	setHistory($_SESSION['user_id'],"se_form","Check Available for UNHCR Case Number [$file_no]",$NOW);
 		if($person['ada']>0){
 			//cek first assessment
 			$qry2 = mysql_query(
@@ -78,7 +78,7 @@ elseif($op == "addassessment"){
 	
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"se_form","Save SE Assessment for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"se_form","Save SE Assessment for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -98,7 +98,7 @@ elseif($op == "updateassessment"){
 	
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"se_form","Update SE Assessment for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"se_form","Update SE Assessment for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -110,7 +110,7 @@ elseif($op == "saveback"){
 	
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Background Information and Assessment Purpose for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Background Information and Assessment Purpose for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -125,7 +125,7 @@ elseif($op == "savelivinga"){
 	
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Living Condition A. General for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Living Condition A. General for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -138,7 +138,7 @@ elseif($op == "savelivingb"){
 	
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Living Condition B. Person With Spesific Needs for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Living Condition B. Person With Spesific Needs for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -150,7 +150,7 @@ elseif($op == "savefinanciala"){
 	
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Financial A. Support System for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Financial A. Support System for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -162,7 +162,7 @@ elseif($op == "savefinancialb"){
 	
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Financial B. Recommendation for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Financial B. Recommendation for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -174,7 +174,7 @@ elseif($op == "saveverification"){
 	
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Assessment verified for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Assessment verified for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -184,7 +184,7 @@ elseif($op == "del"){
 	$del = mysql_query("UPDATE `se` SET `status`='0' WHERE  `file_no`='$file_no' AND `se_id`='$se_id' AND `status`='1' ;  ") or die(mysql_error());
 	if($del){
 		echo "success";
-		setHistory($_SESSION['user_id'],"se_data","Delete SE Data for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"se_data","Delete SE Data for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }

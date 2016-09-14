@@ -177,7 +177,7 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 							<tr>
 							<th width="10px"></th>
 							<th width="80px">No.</th>
-							<th>File No.</th>
+							<th>UNHCR Case Number.</th>
 							<th>Name</th>
 							<th>Coo</th>
 							</tr>
@@ -216,7 +216,7 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 							<tr>
 							<th width="10px"></th>
 							<th width="80px">No.</th>
-							<th>File No.</th>
+							<th>UNHCR Case Number.</th>
 							<th>Name</th>
 							<th>Date Assessment</th>
 							<th>Location Assessment</th>
@@ -258,7 +258,7 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 						<tr>
 							<th width="10px"> </th>
 							<th>No.</th>
-							<th>File No.</th>
+							<th>UNHCR Case Number.</th>
 							<th>Name </th>
 							<th>Date of Assessment</th>
 							<th>Interviewer</th>
@@ -314,7 +314,7 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 						<tr>
 							<th width="10px"></th>
 							<th>No</th>
-							<th>File No</th>
+							<th>UNHCR Case Number</th>
 							<th>Name</th>
 							<th>Date Assessment</th>
 							<th>Location</th>
@@ -361,7 +361,7 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 						<tr>
 							<th width="10px"></th>
 							<th >No.</th>
-							<th>File No</th>
+							<th>UNHCR Case Number</th>
 							<th>Name</th>
 							<th>Report Date</th>
 							<th>Reported</th>

@@ -84,11 +84,11 @@ $(document).ready(function(){
           </li>
 				</ul><!-- /.nav-second-level -->
       </li>
-      <li id="" >
+      <li id=""  <?php if($_GET['page']=='assistance-form' OR $_GET['page']=='assistance-data') echo 'class="active"' ?>>
         <a href="#"><i class="fa fa-user fa fw"></i> Assistance <span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
-          <li><a href="?page=assistance-form"><i class="fa fa-list-alt"></i> Form</a></li>
-          <li><a href="?page=assistance-data"><i class="fa fa-table"></i> Data</a></li>
+        <li><a href="?page=assistance-form" <?php if($_GET['page']=='assistance-form') echo 'class="active"' ?>><i class="fa fa-list-alt"></i> Form</a></li>
+          <li><a href="?page=assistance-data" <?php if($_GET['page']=='assistance-data') echo 'class="active"' ?>><i class="fa fa-table"></i> Data</a></li>
           <li>
            <a href="#"><i class="fa fa-user fa fw"></i> Finance <span class="fa arrow"></span></a>
             <ul class="nav nav-third-level"> 

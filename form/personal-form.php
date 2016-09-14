@@ -94,7 +94,7 @@ else{
 		$("#person_save").click(function(){
 			var file_no = $("#file_no").val();
 			if(file_no == ""){
-				alert("Please insert File No");
+				alert("Please insert UNHCR Case Number");
 				$("#file_no").focus();
 			}
 			else if($("#a").hasClass("text-warning")){
@@ -183,7 +183,7 @@ else{
 	<div class="col-lg-2" ><div class="photo"><img src="<?php echo $photo; ?>"></div><!-- buat photo --></div>
 	<div class="col-lg-4">
 		<div class="form-group">
-			<label>File No:</label> <span id="a"></span>
+			<label>UNHCR Case Number:</label> <span id="a"></span>
 			<input class="form-control" name="file-no" id="file_no" <?php if($edit==1){echo 'value="'.$data['file_no'].'"'; echo $disable;}?>>
 			<?php if($edit==1){
 				echo getWhoLastChange("".$data['file_no']."","person_form");
@@ -212,7 +212,7 @@ else{
 			<table class="table  table-hover" >
 				<tbody>
 					<tr>
-						<td width="180px"><label>Name: *</label></td>
+						<td width="180px"><label>Full Name: *</label></td>
 						<td>
 							<input class="form-control" name="name" id="name" required value="<?php if($edit==1){ echo $data['name'];}?>"></td>
 						<!-- --->
@@ -247,7 +247,7 @@ else{
 					</tr>
 					<tr>
 						
-						<td ><label>Address (in detail): *</label></td>
+						<td ><label>Current Address <br>(in detail): *</label></td>
 						<td><div class="form-group">
 								<small>Province</small>
 								<select name="provinsi" id="provinsi" class="form-control"></select>
@@ -290,12 +290,16 @@ else{
 			<table class="table  table-hover">
 				<tbody>
 					<tr>
-						<td width="180px"><label>Status:</label></td>
+						<td width="180px"><label>UNHCR Status: *</label></td>
 						<td><select class="form-control" name="status" id="status">
 							<option <?php if($edit==1){if($data['status']=="Refugee")echo"selected";}?>>Refugee</option>
 							<option <?php if($edit==1){if($data['status']=="Asylum Seeker")echo"selected";}?>>Asylum Seeker</option>
 						</select></td>
-					</tr>
+          </tr>
+          <tr>
+            <td>Date of Refugee recognition</td>
+            <td><input class="form-control"></td>
+          </tr>
 					<tr>					
 						<td ><label>Date & port arrival: *</label></td>
 						<td><div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
@@ -416,7 +420,14 @@ else{
 							<tr>
 								<td align="right"><label>2.</label></td>
 								<td><label>Age</label></td>
-								<td><input class="form-control" id="family-age" type="number" placeholder="Age"></td>
+                <td>
+                  <input class="form-control" id="family-age" type="number" placeholder="Age"><br>
+									<div class="form-group">
+                    <label class="radio-inline"><input type="radio" name="estimate" id="estimate"  value="0" checked>Estimated</label>
+                    <label class="radio-inline"><input type="radio" name="estimate" id="estimate"  value="1" checked>Known and supported by document</label>
+                    <label class="radio-inline"><input type="radio" name="estimate" id="estimate"  value="2" checked>Known or supported by document</label>
+									</div>
+                </td>
 							</tr>
 							<tr>
 								<td align="right"><label>3.</label></td>

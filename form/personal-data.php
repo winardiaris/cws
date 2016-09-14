@@ -37,7 +37,7 @@ else{
 				<tr>
 				<th></th>
 				<th>No.</th>
-				<th>File No.</th>
+				<th>UNHCR Case Number.</th>
 				<th>Name</th>
 				<th>CoO</th>
 				<th>Sex</th>

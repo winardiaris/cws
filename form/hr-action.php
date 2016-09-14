@@ -74,7 +74,7 @@ elseif($op=="save_basic"){
 	
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"hr_form","Save Basic data for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"hr_form","Save Basic data for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -100,7 +100,7 @@ elseif($op=="update_basic"){
 	
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"hr_form","Update Basic data for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"hr_form","Update Basic data for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -126,7 +126,7 @@ elseif($op=="save_hr1"){
 
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"hr_form","Save/Update Chronology/Situation reported for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"hr_form","Save/Update Chronology/Situation reported for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -150,7 +150,7 @@ elseif($op=="save_hr2"){
 
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"hr_form","Save/Update Action taken for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"hr_form","Save/Update Action taken for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -174,7 +174,7 @@ elseif($op=="save_hr3"){
 
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"hr_form","Save/Update Budget estimate for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"hr_form","Save/Update Budget estimate for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -198,7 +198,7 @@ elseif($op=="save_hr4"){
 
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"hr_form","Save/Update Risk happened when the recommended procedure is not conducted for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"hr_form","Save/Update Risk happened when the recommended procedure is not conducted for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -222,7 +222,7 @@ elseif($op=="save_hr5"){
 
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"hr_form","Save/Update Concomitant illnesses that would affect treatment of the disease for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"hr_form","Save/Update Concomitant illnesses that would affect treatment of the disease for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -246,7 +246,7 @@ elseif($op=="save_hr6"){
 
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"hr_form","Save/Update How long the procedure will take for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"hr_form","Save/Update How long the procedure will take for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -270,7 +270,7 @@ elseif($op=="save_hr7"){
 
 	if($save){
 		echo "success";
-		setHistory($_SESSION['user_id'],"hr_form","Save/Update Suggestion for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"hr_form","Save/Update Suggestion for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }
@@ -279,7 +279,7 @@ elseif($op == "del"){
 	$del = mysql_query("UPDATE `hr` SET `status`='0' WHERE  `hr_id`='$hr_id' AND `status`='1' ;  ") or die(mysql_error());
 	if($del){
 		echo "success";
-		setHistory($_SESSION['user_id'],"hr_data","Delete HR data for File No [$file_no]",$NOW);
+		setHistory($_SESSION['user_id'],"hr_data","Delete HR data for UNHCR Case Number [$file_no]",$NOW);
 	}
 	else{echo "error";}
 }

@@ -32,7 +32,7 @@ if(isset($_GET['file_no']) AND isset($_GET['id'])){
 <table class="table table-bordered" >
 	<tr>
 		<td>
-			<b>File No: </b>
+			<b>UNHCR Case Number: </b>
 			<?php if($edit==1){echo $data['file_no'];} ?>
 		</td>
 		<td>

@@ -31,7 +31,7 @@ include("../function.php") ;
 </table>
 <table class="table table-bordered">
 <tr>
-	<td ><b>File No:</b></td>
+	<td ><b>UNHCR Case Number:</b></td>
 	<td><?php echo $data['file_no'];?></td>
 	<td ><b>Status:</b></td>
 	<td ><?php echo $data['status'];?></td>

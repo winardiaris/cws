@@ -38,7 +38,7 @@ include("form/navigasi.php") ;
 				<tr>
 					<th></th>
 					<th>No.</th>
-					<th>File No.</th>
+					<th>UNHCR Case Number.</th>
 					<th>Name </th>
 					<th>Date of <?php if($_GET['a']==2){echo "Re-Assessment";}else{echo "Assessment";} ?></th>
 					<th>Interviewer</th>
