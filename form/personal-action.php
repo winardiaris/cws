@@ -6,36 +6,40 @@ include ("function.php");
 
 $op = $_GET['op'];
 if($op == "saveperson"){
-	$file_no = $_GET['file_no'];$name = $_GET['name'];$coo = $_GET['coo'];$dob=$_GET['dob'];$age=$_GET['age'];$sex = $_GET['sex'];
+	$file_no = $_GET['file_no'];$name = $_GET['name'];$coo = $_GET['coo'];$cob=$_GET['cob'];$dob=$_GET['dob'];$age=$_GET['age'];$sex = $_GET['sex'];
 	$marital = $_GET['marital'];$address = $_GET['address'];$phone = $_GET['phone']; $status = $_GET['status'];
 	$arrival = $_GET['arrival'];$date_arrival = $_GET['date_arrival'];$arrival2 = $arrival.",".$date_arrival;
 	$education = $_GET['education'];$skill=$_GET['skill'];$mot=$_GET['mot'];$known_language = $_GET['known_language'];
 	$previous_occupation = $_GET['previous_occupation'];$volunteer=$_GET['volunteer'];
-	$date_recognition=$_GET['date_recognition'];$status_active=$_GET['status_active'];
+	$status_active=$_GET['status_active'];
 	
 	$photo=$_GET['photo'];
 	
 	$save = mysql_query("INSERT INTO `person` 
-	VALUES('$file_no','$name','$coo','$dob','$age','$sex','$marital','$address','$phone','$photo','$status','$arrival2','$education','$skill','$mot','$known_language','$previous_occupation','$volunteer','$date_recognition','$status_active','$NOW','','');") or die(mysql_error());
+	VALUES('$file_no','$name','$coo','$cob','$dob','$age','$sex','$marital','$address','$phone','$photo','$status','$arrival2','$education','$skill','$mot','$known_language','$previous_occupation','$volunteer','$status_active','$NOW','','');") or die(mysql_error());
 	
 	if($save){
 		echo "success";
 		setHistory($_SESSION['user_id'],$LOCATION,"Add person [$file_no]",$NOW);
 	}
-	else{echo "error";}
+  else{
+    /* echo "error"; */
+    echo mysql_error();
+  }
 }
 elseif($op == "updateperson"){
-	$file_no = $_GET['file_no'];$name = $_GET['name'];$coo = $_GET['coo'];$dob=$_GET['dob'];$age=$_GET['age'];$sex = $_GET['sex'];
+	$file_no = $_GET['file_no'];$name = $_GET['name'];$coo = $_GET['coo'];$cob=$_GET['cob'];$dob=$_GET['dob'];$age=$_GET['age'];$sex = $_GET['sex'];
 	$marital = $_GET['marital'];$address = $_GET['address'];$phone = $_GET['phone']; $status = $_GET['status'];
 	$arrival = $_GET['arrival'];$date_arrival = $_GET['date_arrival'];$arrival2 = $arrival.",".$date_arrival;
 	$education = $_GET['education'];$skill=$_GET['skill'];$mot=$_GET['mot'];$known_language = $_GET['known_language'];
 	$previous_occupation = $_GET['previous_occupation'];$volunteer=$_GET['volunteer'];
-	$date_recognition=$_GET['date_recognition'];$status_active=$_GET['status_active'];
+	$status_active=$_GET['status_active'];
 	$photo=$_GET['photo'];
 	
 	$update = mysql_query("UPDATE  `person` SET 
 	`name`='$name',
 	`coo`='$coo',
+	`cob`='$cob',
 	`dob`='$dob',
 	`age`='$age',
 	`sex`='$sex',
@@ -51,7 +55,6 @@ elseif($op == "updateperson"){
 	`known_language`='$known_language',
 	`previous_occupation`='$previous_occupation',
 	`volunteer`='$volunteer',
-	`date_recognition`='$date_recognition',
 	`active`='$status_active',
 	`last_change`='$NOW'
 	WHERE `file_no`='$file_no';") or die(mysql_error());
@@ -60,14 +63,22 @@ elseif($op == "updateperson"){
 		echo "success";
 		setHistory($_SESSION['user_id'],$LOCATION,"Update person [$file_no]",$NOW);
 	}
-	else{echo "error";}
+	else{echo mysql_error();}
 	
 }
 elseif($op == "addfamily"){
-	$file_no = $_GET['file_no'];
-	$value = htmlspecialchars($_GET['value']);
-	$save = mysql_query("INSERT INTO `reported_family` VALUES('','$file_no','$value','$NOW') ;") or die(mysql_error());
+	$file_no = $_GET['file_no'];$name = $_GET['name'];$coo = $_GET['coo'];$cob=$_GET['cob'];$dob=$_GET['dob'];$age=$_GET['age'];$sex = $_GET['sex'];
+	$marital = $_GET['marital'];$address = $_GET['address'];$phone = $_GET['phone']; $status = $_GET['status'];
+	$arrival = $_GET['arrival'];$date_arrival = $_GET['date_arrival'];$arrival2 = $arrival.",".$date_arrival;
+	$education = $_GET['education'];$skill=$_GET['skill'];$mot=$_GET['mot'];$known_language = $_GET['known_language'];
+	$previous_occupation = $_GET['previous_occupation'];$volunteer=$_GET['volunteer'];
+	$status_active=$_GET['status_active'];
 	
+	$photo="";
+	
+	$save = mysql_query("INSERT INTO `reported_family` 
+	VALUES('','$file_no','$name','$coo','$cob','$dob','$age','$sex','$marital','$address','$phone','$photo','$status','$arrival2','$education','$skill','$mot','$known_language','$previous_occupation','$volunteer','$status_active','$NOW','','');") or die(mysql_error());
+		
 	if($save){
 		echo "success";
 		setHistory($_SESSION['user_id'],$LOCATION,"Add person family for [$file_no]",$NOW);
@@ -83,6 +94,13 @@ elseif($op == "deletefamily"){
 		setHistory($_SESSION['user_id'],$LOCATION,"Del person family for [$file_no]",$NOW);
 	}
 	else{echo "error";}
+}
+elseif($op=="getfamily"){
+  $file_no=$_GET['file_no'];
+  $id=$_GET['id'];
+  $family = mysql_query("select * from `reported_family` where `id`='$id' and `file_no`='$file_no'") or die(mysql_error());
+  $data = mysql_fetch_object($family);
+  echo json_encode($data);
 }
 
 ?>

@@ -4,7 +4,7 @@ include ("2.php");  //marital
 include ("3.php");	//age
 include ("13.php"); //status
 include ("coo.php"); //coo
-include ("edu.php"); //edu
+/* include ("edu.php"); //edu */
 include ("4.php");	//province
 include ("5.php"); 	//DKI
 include ("6.php");	//pusat

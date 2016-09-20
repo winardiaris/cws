@@ -7,11 +7,11 @@ $(document).ready(function(){
 		if(isset($group_id)){
 			$a = "R1;W1;R2;W2;R3;W3;R4;W4;R5;W5;R6;W6;R7;W7;R8;W8;R9;W9;R10;W10;R11;W11;R12;W12;R13;W13;R14;W14";
 			$b = explode(";",$a);
-			$c = count($z);
 			
 			$qry = mysql_query("SELECT `group_access` FROM `usergroup` WHERE `group_id`='$group_id'")or die(mysql_error());
 			$x = mysql_fetch_array($qry);
 			$z=explode(";",$x['group_access']);
+			$c = count($z);
 			
 			for($i=1;$i<=14;$i++){
 				$k = $i+($i-1);

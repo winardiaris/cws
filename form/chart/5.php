@@ -17,7 +17,8 @@
 
 //DKI Jakarta
 $(function() {
-	<?php
+<?php 
+  $a="";$x="";
 	$q = mysql_query("SELECT * FROM `data_wilayah` WHERE `kode` LIKE '31%' AND LENGTH(`kode`)>2 AND LENGTH(`kode`)<=5 ORDER BY `kode` ASC; ") or die(mysql_error());
 	while($d = mysql_fetch_array($q)){
 		$a = $a."SUM( IF( `address` LIKE'".$d['kode']."%',  1 , 0 ) ) AS `".$d['kode']."`,";

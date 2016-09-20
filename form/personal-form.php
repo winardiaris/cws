@@ -9,12 +9,7 @@ if(isset($_GET['op'])){
 		$data = mysql_fetch_array($qry);
 	
 		$split=explode(",",$data['arrival']);
-		$edu=explode("|",$data['education']);
-		$edu1=explode(",",$edu[0]);
-		$edu2=explode(",",$edu[1]);
-		$edu3=explode(",",$edu[2]);
-		
-		$date_recognition=explode("|",$data['date_recognition']);
+		$edu=$data['education'];
 		
 		$address = explode(";",$data['address']);
 		$wilayah = explode(".",$address[0]); $prov = $wilayah[0]; $kota = $prov.".".$wilayah[1]; $kec = $kota.".".$wilayah[2];
@@ -40,13 +35,26 @@ else{
 
 		var file_no = $("#file_no").val();
 		var country2 = $("#country2").val();
+		var country3 = $("#country3").val();
+		var family_country2 = $("#family_country2").val();
+		var family_country3 = $("#family_country3").val();
 		var address = $("#address").val();
 		var MA = $("#MA").val();
-		
-		$("#coo").load("form/general-action.php","op=getcountry&country="+country2);
+		var family_MA = $("#family_MA").val();
+    
+    $("#coo").load("form/general-action.php","op=getcountry&country="+country2);
+		$("#cob").load("form/general-action.php","op=getcountry&country="+country3);
+		$("#family_coo").load("form/general-action.php","op=getcountry&country="+family_country2);
+		$("#family_cob").load("form/general-action.php","op=getcountry&country="+family_country3);
 		$("#marital").load("form/general-action.php","op=getmarital&status="+MA);
-		$("#family-relation").load("form/general-action.php","op=getrelation");
-		
+		$("#family_marital").load("form/general-action.php","op=getmarital&status="+family_MA);
+		$("#family_relation").load("form/general-action.php","op=getrelation");
+  
+    $("#coo").change(function(){
+      $("#family_coo").val($(this).val()); 
+      console.log($(this).val());
+    });
+
 		//address
 	<?php  if($edit=="1"){ ?>
 		$("#provinsi").load("form/general-action.php","op=getprov&kode=<?php echo $prov;?>");
@@ -54,20 +62,57 @@ else{
 		$("#kelurahan").load("form/general-action.php","op=getkec&kab=<?php echo $kota.'&kode='.$kec; ?>");
 		$("#address").val("<?php echo $kec.";".$address[1];?>");
 
+		$("#family_provinsi").load("form/general-action.php","op=getprov&kode=<?php echo $prov;?>");
+		$("#family_kota").load("form/general-action.php","op=getkab&prov=<?php echo $prov.'&kode='.$kota; ?>");
+		$("#family_kelurahan").load("form/general-action.php","op=getkec&kab=<?php echo $kota.'&kode='.$kec; ?>");
+    $("#family_address").val("<?php echo $kec.";".$address[1];?>");
+  
+   //load familydata 
+    $("#family").load("form/personal-family-data.php?file_no="+file_no);
 		
 	<?php	}else{ ?>
 			
 		$("#provinsi").load("form/general-action.php","op=getprov");
+		$("#family_provinsi").load("form/general-action.php","op=getprov");
 	<?php } ?>
 	
 	
-		$("#provinsi").change(function(){$("#kota").load("form/general-action.php","op=getkab&prov="+$(this).val());});
-		$("#kota").change(function(){$("#kelurahan").load("form/general-action.php","op=getkec&kab="+$(this).val());});
-		$("#kelurahan").change(function(){var kel = $(this).val();var detail = $("#detail").val();$("#address").val(kel+";"+detail);});
+    $("#provinsi").change(function(){
+      $("#kota").load("form/general-action.php","op=getkab&prov="+$(this).val());
+      $("#family_kota").load("form/general-action.php","op=getkab&prov="+$(this).val());
+      $("#family_provinsi").val($(this).val());
+    });
+    $("#kota").change(function(){
+      $("#kelurahan").load("form/general-action.php","op=getkec&kab="+$(this).val());
+      $("#family_kelurahan").load("form/general-action.php","op=getkec&kab="+$(this).val());
+      $("#family_kota").val($(this).val());
+    });
+    $("#kelurahan").change(function(){
+      var kel = $(this).val();
+      var detail = $("#detail").val();
+      $("#address").val(kel+";"+detail);
+      $("#family_kelurahan").val($(this).val());
+      $("#family_address").val(kel+";"+detail);
+    });
+    $("#family_provinsi").change(function(){
+      $("#family_kota").load("form/general-action.php","op=getkab&prov="+$(this).val());
+      $("#family_kelurahan").html("");
+    });
+    $("#family_kota").change(function(){
+      $("#family_kelurahan").load("form/general-action.php","op=getkec&kab="+$(this).val());
+    });
 		$("#detail").blur(function(){
 			var kelurahan = $("#kelurahan").val();
 			var detail = $("#detail").val();
-			$("#address").val(kelurahan+";"+detail);});
+			$("#address").val(kelurahan+";"+detail);
+      $("#family_address").val(kelurahan+";"+detail);
+      $("#family_detail").val($(this).val());
+    });
+		$("#family_detail").blur(function(){
+			var kelurahan = $("#family_kelurahan").val();
+			var detail = $("#family_detail").val();
+      $("#family_address").val(kelurahan+";"+detail);
+    });
 		
 		if(file_no != ""){$("#family").load("form/personal-family-data.php?file_no="+file_no);}
 		
@@ -75,13 +120,21 @@ else{
 		$("#file_no").change(function(){
 			var file_no = $(this).val();
 			var datanya = "&file_no="+file_no;
+            $('.avail').remove();
 			$.ajax({url: "form/general-action.php",data: "op=check"+datanya,cache: false,
 				success: function(msg){
 					if(msg=="inuse"){
-						$("#a").addClass("text-warning").removeClass("text-success text-danger").html("<i class='fa fa-warning'></i> In use");
+            $("#a").addClass("text-warning").removeClass("text-success text-danger").html("<i class='fa fa-warning'></i> In use");
+            $("#file_no").wrap("<div class='input-group'></div>");
+            $("#file_no").after("<span class='input-group-btn avail'><a href='?page=person-form&op=edit&file_no="+file_no+"' class='btn btn-default'><i class='fa fa-edit'></i> Edit</a></span>");
 					}
 					else if(msg=="avail"){
-						$("#a").addClass("text-success").removeClass("text-danger text-warning").html("<i class='fa fa-check'></i> Available");
+            $("#a").addClass("text-success").removeClass("text-danger text-warning").html("<i class='fa fa-check'></i> Available");
+            if($(this).parents().hasClass("input-group")){
+              $("#file_no").unwrap();
+            }
+            $('.avail').remove()
+
 					}
 				}
 			});
@@ -103,13 +156,13 @@ else{
 			}
 			else{
 			
-				var file_no = $("#file_no").val(), name = $("#name").val(), coo = $("#coo").val(), dob = $("#dob").val(),age = $("#age").val(), sex = $('input:radio[name=sex]:checked').val(), marital = $("#marital").val(), address = $("#address").val(), phone = $("#phone").val(), photo = $("#photo").val(), status = $("#status").val(), date_arrival = $("#date_arrival").val(),arrival = $("#arrival").val(), 
+				var file_no = $("#file_no").val(), name = $("#name").val(), coo = $("#coo").val(),cob = $('#cob').val(), dob = $("#dob").val(),age = $("#age").val(), sex = $('input:radio[name=sex]:checked').val(), marital = $("#marital").val(), address = $("#address").val(), phone = $("#phone").val(), photo = $("#photo").val(), status = $("#status").val(), date_arrival = $("#date_arrival").val(),arrival = $("#arrival").val(), 
 				
-				education = $("#edu1a:checked").length+","+$("#edu1b:checked").length+","+$("#edu1c:checked").length+","+$("#edu1d:checked").length+","+$("#edu1e:checked").length+"|"+$("#edu2a:checked").length+","+$("#edu2b:checked").length+","+$("#edu2c:checked").length+","+$("#edu2d:checked").length+","+$("#edu2e:checked").length+"|"+$("#edu3a:checked").length+","+$("#edu3b:checked").length, 
+        education = $("#education").val();
 				
-				skill = $("#skill").val(), mot = $("#mot").val(), known_language = $("#known_language").val(), previous_occupation = $("#previous_occupation").val(), volunteer = $("#volunteer").val(), date_recognition = $("#date_recognition").val()+"|"+$("#date_recognition2").val(), status_active = $("#status_active").val();
+				skill = $("#skill").val(), mot = $("#mot").val(), known_language = $("#known_language").val(), previous_occupation = $("#previous_occupation").val(), volunteer = $("#volunteer").val(), status_active = $("#status_active").val();
 				
-				var datanya = "&file_no="+file_no+"&name="+name+"&coo="+coo+"&dob="+dob+"&age="+age+"&sex="+sex+"&marital="+marital+"&address="+address+"&phone="+phone+"&photo="+photo+"&status="+status+"&arrival="+arrival+"&date_arrival="+date_arrival+"&education="+education+"&skill="+skill+"&mot="+mot+"&known_language="+known_language+"&previous_occupation="+previous_occupation+"&volunteer="+volunteer+"&date_recognition="+date_recognition+"&status_active="+status_active;
+				var datanya = "&file_no="+file_no+"&name="+name+"&coo="+coo+"&cob="+cob+"&dob="+dob+"&age="+age+"&sex="+sex+"&marital="+marital+"&address="+address+"&phone="+phone+"&photo="+photo+"&status="+status+"&arrival="+arrival+"&date_arrival="+date_arrival+"&education="+education+"&skill="+skill+"&mot="+mot+"&known_language="+known_language+"&previous_occupation="+previous_occupation+"&volunteer="+volunteer+"&status_active="+status_active;
 				
 				$.ajax({url:"form/personal-action.php",data:"op=saveperson"+datanya,cache:false,success: function(msg){
 						if(msg=="success"){
@@ -119,20 +172,23 @@ else{
 							if(file_no !=""){
 								$("#file_no").attr("disabled", true);
 							}
-							}else{alert("Data not saved !!");}}
+              }else{
+                /* alert("Data not saved !!"); */
+                console.log(msg);
+              }}
 				});
 			}
 		});
 		
 		//update person
 		$("#person_update").click(function(){
-			var file_no = $("#file_no").val(), name = $("#name").val(), coo = $("#coo").val(), dob = $("#dob").val(),age = $("#age").val(), sex = $('input:radio[name=sex]:checked').val(), marital = $("#marital").val(), address = $("#address").val(), phone = $("#phone").val(), photo = $("#photo").val(), status = $("#status").val(), date_arrival = $("#date_arrival").val(),arrival = $("#arrival").val(), 
+			var file_no = $("#file_no").val(), name = $("#name").val(), coo = $("#coo").val(),cob=$("#cob").val(), dob = $("#dob").val(),age = $("#age").val(), sex = $('input:radio[name=sex]:checked').val(), marital = $("#marital").val(), address = $("#address").val(), phone = $("#phone").val(), photo = $("#photo").val(), status = $("#status").val(), date_arrival = $("#date_arrival").val(),arrival = $("#arrival").val(), 
 			
-			education = $("#edu1a:checked").length+","+$("#edu1b:checked").length+","+$("#edu1c:checked").length+","+$("#edu1d:checked").length+","+$("#edu1e:checked").length+"|"+$("#edu2a:checked").length+","+$("#edu2b:checked").length+","+$("#edu2c:checked").length+","+$("#edu2d:checked").length+","+$("#edu2e:checked").length+"|"+$("#edu3a:checked").length+","+$("#edu3b:checked").length, 
+        education = $("#education").val();
 			
-			skill = $("#skill").val(), mot = $("#mot").val(), known_language = $("#known_language").val(), previous_occupation = $("#previous_occupation").val(), volunteer = $("#volunteer").val(), date_recognition = $("#date_recognition").val()+"|"+$("#date_recognition2").val(), status_active = $("#status_active").val();
+			skill = $("#skill").val(), mot = $("#mot").val(), known_language = $("#known_language").val(), previous_occupation = $("#previous_occupation").val(), volunteer = $("#volunteer").val(),  status_active = $("#status_active").val();
 				
-			var datanya = "&file_no="+file_no+"&name="+name+"&coo="+coo+"&dob="+dob+"&age="+age+"&sex="+sex+"&marital="+marital+"&address="+address+"&phone="+phone+"&photo="+photo+"&status="+status+"&arrival="+arrival+"&date_arrival="+date_arrival+"&education="+education+"&skill="+skill+"&mot="+mot+"&known_language="+known_language+"&previous_occupation="+previous_occupation+"&volunteer="+volunteer+"&date_recognition="+date_recognition+"&status_active="+status_active;
+			var datanya = "&file_no="+file_no+"&name="+name+"&coo="+coo+"&cob="+cob+"&dob="+dob+"&age="+age+"&sex="+sex+"&marital="+marital+"&address="+address+"&phone="+phone+"&photo="+photo+"&status="+status+"&arrival="+arrival+"&date_arrival="+date_arrival+"&education="+education+"&skill="+skill+"&mot="+mot+"&known_language="+known_language+"&previous_occupation="+previous_occupation+"&volunteer="+volunteer+"&status_active="+status_active;
 			
 			$.ajax({url:"form/personal-action.php",data:"op=updateperson"+datanya,cache:false,success: function(msg){
 					if(msg=="success"){
@@ -140,17 +196,61 @@ else{
 						//location.reload();
 						$("#collapseOne").removeClass("in");
 						$("#collapseTwo").addClass("in");
-					}else{alert("Data not saved !!");}}});
+          }else{
+            /* alert("Data not saved !!"); */
+            console.log(msg);
+            }}});
 		});
 		
 		//add family
-		$("#add-family").click(function(){
-			var name = $("#family-name").val(),age = $("#family-age").val(),sex = $('input:radio[name=family-sex]:checked').val(),location = $("#family-location").val(),relation = $("#family-relation").val(),remarks = $("#family-remarks").val(),contact = $("#family-contact").val(),file_no = $("#file_no").val();
-			var datanya = "&file_no="+file_no+"&value="+name+";"+age+";"+sex+";"+relation+";"+location+";"+remarks+";"+contact;
-			
+    $("#add-family").click(function(){
+      file_no=$("#file_no").val();
+      family_name=$("#family_name").val();
+      family_coo=$("#family_coo").val();
+      family_cob=$("#family_cob").val();
+      family_dob=$("#family_dob").val();
+      family_age=$("#family_age").val();
+      family_sex = $('input:radio[name=family_sex]:checked').val()
+      family_marital=$("#family_marital").val();
+      family_address=$("#family_address").val();
+      family_phone=$("#family_phone").val();
+      family_status=$("#family_status").val();
+      family_date_arrival=$("#family_date_arrival").val();
+      family_arrival=$("#family_arrival").val();
+      family_education=$("#family_education").val();
+      family_skill=$("#family_skill").val();
+      family_mot=$("#family_mot").val();
+      family_known_language=$("#family_known_language").val();
+      family_previous_occupation=$("#family_previous_occupation").val();
+      family_volunteer=$("#family_volunteer").val();
+      family_active=$("#family_active").val();
+      console.log(family_sex);
+
+      datanya="&file_no="+file_no+"&name="+family_name+"&coo="+family_coo+"&cob="+family_cob+"&dob="+family_dob+"&age="+family_age+"&sex="+family_sex+"&address="+family_address+"&phone="+family_phone+"&status="+family_status+"&date_arrival="+family_date_arrival+"&arrival="+family_arrival+"&education="+family_education+"&skill="+family_skill+"&mot="+family_mot+"&known_language="+family_known_language+"&previous_occupation="+family_previous_occupation+"&volunteer="+family_volunteer+"&status_active="+family_active+"&marital="+family_marital;
+
 			$.ajax({url: "form/personal-action.php",data: "op=addfamily"+datanya,cache: false,
-				success: function(msg){if(msg=="success"){alert("Data has been saved !!");}else{alert("Data not saved !!");}
-					$("#family").load("form/personal-family-data.php?file_no="+file_no);
+        success: function(msg){
+          if(msg=="success"){
+            var answer = confirm("Data has been saved. Add new data?");
+            if (answer){
+              //kosongin
+              $("#family_name").val("");
+              $("#family_dob").val("");
+              $("#family_age").val("");
+              $("#family_skill").val("");
+              $("#family_mot").val("");
+              $("#family_mot").val("");
+              $("#family_mot").val("");
+              $("#family_name").focus();
+
+            }else{
+              window.location.replace("?page=person-data");
+            }
+          }else{
+            alert("Data not saved !!");
+          }
+        
+          $("#family").load("form/personal-family-data.php?file_no="+file_no);
 					$(".family .form-control").val("");
 					$(".family select").val("0");
 				}
@@ -200,7 +300,7 @@ else{
 		<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Reported Personal Information</a>
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Principal Applicant (PA) Information</a>
 			</h4>
 			</div>
 		<div id="collapseOne" class="panel-collapse collapse in">
@@ -221,6 +321,11 @@ else{
 						<td ><label>Country of Origin: *</label></td>
 						<td><input type="hidden" id="country2" value="<?php if($edit==1){ echo $data['coo'];}?>">
 							<select class="form-control" name="country-origin" id="coo" placeholder="Country of Origin" required></select></td>
+					</tr>
+					<tr>
+						<td ><label>Country of Birth: *</label></td>
+						<td><input type="hidden" id="country3" value="<?php if($edit==1){ echo $data['cob'];}?>">
+							<select class="form-control" name="country-birth" id="cob" placeholder="Country of Birth" required></select></td>
 					</tr>
 					<tr>
 						<td ><label>Date of Birth: *</label></td>
@@ -296,10 +401,6 @@ else{
 							<option <?php if($edit==1){if($data['status']=="Asylum Seeker")echo"selected";}?>>Asylum Seeker</option>
 						</select></td>
           </tr>
-          <tr>
-            <td>Date of Refugee recognition</td>
-            <td><input class="form-control"></td>
-          </tr>
 					<tr>					
 						<td ><label>Date & port arrival: *</label></td>
 						<td><div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
@@ -310,31 +411,16 @@ else{
 					
 					<tr>
 						
-						<td ><label>Education:</label></td>
+						<td ><label>Last level of education:</label></td>
 						<td>
-							<label>Formal:</label>
-							<div class="checkbox">
-								<label><input type="checkbox" id="edu1a" <?php if($edit==1){if($edu1[0]==1){echo "checked";}} ?>> Elementary School</label>
-								<label><input type="checkbox" id="edu1b" <?php if($edit==1){if($edu1[1]==1){echo "checked";}} ?>> Junior High School</label>
-								<label><input type="checkbox" id="edu1c" <?php if($edit==1){if($edu1[2]==1){echo "checked";}} ?>> Senior High School</label>
-								<label><input type="checkbox" id="edu1d" <?php if($edit==1){if($edu1[3]==1){echo "checked";}} ?>> Vocational School</label>
-								<label><input type="checkbox" id="edu1e" <?php if($edit==1){if($edu1[4]==1){echo "checked";}} ?>> Accelerated School</label>
-							</div>
-							<label>Informal:</label><br>
-							<label>CWS:</label>
-							<div class="checkbox">
-								<label><input type="checkbox" id="edu2a" <?php if($edit==1){if($edu2[0]==1){echo "checked";}} ?>> English</label>
-								<label><input type="checkbox" id="edu2b" <?php if($edit==1){if($edu2[1]==1){echo "checked";}} ?>> Bahasa Indonesia</label>
-								<label><input type="checkbox" id="edu2c" <?php if($edit==1){if($edu2[2]==1){echo "checked";}} ?>> Computer</label>
-								<label><input type="checkbox" id="edu2d" <?php if($edit==1){if($edu2[3]==1){echo "checked";}} ?>> Art</label>
-								<label><input type="checkbox" id="edu2e" <?php if($edit==1){if($edu2[4]==1){echo "checked";}} ?>> Handicraft</label>
-							</div>
-							<label>Insitution:</label>
-							<div class="checkbox">
-								<label><input type="checkbox" id="edu3a" <?php if($edit==1){if($edu3[0]==1){echo "checked";}} ?>> English</label>
-								<label><input type="checkbox" id="edu3b" <?php if($edit==1){if($edu3[1]==1){echo "checked";}} ?>> Art</label>
-							</div>
-							
+              <select class="form-control" name="education" id="education">
+                <option value="P" <?php if($edit==1){if($edu=="P"){echo " selected";}}?> >Primary</option>
+                <option value="LS"<?php if($edit==1){if($edu=="LS"){echo " selected";}}?> >Lower Secondary</option>
+                <option value="US"<?php if($edit==1){if($edu=="US"){echo " selected";}}?> >Upper Secondary</option>
+                <option value="V"<?php if($edit==1){if($edu=="V"){echo " selected";}}?> >Vocational</option>
+                <option value="UG"<?php if($edit==1){if($edu=="UG"){echo " selected";}}?> >Under Graduate</option>
+                <option value="PG"<?php if($edit==1){if($edu=="PG"){echo " selected";}}?> >Postgraduate</option>
+              </select>	
 						</td>
 					</tr>
 					<tr>
@@ -363,22 +449,6 @@ else{
 						<td><input class="form-control" name="volunteer" id="volunteer" value="<?php if($edit==1){echo $data['volunteer'];}?>"></td>
 					</tr>
 					<tr>
-						
-						<td ><label>Date of recognition:</label></td>
-						<td>
-							<div class="row col-lg-6">
-							   <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-									<input type="text" class="form-control" name="birth" id="date_recognition" placeholder="yyyy-mm-dd" value="<?php if($edit==1){ echo $date_recognition[0];}?>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-								</div>
-							</div>
-							<div class="row col-lg-6">
-							   <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-									<input type="text" class="form-control" name="birth" id="date_recognition2" placeholder="yyyy-mm-dd" value="<?php if($edit==1){ echo $date_recognition[1];}?>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-								</div>
-							</div>
-						</td>
-					</tr>
-					<tr>
 						<td ><label>Active?: </label></td>
 						<td><select class="form-control" name="active" id="status_active" >
 							<option value="1" <?php if($edit==1){if($data['active']=="1")echo"selected";}?>>Active</option>
@@ -402,87 +472,159 @@ else{
 		<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Reported family members</a>
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Accompanying family members</a>
 			</h4>
 		</div>
 		<div id="collapseTwo" class="panel-collapse collapse  ">
 		<div class="panel-body">
-			<div class="col-lg-6">
-			<div class="table-responsive">
-				<!-- <form role="form" name="form-family"> -->
-					<table class="table  table-hover family ">
-						<tbody>
-							<tr>
-								<td width="10px" align="right"><label>1.</label></td>
-								<td width="120px"><label>Name</label></td>
-								<td><input class="form-control" id="family-name" placeholder="Name"> </td>
-							</tr>
-							<tr>
-								<td align="right"><label>2.</label></td>
-								<td><label>Age</label></td>
-                <td>
-                  <input class="form-control" id="family-age" type="number" placeholder="Age"><br>
-									<div class="form-group">
-                    <label class="radio-inline"><input type="radio" name="estimate" id="estimate"  value="0" checked>Estimated</label>
-                    <label class="radio-inline"><input type="radio" name="estimate" id="estimate"  value="1" checked>Known and supported by document</label>
-                    <label class="radio-inline"><input type="radio" name="estimate" id="estimate"  value="2" checked>Known or supported by document</label>
-									</div>
-                </td>
-							</tr>
-							<tr>
-								<td align="right"><label>3.</label></td>
-								<td><label>Sex</label></td>
-								<td>
-									<div class="form-group">
-									<label class="radio-inline"><input type="radio" name="family-sex" id="family-sex"  value="M" checked>Male</label>
-									<label class="radio-inline"><input type="radio" name="family-sex"  id="family-sex" value="F">Female</label>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td align="right"><label>4.</label></td>
-								<td><label>Relation</label></td>
-								<td><select class="form-control" name="family-relation" id="family-relation"></select>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				<!-- </form> -->
-			</div><!-- table-responsive -->	
-			</div>
-			<div class="col-lg-6">
-			<div class="table-responsive">
-				<table class="table table-hover family">
-					<tbody>
+    <div class="col-lg-6">
+		<div class="table-responsive"><!-- #FAMILY -->
+			<table class="table  table-hover" >
+				<tbody>
 					<tr>
-						<td width="10px" align="right"><label>5.</label></td>
-						<td width"120px"><label>Current location</label></td>
-						<td><textarea class="form-control" id="family-location" placeholder="Locations"></textarea></td>
+						<td width="180px"><label>Full Name: *</label></td>
+            <td>
+              <input type="hidden" id="family_id">
+							<input class="form-control" name="family_name" id="family_name" required value="">
+						</td>
 					</tr>
 					<tr>
-						<td align="right"><label>6.</label></td>
-						<td><label>Remarks</label></td>
-					<td><textarea class="form-control" id="family-remarks" placeholder="Remarks"></textarea></td>
+						<td ><label>Country of Origin: *</label></td>
+						<td><input type="hidden" id="family_country2" value="<?php if($edit==1){ echo $data['family_coo'];}?>">
+							<select class="form-control" name="family_country-origin" id="family_coo" placeholder="Country of Origin" required></select></td>
 					</tr>
 					<tr>
-						<td align="right"><label>7.</label></td>
-						<td><label>Last Contact family?:</label></td>
-						<td><textarea class="form-control" id="family-contact" placeholder="Type here"></textarea></td>
+						<td ><label>Country of Birth: *</label></td>
+						<td><input type="hidden" id="family_country3" value="<?php if($edit==1){ echo $data['family_cob'];}?>">
+							<select class="form-control" name="family_country-birth" id="family_cob" placeholder="Country of Birth" required></select></td>
 					</tr>
-					</tbody>
-					<tfoot>
 					<tr>
-						<td colspan="3"><button  class="btn btn-sm btn-success" id="add-family" title="Add family"><i class="fa fa-plus"></i> Add </button> </td>
+						<td ><label>Date of Birth: *</label></td>
+						<td>
+							<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+								<input type="text" class="form-control" name="family_birth" id="family_dob" placeholder="yyyy-mm-dd" onchange="CalAge(family_dob,family_age);" value="" required><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+							</div>
+							<label>Age</label> <input class="form-control" name="family_age" placeholder="Age" id="family_age" value="">		
+						</td>
 					</tr>
-					</tfoot>
-				</table>
-				
-			</div>
-			
-			</div>
-			<div class="col-lg-12" id="family"></div>
-			
+					<tr>
+						<td ><label>Sex: *</label></td>
+						<td>
+							<div class="form-group">
+								<label class="radio-inline"><input type="radio" name="family_sex"  value="M" >Male</label>
+								<label class="radio-inline"><input type="radio" name="family_sex"  value="F" >Female</label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td ><label>Marital status: *</label></td>
+						<td><input type="hidden" id="family_MA">
+							<select class="form-control" name="family_marital-status" id="family_marital" ></select></td>
+					</tr>
+					<tr>
+						
+						<td ><label>Current Address <br>(in detail): *</label></td>
+						<td><div class="form-group">
+								<small>Province</small>
+								<select name="provinsi" id="family_provinsi" class="form-control"></select>
+								<small>Regency / City</small>
+								<select name="kabupaten" id="family_kota" class="form-control" ></select>
+								<small>Sub-district / Village</small>
+								<select name="kecamatan" id="family_kelurahan" class="form-control" ></select>
+								<small>In Detail</small>
+								<textarea class="form-control" id="family_detail" placeholder="Detail"><?php  if($edit==1){echo $address[1];} ?></textarea>
+							</div>
+							<input id="family_address" type="hidden">
+						</td>
+					</tr>
+					<tr>
+						
+						<td ><label>Phone No: *</label></td>
+						<td><input class="form-control" name="family_phone" id="family_phone" value="<?php if($edit==1){echo $data['phone'];}?>" required></td>
+					</tr>
+					
+				</tbody>
+			</table>
 		</div>
+	</div>
+	<div class="col-lg-6">
+		<div class="table-responsive">
+			<table class="table  table-hover">
+				<tbody>
+					<tr>
+						<td width="180px"><label>UNHCR Status: *</label></td>
+						<td><select class="form-control" name="family_status" id="family_status">
+							<option>Refugee</option>
+							<option>Asylum Seeker</option>
+						</select></td>
+          </tr>
+					<tr>					
+						<td ><label>Date & port arrival: *</label></td>
+						<td><div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+								<input type="text" class="form-control" name="family_date_arrival" id="family_date_arrival"  placeholder="yyyy-mm-dd"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+							</div>
+							<input class="form-control" name="family_arrival" id="family_arrival" placeholder="Port Arrival"></td>
+					</tr>
+					
+					<tr>
+						
+						<td ><label>Last level of education:</label></td>
+						<td>
+              <select class="form-control" name="family_education" id="family_education">
+                <option value="P" >Primary</option>
+                <option value="LS">Lower Secondary</option>
+                <option value="US">Upper Secondary</option>
+                <option value="V">Vocational</option>
+                <option value="UG">Under Graduate</option>
+                <option value="PG">Postgraduate</option>
+              </select>	
+							
+						</td>
+					</tr>
+					<tr>
+						
+						<td ><label>Skills:</label></td>
+						<td><textarea class="form-control" name="family_skill" id="family_skill" ></textarea></td>
+					</tr>
+					<tr>
+						
+						<td ><label>Mother Tongue:</label></td>
+						<td><input class="form-control" name="family_mother-tongue" id="family_mot" ></td>
+					</tr>
+					<tr>
+						
+						<td ><label>Knowledge of other languages:</label></td>
+						<td><input class="form-control" name="family_known-language" id="family_known_language" ></td>
+					</tr>
+					<tr>
+						
+						<td ><label>Previous occupation:</label></td>
+						<td><input class="form-control" name="family_previous-occupation" id="family_previous_occupation" ></td>
+					</tr>
+					<tr>
+						
+						<td ><label>Willingness to volunteer:</label></td>
+						<td><input class="form-control" name="family_volunteer" id="family_volunteer" ></td>
+					</tr>
+					<tr>
+						<td ><label>Active?: </label></td>
+						<td><select class="form-control" name="family_active" id="family_active" >
+							<option value="1" >Active</option>
+							<option value="2" >Terminated</option>
+							<option value="3" >Deleted</option>
+							<option value="4" Selected>Inactive</option>
+						</select></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+    </div>
+			
+    <div class="col-lg-12" id="family"></div>
+    </div>
+      <div class="panel-footer">
+        <button class="btn btn-success" id="add-family"><i class="fa fa-plus"></i> Add</button>
+      </div>
 		</div>
 		
 		</div>

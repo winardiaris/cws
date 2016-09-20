@@ -4,7 +4,7 @@ include("../function.php") ;
 	if(isset($_GET['file_no'])){
 		$file_no = $_GET['file_no'];
 		$qry = mysql_query("
-				SELECT `person`.`file_no`,`person`.`name`,`master_country`.`country_name` ,`person`.`dob`,`person`.`age`,`person`.`sex`,`marital_status`.`marital`,`person`.`address`,`person`.`phone`,`person`.`photo`,`person`.`status`,`person`.`arrival`,`person`.`education`,`person`.`skill`,`person`.`mot`,`person`.`known_language`,`person`.`previous_occupation`,`person`.`volunteer`,`person`.`date_recognition`,`person`.`active`, `person`.`comment` FROM `person`INNER JOIN `master_country` ON `person`.`coo` = `master_country`.`country_id` INNER JOIN `marital_status` ON `person`.`marital` = `marital_status`.`marital_id` 
+				SELECT `person`.`file_no`,`person`.`name`,`master_country`.`country_name` ,`person`.`dob`,`person`.`age`,`person`.`sex`,`marital_status`.`marital`,`person`.`address`,`person`.`phone`,`person`.`photo`,`person`.`status`,`person`.`arrival`,`person`.`education`,`person`.`skill`,`person`.`mot`,`person`.`known_language`,`person`.`previous_occupation`,`person`.`volunteer`,`person`.`active`, `person`.`comment` FROM `person`INNER JOIN `master_country` ON `person`.`coo` = `master_country`.`country_id` INNER JOIN `marital_status` ON `person`.`marital` = `marital_status`.`marital_id` 
 				WHERE `person`.`file_no` ='$file_no'") 
 				or die(mysql_error());
 		$data = mysql_fetch_array($qry);
@@ -109,7 +109,7 @@ include("../function.php") ;
 	<td><b>Active Status:</b></td>
 	<td><?php if($data['active']==1){echo"Active";}elseif($data['active']==2){echo"Terminated";}else{echo"Deleted";}?></td>
 	<td><b>Date of recognition:</b></td>
-	<td><?php echo $data['date_recognition'];?></td>
+	<td></td>
 </tr>
 </table>
 

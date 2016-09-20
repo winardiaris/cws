@@ -254,6 +254,11 @@ $(function() {
 });
 $(function () {
 <?php
+  $str="";
+  $name="";
+  $data2="";
+  $label="";
+  
 	$qry =  mysql_query("SELECT DISTINCT `person`.`coo` , `master_country`.`country_name` AS `name` FROM `person` inner join `master_country` ON `person`.`coo`=`master_country`.`country_id` ORDER BY `master_country`.`country_name`  ;") or die(mysql_error());
 		$ccoo = mysql_num_rows($qry);
       $as = 1;
