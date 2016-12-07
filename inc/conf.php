@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set("Asia/Jakarta");
-$URL 	= "http://192.168.1.199/cws/";
+$URL 	= "http://cws.tech4changes.org/";
 $NAME 	= "CWS (Church World Service) Indonesia";
 $TODAY 	= date("Y-m-d");
 $NOW 	= date("Y-m-d H:i:s");
