@@ -50,7 +50,7 @@ $this->useAdobeCJK = false;		// Uses Adobe CJK fonts for CJK languages
 // May improve function with some PostScript printers (GhostScript/GSView)
 // Does not work with TTC font collections
 // Slightly smaller file; increased processing time
-$this->repackageTTF = false; 
+$this->repackageTTF = false;
 
 // Allows automatic character set conversion if "charset=xxx" detected in html header (WriteHTML() )
 $this->allow_charset_conversion = true;
