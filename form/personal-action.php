@@ -12,12 +12,12 @@ if($op == "saveperson"){
 	$education = $_GET['education'];$skill=$_GET['skill'];$mot=$_GET['mot'];$known_language = $_GET['known_language'];
 	$previous_occupation = $_GET['previous_occupation'];$volunteer=$_GET['volunteer'];
 	$status_active=$_GET['status_active'];
-	
+
 	$photo=$_GET['photo'];
-	
-	$save = mysql_query("INSERT INTO `person` 
+
+	$save = mysql_query("INSERT INTO `person`
 	VALUES('$file_no','$name','$coo','$cob','$dob','$age','$sex','$marital','$address','$phone','$photo','$status','$arrival2','$education','$skill','$mot','$known_language','$previous_occupation','$volunteer','$status_active','$NOW','','');") or die(mysql_error());
-	
+
 	if($save){
 		echo "success";
 		setHistory($_SESSION['user_id'],$LOCATION,"Add person [$file_no]",$NOW);
@@ -35,8 +35,8 @@ elseif($op == "updateperson"){
 	$previous_occupation = $_GET['previous_occupation'];$volunteer=$_GET['volunteer'];
 	$status_active=$_GET['status_active'];
 	$photo=$_GET['photo'];
-	
-	$update = mysql_query("UPDATE  `person` SET 
+
+	$update = mysql_query("UPDATE  `person` SET
 	`name`='$name',
 	`coo`='$coo',
 	`cob`='$cob',
@@ -58,13 +58,13 @@ elseif($op == "updateperson"){
 	`active`='$status_active',
 	`last_change`='$NOW'
 	WHERE `file_no`='$file_no';") or die(mysql_error());
-	
+
 	if($update){
 		echo "success";
 		setHistory($_SESSION['user_id'],$LOCATION,"Update person [$file_no]",$NOW);
 	}
 	else{echo mysql_error();}
-	
+
 }
 elseif($op == "addfamily"){
 	$file_no = $_GET['file_no'];$name = $_GET['name'];$coo = $_GET['coo'];$cob=$_GET['cob'];$dob=$_GET['dob'];$age=$_GET['age'];$sex = $_GET['sex'];
@@ -73,12 +73,12 @@ elseif($op == "addfamily"){
 	$education = $_GET['education'];$skill=$_GET['skill'];$mot=$_GET['mot'];$known_language = $_GET['known_language'];
 	$previous_occupation = $_GET['previous_occupation'];$volunteer=$_GET['volunteer'];
 	$status_active=$_GET['status_active'];
-	
+
 	$photo="";
-	
-	$save = mysql_query("INSERT INTO `reported_family` 
+
+	$save = mysql_query("INSERT INTO `reported_family`
 	VALUES('','$file_no','$name','$coo','$cob','$dob','$age','$sex','$marital','$address','$phone','$photo','$status','$arrival2','$education','$skill','$mot','$known_language','$previous_occupation','$volunteer','$status_active','$NOW','','');") or die(mysql_error());
-		
+
 	if($save){
 		echo "success";
 		setHistory($_SESSION['user_id'],$LOCATION,"Add person family for [$file_no]",$NOW);

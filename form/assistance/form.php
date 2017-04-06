@@ -1,11 +1,11 @@
-<?php 
-// form/assistance/form.php 
+<?php
+// form/assistance/form.php
 include("form/navigasi.php");
 if(isset($_REQUEST['op'])){
   if(isset($_REQUEST['file_no'])){
     $file_no=$_REQUEST['file_no'];
     $edit=1;
-    
+
     $qry = mysql_query("SELECT * FROM `assistance` WHERE `file_no`='$file_no' and `status`='1' limit 1") or die(mysql_error());
     $data = mysql_fetch_array($qry);
 
@@ -31,14 +31,14 @@ else{
     </div>
     <div class="col-lg-12">
       <div class="panel-group" id="accordion">
-      <!-- panel 1 --> 
+      <!-- panel 1 -->
        <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
               <a data-toggle="collapse" data-parent="#accordion" href="#personalinformation">Personal Information</a>
             </h4>
           </div><!-- .panel-heading -->
-          <div id="personalinformation" class="panel-collapse collapse in"> 
+          <div id="personalinformation" class="panel-collapse collapse in">
             <div class="panel-body">
               <div class="col-lg-4">
                 <div class="form-group">
@@ -57,17 +57,17 @@ else{
           </div><!-- #personalinformation -->
         </div><!-- .panel panel-default -->
 
-      <!-- panel 2 --> 
+      <!-- panel 2 -->
        <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#financeassistance">Finance Assistance </a>  
+              <a data-toggle="collapse" data-parent="#accordion" href="#financeassistance">Finance Assistance </a>
             </h4>
           </div><!-- .panel-heading -->
-          <div id="financeassistance" class="panel-collapse collapse"> 
+          <div id="financeassistance" class="panel-collapse collapse">
             <div class="panel-body">
               <div class="col-lg-12">
-                    <label class="radio-inline"><input name="FA-day" type="radio" value="1" checked> Day 1</label> / 
+                    <label class="radio-inline"><input name="FA-day" type="radio" value="1" checked> Day 1</label> /
                     <label class="radio-inline"><input name="FA-day" type="radio" value='2'> Day 2</label>
                 <table class="table table-bordered ">
                     <thead>
@@ -112,7 +112,7 @@ else{
                       <td><label class="radio-inline"> <input type="checkbox" value="1" class="FA-ch" id="FA-ch-p"> Pregnant</label></td>
                       <td><input class="form-control FA-value" type="number" size="10" name="FA-value-p" id="FA-value-p" value="125000"></td>
                       <td><input class="form-control FA-amount" type="number" value=1 name="FA-amount-p" id="FA-amount-p"></td>
-                    </tr> 
+                    </tr>
                     <tr>
                       <td><label class="radio-inline"> <input type="checkbox" value="1" class="FA-ch" id="FA-ch-e"> Elderly </label></td>
                       <td><input class="form-control FA-value" type="number" size="10" name="FA-value-e" id="FA-value-e" value="125000"></td>
@@ -162,7 +162,7 @@ else{
             <div class="panel-footer">
                 <input id="fa_type_value_amount" type="hidden">
                 <input id="uam" type="hidden">
-                <button class="btn btn-success" id="save_financeassistance"><i class="fa fa-save"></i> Save</button> 
+                <button class="btn btn-success" id="save_financeassistance"><i class="fa fa-save"></i> Save</button>
                 <div class="pull-right" id="total-finance"><span class="rp"> </span> IDR</div>
             </div>
           </div><!-- #financeassistance -->
@@ -171,10 +171,10 @@ else{
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#healthassistance">Health Assistance </a>  
+              <a data-toggle="collapse" data-parent="#accordion" href="#healthassistance">Health Assistance </a>
             </h4>
           </div><!-- .panel-heading -->
-          <div id="healthassistance" class="panel-collapse collapse"> 
+          <div id="healthassistance" class="panel-collapse collapse">
             <div class="panel-body">
               <div class="col-lg-12">
                 <label>Notes:</label>
@@ -186,14 +186,14 @@ else{
             </div>
           </div><!-- .healthassistance -->
         </div> <!-- .panel panel-default -->
-        
+
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#educationaccess">Education Access </a>  
+              <a data-toggle="collapse" data-parent="#accordion" href="#educationaccess">Education Access </a>
             </h4>
           </div><!-- .panel-heading -->
-          <div id="educationaccess" class="panel-collapse collapse"> 
+          <div id="educationaccess" class="panel-collapse collapse">
             <div class="panel-body">
               <div class="col-lg-12">
                 <label class="radio-inline"><input type="radio" name="EA" value="MC"> Class in Manggarai Centre</label>
@@ -211,14 +211,14 @@ else{
             </div>
           </div><!-- .educationaccess -->
         </div> <!-- .panel panel-default -->
-        
+
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#psychologicalcounselling">Psychological Conselling </a>  
+              <a data-toggle="collapse" data-parent="#accordion" href="#psychologicalcounselling">Psychological Conselling </a>
             </h4>
           </div><!-- .panel-heading -->
-          <div id="psychologicalcounselling" class="panel-collapse collapse"> 
+          <div id="psychologicalcounselling" class="panel-collapse collapse">
             <div class="panel-body">
               <div class="col-lg-12">
                 <label>Notes:</label>
@@ -234,6 +234,6 @@ else{
     </div> <!-- .col-lg-12 -->
   </div><!-- .row -->
 </div> <!-- .page-wrapper -->
-<?php 
+<?php
 include("js.php");
 ?>

@@ -7,10 +7,10 @@ if($op == "check"){
 	$file_no = $_REQUEST['file_no'];
 	$qry = mysql_query("SELECT COUNT(*) AS `ada` FROM `person` WHERE `file_no`='$file_no';") or die(mysql_error());
 	$qry2 = mysql_query("SELECT COUNT(*) AS `ada` FROM `assistance` WHERE `file_no`='$file_no' AND `status`='1';") or die(mysql_error());
-	
+
 	$person = mysql_fetch_array($qry);
 	$assistance = mysql_fetch_array($qry2);
-	
+
 	setHistory($_SESSION['user_id'],"assistance_form","Check Available for UNHCR Case Number [$file_no]",$NOW);
 	if($person['ada'] > 0 AND $assistance['ada'] > 0){
 		echo "inuse";
@@ -57,7 +57,7 @@ elseif($op=="save_financeassistance"){
 elseif($op=='save_healthassistance'){
  $file_no=$_REQUEST['file_no'];
   $ha_note=UbahSimbol($_REQUEST['ha_note']);
-  
+
   $save = mysql_query("update `assistance` set `ha_note`='$ha_note', `last_change`='$NOW' where `file_no`='$file_no' ") or die(mysql_error());
   if($save){
     echo 'success';

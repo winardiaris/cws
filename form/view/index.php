@@ -21,11 +21,11 @@ include("../function.php") ;
 			<button type="button" class="print btn btn-sm btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
 		</form>
 		<form action="<?php echo $URL; ?>form/pdfin.php" method="post" style="float:left;margin-left:5px;">
-			<?php 
+			<?php
 				if(isset($_GET['file_no'])){
 					$link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"."&a=hide";
 					$file = "Person_".$_GET['file_no']."_".$TODAY;
-					
+
 					echo '
 					<input type="text" name="link" value="'.$link.'" hidden >
 					<input type="text" name="file" value="'.$file.'" hidden >
@@ -39,7 +39,7 @@ include("../function.php") ;
 	<div id="content">
 		<?php
 			include ("header.php");
-			
+
 			if(isset($_GET['person'])){
 				$person = $URL."form/view/view-personal.php?file_no=".$_GET['file_no']."&a=hide";
 				$cperson = file_get_contents($person);
@@ -51,19 +51,19 @@ include("../function.php") ;
 				$ca = file_get_contents($a);
 				echo $ca;
 			}
-			
+
 			if(isset($_GET['se'])){
 				$b = $URL."form/view/view-se-person.php?file_no=".$_GET['file_no']."&a=hide";
 				$cb = file_get_contents($b);
 				echo $cb;
 			}
-			
+
 			if(isset($_GET['bia'])){
 				$c = $URL."form/view/view-bia-person.php?file_no=".$_GET['file_no']."&a=hide";
 				$cc = file_get_contents($c);
 				echo $cc;
 			}
-			
+
 			if(isset($_GET['hr'])){
 				$d = $URL."form/view/view-hr-person.php?file_no=".$_GET['file_no']."&a=hide";
 				$cd = file_get_contents($d);
@@ -71,7 +71,7 @@ include("../function.php") ;
 			}
 			include ("footer.php");
 		?>
-	</div> 
+	</div>
 </div>
 </body>
 </html>

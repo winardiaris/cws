@@ -10,18 +10,18 @@ if(isset($_GET['a'])){
 		$user_id = $_GET['user_id'];
 		$header = "Edit User";
 		$button = '<button type="submit" name="user_update" class="btn btn-primary"><i class="fa fa-refresh"></i> Update</button>';
-		
+
 		$qry = mysql_query("SELECT * FROM `user` WHERE `user_id`='$user_id'") or die(mysql_error());
 		$data = mysql_fetch_array($qry);
-		
+
 		//data
 		$group_id = $data['group_id'];
 		$user_name = $data['user_name'];
 		$user_real_name = $data['user_real_name'];
 		$user_mail = $data['user_mail'];
 		$user_info = $data['user_info'];
-		
-		
+
+
 	}
 }
 
@@ -29,9 +29,9 @@ if(isset($_GET['a'])){
 ?>
 
 <form role="form" action="form/user-action.php" method="post">
-	
+
 		<h3 class="page-header"><?php echo $header ?></h3>
-		
+
 		<div class="form-group">
 			<label>Group ID</label>
 			<select class="form-control" name="group_id">
@@ -43,7 +43,7 @@ if(isset($_GET['a'])){
 					<option value="'.$data2['group_id'].'"';
 						if($group_id == $data2['group_id']){
 							echo "selected";
-						}					
+						}
 					echo'
 					>'.$data2['group_name'].'</option>
 					';
@@ -67,7 +67,7 @@ if(isset($_GET['a'])){
 		<div class="form-group">
 			<label>Retype Password</label>
 			<input class="form-control" name="retype_password" type="password">
-		</div>		
+		</div>
 		<div class="form-group">
 			<label>User Mail</label>
 			<input class="form-control" name="user_mail" type="mail" value="<?php echo $user_mail; ?>">

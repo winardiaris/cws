@@ -1,4 +1,4 @@
-<?php 
+<?php
 $R="R13";$W="W13";
 include("form/navigasi.php");
 setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
@@ -7,7 +7,7 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 	$(document).ready(function(){
 		//delete person
 		$(".tperson .text-danger").click(function(){
-			var file_no = $(this).attr("data"),datanya="&file_no="+file_no;	
+			var file_no = $(this).attr("data"),datanya="&file_no="+file_no;
 			var r = confirm("Remove ["+file_no+"]? ");
 			if (r == true) {
 				$.ajax({url:"form/deleted-action.php",data:"op=delperson"+datanya,cache:false,success: function(msg){
@@ -16,11 +16,11 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 						location.reload();
 					}else{alert("Cannot remove !!");}}
 				});
-			} 
+			}
 		});
 		//restore person
 		$(".tperson .text-success").click(function(){
-			var file_no = $(this).attr("data"),datanya="&file_no="+file_no;	
+			var file_no = $(this).attr("data"),datanya="&file_no="+file_no;
 			var r = confirm("Restore ["+file_no+"]? ");
 			if (r == true) {
 				$.ajax({url:"form/deleted-action.php",data:"op=resperson"+datanya,cache:false,success: function(msg){
@@ -29,11 +29,11 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 						location.reload();
 					}else{alert("Cannot restore !!");}}
 				});
-			} 
+			}
 		});
 		//delete IA
 		$(".tia .text-danger").click(function(){
-			var file_no = $(this).attr("data"),datanya="&file_no="+file_no;	
+			var file_no = $(this).attr("data"),datanya="&file_no="+file_no;
 			var r = confirm("Remove ["+file_no+"]? ");
 			if (r == true) {
 				$.ajax({url:"form/deleted-action.php",data:"op=delia"+datanya,cache:false,success: function(msg){
@@ -42,11 +42,11 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 						location.reload();
 					}else{alert("Cannot remove !!");}}
 				});
-			} 
+			}
 		});
 		//restore IA
 		$(".tia .text-success").click(function(){
-			var file_no = $(this).attr("data"),datanya="&file_no="+file_no;	
+			var file_no = $(this).attr("data"),datanya="&file_no="+file_no;
 			var r = confirm("Restore ["+file_no+"]? ");
 			if (r == true) {
 				$.ajax({url:"form/deleted-action.php",data:"op=resia"+datanya,cache:false,success: function(msg){
@@ -55,13 +55,13 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 						location.reload();
 					}else{alert("Cannot restore !!");}}
 				});
-			} 
+			}
 		});
 		//delete SE
 		$(".tse .text-danger").click(function(){
 			var 	file_no = $(this).attr("data"),
 					se_id = $(this).attr("id"),
-					datanya="&file_no="+file_no+"&se_id="+se_id;	
+					datanya="&file_no="+file_no+"&se_id="+se_id;
 			var r = confirm("Remove ["+file_no+"]? ");
 			if (r == true) {
 				$.ajax({url:"form/deleted-action.php",data:"op=delse"+datanya,cache:false,success: function(msg){
@@ -70,13 +70,13 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 						location.reload();
 					}else{alert("Cannot remove !!");}}
 				});
-			} 
+			}
 		});
 		//restore SE
 		$(".tse .text-success").click(function(){
 			var 	file_no = $(this).attr("data"),
 					se_id = $(this).attr("id"),
-					datanya="&file_no="+file_no+"&se_id="+se_id;	
+					datanya="&file_no="+file_no+"&se_id="+se_id;
 			var r = confirm("Restore ["+file_no+"]? ");
 			if (r == true) {
 				$.ajax({url:"form/deleted-action.php",data:"op=resse"+datanya,cache:false,success: function(msg){
@@ -85,11 +85,11 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 						location.reload();
 					}else{alert("Cannot Restore !!");}}
 				});
-			} 
+			}
 		});
 		//delete SE
 		$(".tbia .text-danger").click(function(){
-			var file_no = $(this).attr("data"),datanya="&file_no="+file_no;	
+			var file_no = $(this).attr("data"),datanya="&file_no="+file_no;
 			var r = confirm("Remove ["+file_no+"]? ");
 			if (r == true) {
 				$.ajax({url:"form/deleted-action.php",data:"op=delbia"+datanya,cache:false,success: function(msg){
@@ -98,11 +98,11 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 						location.reload();
 					}else{alert("Cannot remove !!");}}
 				});
-			} 
+			}
 		});
 		//restore SE
 		$(".tbia .text-success").click(function(){
-			var file_no = $(this).attr("data"),datanya="&file_no="+file_no;	
+			var file_no = $(this).attr("data"),datanya="&file_no="+file_no;
 			var r = confirm("Restore ["+file_no+"]? ");
 			if (r == true) {
 				$.ajax({url:"form/deleted-action.php",data:"op=resbia"+datanya,cache:false,success: function(msg){
@@ -111,13 +111,13 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 						location.reload();
 					}else{alert("Cannot restore !!");}}
 				});
-			} 
+			}
 		});
 		//delete HR
 		$(".thr .text-danger").click(function(){
 			var 	file_no = $(this).attr("data"),
 					hr_id = $(this).attr("id"),
-					datanya="&file_no="+file_no+"&hr_id="+hr_id;		
+					datanya="&file_no="+file_no+"&hr_id="+hr_id;
 			var r = confirm("Remove ["+file_no+"]? ");
 			if (r == true) {
 				$.ajax({url:"form/deleted-action.php",data:"op=delhr"+datanya,cache:false,success: function(msg){
@@ -126,13 +126,13 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 						location.reload();
 					}else{alert("Cannot remove !!");}}
 				});
-			} 
+			}
 		});
 		//restore HR
 		$(".thr .text-success").click(function(){
 			var 	file_no = $(this).attr("data"),
 					hr_id = $(this).attr("id"),
-					datanya="&file_no="+file_no+"&hr_id="+hr_id;	
+					datanya="&file_no="+file_no+"&hr_id="+hr_id;
 			var r = confirm("Restore ["+file_no+"]? ");
 			if (r == true) {
 				$.ajax({url:"form/deleted-action.php",data:"op=reshr"+datanya,cache:false,success: function(msg){
@@ -141,7 +141,7 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 						location.reload();
 					}else{alert("Cannot Restore !!");}}
 				});
-			} 
+			}
 		});
 	});
 </script>
@@ -172,7 +172,7 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 				elseif(isset($_GET['a'])){
 					$a = $_GET['a'];
 					if($a=="person"){
-						echo 
+						echo
 						'<thead>
 							<tr>
 							<th width="10px"></th>
@@ -185,7 +185,7 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 						<tbody class="tperson" >';
 						$qry=mysql_query("
 							SELECT `person`.`file_no`,`person`.`name`,`master_country`.`country_name` FROM `person`
-							INNER JOIN `master_country` ON `person`.`coo` = `master_country`.`country_id` 
+							INNER JOIN `master_country` ON `person`.`coo` = `master_country`.`country_id`
 							WHERE `person`.`active` = '3' ORDER BY `file_no` ASC; ")or die(mysql_error());
 						while($data=mysql_fetch_array($qry)){
 							echo '
@@ -211,7 +211,7 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 						echo'</tbody>';
 					}
 					elseif($a=="ia"){
-						echo 
+						echo
 						'<thead>
 							<tr>
 							<th width="10px"></th>
@@ -250,7 +250,7 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 								<td>'.$assessment[2].'</td>
 							</tr>';
 						}
-						echo'</tbody>';	
+						echo'</tbody>';
 					}
 					elseif($a=="se"){
 						echo'
@@ -270,8 +270,8 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 						<tbody class="tse">
 						';
 						$no = 0;
-						$qry = mysql_query("SELECT 		
-											`se`.`se_id`, `se`.`file_no`, `person`.`name`, `se`.`doa`, `se`.`assessment_data`, `se`.`verification` 
+						$qry = mysql_query("SELECT
+											`se`.`se_id`, `se`.`file_no`, `person`.`name`, `se`.`doa`, `se`.`assessment_data`, `se`.`verification`
 											FROM `se` INNER JOIN `person` ON `se`.`file_no`=`person`.`file_no` WHERE `se`.`status`='0';") or die(mysql_error());
 						while($data=mysql_fetch_array($qry)){
 							$no++;
@@ -281,7 +281,7 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 							$verification = explode(";",$data['verification']);
 							$verified_by=$verification[0];
 							$verified_date=$verification[2];
-							
+
 							echo'
 							<tr>
 								<td>
@@ -371,7 +371,7 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 						<tbody class="thr">
 						';
 						$no = 0;
-						$qry = mysql_query("SELECT `hr`.`hr_id`, `hr`.`file_no`, `person`.`name`,`hr`.`report_date`, 
+						$qry = mysql_query("SELECT `hr`.`hr_id`, `hr`.`file_no`, `person`.`name`,`hr`.`report_date`,
 											`hr`.`location`,`hr`.`reported` FROM `hr`
 											INNER JOIN `person` ON `hr`.`file_no` = `person`.`file_no` WHERE `hr`.`status`='0'") or die(mysql_error());
 						while($data=mysql_fetch_array($qry)){
@@ -401,7 +401,7 @@ setHistory($_SESSION['user_id'],"deleted_data","Open Deleted data ",$NOW);
 							';
 						}
 						echo'</tbody>';
-					}	
+					}
 				}
 				?>
 			</table>

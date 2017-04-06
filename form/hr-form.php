@@ -9,7 +9,7 @@ if(isset($_GET['op'])){
 		$hr_id = $_GET['hr_id'];
 		$qry=mysql_query("SELECT * FROM `hr` WHERE `file_no`='$file_no' AND `status`='1' AND `hr_id`='$hr_id'") or die(mysql_error());
 		$hr=mysql_fetch_array($qry);
-		
+
 		$button = '<button class="btn btn-success" id="update_hr1"><i class="fa fa-refresh"></i> Update</button>';
 		$edit = 1;
 		setHistory($_SESSION['user_id'],"hr_form","Open HR form for File no [$file_no]",$NOW);
@@ -24,15 +24,15 @@ else{
 		else{
 			setHistory($_SESSION['user_id'],"hr_form","Open HR form (New-Assessment)",$NOW);
 		}
-		
+
 }
-	
+
 ?>
 <script>
 $(document).ready(function(){
-   //id_data 
+   //id_data
 	var id_data = $("input:radio[name=id_data]:checked").val();
-	
+
 	$("#file_no").change(function(){
 		var 	file_no = $(this).val(),
 				datanya = "&file_no="+file_no+"&id_data="+id_data;
@@ -42,7 +42,7 @@ $(document).ready(function(){
 					$("#a").addClass("text-warning").removeClass("text-success text-danger nodataperson nodata").html("<i class='fa fa-warning'></i> In use");
 				}
 				else if(msg=="avail"){
-					$("#a").addClass("text-success").removeClass("text-danger text-warning nodataperson nodata").html("<i class='fa fa-check'></i> Available");				
+					$("#a").addClass("text-success").removeClass("text-danger text-warning nodataperson nodata").html("<i class='fa fa-check'></i> Available");
 					$("#family").load("form/hr-action.php","op=getData"+datanya);
 				}
 				else if(msg=="nodataperson"){
@@ -73,12 +73,12 @@ $(document).ready(function(){
 		}
 		else if($("#a").hasClass("nodataperson")){
 			var r = confirm("No Data Person for ["+file_no+"], Add new Data?");
-			if (r == true) {window.location="?page=person-form";} 
+			if (r == true) {window.location="?page=person-form";}
 			else {$("#file_no").val("").focus();}
 		}
 		else if($("#a").hasClass("nodata")){
 			var r = confirm("No Data for ["+file_no+"], Add new Data?");
-			if (r == true) {window.location="?page=hr-form";} 
+			if (r == true) {window.location="?page=hr-form";}
 			else {$("#file_no").val("").focus();}
 		}
 		else if(report_date == ""){
@@ -114,7 +114,7 @@ $(document).ready(function(){
 			});
 		}
 	});
-	
+
 	//update HR 1
 	$("#update_hr1").click(function(){
 		 var file_no = $("#file_no").val(),
@@ -134,12 +134,12 @@ $(document).ready(function(){
 		}
 		else if($("#a").hasClass("nodataperson")){
 			var r = confirm("No Data Person for ["+file_no+"], Add new Data?");
-			if (r == true) {window.location="?page=person-form";} 
+			if (r == true) {window.location="?page=person-form";}
 			else {$("#file_no").val("").focus();}
 		}
 		else if($("#a").hasClass("nodata")){
 			var r = confirm("No Data for ["+file_no+"], Add new Data?");
-			if (r == true) {window.location="?page=hr-form";} 
+			if (r == true) {window.location="?page=hr-form";}
 			else {$("#file_no").val("").focus();}
 		}
 		else if(report_date == ""){
@@ -171,7 +171,7 @@ $(document).ready(function(){
 			});
 		}
 	});
-	
+
 	$("#hr_1").change(function(){
 		var 	hr_id = $("#hr_id").val(),person_id = $("#family").val(),situation = $("#situation").val(),val = $(this).val();
 		datanya = "&hr_id="+hr_id+"&person_id="+person_id+"&situation="+situation+"&val="+val+"&id_data="+id_data;
@@ -226,7 +226,7 @@ $(document).ready(function(){
 				}else{$("#thr_5").text("Data Not Saved!!");}
 			}
 		});
-	});	
+	});
 	$("#hr_6").change(function(){
 		var 	hr_id = $("#hr_id").val(),person_id = $("#family").val(),situation = $("#situation").val(),val = $(this).val();
 		datanya = "&hr_id="+hr_id+"&person_id="+person_id+"&situation="+situation+"&val="+val+"&id_data="+id_data;
@@ -248,7 +248,7 @@ $(document).ready(function(){
 				}else{$("#thr_7").text("Data Not Saved!!");}
 			}
 		});
-	});	
+	});
 
 	//save HR 2
 	$("#save_hr2").click(function(){
@@ -263,8 +263,8 @@ $(document).ready(function(){
 			$("#hr_7").val('');
 			$("#situation").val('');
 			$("#family").focus();
-			
-		} 
+
+		}
 		else {
 			$("#hr1").removeClass("in");
 			$("#hr2").removeClass("in");
@@ -281,12 +281,12 @@ $(document).ready(function(){
 			id_data =$("#id_data").val();
 			datanya = "&file_no="+file_no+"&id_data="+id_data;
 			$("#family").load("form/hr-action.php","op=getData"+datanya);
-	
+
 		$("#family").change(function(){
 			var hr_id = $("#hr_id").val(),
 			     person_id=$(this).val(),
 			     datanya = "&hr_id="+hr_id+"&person_id="+person_id;
-			
+
 			$.ajax({url:"form/hr-action.php",data:"op=getHRData"+datanya,cache:false,
 			beforeSend:function(){$("#loading_data").text("Loading...")},
 			success: function(msg){
@@ -300,7 +300,7 @@ $(document).ready(function(){
 				$("#hr_7").val(hr[7]);
 				$("#situation").val(hr[0]);
 				$("#loading_data").text("Loaded");
-				
+
 			}
 		});
 		});
@@ -316,13 +316,13 @@ $(document).ready(function(){
 				}
 			});
 		});
-		
+
 
 	});
-	
-	
-	
-	
+
+
+
+
 </script>
 <?php }?>
 <div id="page-wrapper">
@@ -389,12 +389,12 @@ $(document).ready(function(){
 						</table>
 					</div>
 				</div>
-			
-	
+
+
 			</div>
 			</div>
 			</div>
-			
+
 
 			<!-- HR 2 -->
 			<div class="panel panel-default">
@@ -411,12 +411,12 @@ $(document).ready(function(){
 -->
 				<label>Health Report for: </label>
 				<select type="text" class="form-control" id="family">
-				
+
 				</select>
 				<small id="loading_data"></small>
 				</div>
 				<div class="col-lg-6"><label>Situation: </label><input class="form-control" id="situation"></div>
-				
+
 				<br><br><br><br><br>
 				<ol>
 					<li>
@@ -452,11 +452,11 @@ $(document).ready(function(){
 			</div>
 			</div>
 			</div>
-			
+
 		</div>
 	</div>
 <?php
-// comment 
+// comment
 if($edit==1 AND $_SESSION['group_id']==1){
 echo '<div class="col-lg-12" ><label>Comment:</label><textarea class="form-control" id="comment">'; echo Balikin($hr['comment']); echo'</textarea><br><small id="t"></small></div> ';
 }

@@ -20,7 +20,7 @@
 					include ("../inc/conf.php");
 					$file_no=$_GET['file_no'];
 					$no=0;
-					
+
 					$qry = mysql_query("SELECT * FROM `with_whom_living` WHERE `file_no`='$file_no'") or die(mysql_error());
 					while($data=mysql_fetch_array($qry)){
 						$no++;

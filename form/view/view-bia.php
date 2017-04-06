@@ -1,11 +1,11 @@
-<?php 
+<?php
 include("../../inc/conf.php");
 include("../function.php") ;
 
 if(empty($_GET['a'])){
 	echo '
 <html><head>
-	
+
 	<link href="'.$URL.'css/bootstrap.css" rel="stylesheet">
 	<link href="'.$URL.'css/custom.css" rel="stylesheet">
 	<link href="'.$URL.'font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -17,9 +17,9 @@ if(isset($_GET['file_no'])){
 	$qry = mysql_query("SELECT * FROM `bia` WHERE `file_no`='".$_GET['file_no']."' AND `status`='1'") or die(mysql_error());
 	$data = mysql_fetch_array($qry);
 	$count=mysql_num_rows($qry);
-	
+
 	$assessment=explode(";",Balikin($data['assessment']));
-		
+
 		//toiv
 		$toiva1=explode(";",Balikin($data['toiva1']));$toiva2=explode(";",Balikin($data['toiva2']));$toiva3=explode(";",Balikin($data['toiva3']));
 		$toiva4=explode(";",Balikin($data['toiva4']));$toiva5=explode(";",Balikin($data['toiva5']));$toiva6=explode(";",Balikin($data['toiva6']));
@@ -33,8 +33,8 @@ if(isset($_GET['file_no'])){
 		$toivb1=explode(";",Balikin($data['toivb1']));$toivb2=explode(";",Balikin($data['toivb2']));$toivb3=explode(";",Balikin($data['toivb3']));
 		$toivb4=explode(";",Balikin($data['toivb4']));$toivb5=explode(";",Balikin($data['toivb5']));$toivb6=explode(";",Balikin($data['toivb6']));
 		$toivb7=explode(";",Balikin($data['toivb7']));
-		
-		
+
+
 		$edu=explode(";",Balikin($data['edu']));
 		$health=explode(";",Balikin($data['health']));
 		$psy=explode(";",Balikin($data['psy']));
@@ -46,10 +46,10 @@ if(isset($_GET['file_no'])){
 		$fin=explode(";",Balikin($data['financial']));
 		$cws=explode(";",Balikin($data['cws_analysis']));
 		$opt=explode(";",Balikin($data['optional']));
-	
+
 
 	$edit = 1;
-	
+
 	if($count>0){
 		include ("header.php");
 ?>
@@ -60,22 +60,22 @@ if(isset($_GET['file_no'])){
 	<tr>
 		<td valign="top"><b>UNHCR Case Number:</b></td>
 		<td valign="top"><?php if($edit==1){echo $data['file_no'];}?></td>
-		
+
 		<td valign="top"><b>Date of Assessment: </b></td>
 		<td valign="top"><?php if($edit==1){echo $data['doa'];}?></td>
 	</tr>
-	<tr>	
+	<tr>
 		<td valign="top"><b>Location</b></td>
 		<td valign="top"><?php if($edit==1){echo $assessment[0];}?></td>
-	
-	
+
+
 		<td valign="top"><b>Case Worker</b></td>
 		<td valign="top"><?php if($edit==1){echo $assessment[1];}?></td>
 	</tr>
-	<tr>	
+	<tr>
 		<td valign="top"><b>Organization</b></td>
 		<td valign="top"><?php if($edit==1){echo $assessment[2];}?></td>
-		
+
 		<td valign="top"><b>Interpreter name & organization</b></td>
 		<td valign="top"><?php if($edit==1){echo $assessment[3];}?></td>
 	</tr>
@@ -87,7 +87,7 @@ if(isset($_GET['file_no'])){
 			<b class="radio-inline"><input disabled type="radio" name="ioc"  value="other" id="other" <?php if($edit==1){if($assessment[4]=="other"){echo"checked='checked'";}  } ?>>Other: <?php if($edit==1){if($assessment[4]=="other"){echo $assessment[5];}}?></b>
 		</td>
 	</tr>
-	
+
 </table>
 
 <h5>Personal history<br><small>( Background(Brief history describing hardships or trauma experienced))</small></h5>
@@ -378,10 +378,10 @@ if(isset($_GET['file_no'])){
 		</td>
 		<td><b>Observations:</b><br><?php if($edit==1){echo $toivb6[3];}?></td>
 	</tr>
-	
+
 </table>
-					
-<h5>Education</h5>	
+
+<h5>Education</h5>
 <table class="table table-bordered">
 	<tr>
 		<td valign="top" width="200px"><b>Suggested questions</b></td>
@@ -408,8 +408,8 @@ if(isset($_GET['file_no'])){
 		<td valign="top"><?php if($edit==1){echo $edu[6];}?></td>
 	</tr>
 </table>
-			
-<h5>Health</h5>		
+
+<h5>Health</h5>
 <table class="table table-bordered">
 	<tr>
 		<td valign="top" colspan="3">
@@ -451,7 +451,7 @@ if(isset($_GET['file_no'])){
 		<td valign="top">
 			<b><i>Observation:</i></b><br>
 			<?php if($edit==1){echo $health[11];}?></td>
-			
+
 	</tr>
 	<tr>
 		<td valign="top"><b>Addictions <i>(Drugs, alcohol, etc.)</i></b></td>
@@ -486,9 +486,9 @@ if(isset($_GET['file_no'])){
 			<b><i>Observation:</i></b><br>
 			<?php if($edit==1){echo $health[23];}?></td>
 	</tr>
-	
+
 </table>
-		
+
 <h5>Psychosocial conditions</h5><br> <small class="text-danger">(This part can be filled by Psychosocial workers)</small>
 <!--
 //aaaa
@@ -529,17 +529,17 @@ if(isset($_GET['file_no'])){
 	<tr>
 		<td valign="top" >
 			<b>*Do you feel healthy?</b><br>
-			<i> If not, please, explain type of sickness/how you feel physically.</i> 
+			<i> If not, please, explain type of sickness/how you feel physically.</i>
 			<p style="margin-left:15px;"><?php if($edit==1){echo $psy[5];}?></p>
 		</td>
 	</tr>
 	<tr>
 		<td valign="top" >
-			<b>*Do you have access to medical care?</b><br><i>If not, explain why?</i> 
+			<b>*Do you have access to medical care?</b><br><i>If not, explain why?</i>
 			<p style="margin-left:15px;"><?php if($edit==1){echo $psy[6];}?></p>
 		</td>
 	</tr>
-	
+
 </table>
 
 <table class="table table-bordered">
@@ -706,7 +706,7 @@ if(isset($_GET['file_no'])){
 	</tr>
 	<tr>
 		<td valign="top">
-			<b>Type of housing</b> 
+			<b>Type of housing</b>
 			<b class="radio-inline"><input disabled type="radio" name="liva4" value="CWS" <?php if($edit==1){if($liva[3]=="CWS"){echo "checked='checked'";}}?>> CWS</b>
 			<b class="radio-inline"><input disabled type="radio" name="liva4" value="House" <?php if($edit==1){if($liva[3]=="House"){echo "checked='checked'";}}?>> House</b>
 			<br><small class="text-danger">(If CWS shelter is tick, no need to fill up part b, c& d)</small>
@@ -725,7 +725,7 @@ if(isset($_GET['file_no'])){
 		</td>
 	</tr>
 </table>
-					
+
 <b>b). Description of the house</b>
 <table class="table table-bordered">
 	<tr>
@@ -742,8 +742,8 @@ if(isset($_GET['file_no'])){
 			<b><input disabled type="checkbox" id="livb9" <?php if($edit==1){if($livb[8]=="1"){echo "checked='checked'";}}?>> Dining room</b><br>
 			<b><input disabled type="checkbox" id="livb10" <?php if($edit==1){if($livb[9]=="1"){echo "checked='checked'";}}?>> Piped Clean & Safe Water</b><br>
 			<b><input disabled type="checkbox" id="livb11" <?php if($edit==1){if($livb[10]=="1"){echo "checked='checked'";}}?>> Kitchen</b><br>
-			<b><input disabled type="checkbox" id="livb12" <?php if($edit==1){if($livb[11]=="1"){echo "checked='checked'";}}?>> Dug Well Water</b><br> 
-			
+			<b><input disabled type="checkbox" id="livb12" <?php if($edit==1){if($livb[11]=="1"){echo "checked='checked'";}}?>> Dug Well Water</b><br>
+
 		</td>
 	</tr>
 	<tr>
@@ -753,7 +753,7 @@ if(isset($_GET['file_no'])){
 		</td>
 	</tr>
 </table>
-	
+
 <b>c). House facilities </b>
 
 <table class="table table-bordered">
@@ -817,7 +817,7 @@ if(isset($_GET['file_no'])){
 		<td valign="top"><b><input disabled type="radio" name="livc11b" value="0" <?php if($edit==1){if($livc[21]=="0"){echo "checked='checked'";}}?>> Private</b>
 			<b><input disabled type="radio" name="livc11b" value="1" <?php if($edit==1){if($livc[21]=="1"){echo "checked='checked'";}}?>> House owner</b>
 		</td>
-	
+
 		<td valign="top"><b><input disabled type="checkbox" id="livc12a" <?php if($edit==1){if($livc[22]=="1"){echo "checked='checked'";}}?>>Other</b></td>
 		<td valign="top"><b><input disabled type="radio" name="livc12b" value="0" <?php if($edit==1){if($livc[23]=="0"){echo "checked='checked'";}}?>> Private</b>
 			<b><input disabled type="radio" name="livc12b" value="1" <?php if($edit==1){if($livc[23]=="1"){echo "checked='checked'";}}?>> House owner</b>
@@ -837,7 +837,7 @@ if(isset($_GET['file_no'])){
 			<b><input disabled type="checkbox" id="livd5" <?php if($edit==1){if($livd[4]=="1"){echo "checked='checked'";}}?>>Secured Doors & Windows</b><br>
 			<b><input disabled type="checkbox" id="livd6" <?php if($edit==1){if($livd[5]=="1"){echo "checked='checked'";}}?>>Multiple Entry/Exit points in the building</b><br>
 			<b><input disabled type="checkbox" id="livd7" <?php if($edit==1){if($livd[6]=="1"){echo "checked='checked'";}}?>>Fire Extinguisher</b>
-		</td>	
+		</td>
 	</tr>
 	<tr>
 		<td valign="top" colspan="2">
@@ -890,13 +890,13 @@ if(isset($_GET['file_no'])){
 	<tr>
 		<td valign="top">
 			<b>Resources </b><br>
-			<b><input disabled type="checkbox" id="fin4" <?php if($edit==1){if($fin[3]){echo "checked='checked'";}}?>> Personal income</b><br> 
-			<b><input disabled type="checkbox" id="fin5" <?php if($edit==1){if($fin[4]){echo "checked='checked'";}}?>> CWS</b><br> 
-			<b><input disabled type="checkbox" id="fin6" <?php if($edit==1){if($fin[5]){echo "checked='checked'";}}?>> Employment Situationr</b><br> 
-			<b><input disabled type="checkbox" id="fin7" <?php if($edit==1){if($fin[6]){echo "checked='checked'";}}?>> Family abroad (where?)</b><br> 
-			<b><input disabled type="checkbox" id="fin8" <?php if($edit==1){if($fin[7]){echo "checked='checked'";}}?>> Assistance received (from?)</b><br> 
-			<b><input disabled type="checkbox" id="fin9" <?php if($edit==1){if($fin[8]){echo "checked='checked'";}}?>> Government</b><br> 
-			<b><input disabled type="checkbox" id="fin10" <?php if($edit==1){if($fin[9]){echo "checked='checked'";}}?>> Other</b><br> 
+			<b><input disabled type="checkbox" id="fin4" <?php if($edit==1){if($fin[3]){echo "checked='checked'";}}?>> Personal income</b><br>
+			<b><input disabled type="checkbox" id="fin5" <?php if($edit==1){if($fin[4]){echo "checked='checked'";}}?>> CWS</b><br>
+			<b><input disabled type="checkbox" id="fin6" <?php if($edit==1){if($fin[5]){echo "checked='checked'";}}?>> Employment Situationr</b><br>
+			<b><input disabled type="checkbox" id="fin7" <?php if($edit==1){if($fin[6]){echo "checked='checked'";}}?>> Family abroad (where?)</b><br>
+			<b><input disabled type="checkbox" id="fin8" <?php if($edit==1){if($fin[7]){echo "checked='checked'";}}?>> Assistance received (from?)</b><br>
+			<b><input disabled type="checkbox" id="fin9" <?php if($edit==1){if($fin[8]){echo "checked='checked'";}}?>> Government</b><br>
+			<b><input disabled type="checkbox" id="fin10" <?php if($edit==1){if($fin[9]){echo "checked='checked'";}}?>> Other</b><br>
 		</td>
 		<td valign="top">Amount (weekly in IDR): <br><b><?php if($edit==1){echo $fin[10];}?></b></td>
 		<td valign="top">
@@ -904,7 +904,7 @@ if(isset($_GET['file_no'])){
 			<?php if($edit==1){echo $fin[11];}?>
 		</td>
 	</tr>
-	
+
 </table>
 
 
@@ -923,7 +923,7 @@ if(isset($_GET['file_no'])){
 						<li><b> L:</b> denotes that the regular referral system applies. Additionally, staff should review the situation of individuals at low risk at regular intervals or implement another structured monitoring and follow-up mechanism to ensure that the case is handled adequately.</li>
 					</ul>
 				</p>
-			</div>	
+			</div>
 		</td>
 	</tr>
 	<tr class="warning">
@@ -1116,10 +1116,10 @@ if(isset($_GET['file_no'])){
 		<td>Final conclusions: <br><?php if($edit==1){echo $opt[2];}?></td>
 		<td>CSO or CP name & date: <br><?php if($edit==1){echo $opt[3];}?></td>
 	</tr>
-</table>	
+</table>
 
 <?php
-		// comment 
+		// comment
 		echo '<b>Comment:</b>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>';
 		echo '<div class="page-break"></div>';
 		//== panel
@@ -1141,7 +1141,7 @@ if(isset($_GET['file_no'])){
 	else{
 		echo "No data BIA for File Number: ".$_GET['file_no'];
 		echo '<div class="page-break"></div>';
-	}	
+	}
 }
 
 if(empty($_GET['a'])){

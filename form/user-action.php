@@ -21,9 +21,9 @@ elseif($op=="saveuser"){
 	$user_password = $_GET['password'];
 	$md5_password = md5($user_password);
 	$user_info= $_GET['info'];
-	$save = mysql_query("INSERT INTO `user` (`group_id`,`user_name`,`user_real_name`,`user_password`,`user_info`) 
+	$save = mysql_query("INSERT INTO `user` (`group_id`,`user_name`,`user_real_name`,`user_password`,`user_info`)
 						VALUES('$group_id','$user_name','$user_real_name','$md5_password','$user_info')") or die(mysql_error());
-	
+
 	if($save){
 		echo "success";
 		setHistory($_SESSION['user_id'],"user_form","Save User for username [$user_name] ",$NOW);
@@ -46,7 +46,7 @@ elseif($op=="updateuser"){
 		$save = mysql_query("UPDATE `user` SET `group_id`='$group_id',`user_name`='$user_name',`user_real_name`='$user_real_name',
 						 `user_info`='$user_info',`last_change`='$NOW' WHERE `user_id`='$user_id';") or die(mysql_error());
 	}
-	
+
 	if($save){
 		echo "success";
 		setHistory($_SESSION['user_id'],"user_form","Update User for username [$user_name] ",$NOW);
@@ -68,7 +68,7 @@ elseif($op=="updateusersetting"){
 		$save = mysql_query("UPDATE `user` SET `user_name`='$user_name',`user_real_name`='$user_real_name',
 						 `user_info`='$user_info',`last_change`='$NOW' WHERE `user_id`='$user_id';") or die(mysql_error());
 	}
-	
+
 	if($save){
 		echo "success";
 		setHistory($_SESSION['user_id'],"user_form","Update User Setting for username [$user_name] ",$NOW);
@@ -80,7 +80,7 @@ elseif($op == "checkgroup"){
 	$group_name = $_GET['group_name'];
 	$qry = mysql_query("SELECT COUNT(*) AS `ada` FROM `usergroup` WHERE `group_name`='$group_name' ;") or die(mysql_error());
 	$group = mysql_fetch_array($qry);
-	
+
 	if($group['ada'] > 0){
 		echo "inuse";
 	}
@@ -91,7 +91,7 @@ elseif($op == "checkgroup"){
 elseif($op=="saveusergroup"){
 	$group_name = $_GET['group_name'];
 	$value = htmlspecialchars($_GET['value']);
-	
+
 	$save =mysql_query("INSERT INTO `usergroup` (`group_name`,`group_access`) VALUES ('$group_name','$value')") or die(mysql_error());
 
 	if($save){
@@ -104,7 +104,7 @@ elseif($op=="updateusergroup"){
 	$group_id = $_GET['group_id'];
 	$group_name = $_GET['group_name'];
 	$value = htmlspecialchars($_GET['value']);
-	
+
 	$save =mysql_query("UPDATE `usergroup` SET `group_name`='$group_name',`group_access`='$value' WHERE `group_id`='$group_id'") or die(mysql_error());
 
 	if($save){

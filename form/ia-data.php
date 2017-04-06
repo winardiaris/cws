@@ -1,4 +1,4 @@
-<?php 
+<?php
 $R="R5";$W="W5";
 $LOCATION = "ia_data";
 setHistory($_SESSION['user_id'],$LOCATION,"Open IA Data",$NOW);
@@ -8,10 +8,10 @@ include("form/navigasi.php") ?>
 <script>
 	$(document).ready(function(){
 		$(".delete").click(function(){
-			var file_no = $(this).attr("id"),datanya="&file_no="+file_no;	
+			var file_no = $(this).attr("id"),datanya="&file_no="+file_no;
 			var r = confirm("Remove ["+file_no+"]? ");
-			
-			
+
+
 			if (r == true) {
 				$.ajax({url:"form/ia-action.php",data:"op=del"+datanya,cache:false,success: function(msg){
 					if(msg=="success"){
@@ -19,7 +19,7 @@ include("form/navigasi.php") ?>
 						location.reload();
 					}else{alert("Cannot remove !!");}}
 				});
-			} 
+			}
 		});
 	});
 
@@ -72,13 +72,13 @@ include("form/navigasi.php") ?>
 								<td>'.$assessment[1].'</td>
 								<td>'.$assessment[2].'</td>
 							</tr>
-							
+
 							';
-							
+
 						}
-					
+
 					?>
-				
+
 				</tbody>
 			</table>
 			</div>

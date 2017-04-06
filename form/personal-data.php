@@ -1,4 +1,4 @@
-<?php 
+<?php
 $LOCATION = "person_data";
 $R="R3";$W="W3";
 include("form/navigasi.php") ;
@@ -9,13 +9,13 @@ if(isset($_GET['active'])){
 	elseif($active == "2"){$header = "(Terminated)"; setHistory($_SESSION['user_id'],$LOCATION,"Open Personal Data (Terminated)",$NOW);}
 	elseif($active == "3"){$header = "(Deleted)"; setHistory($_SESSION['user_id'],$LOCATION,"Open Personal Data (Deleted)",$NOW);}
 	elseif($active == "4"){$header = "(Inactive)"; setHistory($_SESSION['user_id'],$LOCATION,"Open Personal Data (Inactive)",$NOW);}
-	
+
 }
 else{
 	header("location:?page=person-data&active=1");
 }
-	
-	
+
+
 ?>
 <div id="page-wrapper">
 <div class="row">
@@ -27,10 +27,10 @@ else{
 				<a href="?page=person-data&active=2"  class="btn btn-sm btn-primary <?php if($_GET['active']==2){ echo "active";}?>"> Terminated</a>
 				<a href="?page=person-data&active=3"  class="btn btn-sm btn-primary <?php if($_GET['active']==3){ echo "active";}?>"> Deleted</a>
 				<a href="?page=person-data&active=4"  class="btn btn-sm btn-primary <?php if($_GET['active']==4){ echo "active";}?>"> Inactive</a>
-			
+
 		</div>
 	</div>
-	
+
 		<div class="">
 		<table class="table table-striped table-bordered table-hover" id="dataTables">
 			<thead>
@@ -52,9 +52,9 @@ else{
 					$no=0;
 					$qry = mysql_query("
 					SELECT `person`.`file_no`,`person`.`name`,`master_country`.`country_name` ,`person`.`sex`,`person`.`address`,`person`.`phone`,`person`.`active`, `person`.`status` FROM `person`
-					INNER JOIN `master_country` ON `person`.`coo` = `master_country`.`country_id` 
+					INNER JOIN `master_country` ON `person`.`coo` = `master_country`.`country_id`
 					WHERE `person`.`active` = '$active' ORDER BY `file_no` ASC;
-					
+
 					") or die(mysql_error());
 					while($data = mysql_fetch_array($qry)){
 						$no++;
@@ -85,10 +85,10 @@ else{
 						';
 					}
 				?>
-			
+
 			</tbody>
 		</table>
 		</div>
-	
+
 </div><!-- row -->
 </div><!-- page-wrapper -->

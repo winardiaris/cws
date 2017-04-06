@@ -1,4 +1,4 @@
-<?php 
+<?php
 $A = "D";
 
 include("form/navigasi.php");
@@ -8,6 +8,6 @@ include("form/navigasi.php");
 		<div class="col-lg-12">
 			<h3>UNHCR Case Numbert found</h3>
 			<h1>404</h1>
-		</div>	
+		</div>
 	</div>
 </div><!-- page-wrapper -->

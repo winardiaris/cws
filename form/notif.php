@@ -37,15 +37,15 @@
 				<a class="'.$class.'" href="form/view/view.php?op=se&file_no='.$se['file_no'].'&id='.$se['se_id'].'" target="framepopup"  onClick="setdisplay(divpopup,1)" >
 				<div >
 					<i class="fa fa-warning fa-fw"></i> Re-Assessment SE ['.$se['file_no'].']
-					<span class="pull-right  small">'.$t.$day.'</span> 
-				
+					<span class="pull-right  small">'.$t.$day.'</span>
+
 				</div>
 				</a>
 			</li>';
 			if($i<$count){
 				echo '<li class="divider"></li>';
 			}
-		}	
+		}
 	?>
 	</ul>
 </li>

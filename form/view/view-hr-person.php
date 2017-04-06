@@ -5,7 +5,7 @@ include("../function.php") ;
 if(empty($_GET['a'])){
 	echo '
 <html><head>
-	
+
 	<link href="'.$URL.'css/bootstrap.css" rel="stylesheet">
 	<link href="'.$URL.'css/custom.css" rel="stylesheet">
 	<link href="'.$URL.'font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -15,19 +15,19 @@ if(empty($_GET['a'])){
 
 if(isset($_GET['file_no'])){
 	$file_no = $_GET['file_no'];
-	
+
 	$qq = mysql_query("SELECT max(`report_date`) AS `max` FROM `hr` WHERE `file_no`='$file_no'")or die(mysql_error());
 	$aa = mysql_fetch_array($qq);
 	$max = $aa['max'];
-	
+
 	$qry = mysql_query("SELECT * FROM `hr` WHERE `file_no`='$file_no' AND `status`='1' AND `report_date`='$max'") or die(mysql_error());
 	$data = mysql_fetch_array($qry);
 	$count=mysql_num_rows($qry);
 	$hr_id = $data['hr_id'];
-	
+
 	$edit = 1;
 	if($count>0){
-	
+
 ?>
 
 <h4>Health Report</h4>
@@ -66,7 +66,7 @@ if(isset($_GET['file_no'])){
 <div class="page-break"></div>
 
 
-<?php 
+<?php
 		$q=mysql_query("SELECT * FROM `hr_data` WHERE `hr_id`='$hr_id'")or die(mysql_error());
 		$a=0;
 		$counts=mysql_num_rows($q);
@@ -87,14 +87,14 @@ if(isset($_GET['file_no'])){
 			$age = $y['age'];
 			if($y['sex']=="M"){$sex = "Male";}else{$sex="Female";}
 		}
-		
-		
-?>		
-		
+
+
+?>
+
 		<h5>Health Report</h5>
 		<table class="table table-bordered" >
 			<tr>
-				<?php 
+				<?php
 					echo "
 					<td><b>Name: </b> ".$name."</td>
 					<td><b>Age: </b> ".$age."</td>
@@ -151,15 +151,15 @@ if(isset($_GET['file_no'])){
 			</tr>
 		</table>
 
-<?php	
+<?php
 		if($a != $counts){
 			echo '<div class="page-break"></div>';
 		}
-	
+
 		}
-	   // comment 
+	   // comment
 		echo '<b>Comment:</b>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>';
-		
+
 		//== panel
 		if(empty($_GET['a'])){
 			$link =  "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"."&a=hide";
@@ -179,7 +179,7 @@ if(isset($_GET['file_no'])){
 	else{
 		echo "No data HR for File Number: ".$_GET['file_no'];
 		echo '<div class="page-break"></div>';
-	}	
+	}
 }
 if(empty($_GET['a'])){
 	echo'</body>

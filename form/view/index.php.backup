@@ -21,26 +21,26 @@ $(document).ready(function(){
 			tbia = $("#tbia"),
 			thr = $("#thr");
 		tperson.load("view-personal.php?file_no="+file_no);
-<?php 
+<?php
 	if(isset($_GET['ia'])){
 		echo 'tia.load("view-ia.php?file_no="+file_no+"&a=hide");';
 	}
-	
+
 	if(isset($_GET['se'])){
 		echo 'tse.load("view-se-person.php?file_no="+file_no+"&p=hide");';
 	}
-	
+
 	if(isset($_GET['bia'])){
 		echo 'tbia.load("view-bia.php?file_no="+file_no+"&a=hide");';
 	}
-	
+
 	if(isset($_GET['hr'])){
 		echo 'thr.load("view-hr-person.php?file_no="+file_no+"&a=hide");';
 	}
-?>	
+?>
 });
 
-	
+
 </script>
 	<div class=" atas">
 		<form method="get" action="" style="float:left;">
@@ -54,11 +54,11 @@ $(document).ready(function(){
 			<button type="button" class="print btn btn-sm btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
 		</form>
 		<form action="<?php echo $URL; ?>form/pdfin.php" method="post" style="float:left;margin-left:5px;">
-			<?php 
+			<?php
 				if(isset($_GET['file_no'])){
 					$link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"."&a=hide";
 					$file = "Person_".$_GET['file_no']."_".$TODAY;
-					
+
 					echo '
 					<input type="text" name="link" value="'.$link.'" >
 					<input type="text" name="file" value="'.$file.'" >
@@ -75,7 +75,7 @@ $(document).ready(function(){
 	<div id="tse"></div>
 	<div id="tbia"></div>
 	<div id="thr"></div>
-	</div> 
+	</div>
 </div>
 </body>
 </html>

@@ -68,7 +68,7 @@ echo "//edit=1\n";
 		$("#unhcr").change(function(){
       file_no=$(this).val();
       var datanya = "&file_no="+$(this).val();
-			
+
 			$.ajax({url: "form/assistance/action.php",data: "op=check"+datanya,cache: false,
 				success: function(msg){
 					if(msg=="inuse"){
@@ -83,7 +83,7 @@ echo "//edit=1\n";
 				}
 			});
     });
-    
+
     //save personal information
     $("#save_personalinformation").click(function(){
 			if(file_no == ""){
@@ -96,7 +96,7 @@ echo "//edit=1\n";
 			}
 			else if($("#a").hasClass("text-danger")){
 				var r = confirm("No Data for ["+file_no+"], Add new Data?");
-				if (r == true) {window.location="?page=person-form";} 
+				if (r == true) {window.location="?page=person-form";}
 				else {$("#unhcr").val("").focus();}
 			}
 			else{
@@ -129,7 +129,7 @@ echo "//edit=1\n";
 			}
 			else if($("#a").hasClass("text-danger")){
 				var r = confirm("No Data for ["+file_no+"], Add new Data?");
-				if (r == true) {window.location="?page=person-form";} 
+				if (r == true) {window.location="?page=person-form";}
 				else {$("#unhcr").val("").focus();}
 			}
 			else{
@@ -150,14 +150,14 @@ echo "//edit=1\n";
 			}
 
     });
-    
+
     //save_financeassistance
     $("#save_financeassistance").click(function(){
         var file_no = $("#unhcr").val();
         var fa_day=$("input[name='FA-day']:checked").val();
         var fa_type_value_amount = $("#fa_type_value_amount").val();
         var uam = $("#uam").val();
-        
+
 				var datanya = "&fa_day="+fa_day+"&file_no="+file_no+"&fa_type_value_amount="+fa_type_value_amount+"&uam="+uam;
 				$.ajax({url: "form/assistance/action.php",data: "op=save_financeassistance"+datanya,cache: false,
 					success: function(msg){
@@ -186,7 +186,7 @@ echo "//edit=1\n";
 					}
 				});
     });
-    
+
     $('#save_educationaccess').click(function(){
       var file_no = $("#unhcr").val();
       var ea_class = $("input[name='EA']:checked").val();
@@ -221,11 +221,11 @@ echo "//edit=1\n";
 					}
 				});
 
-      
+
     });
 
 
-    
+
     var countChecked = function(){
       fa_values=parseInt(0);
       fa_type_value_amount="";

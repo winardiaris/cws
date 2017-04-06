@@ -8,7 +8,7 @@ include ('form/navigasi.php');
       <h3 class="page-header">Assistance Data</h3>
     </div>
     <div class="col-lg-12">
-      
+
       <div class="">
         <table class="table table-striped table-bordered table-hover" id="dataTables">
           <thead>
@@ -65,6 +65,6 @@ include ('form/navigasi.php');
         </table>
       </div>
     </div>
-    
+
   </div> <!-- .row -->
 </div> <!-- #page-wrapper -->

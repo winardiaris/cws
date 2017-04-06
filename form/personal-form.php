@@ -1,4 +1,4 @@
-<?php 
+<?php
 $LOCATION = "person_form";
 setHistory($_SESSION['user_id'],$LOCATION,"Open Personal Form",$NOW);
 $R="R2";$W="W2";
@@ -7,17 +7,17 @@ if(isset($_GET['op'])){
 	if(isset($_GET['file_no'])){
 		$qry = mysql_query("SELECT * FROM `person` WHERE `file_no`='".$_GET['file_no']."'") or die(mysql_error());
 		$data = mysql_fetch_array($qry);
-	
+
 		$split=explode(",",$data['arrival']);
 		$edu=$data['education'];
-		
+
 		$address = explode(";",$data['address']);
 		$wilayah = explode(".",$address[0]); $prov = $wilayah[0]; $kota = $prov.".".$wilayah[1]; $kec = $kota.".".$wilayah[2];
 		$disable = "disabled";
 		$button = '<button type="submit" id="person_update" class="btn btn-success"><i class="fa fa-refresh"></i> Update</button>';
 		$prints = '<a href="form/personal-form-print.php?file_no='.$_GET['file_no'].'" class="btn btn-default" title="Print '.$_GET['file_no'].'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-print"></i> Print</a>';
 		if($data['photo']!=""){$photo = $URL."form/".$data['photo'];}else{$photo = $URL.'form/photo/default.png';}
-		
+
 		$edit = 1;
 	}
 }
@@ -41,7 +41,7 @@ else{
 		var address = $("#address").val();
 		var MA = $("#MA").val();
 		var family_MA = $("#family_MA").val();
-    
+
     $("#coo").load("form/general-action.php","op=getcountry&country="+country2);
 		$("#cob").load("form/general-action.php","op=getcountry&country="+country3);
 		$("#family_coo").load("form/general-action.php","op=getcountry&country="+family_country2);
@@ -49,9 +49,9 @@ else{
 		$("#marital").load("form/general-action.php","op=getmarital&status="+MA);
 		$("#family_marital").load("form/general-action.php","op=getmarital&status="+family_MA);
 		$("#family_relation").load("form/general-action.php","op=getrelation");
-  
+
     $("#coo").change(function(){
-      $("#family_coo").val($(this).val()); 
+      $("#family_coo").val($(this).val());
       console.log($(this).val());
     });
 
@@ -66,17 +66,17 @@ else{
 		$("#family_kota").load("form/general-action.php","op=getkab&prov=<?php echo $prov.'&kode='.$kota; ?>");
 		$("#family_kelurahan").load("form/general-action.php","op=getkec&kab=<?php echo $kota.'&kode='.$kec; ?>");
     $("#family_address").val("<?php echo $kec.";".$address[1];?>");
-  
-   //load familydata 
+
+   //load familydata
     $("#family").load("form/personal-family-data.php?file_no="+file_no);
-		
+
 	<?php	}else{ ?>
-			
+
 		$("#provinsi").load("form/general-action.php","op=getprov");
 		$("#family_provinsi").load("form/general-action.php","op=getprov");
 	<?php } ?>
-	
-	
+
+
     $("#provinsi").change(function(){
       $("#kota").load("form/general-action.php","op=getkab&prov="+$(this).val());
       $("#family_kota").load("form/general-action.php","op=getkab&prov="+$(this).val());
@@ -113,9 +113,9 @@ else{
 			var detail = $("#family_detail").val();
       $("#family_address").val(kelurahan+";"+detail);
     });
-		
+
 		if(file_no != ""){$("#family").load("form/personal-family-data.php?file_no="+file_no);}
-		
+
 		//check available
 		$("#file_no").change(function(){
 			var file_no = $(this).val();
@@ -138,11 +138,11 @@ else{
 					}
 				}
 			});
-			
+
 			//for upload photo
 			$("#file_no2").val(file_no);
 		});
-		
+
 		//save person
 		$("#person_save").click(function(){
 			var file_no = $("#file_no").val();
@@ -155,15 +155,15 @@ else{
 				$("#file_no").val("").focus();
 			}
 			else{
-			
-				var file_no = $("#file_no").val(), name = $("#name").val(), coo = $("#coo").val(),cob = $('#cob').val(), dob = $("#dob").val(),age = $("#age").val(), sex = $('input:radio[name=sex]:checked').val(), marital = $("#marital").val(), address = $("#address").val(), phone = $("#phone").val(), photo = $("#photo").val(), status = $("#status").val(), date_arrival = $("#date_arrival").val(),arrival = $("#arrival").val(), 
-				
+
+				var file_no = $("#file_no").val(), name = $("#name").val(), coo = $("#coo").val(),cob = $('#cob').val(), dob = $("#dob").val(),age = $("#age").val(), sex = $('input:radio[name=sex]:checked').val(), marital = $("#marital").val(), address = $("#address").val(), phone = $("#phone").val(), photo = $("#photo").val(), status = $("#status").val(), date_arrival = $("#date_arrival").val(),arrival = $("#arrival").val(),
+
         education = $("#education").val();
-				
+
 				skill = $("#skill").val(), mot = $("#mot").val(), known_language = $("#known_language").val(), previous_occupation = $("#previous_occupation").val(), volunteer = $("#volunteer").val(), status_active = $("#status_active").val();
-				
+
 				var datanya = "&file_no="+file_no+"&name="+name+"&coo="+coo+"&cob="+cob+"&dob="+dob+"&age="+age+"&sex="+sex+"&marital="+marital+"&address="+address+"&phone="+phone+"&photo="+photo+"&status="+status+"&arrival="+arrival+"&date_arrival="+date_arrival+"&education="+education+"&skill="+skill+"&mot="+mot+"&known_language="+known_language+"&previous_occupation="+previous_occupation+"&volunteer="+volunteer+"&status_active="+status_active;
-				
+
 				$.ajax({url:"form/personal-action.php",data:"op=saveperson"+datanya,cache:false,success: function(msg){
 						if(msg=="success"){
 							alert("Data has been saved !!");
@@ -179,17 +179,17 @@ else{
 				});
 			}
 		});
-		
+
 		//update person
 		$("#person_update").click(function(){
-			var file_no = $("#file_no").val(), name = $("#name").val(), coo = $("#coo").val(),cob=$("#cob").val(), dob = $("#dob").val(),age = $("#age").val(), sex = $('input:radio[name=sex]:checked').val(), marital = $("#marital").val(), address = $("#address").val(), phone = $("#phone").val(), photo = $("#photo").val(), status = $("#status").val(), date_arrival = $("#date_arrival").val(),arrival = $("#arrival").val(), 
-			
+			var file_no = $("#file_no").val(), name = $("#name").val(), coo = $("#coo").val(),cob=$("#cob").val(), dob = $("#dob").val(),age = $("#age").val(), sex = $('input:radio[name=sex]:checked').val(), marital = $("#marital").val(), address = $("#address").val(), phone = $("#phone").val(), photo = $("#photo").val(), status = $("#status").val(), date_arrival = $("#date_arrival").val(),arrival = $("#arrival").val(),
+
         education = $("#education").val();
-			
+
 			skill = $("#skill").val(), mot = $("#mot").val(), known_language = $("#known_language").val(), previous_occupation = $("#previous_occupation").val(), volunteer = $("#volunteer").val(),  status_active = $("#status_active").val();
-				
+
 			var datanya = "&file_no="+file_no+"&name="+name+"&coo="+coo+"&cob="+cob+"&dob="+dob+"&age="+age+"&sex="+sex+"&marital="+marital+"&address="+address+"&phone="+phone+"&photo="+photo+"&status="+status+"&arrival="+arrival+"&date_arrival="+date_arrival+"&education="+education+"&skill="+skill+"&mot="+mot+"&known_language="+known_language+"&previous_occupation="+previous_occupation+"&volunteer="+volunteer+"&status_active="+status_active;
-			
+
 			$.ajax({url:"form/personal-action.php",data:"op=updateperson"+datanya,cache:false,success: function(msg){
 					if(msg=="success"){
 						alert("Data has been saved !! update");
@@ -201,7 +201,7 @@ else{
             console.log(msg);
             }}});
 		});
-		
+
 		//add family
     $("#add-family").click(function(){
       file_no=$("#file_no").val();
@@ -249,15 +249,15 @@ else{
           }else{
             alert("Data not saved !!");
           }
-        
+
           $("#family").load("form/personal-family-data.php?file_no="+file_no);
 					$(".family .form-control").val("");
 					$(".family select").val("0");
 				}
 			});
 		});
-		
-		
+
+
 		//comment
 		$("#comment").change(function(){
 			var	file_no = $("#file_no").val(),comments = $(this).val();
@@ -272,8 +272,8 @@ else{
 		});
 
 
-		
-		
+
+
 	});
 }) (jQuery);
 </script>
@@ -289,7 +289,7 @@ else{
 				echo getWhoLastChange("".$data['file_no']."","person_form");
 			}?>
 		</div>
-	</div>	
+	</div>
 	<div class="col-lg-8">
 		<br>
 		<?php if($edit==1){echo $prints;}?>
@@ -333,7 +333,7 @@ else{
 							<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
 								<input type="text" class="form-control" name="birth" id="dob" placeholder="yyyy-mm-dd" onchange="CalAge(dob,age);" value="<?php if($edit==1){echo $data['dob'];}?>" required><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 							</div>
-							<label>Age</label> <input class="form-control" name="age" placeholder="Age" id="age" value="<?php if($edit==1){echo $data['age'];}?>">		
+							<label>Age</label> <input class="form-control" name="age" placeholder="Age" id="age" value="<?php if($edit==1){echo $data['age'];}?>">
 						</td>
 					</tr>
 					<tr>
@@ -351,7 +351,7 @@ else{
 							<select class="form-control" name="marital-status" id="marital" ></select></td>
 					</tr>
 					<tr>
-						
+
 						<td ><label>Current Address <br>(in detail): *</label></td>
 						<td><div class="form-group">
 								<small>Province</small>
@@ -367,7 +367,7 @@ else{
 						</td>
 					</tr>
 					<tr>
-						
+
 						<td ><label>Phone No: *</label></td>
 						<td><input class="form-control" name="phone" id="phone" value="<?php if($edit==1){echo $data['phone'];}?>" required></td>
 					</tr>
@@ -380,7 +380,7 @@ else{
 								<input type="file" name="userfile">
 								<input id="file_no2" name="file_no" type="hidden" <?php if($edit==1){echo 'value="'.$data['file_no'].'" ';}?>>
 								<br><button type="submit" class="btn btn-sm btn-success" value="Upload" name="upload" id="btnupload" ><i class="fa fa-upload"></i> Upload</button>
-								
+
 									<?php if($edit==1){echo '<input type="hidden" class="form-control" id="photo" value="'.$data['photo'].'" ><br><small class="text-success"> ';}?>
 							</form>
 							</span>
@@ -401,16 +401,16 @@ else{
 							<option <?php if($edit==1){if($data['status']=="Asylum Seeker")echo"selected";}?>>Asylum Seeker</option>
 						</select></td>
           </tr>
-					<tr>					
+					<tr>
 						<td ><label>Date & port arrival: *</label></td>
 						<td><div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
 								<input type="text" class="form-control" name="date_arrival" id="date_arrival"  value="<?php if($edit==1){echo $split[1];}?>" placeholder="yyyy-mm-dd"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 							</div>
 							<input class="form-control" name="arrival" id="arrival" placeholder="Port Arrival" value="<?php if($edit==1){echo $split[0];}?>"></td>
 					</tr>
-					
+
 					<tr>
-						
+
 						<td ><label>Last level of education:</label></td>
 						<td>
               <select class="form-control" name="education" id="education">
@@ -420,31 +420,31 @@ else{
                 <option value="V"<?php if($edit==1){if($edu=="V"){echo " selected";}}?> >Vocational</option>
                 <option value="UG"<?php if($edit==1){if($edu=="UG"){echo " selected";}}?> >Under Graduate</option>
                 <option value="PG"<?php if($edit==1){if($edu=="PG"){echo " selected";}}?> >Postgraduate</option>
-              </select>	
+              </select>
 						</td>
 					</tr>
 					<tr>
-						
+
 						<td ><label>Skills:</label></td>
 						<td><textarea class="form-control" name="skill" id="skill" ><?php if($edit==1){echo $data['skill'];}?></textarea></td>
 					</tr>
 					<tr>
-						
+
 						<td ><label>Mother Tongue:</label></td>
 						<td><input class="form-control" name="mother-tongue" id="mot" value="<?php if($edit==1){ echo $data['mot'];}?>"></td>
 					</tr>
 					<tr>
-						
+
 						<td ><label>Knowledge of other languages:</label></td>
 						<td><input class="form-control" name="known-language" id="known_language" value="<?php if($edit==1){echo $data['known_language'];}?>"></td>
 					</tr>
 					<tr>
-						
+
 						<td ><label>Previous occupation:</label></td>
 						<td><input class="form-control" name="previous-occupation" id="previous_occupation" value="<?php if($edit==1){echo $data['previous_occupation'];}?>"></td>
 					</tr>
 					<tr>
-						
+
 						<td ><label>Willingness to volunteer:</label></td>
 						<td><input class="form-control" name="volunteer" id="volunteer" value="<?php if($edit==1){echo $data['volunteer'];}?>"></td>
 					</tr>
@@ -466,7 +466,7 @@ else{
       <?php echo $button;?>
     </div>
 		</div>
-		
+
 		</div>
 		<!-- B panel -->
 		<div class="panel panel-default">
@@ -504,7 +504,7 @@ else{
 							<div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
 								<input type="text" class="form-control" name="family_birth" id="family_dob" placeholder="yyyy-mm-dd" onchange="CalAge(family_dob,family_age);" value="" required><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 							</div>
-							<label>Age</label> <input class="form-control" name="family_age" placeholder="Age" id="family_age" value="">		
+							<label>Age</label> <input class="form-control" name="family_age" placeholder="Age" id="family_age" value="">
 						</td>
 					</tr>
 					<tr>
@@ -522,7 +522,7 @@ else{
 							<select class="form-control" name="family_marital-status" id="family_marital" ></select></td>
 					</tr>
 					<tr>
-						
+
 						<td ><label>Current Address <br>(in detail): *</label></td>
 						<td><div class="form-group">
 								<small>Province</small>
@@ -538,11 +538,11 @@ else{
 						</td>
 					</tr>
 					<tr>
-						
+
 						<td ><label>Phone No: *</label></td>
 						<td><input class="form-control" name="family_phone" id="family_phone" value="<?php if($edit==1){echo $data['phone'];}?>" required></td>
 					</tr>
-					
+
 				</tbody>
 			</table>
 		</div>
@@ -558,16 +558,16 @@ else{
 							<option>Asylum Seeker</option>
 						</select></td>
           </tr>
-					<tr>					
+					<tr>
 						<td ><label>Date & port arrival: *</label></td>
 						<td><div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
 								<input type="text" class="form-control" name="family_date_arrival" id="family_date_arrival"  placeholder="yyyy-mm-dd"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 							</div>
 							<input class="form-control" name="family_arrival" id="family_arrival" placeholder="Port Arrival"></td>
 					</tr>
-					
+
 					<tr>
-						
+
 						<td ><label>Last level of education:</label></td>
 						<td>
               <select class="form-control" name="family_education" id="family_education">
@@ -577,32 +577,32 @@ else{
                 <option value="V">Vocational</option>
                 <option value="UG">Under Graduate</option>
                 <option value="PG">Postgraduate</option>
-              </select>	
-							
+              </select>
+
 						</td>
 					</tr>
 					<tr>
-						
+
 						<td ><label>Skills:</label></td>
 						<td><textarea class="form-control" name="family_skill" id="family_skill" ></textarea></td>
 					</tr>
 					<tr>
-						
+
 						<td ><label>Mother Tongue:</label></td>
 						<td><input class="form-control" name="family_mother-tongue" id="family_mot" ></td>
 					</tr>
 					<tr>
-						
+
 						<td ><label>Knowledge of other languages:</label></td>
 						<td><input class="form-control" name="family_known-language" id="family_known_language" ></td>
 					</tr>
 					<tr>
-						
+
 						<td ><label>Previous occupation:</label></td>
 						<td><input class="form-control" name="family_previous-occupation" id="family_previous_occupation" ></td>
 					</tr>
 					<tr>
-						
+
 						<td ><label>Willingness to volunteer:</label></td>
 						<td><input class="form-control" name="family_volunteer" id="family_volunteer" ></td>
 					</tr>
@@ -619,20 +619,20 @@ else{
 			</table>
 		</div>
     </div>
-			
+
     <div class="col-lg-12" id="family"></div>
     </div>
       <div class="panel-footer">
         <button class="btn btn-success" id="add-family"><i class="fa fa-plus"></i> Add</button>
       </div>
 		</div>
-		
+
 		</div>
 	</div>
 </div>
 
 <?php
-// comment 
+// comment
 if($edit==1 AND $_SESSION['group_id']==1){
 echo '<div class="col-lg-12" ><label>Comment:</label><textarea class="form-control" id="comment">'; echo Balikin($data['comment']); echo'</textarea><br><small id="t"></small></div> ';
 }

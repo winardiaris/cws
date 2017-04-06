@@ -18,11 +18,11 @@
 	$file_no=$_GET['file_no'];
 	$option=mysql_query("SELECT * FROM `reported_family` WHERE `file_no`='$file_no' ");
 	$no=0;
-	
+
 	while($data=mysql_fetch_array($option)){
-    $no ++;	
+    $no ++;
     $id=$data['id'];
-		echo 
+		echo
 		"<tr>
 			<td align='right' width'10px'>".$no.".</td>
 			<td>".$data['name']."</td>
@@ -35,7 +35,7 @@
       </td>
 		</tr>";
 	}
-	
+
 	?>
 </tbody>
 </table></div>
@@ -67,7 +67,7 @@ $(document).ready(function(){
           var kota=address2[0]+"."+address2[1];
           var kel=address[0];
           var detail=address[1];
-          
+
           console.log(val);
           console.log(prov);
           console.log(kota);

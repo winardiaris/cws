@@ -14,7 +14,7 @@ function getAddress($address){
 	else{
 		$data = $address;
 	}
-	
+
 	return $data;
 }
 function getCountry($id){
@@ -24,26 +24,26 @@ function getCountry($id){
 }
 function getData($file_no){
 	$str = "";
-	
+
 	$qia =mysql_query("SELECT count(*) AS `ada` FROM `ia` WHERE `file_no`='$file_no' AND `status`='1' ") or die(mysql_error());
 	$data1 =mysql_fetch_array($qia);
 	if($data1['ada']>0){
 		$str .="<a href='?page=ia-form&op=edit&file_no=$file_no'>IA</a>, ";
 	}
-	
+
 	$qse =mysql_query("SELECT `se_id` FROM `se` WHERE `file_no`='$file_no' AND `status`='1' ORDER BY `doa` DESC ")or die(mysql_error());
 	$ada = mysql_num_rows($qse);
 	$data2 =mysql_fetch_array($qse);
 	if($ada>0){
 		$str .="<a href='?page=se-form&op=edit&file_no=$file_no&se_id=".$data2['se_id']."'>SE</a>, ";
 	}
-	
+
 	$qbia =mysql_query("SELECT count(*) AS `ada` FROM `bia` WHERE `file_no`='$file_no' AND `status`='1' ")or die(mysql_error());
 	$data3 =mysql_fetch_array($qbia);
 	if($data3['ada']>0){
 		$str .="<a href='?page=bia-form&op=edit&file_no=$file_no'>BIA</a>, ";
-	}	
-	
+	}
+
 	$qhr =mysql_query("SELECT count(*) AS `ada` FROM `hr` WHERE `file_no`='$file_no' AND `status`='1' ")or die(mysql_error());
 	$data4 =mysql_fetch_array($qhr);
 	if($data4['ada']>0){
@@ -65,13 +65,13 @@ function getWhoLastChange($file_no,$location){
 	$data = mysql_fetch_array($qry);
 	$user_id = $data['user_id'];
 	$time = $data['time'];
-	
+
 	$qry2 = mysql_query("SELECT `user_real_name` FROM `user` WHERE `user_id`='$user_id' ")or die(mysql_error());
 	$data2 =mysql_fetch_array($qry2);
 	$name = $data2['user_real_name'];
-	
+
 	$str = "<small>Last changed by: ".$name." - ".$time."</small>";
-	
+
 	return $str;
 	}
 }
@@ -112,7 +112,7 @@ function UbahSimbol($str){
 
 	$str = preg_replace($search,$replace,$str);
 	return $str;
-	
+
 }
 function Balikin($str){
 	$search = array ("'xpetiksatux'",
@@ -163,7 +163,7 @@ if(isset($_GET['op'])){
 		$log_location = $_GET['log_location'];
 		$log_message = $_GET['log_message'];
 		$log_time = $_GET['log_time'];
-		
+
 		setHistory($user_id,$log_location,$log_message,$log_time);
 	}
 

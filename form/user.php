@@ -1,4 +1,4 @@
-<?php 
+<?php
 $R="R12";$W="W12";
 include("form/navigasi.php");
 setHistory($_SESSION['user_id'],"user_data","Open User Data",$NOW);
@@ -9,7 +9,7 @@ $(document).ready(function(){
 	$(".delete").click(function(){
 		var 	user_id = $(this).attr("id"),
 				datanya = "&user_id="+user_id;
-		
+
 		$.ajax({url:"form/user-action.php",data:"op=deluser"+datanya,cache:false,success: function(msg){
 			if(msg=="success"){
 				alert("Data has been deleted !!");
@@ -17,7 +17,7 @@ $(document).ready(function(){
 			}else{alert("Data not delete	 !!");}}
 		});
 	});
-	
+
 })
 </script>
 <div id="page-wrapper"><!-- page-wrapper -->
@@ -32,10 +32,10 @@ $(document).ready(function(){
 				<a href="?page=user-group" class="btn btn-sm btn-primary"><i class="fa fa-user" ></i> User Group</a>
 			</div>
 			</div>
-			
+
 			<table class="table table-striped table-bordered table-hover" id="dataTables">
 				<thead>
-					<tr>      
+					<tr>
 						<th></th>
 						<th>No</th>
 						<th >User ID</th>
@@ -48,9 +48,9 @@ $(document).ready(function(){
 				</thead>
 				<tbody>
 					<?php
-						$qry = mysql_query("SELECT `user`.`user_id`, `usergroup`.`group_name`, `user`.`user_name`, `user`.`user_real_name`, `user`.`last_login` , `user`.`last_change` FROM `user` 
-						INNER JOIN `usergroup` on `user`.`group_id` = `usergroup`.`group_id` 
-						
+						$qry = mysql_query("SELECT `user`.`user_id`, `usergroup`.`group_name`, `user`.`user_name`, `user`.`user_real_name`, `user`.`last_login` , `user`.`last_change` FROM `user`
+						INNER JOIN `usergroup` on `user`.`group_id` = `usergroup`.`group_id`
+
 						ORDER BY `user`.`user_id` ASC") or die(mysql_error());
 						$no = 0;
 						while($data = mysql_fetch_array($qry)){
@@ -67,7 +67,7 @@ $(document).ready(function(){
 									    <li role="presentation"><a role="menuitem" tabindex="-1" href="?page=user-action&op=deluser&user_id='.$data['user_id'].'" class="text-danger delete"><i class="fa fa-trash"></i> Delete</a></li>
 									  </ul>
 									</div>
-								</td>	
+								</td>
 								<td align="right">'.$no.'.</td>
 								<td>'.$data['user_id'].'</td>
 								<td>'.$data['group_name'].'</td>
@@ -75,14 +75,14 @@ $(document).ready(function(){
 								<td>'.$data['user_real_name'].'</td>
 								<td>'.$data['last_login'].'</td>
 								<td>'.$data['last_change'].'</td>
-														
+
 							';
 						}
-					
+
 					?>
 				</tbody>
 			</table>
 		</div>
-		
+
 	</div>
 </div><!-- page-wrapper -->

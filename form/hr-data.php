@@ -7,10 +7,10 @@ include("form/navigasi.php") ;
 		$("a.delete").click(function(){
 			var 	hr_id = $(this).attr("id"),
 					file_no = $(this).attr("data"),
-					datanya="&hr_id="+hr_id;	
+					datanya="&hr_id="+hr_id;
 			var r = confirm("Remove ["+file_no+"]? ");
-			
-			
+
+
 			if (r == true) {
 				$.ajax({url:"form/hr-action.php",data:"op=del"+datanya,cache:false,success: function(msg){
 					if(msg=="success"){
@@ -18,7 +18,7 @@ include("form/navigasi.php") ;
 						location.reload();
 					}else{alert("Cannot remove !!");}}
 				});
-			} 
+			}
 		});
 	});
 
@@ -53,14 +53,14 @@ include("form/navigasi.php") ;
 					if($_GET['a']==1){
 						setHistory($_SESSION['user_id'],"hr_data","Open HR Data (First-Assessment)",$NOW);
 						$qry = mysql_query("
-							SELECT `hr`.`hr_id`,`hr`.`file_no`, `person`.`name`,`hr`.`report_date`, `hr`.`location` ,`hr`.`reported` 
+							SELECT `hr`.`hr_id`,`hr`.`file_no`, `person`.`name`,`hr`.`report_date`, `hr`.`location` ,`hr`.`reported`
 							FROM `hr`
 							INNER JOIN `person` ON `hr`.`file_no` = `person`.`file_no` WHERE `hr`.`status`='1' AND `hr`.`id_data`='0'") or die(mysql_error());
 					}
 					elseif($_GET['a']==2){
 						setHistory($_SESSION['user_id'],"hr_data","Open HR Data (Re-Assessment)",$NOW);
 						 $qry = mysql_query("
-							SELECT `hr`.`hr_id`,`hr`.`file_no`, `person`.`name`,`hr`.`report_date`, `hr`.`location` ,`hr`.`reported` 
+							SELECT `hr`.`hr_id`,`hr`.`file_no`, `person`.`name`,`hr`.`report_date`, `hr`.`location` ,`hr`.`reported`
 							FROM `hr`
 							INNER JOIN `person` ON `hr`.`file_no` = `person`.`file_no` WHERE `hr`.`status`='1' AND `hr`.`id_data`='1'") or die(mysql_error());
 					}
@@ -82,7 +82,7 @@ include("form/navigasi.php") ;
 									if($_GET['a']==1){
 										echo '<li role="presentation">
 										<a role="menuitem" tabindex="-1" href="form/view/view-hr-all.php?file_no='.$data['file_no'].'&a=all"  title="View '.$file_no.'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-eye"></i> View all</a></li>';
-										
+
 									}
 								  echo' <li role="presentation">
 										<a role="menuitem" tabindex="-1" href="?page=hr-form&op=edit&file_no='.$data['file_no'].'&hr_id='.$data['hr_id'].'"><i class="fa fa-edit"></i> Edit</a></li>
@@ -97,12 +97,12 @@ include("form/navigasi.php") ;
 							<td>'.$data['name'].'</td>
 							<td>'.$data['report_date'].'</td>
 							<td>'.Balikin($data['reported']).'</td>
-							<td>'.Balikin($data['location']).'</td>						
+							<td>'.Balikin($data['location']).'</td>
 						</tr>
 						';
 					}
-					
-				
+
+
 				?>
 				</tbody>
 			</table>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 $R="R12";$W="W12";
 include("form/navigasi.php");
 ?>
@@ -13,13 +13,13 @@ $(document).ready(function(){
 				else if(r==0 && w==1){x=0;z= $("#W"+i+":checked").val();}
 				else if(r==1 && w==0){x= $("#R"+i+":checked").val();z=0;}
 				else if(r==1 && w==1 ){x= $("#R"+i+":checked").val();z= $("#W"+i+":checked").val();}
-			
+
 				var aa = aa+";"+x+";"+z;
 			}
 		var aa;var pnjg = aa.length;var potong = aa.split(";");var ambil = potong[0].length+1;var value = aa.substr(ambil,pnjg);
 		var datanya = "&group_name="+group_name+"&value="+value;
 
-		
+
 		$.ajax({url:"form/user-action.php",data:"op=saveusergroup"+datanya,cache:false,success: function(msg){
 			if(msg=="success"){
 				alert("Data has been saved !!");
@@ -30,7 +30,7 @@ $(document).ready(function(){
 	$("#update_group").click(function(){
 		var group_id = $("#group_id").val(),
 			group_name = $("#group_name").val();
-			
+
 			for(i=1;i<=13;i++){
 				r= $("#R"+i+":checked").length;
 				w= $("#W"+i+":checked").length;
@@ -38,13 +38,13 @@ $(document).ready(function(){
 				else if(r==0 && w==1){x=0;z= $("#W"+i+":checked").val();}
 				else if(r==1 && w==0){x= $("#R"+i+":checked").val();z=0;}
 				else if(r==1 && w==1 ){x= $("#R"+i+":checked").val();z= $("#W"+i+":checked").val();}
-			
+
 				var aa = aa+";"+x+";"+z;
 			}
 		var aa;var pnjg = aa.length;var potong = aa.split(";");var ambil = potong[0].length+1;var value = aa.substr(ambil,pnjg);
 		var datanya = "&group_id="+group_id+"&group_name="+group_name+"&value="+value;
 
-		
+
 		$.ajax({url:"form/user-action.php",data:"op=updateusergroup"+datanya,cache:false,success: function(msg){
 			if(msg=="success"){
 				alert("Data has been saved !!");
@@ -52,7 +52,7 @@ $(document).ready(function(){
 			}else{alert("Data not saved !!");}}
 		});
 	});
-	
+
 	//check uncheck all
 	$("#R0").click(function() {
 		var c = this.checked;
@@ -63,15 +63,15 @@ $(document).ready(function(){
 	$("#W0").click(function() {
 		var c = this.checked;
 		for(i=1;i<=12;i++){
-			$("#W"+i+":checkbox").prop("checked",c);			
-		}		
+			$("#W"+i+":checkbox").prop("checked",c);
+		}
 	});
-	
+
 	//test
 	$(".delete").click(function(){
 		var 	group_id = $(this).attr("id"),
 				datanya = "&group_id="+group_id;
-		
+
 		$.ajax({url:"form/user-action.php",data:"op=delusergroup"+datanya,cache:false,success: function(msg){
 			if(msg=="success"){
 				alert("Data has been deleted !!");
@@ -79,14 +79,14 @@ $(document).ready(function(){
 			}else{alert("Data not delete	 !!");}}
 		});
 	});
-	
+
 });
 </script>
 
 <div id="page-wrapper"><!-- page-wrapper -->
 <div class="row">
 	<div class="col-lg-12"><h3 class="page-header">User Group</h3></div>
-	
+
 <?php
 if(isset($_GET['op'])){
 	if($_GET['op']=="edit"){
@@ -94,7 +94,7 @@ if(isset($_GET['op'])){
 		$qry = mysql_query("SELECT * FROM `usergroup` WHERE `group_id`='".$_GET['group_id']."'") or die(mysql_error());
 		$data=mysql_fetch_array($qry);
 		$access=explode(";",$data['group_access']);
-		
+
 		$edit = 1;
 		$button = '<button class="btn btn-primary" id="update_group"><i class="fa fa-refresh"></i> Update</button><br>';
 		setHistory($_SESSION['user_id'],"usergroup_form","Open Usergroup Form for Group ID [$group_id] ",$NOW);
@@ -104,10 +104,10 @@ if(isset($_GET['op'])){
 		$button = '<button class="btn btn-success" id="save_group"><i class="fa fa-save"></i> Save</button><br>';
 		setHistory($_SESSION['user_id'],"usergroup_form","Open Usergroup Form",$NOW);
 	}
-	
-	
-	
-?>	
+
+
+
+?>
 	<div id="form-group" class="col-lg-8">
 		<label>Group Name</label>
 		<input type="hidden" id="group_id" value="<?php if($edit==1){echo $_GET['group_id'];} ?>">
@@ -209,7 +209,7 @@ if(isset($_GET['op'])){
 	<br>
 	<br>
 	</div>
-<?php	
+<?php
 }
 else{
 ?>
@@ -263,7 +263,7 @@ else{
 <?php
 }
 ?>
-	
+
 
 </div>
 </div>

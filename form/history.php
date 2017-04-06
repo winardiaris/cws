@@ -1,4 +1,4 @@
-<?php 
+<?php
 $R="R14";$W="W14";
 include("form/navigasi.php");
 ?>
@@ -24,15 +24,15 @@ include("form/navigasi.php");
 			<?php
 				$no=1;
 				$qry = mysql_query("
-							SELECT 
-							`system_log`.`user_id`,  
-							`system_log`.`log_location`, 
-							`system_log`.`log_message`, 
+							SELECT
+							`system_log`.`user_id`,
+							`system_log`.`log_location`,
+							`system_log`.`log_message`,
 							`system_log`.`log_time`,
 							`user`.`user_real_name`
 							FROM `system_log`
 							INNER JOIN `user` ON `system_log`.`user_id`=`user`.`user_id`
-							
+
 							 ORDER BY `log_time` DESC;")OR DIE(mysql_error());
 				while($data=mysql_fetch_array($qry)){
 					echo'
@@ -48,7 +48,7 @@ include("form/navigasi.php");
 			?>
 			</tbody>
 		</table>
-	
+
 	</div>
 </div>
 </div>

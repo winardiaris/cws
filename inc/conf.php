@@ -14,7 +14,7 @@ ob_start();
 $iframe = '	<div id="divpopup" name="divpopup" class="wrapper" style="display:none" onClick="window.framepopup.location=\''.$URL.'loading.html\';setdisplay(divpopup,0); return false">
 				<div class="col-lg-12">
 				<a href=# onClick="window.framepopup.location=\''.$URL.'loading.html\';setdisplay(divpopup,0); return false"><button type="button" class="btn btn-default  btn-close"><i class="fa fa-close"></i></button></a>
-				
+
 				<iframe id="framepopup" name="framepopup"  src="loading.html"></iframe>
 				</div>
 			</div>';

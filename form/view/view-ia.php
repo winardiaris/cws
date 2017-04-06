@@ -5,7 +5,7 @@ include("../function.php") ;
 if(empty($_GET['a'])){
 	echo '
 <html><head>
-	
+
 	<link href="'.$URL.'css/bootstrap.css" rel="stylesheet">
 	<link href="'.$URL.'css/custom.css" rel="stylesheet">
 	<link href="'.$URL.'font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -17,11 +17,11 @@ if(isset($_GET['file_no'])){
 	$qry = mysql_query("SELECT * FROM `ia` WHERE `file_no`='".$_GET['file_no']."'") or die(mysql_error());
 	$data = mysql_fetch_array($qry);
 	$count = mysql_num_rows($qry);
-	
+
 	$assessment = explode(";",$data['assessment']);
 	$legal_doc = explode(";",$data['legal_doc']);
 	$living_env = explode(";",$data['living_env']);
-	
+
 	$residence = $living_env[0];
 	$room = explode(",",$living_env[1]);
 	$furniture = explode(",",$living_env[2]);
@@ -32,11 +32,11 @@ if(isset($_GET['file_no'])){
 	$q56 = explode(";",$data['q56']);
 	$q78 = explode(";",$data['q78']);
 	$edit=1;
-	
+
 	if($count>0){
 		include ("header.php");
 
-?>	
+?>
 
 <h4>Initial Assessment</h4>
 <hr>
@@ -44,14 +44,14 @@ if(isset($_GET['file_no'])){
 	<tr>
 		<td width="25%"><b>UNHCR Case Number:</b></td>
 		<td width="25%"><?php echo $_GET['file_no']; ?></td>
-		
+
 		<td width="25%"><b>Date of Assessment:</b></td>
 		<td width="25%"><?php echo $assessment[0]; ?></td>
 	</tr>
 	<tr>
 		<td><b>Location:</b></td>
 		<td><?php echo $assessment[1];?></td>
-		
+
 		<td><b>Assessment conducted by: </b></td>
 		<td><?php echo $assessment[2]; ?></td>
 	</tr>
@@ -92,7 +92,7 @@ if(isset($_GET['file_no'])){
 		<?php
 			$file_no=$_GET['file_no'];
 			$no=0;
-			
+
 			$qry = mysql_query("SELECT * FROM `with_whom_living` WHERE `file_no`='$file_no'") or die(mysql_error());
 			while($data2=mysql_fetch_array($qry)){
 				$no++;
@@ -138,7 +138,7 @@ if(isset($_GET['file_no'])){
 			<b><input type="checkbox" disabled id="ia_room_7" value="1" <?php if($edit==1){if($room[6]==1)echo "checked='checked'";} ?>> Inadequate air ventilation</b><br>
 			<b><input type="checkbox" disabled id="ia_room_8" value="1" <?php if($edit==1){if($room[7]==1)echo "checked='checked'";} ?>> Piped Clean & Safe Water</b><br>
 			<b><input type="checkbox" disabled id="ia_room_9" value="1" <?php if($edit==1){if($room[8]==1)echo "checked='checked'";} ?>> Shared kitchen</b><br>
-		</td><td>	
+		</td><td>
 			<b><input type="checkbox" disabled id="ia_room_10" value="1" <?php if($edit==1){if($room[9]==1)echo "checked='checked'";} ?>> No kitchen</b><br>
 			<b><input type="checkbox" disabled id="ia_room_11" value="1" <?php if($edit==1){if($room[10]==1)echo "checked='checked'";} ?>> Damp</b><br>
 			<b><input type="checkbox" disabled id="ia_room_12" value="1" <?php if($edit==1){if($room[11]==1)echo "checked='checked'";} ?>> Smell</b><br>
@@ -150,7 +150,7 @@ if(isset($_GET['file_no'])){
 			<b><input type="checkbox" disabled id="ia_furniture_1" value="1" <?php if($edit==1){if($furniture[0]==1)echo "checked='checked'";} ?>> Bed </b><br>
 			<b><input type="checkbox" disabled id="ia_furniture_2" value="1" <?php if($edit==1){if($furniture[1]==1)echo "checked='checked'";} ?>> Mattress </b><br>
 			<b><input type="checkbox" disabled id="ia_furniture_3" value="1" <?php if($edit==1){if($furniture[2]==1)echo "checked='checked'";} ?>> Carpet </b><br>
-		</td><td colspan="3">	
+		</td><td colspan="3">
 			<b><input type="checkbox" disabled id="ia_furniture_4" value="1" <?php if($edit==1){if($furniture[3]==1)echo "checked='checked'";} ?>> Wardrobe/Cupboard</b><br>
 			<b><input type="checkbox" disabled id="ia_furniture_5" value="1" <?php if($edit==1){if($furniture[4]==1)echo "checked='checked'";} ?>> Table</b><br>
 			<b><input type="checkbox" disabled id="ia_furniture_6" value="1" <?php if($edit==1){if($furniture[5]==1)echo "checked='checked'";} ?>> Chairs</b><br>
@@ -183,7 +183,7 @@ if(isset($_GET['file_no'])){
 		<td><b>How do you pay for regular expenses? Who pays the rent? Are you asked to contribute to household costs (food, rent, etc.)? Any coercion? The difference between chores and being enslaved</b></td>
 	</tr>
 	<tr>
-		
+
 		<td colspan="2"><p style="margin-left:20px;"><?php echo $q12[1]; ?></p></td>
 	</tr>
 	<tr>
@@ -205,7 +205,7 @@ if(isset($_GET['file_no'])){
 		<td><b>Do you face any problems in your current living arrangement? Do you have any problems with your housemates, neighbours, or others (e.g. police)? Anyone tease you? Potential of abuse*</b></td>
 	</tr>
 	<tr>
-		
+
 		<td colspan="2"><p style="margin-left:20px;"><?php echo $q56[0];  ?></p></td>
 	</tr>
 	<tr>
@@ -213,7 +213,7 @@ if(isset($_GET['file_no'])){
 		<td><b>Are there any people around you who can help you address these problems? What kinds of support do you need?</b></td>
 	</tr>
 	<tr>
-		
+
 		<td colspan="2"><p style="margin-left:20px;"><?php echo $q56[1]; ?></p></td>
 	</tr>
 	<tr>
@@ -221,7 +221,7 @@ if(isset($_GET['file_no'])){
 		<td><b>Do you have anything else you would like to tell me?</b></td>
 	</tr>
 	<tr>
-		
+
 		<td colspan="2"><p style="margin-left:20px;"><?php echo $q78[0]; ?></p></td>
 	</tr>
 	<tr>
@@ -229,7 +229,7 @@ if(isset($_GET['file_no'])){
 		<td><b>Comments from housemates:</b></td>
 	</tr>
 	<tr>
-		
+
 		<td colspan="2"><p style="margin-left:20px;"><?php echo $q78[1]; ?></p></td>
 	</tr>
 	<tr>
@@ -237,10 +237,10 @@ if(isset($_GET['file_no'])){
 	</tr>
 </table>
 <?php
-	// comment 
+	// comment
 	echo '<b>Comment:</b>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>';
 	echo '<div class="page-break"></div>';
-	
+
 	//== panel
 		if(empty($_GET['a'])){
 			$link =  "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"."&a=hide";
@@ -260,8 +260,8 @@ if(isset($_GET['file_no'])){
 	else{
 		echo "No data IA for File Number: ".$_GET['file_no'];
 		echo '<div class="page-break"></div>';
-		
-	}	
+
+	}
 }
 if(empty($_GET['a'])){
 	echo'</body>

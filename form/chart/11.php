@@ -8,11 +8,11 @@
 </div>
 </div>
 
-	
-	
-	
-	
-	
+
+
+
+
+
 <script>
 
 
@@ -23,10 +23,10 @@ $(function() {
 	while($dj = mysql_fetch_array($qj)){
 		$aj = $aj."SUM( IF( `address` LIKE'".$dj['kode']."%',  1 , 0 ) ) AS `".$dj['kode']."`,";
 		$bj = substr($aj,0,strlen($aj)-1);
-		
+
 		$qryj = mysql_query("SELECT ".$bj." FROM `person` WHERE `active`='1'") or die( mysql_error());
 		$dataj=mysql_fetch_array($qryj);
-		
+
 		$xj = $xj."{label: '".$dj['nama']." [".$dataj[$dj['kode']]."]', data:".$dataj[$dj['kode']]."},";
 		$zj = substr($xj,0,strlen($xj)-1);
 	}
@@ -39,7 +39,7 @@ $(function() {
                 label: {
 		            show:true,
 		            radius: 0.8,
-		            formatter: function (label, series) {                
+		            formatter: function (label, series) {
 		                return '<div class="label-chart">' +label + ' : ' +Math.round(series.percent) +'%</div>';
 		            }
 		        }

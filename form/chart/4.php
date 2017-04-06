@@ -8,11 +8,11 @@
 </div>
 </div>
 
-	
-	
-	
-	
-	
+
+
+
+
+
 <script>
 //Propinsi
 $(function() {
@@ -25,7 +25,7 @@ $(function() {
 	{label: \'Jawa Barat ['.$data['jabar'].']\', data:'.$data['jabar'].'},
 	{label: \'Banten  ['.$data['banten'].']\', data:'.$data['banten'].'}
 	];';
-	
+
 	?>
     var plotObj = $.plot($("#chart_propinsi"), data, {
         series: {pie: {
@@ -33,7 +33,7 @@ $(function() {
                 label: {
 		            show:true,
 		            radius: 0.8,
-		            formatter: function (label, series) {                
+		            formatter: function (label, series) {
 		                return '<div class="label-chart">' +label + ' : ' +Math.round(series.percent) +'%</div>';
 		            }
 		        }

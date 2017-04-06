@@ -8,17 +8,17 @@ if(isset($_GET['op'])){
 		$user_id = $_GET['user_id'];
 		$header = "Edit User";
 		$button = '<button  id="user_update" class="btn btn-success"><i class="fa fa-refresh"></i> Update</button>';
-		
+
 		$qry = mysql_query("SELECT * FROM `user` WHERE `user_id`='$user_id'") or die(mysql_error());
 		$data = mysql_fetch_array($qry);
-		
+
 		//data
 		$group_id = $data['group_id'];
 		$user_name = $data['user_name'];
 		$user_real_name = $data['user_real_name'];
 		$user_mail = $data['user_mail'];
 		$user_info = $data['user_info'];
-		
+
 		$edit=1;
 		setHistory($_SESSION['user_id'],"user_form","Open User form for User ID [$user_id] ",$NOW);
 	}
@@ -36,7 +36,7 @@ else{
 $(document).ready(function(){
 	$("#user_name").change(function(){
 		var datanya = "&user_name="+$(this).val();
-			
+
 			$.ajax({url: "form/user-action.php",data: "op=check"+datanya,cache: false,
 				success: function(msg){
 					if(msg=="inuse"){
@@ -47,7 +47,7 @@ $(document).ready(function(){
 					}
 				}
 			});
-	});	
+	});
 	$("#user_save").click(function(){
 		var group_id = $("#group_id").val(),
 			name = $("#user_name").val(),
@@ -56,7 +56,7 @@ $(document).ready(function(){
 			rpassword = $("#retype_password").val(),
 			info = $("#user_info").val(),
 			datanya="&group_id="+group_id+"&name="+name+"&real_name="+real_name+"&password="+password+"&info="+info;
-			
+
 			if(group_id == "0"){
 				alert("Please Select Group id");
 				$("#group_id").focus();
@@ -95,7 +95,7 @@ $(document).ready(function(){
 			rpassword = $("#retype_password").val(),
 			info = $("#user_info").val(),
 			datanya="&user_id="+user_id+"&group_id="+group_id+"&name="+name+"&real_name="+real_name+"&password="+password+"&info="+info;
-			
+
 			$.ajax({url:"form/user-action.php",data:"op=updateuser"+datanya,cache:false,success: function(msg){
 				if(msg=="success"){
 					alert("Data has been saved !!");
@@ -122,7 +122,7 @@ $(document).ready(function(){
 					<option value="'.$data2['group_id'].'"';
 						if($group_id == $data2['group_id']){
 							echo "selected";
-						}					
+						}
 					echo'
 					>'.$data2['group_name'].'</option>
 					';
@@ -146,7 +146,7 @@ $(document).ready(function(){
 		<div class="form-group">
 			<label>Retype Password</label>
 			<input class="form-control" id="retype_password" type="password">
-		</div>		
+		</div>
 	</div>
 	<div class="col-lg-6 col-sm-6">
 		<div class="form-group">

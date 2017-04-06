@@ -4,7 +4,7 @@ if(isset($_SESSION['login'])){
 	if(isset($group_id)){
 		$getR=mysql_query("SELECT COUNT(*) AS `R` FROM `usergroup` WHERE `group_id`='$group_id' AND `group_access` LIKE '%$R%'");
 		$getW=mysql_query("SELECT COUNT(*) AS `W` FROM `usergroup` WHERE `group_id`='$group_id' AND `group_access` LIKE '%$W%'");
-		
+
 		$read=mysql_fetch_array($getR);
 		$write=mysql_fetch_array($getW);
 		if($read['R'] > 0 AND $write['W'] > 0){
@@ -22,7 +22,7 @@ if(isset($_SESSION['login'])){
 				$(".btn-success").attr("disabled",true);
 				$(".btn-danger").attr("disabled",true);
 				$(":file").attr("disabled",true);
-				
+
 				var page = $(".page-header").text();
 				$(".page-header").text(page+" (Read only)");
 				$(".page-header").addClass("text-warning");

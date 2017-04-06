@@ -8,25 +8,25 @@
 </div>
 </div>
 
-	
-	
-	
-	
-	
+
+
+
+
+
 <script>
 
 //DKI Jakarta
 $(function() {
-<?php 
+<?php
   $a="";$x="";
 	$q = mysql_query("SELECT * FROM `data_wilayah` WHERE `kode` LIKE '31%' AND LENGTH(`kode`)>2 AND LENGTH(`kode`)<=5 ORDER BY `kode` ASC; ") or die(mysql_error());
 	while($d = mysql_fetch_array($q)){
 		$a = $a."SUM( IF( `address` LIKE'".$d['kode']."%',  1 , 0 ) ) AS `".$d['kode']."`,";
 		$b = substr($a,0,strlen($a)-1);
-		
+
 		$qry = mysql_query("SELECT ".$b." FROM `person` WHERE `active`='1'") or die( mysql_error());
 		$data=mysql_fetch_array($qry);
-		
+
 		$x = $x."{label: '".$d['nama']." [".$data[$d['kode']]."] ', data:".$data[$d['kode']]."},";
 		$z = substr($x,0,strlen($x)-1);
 	}
@@ -39,7 +39,7 @@ $(function() {
                 label: {
 		            show:true,
 		            radius: 0.8,
-		            formatter: function (label, series) {                
+		            formatter: function (label, series) {
 		                return '<div class="label-chart">' +label + ' : ' +Math.round(series.percent) +'%</div>';
 		            }
 		        }

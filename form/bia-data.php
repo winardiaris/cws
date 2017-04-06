@@ -6,10 +6,10 @@ include("form/navigasi.php") ;
 <script>
 	$(document).ready(function(){
 		$("a.delete").click(function(){
-			var file_no = $(this).attr("id"),datanya="&file_no="+file_no;	
+			var file_no = $(this).attr("id"),datanya="&file_no="+file_no;
 			var r = confirm("Remove ["+file_no+"]? ");
-			
-			
+
+
 			if (r == true) {
 				$.ajax({url:"form/bia-action.php",data:"op=del"+datanya,cache:false,success: function(msg){
 					if(msg=="success"){
@@ -17,7 +17,7 @@ include("form/navigasi.php") ;
 						location.reload();
 					}else{alert("Cannot remove !!");}}
 				});
-			} 
+			}
 		});
 	});
 
@@ -74,10 +74,10 @@ include("form/navigasi.php") ;
 				</tr>
 				';
 			}
-			
+
 			?>
 		</tbody>
-	
+
 	</table>
 	</div>
 	</div>

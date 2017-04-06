@@ -1,9 +1,9 @@
-<?php 
+<?php
 $LOCATION = "dashboard";
 setHistory($_SESSION['user_id'],$LOCATION,"Open Dashboard",$NOW);
 $R="R1";$W="W1";
 //cek login
-include("form/navigasi.php") 
+include("form/navigasi.php")
 ?>
 <div id="page-wrapper"><!-- page-wrapper -->
 <div class="row">
@@ -13,7 +13,7 @@ include("form/navigasi.php")
 	<div class="col-lg-4">
 		<div class="well-sm bg-primary">
 			<label>Welcome  </label>
-			<p>You login as <i><?php echo  $_SESSION['user_real_name']; ?></i>	
+			<p>You login as <i><?php echo  $_SESSION['user_real_name']; ?></i>
 			</p>
 		</div>
 	</div>
@@ -139,7 +139,7 @@ include("form/navigasi.php")
 		</tbody>
 	</table>
 </div>
-	
+
 </div>
 </div><!-- page-wrapper -->
 <script>
@@ -152,7 +152,7 @@ $(function() {
 	{label: \'Male ['.$sex['M'].'] \', data:'.$sex['M'].'},
 	{label: \'Female ['.$sex['F'].'] \', data:'.$sex['F'].'}
 	];';
-	
+
 	?>
     var plotObj = $.plot($("#chart_gender"), data, {
         series: {
@@ -161,7 +161,7 @@ $(function() {
                 label: {
 		            show:true,
 		            radius: 0.8,
-		            formatter: function (label, series) {                
+		            formatter: function (label, series) {
 		                return '<div class="label-chart">' +label + ' : ' +Math.round(series.percent) +'%</div>';
 		            }
 		        }
@@ -204,7 +204,7 @@ $(function() {
                 label: {
 		            show:true,
 		            radius: 0.8,
-		            formatter: function (label, series) {                
+		            formatter: function (label, series) {
 		                return '<div class="label-chart">' +label + ' : ' +Math.round(series.percent) +'%</div>';
 		            }
 		        }
@@ -230,7 +230,7 @@ $(function() {
 	{label: \'Jawa Barat ['.$data['jabar'].']\', data:'.$data['jabar'].'},
 	{label: \'Banten  ['.$data['banten'].']\', data:'.$data['banten'].'}
 	];';
-	
+
 	?>
     var plotObj = $.plot($("#chart_province"), data, {
         series: {pie: {
@@ -238,7 +238,7 @@ $(function() {
                 label: {
 		            show:true,
 		            radius: 0.8,
-		            formatter: function (label, series) {                
+		            formatter: function (label, series) {
 		                return '<div class="label-chart">' +label + ' : ' +Math.round(series.percent) +'%</div>';
 		            }
 		        }
@@ -258,7 +258,7 @@ $(function () {
   $name="";
   $data2="";
   $label="";
-  
+
 	$qry =  mysql_query("SELECT DISTINCT `person`.`coo` , `master_country`.`country_name` AS `name` FROM `person` inner join `master_country` ON `person`.`coo`=`master_country`.`country_id` ORDER BY `master_country`.`country_name`  ;") or die(mysql_error());
 		$ccoo = mysql_num_rows($qry);
       $as = 1;
@@ -270,11 +270,11 @@ $(function () {
 		$name1 =  explode(",",substr($name,1,strlen($name)));
 		//echo $str1;
 		$qry2 = mysql_query("SELECT $str1 FROM `person` WHERE `person`.`active`='1'")or die(mysql_error());
-		$c = mysql_num_fields($qry2);	
+		$c = mysql_num_fields($qry2);
 		$data = mysql_fetch_array($qry2);
 		for($i=0;$i<$c;$i++){
 			$data2 .=",\n\t\t [".$i.",".$data[$i]."]";
-			$label .=",\n\t\t[".$i.",'".$name1[$i]."']";	
+			$label .=",\n\t\t[".$i.",'".$name1[$i]."']";
 		}
 		print( "var data = [".substr($data2,1,strlen($data2))."\n];\n\n");
 		print( "var ticks = [".substr($label,1,strlen($label))."\n];\n\n");
@@ -300,7 +300,7 @@ $(function () {
         };
      $.plot($("#chart_coo"), dataset, options);
 
-   
+
 });
 
 
@@ -315,7 +315,7 @@ $(function() {
 	{label: \'Shelter 1  ['.$data['S1'].']\', data:'.$data['S1'].'},
 	{label: \'Shelter 2  ['.$data['S2'].']\', data:'.$data['S2'].'}
 	];';
-	
+
 	?>
     var plotObj = $.plot($("#chart_class"), data, {
         series: {pie: {
@@ -323,7 +323,7 @@ $(function() {
                 label: {
 		            show:true,
 		            radius: 0.8,
-		            formatter: function (label, series) {                
+		            formatter: function (label, series) {
 		                return '<div class="label-chart">' +label + ' : ' +Math.round(series.percent) +'%</div>';
 		            }
 		        }

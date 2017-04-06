@@ -1,10 +1,10 @@
-<?php 
+<?php
 include("../inc/conf.php");
 include("function.php") ;
 	if(isset($_GET['file_no'])){
 		$file_no = $_GET['file_no'];
 		$qry = mysql_query("
-				SELECT 
+				SELECT
 				`person`.`file_no`,
 				`person`.`name`,
 				`master_country`.`country_name` ,
@@ -25,13 +25,13 @@ include("function.php") ;
 				`person`.`volunteer`,
 				`person`.`date_recognition`,
 				`person`.`active`
-			
-				
+
+
 				FROM `person`
-				INNER JOIN `master_country` ON `person`.`coo` = `master_country`.`country_id` 
-				INNER JOIN `marital_status` ON `person`.`marital` = `marital_status`.`marital_id` 
-				
-				WHERE `person`.`file_no` ='$file_no'") 
+				INNER JOIN `master_country` ON `person`.`coo` = `master_country`.`country_id`
+				INNER JOIN `marital_status` ON `person`.`marital` = `marital_status`.`marital_id`
+
+				WHERE `person`.`file_no` ='$file_no'")
 				or die(mysql_error());
 		$data = mysql_fetch_array($qry);
 		$split=explode(",",$data['arrival']);
@@ -106,7 +106,7 @@ include("function.php") ;
 			<td><?php echo $data['date_recognition'];?></td>
 		</tr>
 	</table>
-	
+
 	<h3>Reported family member</h3>
 	<hr>
 	<table class="table table-bordered">
@@ -121,14 +121,14 @@ include("function.php") ;
 			<th>Last Contact</th>
 		</tr>
 		<?php
-			
+
 			$option=mysql_query("SELECT * FROM `reported_family` WHERE `file_no`='$file_no' ");
 			$no=0;
 			if(mysql_num_rows($option)>0){
 				while($data=mysql_fetch_array($option)){
 					$no ++;	$id=$data['id'];$value=$data['value'];$split=explode(";",$value);
 					$name=$split[0];$age=$split[1];	$sex=$split[2]; $relation=$split[3]; $location=$split[4];$remarks =	$split[5];$contact=$split[6];
-					echo 
+					echo
 					"<tr>
 						<td align='right' width'10px'>".$no.".</td>
 						<td>".$name."</td>
@@ -145,6 +145,6 @@ include("function.php") ;
 				echo '<tr><td> - </td><td> - </td><td> - </td><td> - </td><td> - </td><td> - </td><td> - </td><td> - </td></tr>';
 			}
 		?>
-		
+
 </body>
 </html>

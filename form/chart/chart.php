@@ -1,4 +1,4 @@
-<?php 
+<?php
 $LOCATION="Chart";
 setHistory($_SESSION['user_id'],$LOCATION,"Open Chart",$NOW);
 include("form/navigasi.php") ;
@@ -9,10 +9,10 @@ include("form/navigasi.php") ;
 		$("#chartselect").change(function(){
 			var a = $(this).val(),
 				place=$("#placeholder");
-		
+
 				place.load("form/chart/"+a+".php");
 		});
-		
+
 	});
 </script>
 <div id="page-wrapper">
@@ -39,7 +39,7 @@ include("form/navigasi.php") ;
 			<option value="12">Mapping Banten</option>
 		</select>
 		<small>Last Update<span class="text-primary">
-			<?php 
+			<?php
 				$qry = mysql_query("SELECT MAX(`last_change`) AS `last_change`, MAX(`created`) AS `created` FROM `person` ")or die(mysql_error());
 				$data = mysql_fetch_array($qry);
 				if( $data['last_change'] > $data['created'] ){echo $data['last_change'];}

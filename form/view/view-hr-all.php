@@ -5,7 +5,7 @@ include("../function.php") ;
 if(empty($_GET['p'])){
 	echo '
 <html><head>
-	
+
 	<link href="'.$URL.'css/bootstrap.css" rel="stylesheet">
 	<link href="'.$URL.'css/custom.css" rel="stylesheet">
 	<link href="'.$URL.'font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -14,16 +14,16 @@ if(empty($_GET['p'])){
 }
 
 if(isset($_GET['file_no'])){
-	$file_no = $_GET['file_no'];	
+	$file_no = $_GET['file_no'];
 	$qry = mysql_query("SELECT * FROM `hr` WHERE `file_no`='$file_no' AND `status`='1'") or die(mysql_error());
 	$count=mysql_num_rows($qry);
 	$edit = 1;
 	if($count>0){
 		include ("header.php");
-		
+
 		while($data = mysql_fetch_array($qry)){
 			$hr_id = $data['hr_id'];
-?>			
+?>
 			<h4>Health Report File Number : <?php echo $_GET['file_no']?></h4>
 			<hr>
 			<h5>Basic</h5>
@@ -54,11 +54,11 @@ if(isset($_GET['file_no'])){
 						<?php if($edit==1){echo Balikin($data['location']);} ?>
 					</td>
 					<td></td>
-			
+
 				</tr>
-			</table>	
-			<div class="page-break"></div>	
-<?php	
+			</table>
+			<div class="page-break"></div>
+<?php
 			$q=mysql_query("SELECT * FROM `hr_data` WHERE `hr_id`='$hr_id'")or die(mysql_error());
 			$counts=mysql_num_rows($q);
 			$a=0;
@@ -79,13 +79,13 @@ if(isset($_GET['file_no'])){
 					$age = $y['age'];
 					if($y['sex']=="M"){$sex = "Male";}else{$sex="Female";}
 				}
-			
+
 			//---------
 ?>
 			<h5>Health Report</h5>
 			<table class="table table-bordered" >
 				<tr>
-					<?php 
+					<?php
 						echo "
 						<td><b>Name: </b> ".$name."</td>
 						<td><b>Age: </b> ".$age."</td>
@@ -141,19 +141,19 @@ if(isset($_GET['file_no'])){
 					<td colspan="3"><p style="margin-left:15px;"><?php if($edit==1){echo Balikin($d['hr7']);} ?></p></td>
 				</tr>
 			</table>
-<?php	
+<?php
 			if($a != $counts){
 				echo '<div class="page-break"></div>';
 			}
-			
+
 
 			//----------
 			}
-			// comment 
+			// comment
 			echo '<b>Comment:</b>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>
-			<div class="page-break"></div>	';	
+			<div class="page-break"></div>	';
 		}
-		
+
 		//== panel
 		if(empty($_GET['p'])){
 			$link =  "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"."&a=hide";
@@ -179,5 +179,5 @@ if(isset($_GET['file_no'])){
 if(empty($_GET['p'])){
 	echo'</body>
 </html>';
-}	
+}
 ?>

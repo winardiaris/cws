@@ -15,7 +15,7 @@
 			<a href="?page=dashboard">
 			<img src="img/logo.svg" class="navbar-logo">
 			<span class="navbar-brand" ><?php echo $NAME ?></span></a>
-			<p class="navbar-text">Database System Protecting Urban Refugees Through Empowerment</p> 
+			<p class="navbar-text">Database System Protecting Urban Refugees Through Empowerment</p>
 		</div>
 		<!-- /.navbar-header -->
 		<ul class="nav navbar-top-links navbar-right">
@@ -32,8 +32,8 @@
 				</ul><!-- /.dropdown-user -->
 			</li><!-- /.dropdown -->
 		</ul><!-- /.navbar-top-links -->
-		
-		
+
+
 		<?php  include("sidebar.php"); ?>
 	</nav>
 	<div class="col-lg-12" id="fix-atas"></div>

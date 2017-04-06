@@ -23,13 +23,13 @@ $(document).ready(function () {
 		$edu1=explode(",",$edu[0]);
 		$edu2=explode(",",$edu[1]);
 		$edu3=explode(",",$edu[2]);
-		
+
 		$edu1a += $edu1[0];
 		$edu1b += $edu1[1];
 		$edu1c += $edu1[2];
 		$edu1d += $edu1[3];
 		$edu1e += $edu1[4];
-		
+
 		$edu2a += $edu2[0];
 		$edu2b += $edu2[1];
 		$edu2c += $edu2[2];
@@ -42,13 +42,13 @@ $(document).ready(function () {
 		$dataedu1 = "[0,".$edu1a."],[1,".$edu1b."],[2,".$edu1c."],[3,".$edu1d."],[4,".$edu1e."]";
 		$dataedu2 = "[0,".$edu2a."],[1,".$edu2b."],[2,".$edu2c."],[3,".$edu2d."],[4,".$edu2e."]";
 		$dataedu3 = "[0,".$edu3a."],[1,".$edu3b."]";
-		
+
 		$tick1 = "[0,'Elementary School'],[1,'Junior High School'],[2,'Senior High School'],[3,'Vocational School'],[4,'Accelerated School']" ;
 		$tick2 = "[0,'English'],[1,'Bahasa Indonesia'],[2,'Computer'],[3,'Art'],[4,'Handicraft']" ;
 		$tick3 = "[0,'English'],[1,'Art']" ;
 
-		
-   
+
+
 
 		print( "\tvar edu1 = [".$dataedu1."];\n");
 		print( "\tvar edu2 = [".$dataedu2."];\n");
@@ -56,7 +56,7 @@ $(document).ready(function () {
 		print( "\tvar ticks1 = [".$tick1."];\n");
 		print( "\tvar ticks2 = [".$tick2."];\n");
 		print( "\tvar ticks3 = [".$tick3."];\n");
-		
+
 ?>
 		var datasetedu1 = [{ label: "Formal Education", data: edu1, color: "#00C3D1" }];
 		var optionsedu1 = {
@@ -71,7 +71,7 @@ $(document).ready(function () {
             }
         };
      $.plot($("#edu1"), datasetedu1, optionsedu1);
-		
+
 		var datasetedu2 = [{ label: "Informal Education : (CWS)", data: edu2, color: "#00C3D1" }];
 		var optionsedu2 = {
             series: {bars: {show: true}},
@@ -85,7 +85,7 @@ $(document).ready(function () {
             }
         };
      $.plot($("#edu2"), datasetedu2, optionsedu2);
-		
+
 		var datasetedu3 = [{ label: "Informal Education : (Insitution) ", data: edu3, color: "#00C3D1" }];
 		var optionsedu3 = {
             series: {bars: {show: true}},
@@ -100,7 +100,7 @@ $(document).ready(function () {
         };
      $.plot($("#edu3"), datasetedu3, optionsedu3);
 
-   
+
 });
 
 

@@ -9,7 +9,7 @@ define('PATH','../mpdf/'); //mpdf directory
 include(PATH . "mpdf.php");
 $mpdf=new mPDF('utf-8', 'A4'); // Create new mPDF Document
 
-$content = file_get_contents($link); //content 
+$content = file_get_contents($link); //content
 $stylesheet = file_get_contents('../css/pdfin.css');   //css
 
 $html = ob_get_contents(); //Proses untuk mengambil hasil dari OB..

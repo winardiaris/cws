@@ -7,7 +7,7 @@ $op = $_GET['op'];
 if($op == "check"){
 	$file_no = $_GET['file_no'];
 	$id_data = $_GET['id_data'];
-    
+
    $qry = mysql_query("SELECT COUNT(*) AS `ada` FROM `person` WHERE `file_no`='$file_no';") or die(mysql_error());
 	$person = mysql_fetch_array($qry);
 
@@ -17,7 +17,7 @@ if($op == "check"){
 						"SELECT COUNT(*) AS `ada` FROM `hr` WHERE `file_no`='$file_no' AND `status`='1' AND `id_data`='0';"
 						) or die(mysql_error());
 			$hr = mysql_fetch_array($qry2);
-			
+
 			//new assessment
 			if($id_data==0){
 				if($hr['ada']>0){echo "inuse";} //new assessment (sudah ada)
@@ -30,7 +30,7 @@ if($op == "check"){
 			}
 		}
 		//person belum ada
-		else{echo "nodataperson";}	
+		else{echo "nodataperson";}
 }
 elseif($op=="getID"){
 	$file_no = $_GET['file_no'];
@@ -43,7 +43,7 @@ elseif($op=="getData"){
 	$q1 = mysql_query("SELECT * FROM `person` WHERE `file_no`='$file_no' ")or die(mysql_error());
 	$d1 =mysql_fetch_array($q1);
 	echo '<option value="'.$file_no.'" selected >'.$d1['name'].'</option>';
-	
+
 	$q2 = mysql_query("SELECT * FROM `reported_family` WHERE `file_no`='$file_no' ")or die(mysql_error());
 	while($d = mysql_fetch_array($q2)){
 		$pecah = explode(";",$d['value']);
@@ -56,7 +56,7 @@ elseif($op=="getHRData"){
 	$person_id = $_GET['person_id'];
 	$q = mysql_query("SELECT * FROM `hr_data` WHERE  `hr_id`='$hr_id' AND `person_id`='$person_id'")or die(mysql_error());
 	$d = mysql_fetch_array($q);
-	
+
 	echo Balikin($d['situation'])."|||".Balikin($d['hr1'])."|||".Balikin($d['hr2'])."|||".Balikin($d['hr3'])."|||".Balikin($d['hr4'])."|||".Balikin($d['hr5'])."|||".Balikin($d['hr6'])."|||".Balikin($d['hr7']);
 }
 
@@ -68,10 +68,10 @@ elseif($op=="save_basic"){
 	$id_data = $_GET['id_data'];
 	$reported = UbahSimbol($_GET['reported']);
 	$save = mysql_query("
-				INSERT INTO `hr` (`file_no`,`id_data`,`report_date`,`location`,`ics`,`reported`,`created`) 
+				INSERT INTO `hr` (`file_no`,`id_data`,`report_date`,`location`,`ics`,`reported`,`created`)
 				VALUES('$file_no','$id_data','$report_date','$location','$ics','$reported','$NOW');"
 			) or die(mysql_error());
-	
+
 	if($save){
 		echo "success";
 		setHistory($_SESSION['user_id'],"hr_form","Save Basic data for UNHCR Case Number [$file_no]",$NOW);
@@ -87,17 +87,17 @@ elseif($op=="update_basic"){
 	$reported = UbahSimbol($_GET['reported']);
 	$hr_id = $_GET['hr_id'];
 	$save = mysql_query("
-				UPDATE  `hr` SET 
+				UPDATE  `hr` SET
 				`id_data`='$id_data',
 				`report_date`='$report_date',
 				`location`='$location',
 				`ics`='$ics',
 				`reported`='$reported',
-				`last_change`='$NOW' 
+				`last_change`='$NOW'
 				WHERE `file_no`='$file_no'
 				AND `hr_id`='$hr_id'"
 			) or die(mysql_error());
-	
+
 	if($save){
 		echo "success";
 		setHistory($_SESSION['user_id'],"hr_form","Update Basic data for UNHCR Case Number [$file_no]",$NOW);
@@ -108,13 +108,13 @@ elseif($op=="update_basic"){
 elseif($op=="save_hr1"){
 	$hr_id = $_GET['hr_id'];
 	$person_id=$_GET['person_id']; $id_data = $_GET['id_data'];
-	
+
 	$situation = UbahSimbol($_GET['situation']);
 	$val = UbahSimbol($_GET['val']);
-	
+
 	$cek = mysql_query("SELECT * FROM `hr_data` WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_errno());
 	$ada = mysql_num_rows($cek);
-	
+
 	if($ada>0){
 		//update
 		$save = mysql_query("UPDATE `hr_data` SET `situation`='$situation',`hr1`='$val',`last_change`='$NOW' WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_error());
@@ -135,10 +135,10 @@ elseif($op=="save_hr2"){
 	$person_id=$_GET['person_id']; $id_data = $_GET['id_data'];
 	$situation = UbahSimbol($_GET['situation']);
 	$val = UbahSimbol($_GET['val']);
-	
+
 	$cek = mysql_query("SELECT * FROM `hr_data` WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_errno());
 	$ada = mysql_num_rows($cek);
-	
+
 	if($ada>0){
 		//update
 		$save = mysql_query("UPDATE `hr_data` SET `situation`='$situation',`hr2`='$val',`last_change`='$NOW' WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_error());
@@ -159,10 +159,10 @@ elseif($op=="save_hr3"){
 	$person_id=$_GET['person_id']; $id_data = $_GET['id_data'];
 	$situation = UbahSimbol($_GET['situation']);
 	$val = UbahSimbol($_GET['val']);
-	
+
 	$cek = mysql_query("SELECT * FROM `hr_data` WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_errno());
 	$ada = mysql_num_rows($cek);
-	
+
 	if($ada>0){
 		//update
 		$save = mysql_query("UPDATE `hr_data` SET `situation`='$situation',`hr3`='$val',`last_change`='$NOW' WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_error());
@@ -183,10 +183,10 @@ elseif($op=="save_hr4"){
 	$person_id=$_GET['person_id']; $id_data = $_GET['id_data'];
 	$situation = UbahSimbol($_GET['situation']);
 	$val = UbahSimbol($_GET['val']);
-	
+
 	$cek = mysql_query("SELECT * FROM `hr_data` WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_errno());
 	$ada = mysql_num_rows($cek);
-	
+
 	if($ada>0){
 		//update
 		$save = mysql_query("UPDATE `hr_data` SET `situation`='$situation',`hr4`='$val',`last_change`='$NOW' WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_error());
@@ -207,10 +207,10 @@ elseif($op=="save_hr5"){
 	$person_id=$_GET['person_id']; $id_data = $_GET['id_data'];
 	$situation = UbahSimbol($_GET['situation']);
 	$val = UbahSimbol($_GET['val']);
-	
+
 	$cek = mysql_query("SELECT * FROM `hr_data` WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_errno());
 	$ada = mysql_num_rows($cek);
-	
+
 	if($ada>0){
 		//update
 		$save = mysql_query("UPDATE `hr_data` SET `situation`='$situation',`hr5`='$val',`last_change`='$NOW' WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_error());
@@ -231,10 +231,10 @@ elseif($op=="save_hr6"){
 	$person_id=$_GET['person_id']; $id_data = $_GET['id_data'];
 	$situation = UbahSimbol($_GET['situation']);
 	$val = UbahSimbol($_GET['val']);
-	
+
 	$cek = mysql_query("SELECT * FROM `hr_data` WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_errno());
 	$ada = mysql_num_rows($cek);
-	
+
 	if($ada>0){
 		//update
 		$save = mysql_query("UPDATE `hr_data` SET `situation`='$situation',`hr6`='$val',`last_change`='$NOW' WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_error());
@@ -255,10 +255,10 @@ elseif($op=="save_hr7"){
 	$person_id=$_GET['person_id']; $id_data = $_GET['id_data'];
 	$situation = UbahSimbol($_GET['situation']);
 	$val = UbahSimbol($_GET['val']);
-	
+
 	$cek = mysql_query("SELECT * FROM `hr_data` WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_errno());
 	$ada = mysql_num_rows($cek);
-	
+
 	if($ada>0){
 		//update
 		$save = mysql_query("UPDATE `hr_data` SET `situation`='$situation',`hr7`='$val',`last_change`='$NOW' WHERE `hr_id`='$hr_id' AND `person_id`='$person_id' ")or die(mysql_error());

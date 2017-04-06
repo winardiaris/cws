@@ -1,4 +1,4 @@
-<?php 
+<?php
 $R="R7";$W="W7";
 include("form/navigasi.php") ;
 ?>
@@ -7,7 +7,7 @@ include("form/navigasi.php") ;
 		$("a.delete").click(function(){
 			var	file_no=$(this).attr("data"),
 					se_id = $(this).attr("id"),
-					datanya="&file_no="+file_no+"&se_id="+se_id;	
+					datanya="&file_no="+file_no+"&se_id="+se_id;
 			var r = confirm("Remove ["+file_no+"]? ");
 			if (r == true) {
 				$.ajax({url:"form/se-action.php",data:"op=del"+datanya,cache:false,success: function(msg){
@@ -16,7 +16,7 @@ include("form/navigasi.php") ;
 						location.reload();
 					}else{alert("Cannot remove !!");}}
 				});
-			} 
+			}
 		});
 	});
 
@@ -53,12 +53,12 @@ include("form/navigasi.php") ;
 					if($_GET['a']==1){
 						setHistory($_SESSION['user_id'],"se_data","Open SE Data (First Assessment)",$NOW);
 						$qry = mysql_query("SELECT `se`.`se_id`, `se`.`file_no`, `person`.`name`, `se`.`doa`, `se`.`assessment_data`, `se`.`nextassessment`,
-										`se`.`verification` 
+										`se`.`verification`
 										FROM `se` INNER JOIN `person` ON `se`.`file_no`=`person`.`file_no` WHERE `se`.`status`='1' AND `se`.`id`='0';") or die(mysql_error());
 					}
 					elseif($_GET['a']==2){
 						setHistory($_SESSION['user_id'],"se_data","Open SE Data (Re-assessment)",$NOW);
-						$qry = mysql_query("SELECT `se`.`se_id`, `se`.`file_no`, `person`.`name`, `se`.`doa`, `se`.`assessment_data`, `se`.`nextassessment`,		`se`.`verification` 
+						$qry = mysql_query("SELECT `se`.`se_id`, `se`.`file_no`, `person`.`name`, `se`.`doa`, `se`.`assessment_data`, `se`.`nextassessment`,		`se`.`verification`
 										FROM `se` INNER JOIN `person` ON `se`.`file_no`=`person`.`file_no` WHERE `se`.`status`='1' AND `se`.`id`='1';") or die(mysql_error());
 					}
 					else{
@@ -71,8 +71,8 @@ include("form/navigasi.php") ;
 						$location = $assessment[1];
 						$verification = explode(";",$data['verification']);
 						$verified_by=$verification[0];
-						
-						
+
+
 						echo'
 						<tr>
 							<td width="10px">
@@ -86,7 +86,7 @@ include("form/navigasi.php") ;
 								   if($_GET['a']==1){
 										echo '<li role="presentation">
 										<a role="menuitem" tabindex="-1" href="form/view/view-se-all.php?file_no='.$data['file_no'].'&a=all"  title="View '.$file_no.'" target="framepopup"  onClick="setdisplay(divpopup,1)"><i class="fa fa-eye"></i> View all</a></li>';
-										
+
 									}
 								   echo'<li role="presentation">
 										<a role="menuitem" tabindex="-1" href="?page=se-form&op=edit&file_no='.$data['file_no'].'&se_id='.$data['se_id'].'"><i class="fa fa-edit"></i> Edit</a></li>
@@ -105,7 +105,7 @@ include("form/navigasi.php") ;
 							<td>'.$verified_by.'</td>
 							<td>'.$data['nextassessment'].'</td>
 						</tr>
-						
+
 						';
 					}
 				?>

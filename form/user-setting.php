@@ -6,10 +6,10 @@ if(isset($_GET['op'])){
 	$op = $_GET['op'];
 	if($op=="edit"){
 		$user_id = $_GET['user_id'];
-		
+
 		$qry = mysql_query("SELECT * FROM `user` WHERE `user_id`='$user_id'") or die(mysql_error());
 		$data = mysql_fetch_array($qry);
-		
+
 		//data
 		$group_id = $data['group_id'];
 		$user_name = $data['user_name'];
@@ -17,7 +17,7 @@ if(isset($_GET['op'])){
 		$user_real_name = $data['user_real_name'];
 		$user_mail = $data['user_mail'];
 		$user_info = $data['user_info'];
-		
+
 		$edit=1;
 	}
 }
@@ -28,7 +28,7 @@ $(document).ready(function(){
 	$("#old_password").keyup(function(){
 		var old1 = $("#old_password2").val();
 		var old2 = $.md5($(this).val());
-		
+
 		if(old2 == old1){
 			var a = "<i class='fa fa-check'></i> Match "
 			$("#same").html(a).addClass("text-success").removeClass("text-danger");
@@ -38,7 +38,7 @@ $(document).ready(function(){
 			$("#same").html(a).addClass("text-danger").removeClass("text-success");
 		}
 	});
-	
+
 	$("#user_password").keyup(function(){
 		var x = $(this).val().length;
 		if(x <=3){
@@ -57,7 +57,7 @@ $(document).ready(function(){
 	$("#retype_password").keyup(function(){
 		var x = $("#user_password").val(),
 			y = $(this).val();
-			
+
 		if(y==x){
 			var a = "<i class='fa fa-check'></i> Match "
 			$("#same2").html(a).addClass("text-success").removeClass("text-danger");
@@ -66,9 +66,9 @@ $(document).ready(function(){
 			var a = "<i class='fa fa-close'></i> Not Match !!"
 			$("#same2").html(a).addClass("text-danger").removeClass("text-success");
 		}
-		
+
 	});
-	
+
 	$("#user_update").click(function(){
 		var user_id = $("#user_id").val(),
 			name = $("#user_name").val(),
@@ -80,8 +80,8 @@ $(document).ready(function(){
 			rpassword = $("#retype_password").val(),
 			info = $("#user_info").val(),
 			datanya="&user_id="+user_id+"&name="+name+"&real_name="+real_name+"&password="+password+"&info="+info;
-			
-			
+
+
 		if(name==""){
 			alert("Please insert username");
 			$("#user_name").focus();
@@ -113,7 +113,7 @@ $(document).ready(function(){
 			}
 		}
 		else{
-			
+
 			$.ajax({url:"user-action.php",data:"op=updateusersetting"+datanya,cache:false,success: function(msg){
 				if(msg=="success"){
 					alert("Data has been saved !!");
@@ -150,7 +150,7 @@ $(document).ready(function(){
 			<label>Retype Password *</label>
 			<input class="form-control" id="retype_password" type="password"><span id="same2"></span>
 			<br><small>* Required</small>
-		</div>	
+		</div>
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-12">
 		<div class="form-group">
@@ -159,7 +159,7 @@ $(document).ready(function(){
 		</div>
 		<button  id="user_update" class="btn btn-success"><i class="fa fa-refresh"></i> Update</button>
 	</div>
-	
+
 </div>
 <div class="col-lg-12">
 	<table class="table table-striped table-bordered table-hover" id="dataTables">

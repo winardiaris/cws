@@ -7,10 +7,10 @@ $file_no = $_GET['file_no'];
 if($op == "check"){
 	$file_no = $_GET['file_no'];
 	$id_data = $_GET['id_data'];
-	
+
 	$qry = mysql_query("SELECT COUNT(*) AS `ada` FROM `person` WHERE `file_no`='$file_no';") or die(mysql_error());
 	$person = mysql_fetch_array($qry);
-	
+
 	setHistory($_SESSION['user_id'],"se_form","Check Available for UNHCR Case Number [$file_no]",$NOW);
 		if($person['ada']>0){
 			//cek first assessment
@@ -18,7 +18,7 @@ if($op == "check"){
 						"SELECT COUNT(*) AS `ada` FROM `se` WHERE `file_no`='$file_no' AND `status`='1' AND `id`='0';"
 						) or die(mysql_error());
 			$se = mysql_fetch_array($qry2);
-			
+
 			//new assessment
 			if($id_data==0){
 				if($se['ada']>0){echo "inuse";} //new assessment (sudah ada)
@@ -32,13 +32,13 @@ if($op == "check"){
 		}
 		//person belum ada
 		else{echo "nodataperson";}
-	
-	
+
+
 }
 elseif($op=="nextAssessment"){
 	$file_no=$_GET['file_no'];
 	$doa=$_GET['doa'];
-	
+
 	$qry = mysql_query("SELECT `status` FROM `person` WHERE `file_no`='$file_no'");
 	$data = mysql_fetch_array($qry);
 	$status = $data['status'];
@@ -48,11 +48,11 @@ elseif($op=="nextAssessment"){
 	else{
 		$plus = "+6 month";
 	}
-	
+
 	$a = strtotime($plus,strtotime($doa));
 	$a = date("Y-m-d", $a);
 	$b = strtotime("-2 week",strtotime($a));
-	$next = date("Y-m-d", $b);	
+	$next = date("Y-m-d", $b);
 	echo $next;
 }
 elseif($op == "lastAssessment"){
@@ -66,7 +66,7 @@ elseif($op == "lastAssessment"){
 	$a =explode(";",$data2['assessment_data']);
 	$last = $a[6];
    echo $doa.";".$last;
-	
+
 }
 elseif($op == "addassessment"){
 	$file_no = $_GET['file_no'];
@@ -75,7 +75,7 @@ elseif($op == "addassessment"){
 	$a = $_GET['a'];
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query("INSERT INTO `se` (`file_no`,`id`,`doa`,`nextassessment`,`assessment_data`,`created`) VALUES('$file_no','$a','$doa','$nextassessment','$value','$NOW') ;") or die(mysql_error());
-	
+
 	if($save){
 		echo "success";
 		setHistory($_SESSION['user_id'],"se_form","Save SE Assessment for UNHCR Case Number [$file_no]",$NOW);
@@ -95,7 +95,7 @@ elseif($op == "updateassessment"){
 	$nextassessment = $_GET['nextassessment'];
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query("UPDATE `se` SET `doa`='$doa',`nextassessment`='$nextassessment',`assessment_data`='$value', `last_change`='$NOW' WHERE `file_no`='$file_no' AND `se_id`='$se_id';") or die(mysql_error());
-	
+
 	if($save){
 		echo "success";
 		setHistory($_SESSION['user_id'],"se_form","Update SE Assessment for UNHCR Case Number [$file_no]",$NOW);
@@ -107,7 +107,7 @@ elseif($op == "saveback"){
 	$file_no = $_GET['file_no'];
 	$value = htmlspecialchars($_GET['value']);
 	$save = mysql_query(" UPDATE `se` SET `background_info`='$value', `last_change`='$NOW' WHERE `file_no`='$file_no' AND `se_id`='$se_id'") or die(mysql_error());
-	
+
 	if($save){
 		echo "success";
 		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Background Information and Assessment Purpose for UNHCR Case Number [$file_no]",$NOW);
@@ -122,7 +122,7 @@ elseif($op == "savelivinga"){
 	$sec_neigh = htmlspecialchars($_GET['sec_neigh']);
 	$phnn = htmlspecialchars($_GET['phnn']);
 	$save = mysql_query(" UPDATE `se` SET `living_env`='$living_env', `living_cond`='$living_cond',`sec_neigh`='$sec_neigh',`phnn`='$phnn', `last_change`='$NOW' WHERE `file_no`='$file_no' AND `se_id`='$se_id'") or die(mysql_error());
-	
+
 	if($save){
 		echo "success";
 		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Living Condition A. General for UNHCR Case Number [$file_no]",$NOW);
@@ -135,7 +135,7 @@ elseif($op == "savelivingb"){
 	$vulne = htmlspecialchars($_GET['vulne']);
 	$child_protect = htmlspecialchars($_GET['child_protect']);
 	$save = mysql_query(" UPDATE `se` SET `vulnerabilities`='$vulne', `child_protect`='$child_protect',`last_change`='$NOW' WHERE `file_no`='$file_no' AND `se_id`='$se_id'") or die(mysql_error());
-	
+
 	if($save){
 		echo "success";
 		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Living Condition B. Person With Spesific Needs for UNHCR Case Number [$file_no]",$NOW);
@@ -147,7 +147,7 @@ elseif($op == "savefinanciala"){
 	$se_id = $_GET['se_id'];
 	$support = htmlspecialchars($_GET['support']);
 	$save = mysql_query(" UPDATE `se` SET `support_system`='$support', `last_change`='$NOW' WHERE `file_no`='$file_no' AND `se_id`='$se_id'") or die(mysql_error());
-	
+
 	if($save){
 		echo "success";
 		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Financial A. Support System for UNHCR Case Number [$file_no]",$NOW);
@@ -159,7 +159,7 @@ elseif($op == "savefinancialb"){
 	$se_id = $_GET['se_id'];
 	$recommend = htmlspecialchars($_GET['recommend']);
 	$save = mysql_query(" UPDATE `se` SET `recommend`='$recommend', `last_change`='$NOW' WHERE `file_no`='$file_no' AND `se_id`='$se_id'") or die(mysql_error());
-	
+
 	if($save){
 		echo "success";
 		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Financial B. Recommendation for UNHCR Case Number [$file_no]",$NOW);
@@ -171,7 +171,7 @@ elseif($op == "saveverification"){
 	$se_id = $_GET['se_id'];
 	$verification = htmlspecialchars($_GET['verification']);
 	$save = mysql_query(" UPDATE `se` SET `verification`='$verification', `last_change`='$NOW' WHERE `file_no`='$file_no' AND `se_id`='$se_id'") or die(mysql_error());
-	
+
 	if($save){
 		echo "success";
 		setHistory($_SESSION['user_id'],"se_form","Save/Update SE Assessment verified for UNHCR Case Number [$file_no]",$NOW);

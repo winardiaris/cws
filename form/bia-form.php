@@ -1,4 +1,4 @@
-<?php 
+<?php
 $R="R8";$W="W8";
 include("form/navigasi.php");
 if(isset($_GET['op'])){
@@ -7,7 +7,7 @@ if(isset($_GET['op'])){
 		$qry = mysql_query("SELECT * FROM `bia` WHERE `file_no`='".$_GET['file_no']."' AND `status`='1'") or die(mysql_error());
 		$data = mysql_fetch_array($qry);
 		$assessment=explode(";",Balikin($data['assessment']));
-		
+
 		//toiv
 		$toiva1=explode(";",Balikin($data['toiva1']));$toiva2=explode(";",Balikin($data['toiva2']));$toiva3=explode(";",Balikin($data['toiva3']));
 		$toiva4=explode(";",Balikin($data['toiva4']));$toiva5=explode(";",Balikin($data['toiva5']));$toiva6=explode(";",Balikin($data['toiva6']));
@@ -21,8 +21,8 @@ if(isset($_GET['op'])){
 		$toivb1=explode(";",Balikin($data['toivb1']));$toivb2=explode(";",Balikin($data['toivb2']));$toivb3=explode(";",Balikin($data['toivb3']));
 		$toivb4=explode(";",Balikin($data['toivb4']));$toivb5=explode(";",Balikin($data['toivb5']));$toivb6=explode(";",Balikin($data['toivb6']));
 		$toivb7=explode(";",Balikin($data['toivb7']));
-		
-		
+
+
 		$edu=explode(";",Balikin($data['edu']));
 		$health=explode(";",Balikin($data['health']));
 		$psy=explode(";",Balikin($data['psy']));
@@ -34,10 +34,10 @@ if(isset($_GET['op'])){
 		$fin=explode(";",Balikin($data['financial']));
 		$cws=explode(";",Balikin($data['cws_analysis']));
 		$opt=explode(";",Balikin($data['optional']));
-		
+
 		$button = '<button class="btn btn-success" id="update_1"><i class="fa fa-refresh"></i> Update</button>';
 		$edit = 1;
-		
+
 		setHistory($_SESSION['user_id'],"bia_form","Open BIA Form for File no [$file_no] ",$NOW);
 	}
 }
@@ -452,7 +452,7 @@ else{
 							<textarea class="form-control" id="toivb7d" ><?php if($edit==1){echo $toivb7[3];}?></textarea></td>
 					</tr>
 					<tr><td colspan="3"><small id="ttoivb"></small></td></tr>
-					
+
 				</table>
 			</div>
 			<br><button class="btn btn-success" id="save_3"><i class="fa fa-save"></i> Save</button>
@@ -559,7 +559,7 @@ else{
 						<td>
 							<label>Observation:</label>
 							<textarea class="form-control" id="health6d"><?php if($edit==1){echo $health[11];}?></textarea></td>
-							
+
 					</tr>
 					<tr>
 						<td><label>Addictions <i>(Drugs, alcohol, etc.)</i></label></td>
@@ -594,10 +594,10 @@ else{
 							<label>Observation:</label>
 							<textarea class="form-control" id="health9d"><?php if($edit==1){echo $health[23];}?></textarea></td>
 					</tr>
-					
+
 				</table>
 			</div>
-			<br><button class="btn btn-success" id="save_5"><i class="fa fa-save"></i> Save</button>			
+			<br><button class="btn btn-success" id="save_5"><i class="fa fa-save"></i> Save</button>
 		</div>
 		</div>
 		</div>
@@ -654,7 +654,7 @@ else{
 						<td colspan="2"><label>*Do you have access to medical care?</label><br><i>If not, explain why?</i> </td>
 						<td><textarea class="form-control" id="psy7"><?php if($edit==1){echo $psy[6];}?></textarea></td>
 					</tr>
-					
+
 				</table>
 				<table class="table table-bordered">
 					<tr>
@@ -778,9 +778,9 @@ else{
 					</tr>
 				</table>
 			</div>
-			<br><button class="btn btn-success" id="save_6"><i class="fa fa-save"></i> Save</button>			
-			</div>	
-			
+			<br><button class="btn btn-success" id="save_6"><i class="fa fa-save"></i> Save</button>
+			</div>
+
 		</div>
 		</div>
 		</div>
@@ -793,14 +793,14 @@ else{
 		</div>
 		<div id="collapseInteraction" class="panel-collapse collapse  ">
 		<div class="panel-body">
-			
+
 			<div class="form-group">
 				<label>Mood, attitude, appearance, speech, affect, thought consent</label>
 				<textarea class="form-control" id="interaction" rows="5"><?php if($edit==1){echo $data['interaction'];}?></textarea>
 			</div>
-			
-			<br><button class="btn btn-success" id="save_7"><i class="fa fa-save"></i> Save</button>	
-			
+
+			<br><button class="btn btn-success" id="save_7"><i class="fa fa-save"></i> Save</button>
+
 		</div>
 		</div>
 		</div>
@@ -809,7 +809,7 @@ else{
 		<div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseLiving"> Living conditions in place of residence</a></h4></div>
 		<div id="collapseLiving" class="panel-collapse collapse ">
 		<div class="panel-body">
-			
+
 			<!-- a). Suggested Questions: -->
 			<div class="panel panel-primary">
 				<div class="panel-heading"><span class="collapseme" id="col9aa" >a). Suggested Questions:</span></div>
@@ -849,8 +849,8 @@ else{
 						</div>
 						<br><button class="btn btn-success" id="save_living_a"><i class="fa fa-save"></i> Save</button>
 					</div>
-				
-				
+
+
 				<!-- -->
 				</div>
 			</div>
@@ -877,7 +877,7 @@ else{
 						<label><input type="checkbox" id="livb9" <?php if($edit==1){if($livb[8]=="1"){echo "checked";}}?>> Dining room</label><br>
 						<label><input type="checkbox" id="livb10" <?php if($edit==1){if($livb[9]=="1"){echo "checked";}}?>> Piped Clean & Safe Water</label><br>
 						<label><input type="checkbox" id="livb11" <?php if($edit==1){if($livb[10]=="1"){echo "checked";}}?>> Kitchen</label><br>
-						<label><input type="checkbox" id="livb12" <?php if($edit==1){if($livb[11]=="1"){echo "checked";}}?>> Dug Well Water</label><br> 
+						<label><input type="checkbox" id="livb12" <?php if($edit==1){if($livb[11]=="1"){echo "checked";}}?>> Dug Well Water</label><br>
 						</div></div>
 					</div>
 					<div class="col-lg-4">
@@ -885,7 +885,7 @@ else{
 						<textarea class="form-control" id="livb13"><?php if($edit==1){echo $livb[12];}?></textarea>
 						<br><button class="btn btn-success" id="save_living_b"><i class="fa fa-save"></i> Save</button>
 					</div>
-					
+
 				</div>
 			</div>
 			<!-- c). House facilities -->
@@ -1035,7 +1035,7 @@ else{
 			</div>
 		</div>
 		</div>
-	
+
 		</div>
 		<!-- Financial Situation and Supporting System -->
 		<div class="panel panel-default">
@@ -1066,13 +1066,13 @@ else{
 					<br><br>
 					<label>Source</label>
 					<div class="checkbox">
-						<label><input type="checkbox" id="fin4" <?php if($edit==1){if($fin[3]){echo "checked";}}?>> Personal income</label><br> 
-						<label><input type="checkbox" id="fin5" <?php if($edit==1){if($fin[4]){echo "checked";}}?>> CWS</label><br> 
-						<label><input type="checkbox" id="fin6" <?php if($edit==1){if($fin[5]){echo "checked";}}?>> Employment Situationr</label><br> 
-						<label><input type="checkbox" id="fin7" <?php if($edit==1){if($fin[6]){echo "checked";}}?>> Family abroad (where?)</label><br> 
-						<label><input type="checkbox" id="fin8" <?php if($edit==1){if($fin[7]){echo "checked";}}?>> Assistance received (from?)</label><br> 
-						<label><input type="checkbox" id="fin9" <?php if($edit==1){if($fin[8]){echo "checked";}}?>> Government</label><br> 
-						<label><input type="checkbox" id="fin10" <?php if($edit==1){if($fin[9]){echo "checked";}}?>> Other</label><br> 
+						<label><input type="checkbox" id="fin4" <?php if($edit==1){if($fin[3]){echo "checked";}}?>> Personal income</label><br>
+						<label><input type="checkbox" id="fin5" <?php if($edit==1){if($fin[4]){echo "checked";}}?>> CWS</label><br>
+						<label><input type="checkbox" id="fin6" <?php if($edit==1){if($fin[5]){echo "checked";}}?>> Employment Situationr</label><br>
+						<label><input type="checkbox" id="fin7" <?php if($edit==1){if($fin[6]){echo "checked";}}?>> Family abroad (where?)</label><br>
+						<label><input type="checkbox" id="fin8" <?php if($edit==1){if($fin[7]){echo "checked";}}?>> Assistance received (from?)</label><br>
+						<label><input type="checkbox" id="fin9" <?php if($edit==1){if($fin[8]){echo "checked";}}?>> Government</label><br>
+						<label><input type="checkbox" id="fin10" <?php if($edit==1){if($fin[9]){echo "checked";}}?>> Other</label><br>
 					</div>
 					<label>Amount (weekly in IDR)</label>
 					<input type="number" class="form-control" id="fin11" value="<?php if($edit==1){echo $fin[10];}?>"><br><br>
@@ -1104,7 +1104,7 @@ else{
 						<li><b> LOW:</b> denotes that the regular referral system applies. Additionally, staff should review the situation of individuals at low risk at regular intervals or implement another structured monitoring and follow-up mechanism to ensure that the case is handled adequately.</li>
 					</ul>
 				</p>
-			</div>	
+			</div>
 			<div class="table-responsive">
 				<table class="table table-bordered">
 					<tr class="warning">
@@ -1282,7 +1282,7 @@ else{
 						<td>Caseworker signature & date</td>
 						<td colspan="2"><textarea class="form-control" id="cws15"><?php if($edit==1){echo $cws[28];}?></textarea></td>
 					</tr>
-					
+
 				</table>
 			</div>
 			<br><button class="btn btn-success" id="save_9"><i class="fa fa-save"></i> Save</button>
@@ -1323,11 +1323,11 @@ else{
 		</div>
 	</div>
 <?php
-// comment 
+// comment
 if($edit==1 AND $_SESSION['group_id']==1){
 echo '<div class="col-lg-12" ><label>Comment:</label><textarea class="form-control" id="comment">'; echo Balikin($data['comment']); echo'</textarea><br><small id="t"></small></div> ';
 }
-?>	
+?>
 </div>
 
 </div><!-- row -->

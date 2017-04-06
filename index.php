@@ -7,12 +7,12 @@ if(!empty($_GET['page'])){
 		case "login":
 		$view = "form/login.php";
 		break;
-		
+
 		//DASHBOARD --------
 		case "dashboard":
 		$view = "form/dashboard.php";
 		break;
-		
+
 		//Person --------
 		case "person-form":
 		$view = "form/personal-form.php";
@@ -20,7 +20,7 @@ if(!empty($_GET['page'])){
 		case "person-data":
 		$view = "form/personal-data.php";
 		break;
-		
+
 		// IA --------
 		case "ia-form":
 		$view = "form/ia-form.php";
@@ -28,7 +28,7 @@ if(!empty($_GET['page'])){
 		case "ia-data":
 		$view = "form/ia-data.php";
 		break;
-		
+
 		// SE --------
 		case "se-form":
 		$view = "form/se-form.php";
@@ -36,7 +36,7 @@ if(!empty($_GET['page'])){
 		case "se-data":
 		$view = "form/se-data.php";
 		break;
-		
+
 		// BIA --------
 		case "bia-form":
 		$view = "form/bia-form.php";
@@ -49,7 +49,7 @@ if(!empty($_GET['page'])){
     case "assistance-form":
     $view = "form/assistance/form.php";
     break;
-    
+
     case "assistance-data":
     $view = "form/assistance/data.php";
     break;
@@ -61,7 +61,7 @@ if(!empty($_GET['page'])){
 		case "hr-data":
 		$view = "form/hr-data.php";
 		break;
-		
+
 		//USER --------
 		case "user":
 		$view = "form/user.php";
@@ -75,29 +75,29 @@ if(!empty($_GET['page'])){
 		case "user-group":
 		$view = "form/usergroup.php";
 		break;
-		
-		
+
+
 		//DELETED DATA
 		case "deleted":
 		$view = "form/deleted-data.php";
 		break;
-		
+
 		//History
 		case "history":
 		$view = "form/history.php";
 		break;
-		
+
 		//CHART --------
 		case "chart":
 		$view = "form/chart/chart.php";
 		break;
-		
-		
+
+
 		//test --------
 		case "test":
 		$view = "testaccess.php";
 		break;
-		
+
 		default:
 		$view = "form/404.php";
 		break;

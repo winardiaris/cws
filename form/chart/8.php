@@ -9,11 +9,11 @@
 </div>
 
 
-	
-	
-	
-	
-	
+
+
+
+
+
 <script>
 
 // Jakarta Barat
@@ -23,10 +23,10 @@ $(function() {
 	while($djktb = mysql_fetch_array($qjktb)){
 		$ajktb = $ajktb."SUM( IF( `address` LIKE'".$djktb['kode']."%',  1 , 0 ) ) AS `".$djktb['kode']."`,";
 		$bjktb = substr($ajktb,0,strlen($ajktb)-1);
-		
+
 		$qryjktb = mysql_query("SELECT ".$bjktb." FROM `person` WHERE `active`='1'") or die( mysql_error());
 		$datajktb=mysql_fetch_array($qryjktb);
-		
+
 		$xjktb = $xjktb."{label: '".$djktb['nama']." [".$datajktb[$djktb['kode']]."] ', data:".$datajktb[$djktb['kode']]."},";
 		$zjktb = substr($xjktb,0,strlen($xjktb)-1);
 	}
@@ -39,7 +39,7 @@ $(function() {
                 label: {
 		            show:true,
 		            radius: 0.8,
-		            formatter: function (label, series) {                
+		            formatter: function (label, series) {
 		                return '<div class="label-chart">' +label + ' : ' +Math.round(series.percent) +'%</div>';
 		            }
 		        }

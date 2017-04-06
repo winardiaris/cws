@@ -1,20 +1,20 @@
-<?php 
+<?php
 include("../../inc/conf.php");
 include("../function.php") ;
 	if(isset($_GET['file_no'])){
 		$file_no = $_GET['file_no'];
 		$qry = mysql_query("
-				SELECT `person`.`file_no`,`person`.`name`,`master_country`.`country_name` ,`person`.`dob`,`person`.`age`,`person`.`sex`,`marital_status`.`marital`,`person`.`address`,`person`.`phone`,`person`.`photo`,`person`.`status`,`person`.`arrival`,`person`.`education`,`person`.`skill`,`person`.`mot`,`person`.`known_language`,`person`.`previous_occupation`,`person`.`volunteer`,`person`.`active`, `person`.`comment` FROM `person`INNER JOIN `master_country` ON `person`.`coo` = `master_country`.`country_id` INNER JOIN `marital_status` ON `person`.`marital` = `marital_status`.`marital_id` 
-				WHERE `person`.`file_no` ='$file_no'") 
+				SELECT `person`.`file_no`,`person`.`name`,`master_country`.`country_name` ,`person`.`dob`,`person`.`age`,`person`.`sex`,`marital_status`.`marital`,`person`.`address`,`person`.`phone`,`person`.`photo`,`person`.`status`,`person`.`arrival`,`person`.`education`,`person`.`skill`,`person`.`mot`,`person`.`known_language`,`person`.`previous_occupation`,`person`.`volunteer`,`person`.`active`, `person`.`comment` FROM `person`INNER JOIN `master_country` ON `person`.`coo` = `master_country`.`country_id` INNER JOIN `marital_status` ON `person`.`marital` = `marital_status`.`marital_id`
+				WHERE `person`.`file_no` ='$file_no'")
 				or die(mysql_error());
 		$data = mysql_fetch_array($qry);
-      
+
       $edu=explode("|",$data['education']);
 		$edu1=explode(",",$edu[0]);
 		$edu2=explode(",",$edu[1]);
 		$edu3=explode(",",$edu[2]);
 		//$comment = $data['comment'];
-		
+
 		$split=explode(",",$data['arrival']);
 		if($data['photo']!=""){$photo = $URL."form/".$data['photo'];}else{$photo = $URL.'form/photo/default.png';}
 	}
@@ -49,29 +49,29 @@ include("../function.php") ;
 	<td>
 		<b>Formal:</b><br>
 		<?php if($edu1[0]==1){$tedu1 .="Elementary School, ";}
-				elseif($edu1[1]==1){$tedu1 .= "Junior High School, ";} 
-				elseif($edu1[2]==1){$tedu1 .= "Senior High School, ";} 
-				elseif($edu1[3]==1){$tedu1 .= "Vocational School, ";} 
+				elseif($edu1[1]==1){$tedu1 .= "Junior High School, ";}
+				elseif($edu1[2]==1){$tedu1 .= "Senior High School, ";}
+				elseif($edu1[3]==1){$tedu1 .= "Vocational School, ";}
 				elseif($edu1[4]==1){$tedu1 .= "Accelerated School, ";}
 				echo $tedu1;
 		?>
 		<br>
 		<b>Informal:</b><br>
 		<b>CWS:</b><br>
-		<?php		
+		<?php
 				if($edu2[0]==1){$tedu2 .="English, ";}
-				elseif($edu2[1]==1){$tedu2 .= "Bahasa Indonesia, ";} 
-				elseif($edu2[2]==1){$tedu2 .= "Computer, ";} 
-				elseif($edu2[3]==1){$tedu2 .= "Art, ";} 
+				elseif($edu2[1]==1){$tedu2 .= "Bahasa Indonesia, ";}
+				elseif($edu2[2]==1){$tedu2 .= "Computer, ";}
+				elseif($edu2[3]==1){$tedu2 .= "Art, ";}
 				elseif($edu2[4]==1){$tedu2 .= "Handicraft, ";}
 				echo $tedu2;
 		?>
 		<br>
 		<b>Insitution:</b><br>
-		<?php		
+		<?php
 				if($edu3[0]==1){$tedu3 .="English, ";}
-				elseif($edu3[1]==1){$tedu3 .= "Art, ";} 
-				echo $tedu3;	
+				elseif($edu3[1]==1){$tedu3 .= "Art, ";}
+				echo $tedu3;
 		?>
 	</td>
 </tr>
@@ -126,14 +126,14 @@ include("../function.php") ;
 	<th>Last Contact</th>
 </tr>
 <?php
-	
+
 	$option=mysql_query("SELECT * FROM `reported_family` WHERE `file_no`='$file_no' ");
 	$no=0;
 	if(mysql_num_rows($option)>0){
 		while($data2=mysql_fetch_array($option)){
 			$no ++;	$id=$data2['id'];$value=$data2['value'];$split=explode(";",$value);
 			$name=$split[0];$age=$split[1];	$sex=$split[2]; $relation=$split[3]; $location=$split[4];$remarks =	$split[5];$contact=$split[6];
-			echo 
+			echo
 			"<tr>
 				<td align='right' width'10px'>".$no.".</td>
 				<td>".$name."</td>
@@ -152,7 +152,7 @@ include("../function.php") ;
 ?>
 </table>
 <?php
-// comment 
+// comment
 echo '<b>Comment:</b>'; echo '<p style="margin-left:20px;">'.Balikin($data['comment']).'</p>';
 echo '<div class="page-break"></div>';
 ?>

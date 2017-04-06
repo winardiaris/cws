@@ -5,7 +5,7 @@ include("../function.php") ;
 if(empty($_GET['a'])){
 	echo '
 <html><head>
-	
+
 	<link href="'.$URL.'css/bootstrap.css" rel="stylesheet">
 	<link href="'.$URL.'css/custom.css" rel="stylesheet">
 	<link href="'.$URL.'font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -17,7 +17,7 @@ if(isset($_GET['file_no'])){
 	$qry = mysql_query("SELECT * FROM `se` WHERE `file_no`='".$_GET['file_no']."' ORDER BY `doa` DESC LIMIT 1 ") or die(mysql_error());
 	$data = mysql_fetch_array($qry);
 	$count = mysql_num_rows($qry);
-	
+
 	$assessment = explode(";",$data['assessment_data']);
 	$background = explode(";",$data['background_info']);
 	$living_env = explode(";",$data['living_env']);
@@ -36,12 +36,12 @@ if(isset($_GET['file_no'])){
 	$com=explode(",",$support_system[2]);
 	$recommend=explode(";",$data['recommend']);
 	$verification=explode(";",$data['verification']);
-	
+
 	$q = mysql_query("SELECT * FROM `person` WHERE `file_no`='".$_GET['file_no']."'") or die(mysql_error());
 	$person = mysql_fetch_array($q);
-	
+
 	$edit = 1;
-	
+
 	if($count>0){
 ?>
 <h4>Socio Economic <?php if($data['id']==0){echo "Assessment";}else{echo "Re-Assessment";} ?> Report  </h4>
@@ -51,30 +51,30 @@ if(isset($_GET['file_no'])){
 		<tr>
 			<td><b>File Number:</b></td>
 			<td><?php if($edit==1){echo $data['file_no'];}?></td>
-			
+
 			<td><b>Date of Assessment:</b></td>
 			<td><?php if($edit==1){echo $data['doa'];}?></td>
-			
+
 			<td><b>Interviewer:</b></td>
 			<td><?php if($edit==1){echo $assessment[0];}?></td>
 		</tr>
 		<tr>
 			<td><b>Location: </b></td>
 			<td><?php if($edit==1){echo $assessment[1];}?></td>
-			
+
 			<td><b>Date of last assessment:</b></td>
 			<td><?php if($edit==1){echo $assessment[2];}?></td>
-			
+
 			<td><b>Assistance receiving since <i>(if any)</i>:</b></td>
 			<td><?php if($edit==1){echo $assessment[3];}?></td>
 		</tr>
 		<tr>
 			<td><b>Interpreter:</b></td>
 			<td><?php if($edit==1){echo $assessment[4];} ?></td>
-			
+
 			<td><b># of home visit(s):</b></td>
 			<td><?php if($edit==1){echo $assessment[5];} ?></td>
-			
+
 			<td><b>Date of last home visit:</b></td>
 			<td><?php if($edit==1){echo $assessment[6];} ?></td>
 		</tr>
@@ -87,12 +87,12 @@ if(isset($_GET['file_no'])){
 	<table border="1" class="table table-bordered">
 		<tr>
 			<td><b>1. How PoC (and family) survived from date of arrival to the date of assessment?</b></td>
-		</tr><tr>	
+		</tr><tr>
 			<td><?php if($edit==1){echo $background[0];} ?></td>
 		</tr>
 		<tr>
 			<td><b>2. Current Situation (Socio-economic):</b></td>
-		</tr><tr>	
+		</tr><tr>
 			<td><?php if($edit==1){echo $background[1];} ?></td>
 		</tr>
 	</table>
@@ -123,13 +123,13 @@ if(isset($_GET['file_no'])){
 				<b><input disabled type="checkbox" id="furni_2" value="1" <?php if($edit==1){if($fur[1]==1){echo "checked";}} ?>> Sofa</b><br>
 				<b><input disabled type="checkbox" id="furni_3" value="1" <?php if($edit==1){if($fur[2]==1){echo "checked";}} ?>> Wardrobe/Cupboard</b><br>
 				<b><input disabled type="checkbox" id="furni_4" value="1" <?php if($edit==1){if($fur[3]==1){echo "checked";}} ?>> Table</b><br>
-				<b><input disabled type="checkbox" id="furni_5" value="1" <?php if($edit==1){if($fur[4]==1){echo "checked";}} ?>> Chairs</b><br>	
+				<b><input disabled type="checkbox" id="furni_5" value="1" <?php if($edit==1){if($fur[4]==1){echo "checked";}} ?>> Chairs</b><br>
 				<b><input disabled type="checkbox" id="furni_6" value="1" <?php if($edit==1){if($fur[5]==1){echo "checked";}} ?>> Rice cooker</b><br>
 				<b><input disabled type="checkbox" id="furni_7" value="1" <?php if($edit==1){if($fur[6]==1){echo "checked";}} ?>> Refrigerator</b><br>
 				<b><input disabled type="checkbox" id="furni_8" value="1" <?php if($edit==1){if($fur[7]==1){echo "checked";}} ?>> Gas stove</b><br>
 				<b><input disabled type="checkbox" id="furni_9" value="1" <?php if($edit==1){if($fur[8]==1){echo "checked";}} ?>> Washing machine</b><br>
 				<b><input disabled type="checkbox" id="furni_10" value="1" <?php if($edit==1){if($fur[9]==1){echo "checked";}} ?>> TV set </b><br>
-			</td><td valign="top">		
+			</td><td valign="top">
 				<b><input disabled type="checkbox" id="furni_12" value="1" <?php if($edit==1){if($fur[10]==1){echo "checked";}} ?>> Iron</b><br>
 				<b><input disabled type="checkbox" id="furni_12" value="1" <?php if($edit==1){if($fur[11]==1){echo "checked";}} ?>> Computer (laptop, tablet)</b><br>
 				<b><input disabled type="checkbox" id="furni_13" value="1" <?php if($edit==1){if($fur[12]==1){echo "checked";}} ?>> DVD player</b><br>
@@ -144,15 +144,15 @@ if(isset($_GET['file_no'])){
 			</td>
 		</tr>
 	</table>
-	
+
 	<table border="1" class="table table-bordered">
 		<tr>
 			<td ><b>Number of rooms: </b></td>
 			<td width="50px"><?php if($edit==1){echo $living_cond[0];}?></td>
-			
+
 			<td><b>Living space in M2:</b></td>
 			<td width="50px"><?php if($edit==1){echo $living_cond[1];}?></td>
-			
+
 			<td><b>Monthly rent fee:</b></td>
 			<td width="50px"><?php if($edit==1){echo $living_cond[2];}?></td>
 		</tr>
@@ -163,7 +163,7 @@ if(isset($_GET['file_no'])){
 			<td colspan="6"><?php if($edit==1){echo $living_cond[3];}?></td>
 		</tr>
 	</table>
-	
+
 	<table border="1" class="table table-bordered">
 		<tr>
 			<td>Security and Safety Measures:</td>
@@ -188,7 +188,7 @@ if(isset($_GET['file_no'])){
 		<tr>
 			<td><b>Police station:</b></td>
 			<td><?php if($edit==1){echo $phnn[0];}?></td>
-			
+
 			<td><b>Health facilities:</b></td>
 			<td><?php if($edit==1){echo $phnn[1];}?></td>
 		</tr>
@@ -201,7 +201,7 @@ if(isset($_GET['file_no'])){
 			<td colspan="3"><?php if($edit==1){echo $phnn[3];}?></td>
 		</tr>
 	</table>
-	
+
 <h5>B. PERSON WITH SPECIFIC NEEDS</h5>
 	<table border="1" class="table table-bordered">
 		<tr>
@@ -228,9 +228,9 @@ if(isset($_GET['file_no'])){
 		<tr>
 			<td>Separated children:</td>
 			<td>
-				
+
 				<b class="radio-inline"><input disabled type="radio" name="separated_children"  value="1" <?php if($edit==1){if($child[2]==1){echo "checked"; }} ?>>Yes</b><b class="radio-inline"><input disabled type="radio" name="separated_children"  value="0" <?php if($edit==1){if($child[2]==0){echo "checked"; }} ?>>No</b>
-			
+
 			</td>
 			<td width="50px" align="center">
 				<b>#</b><?php if($edit==1){echo $child[3];}?>
@@ -254,9 +254,9 @@ if(isset($_GET['file_no'])){
 		<tr>
 			<td colspan="4"><?php if($edit==1){echo $child_protect[1];}?></td>
 		</tr>
-		
+
 	</table>
-	
+
 <h5>Financial And Other Support System Available To The Person Of Concern</h5>
 	<table border="1" class="table table-bordered">
 		<tr>
@@ -308,7 +308,7 @@ if(isset($_GET['file_no'])){
 			<td><b>Comments on available other support system <br>(in kind): </b></td>
 			<td colspan="3"><?php if($edit==1){echo $com[1];} ?></td>
 		</tr>
-		
+
 		<tr>
 			<td colspan="4"><h5>Recommendations:</h5></td>
 		</tr>
@@ -322,19 +322,19 @@ if(isset($_GET['file_no'])){
 		<tr>
 			<td><b>Assistance Recommended:  </b></td>
 			<td colspan="3">
-				
+
 					<b class="radio-inline"><input disabled type="radio" name="radioar" value="1" <?php if($edit==1){if($recommend[1]==1){echo "checked";}}?>> YES</b>
 					<b class="radio-inline"><input disabled type="radio" name="radioar" value="0" <?php if($edit==1){if($recommend[1]==0){echo "checked";}}?>> NO</b>
-				
+
 			</td>
 		</tr>
 		<tr>
 			<td><b>Assistance Not Recommended:  </b></td>
 			<td colspan="3">
-				
+
 					<b class="radio-inline"><input disabled type="radio" name="radioanr" value="1" <?php if($edit==1){if($recommend[2]==1){echo "checked";}}?>> YES</b>
 					<b class="radio-inline"><input disabled type="radio" name="radioanr" value="0" <?php if($edit==1){if($recommend[2]==0){echo "checked";}}?>> NO</b>
-				
+
 			</td>
 		</tr>
 		<tr>
@@ -343,17 +343,17 @@ if(isset($_GET['file_no'])){
 		<tr>
 			<td colspan="4"><?php if($edit==1){echo $recommend[3];}?></td>
 		</tr>
-		
+
 	</table>
-<h5>Assessment verified by:</h5>		
+<h5>Assessment verified by:</h5>
 	<table border="1" class="table table-bordered">
 		<tr>
 			<td><b>Name:</b></td>
 			<td><?php if($edit==1){echo $verification[0];} ?></td>
-			
+
 			<td><b>Phone Number:</b></td>
 			<td><?php if($edit==1){echo $verification[1];} ?></td>
-			
+
 			<td><b>Next Assessment:</b></td>
 			<td><?php if($edit==1){echo $data['nextassessment'];} ?></td>
 		</tr>
@@ -372,8 +372,8 @@ if(isset($_GET['file_no'])){
 	else{
 		echo "No data SE for File Number: ".$_GET['file_no'];
 		echo '<div class="page-break"></div>';
-		
-	}	
+
+	}
 }
 if(empty($_GET['a'])){
 	echo'</body>

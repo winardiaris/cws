@@ -21,7 +21,7 @@ $(function() {
 	{label: \'Male ['.$sex['M'].'] \', data:'.$sex['M'].'},
 	{label: \'Female ['.$sex['F'].'] \', data:'.$sex['F'].'}
 	];';
-	
+
 	?>
     var plotObj = $.plot($("#chart_sex"), data, {
         series: {
@@ -30,7 +30,7 @@ $(function() {
                 label: {
 		            show:true,
 		            radius: 0.8,
-		            formatter: function (label, series) {                
+		            formatter: function (label, series) {
 		                return '<div class="label-chart">' +label + ' : ' +Math.round(series.percent) +'%</div>';
 		            }
 		        }

@@ -1,19 +1,19 @@
-<?php 
+<?php
 $R="R4";$W="W4";
 $LOCATION = "ia_form";
 setHistory($_SESSION['user_id'],$LOCATION,"Open IA Form",$NOW);
 
 include("form/navigasi.php");
-	
+
 if(isset($_GET['op'])){
 	if(isset($_GET['file_no'])){
 		$qry = mysql_query("SELECT * FROM `ia` WHERE `file_no`='".$_GET['file_no']."'") or die(mysql_error());
 		$data = mysql_fetch_array($qry);
-		
+
 		$assessment = explode(";",$data['assessment']);
 		$legal_doc = explode(";",$data['legal_doc']);
 		$living_env = explode(";",$data['living_env']);
-		
+
 		$residence = $living_env[0];
 		$room = explode(",",$living_env[1]);
 		$furniture = explode(",",$living_env[2]);
@@ -23,7 +23,7 @@ if(isset($_GET['op'])){
 		$q34 = explode(";",$data['q34']);
 		$q56 = explode(";",$data['q56']);
 		$q78 = explode(";",$data['q78']);
-		
+
 		//
 		$disable = "disabled";
 		$button = '<button  class="btn btn-success" id="update_assessment" ><i class="fa fa-refresh"></i> Update </button>';
@@ -44,20 +44,20 @@ else{
 <script>
 (function($) {
 	$(document).ready(function(){
-		
-		
+
+
 		var file_no = $("#file_no").val();
 		var country2 = $("#country2").val();
-		
+
 		$("#uam_living_coo").load("form/general-action.php","op=getcountry&country="+country2);
 		$("#uam_living_relationship").load("form/general-action.php","op=getrelation");
 		$("#file_no").change(function(){file_no = $(this).val();$("#whom_living").load("form/ia-whom-living.php?file_no="+file_no);});
 		if(file_no != ""){$("#whom_living").load("form/ia-whom-living.php?file_no="+file_no);}
-		
+
 		//check available
 		$("#file_no").change(function(){
 			var datanya = "&file_no="+$(this).val();
-			
+
 			$.ajax({url: "form/ia-action.php",data: "op=check"+datanya,cache: false,
 				success: function(msg){
 					if(msg=="inuse"){
@@ -72,7 +72,7 @@ else{
 				}
 			});
 		});
-		
+
 		//save assessment
 		$("#save_assessment").click(function(){
 			if(file_no == ""){
@@ -85,7 +85,7 @@ else{
 			}
 			else if($("#a").hasClass("text-danger")){
 				var r = confirm("No Data for ["+file_no+"], Add new Data?");
-				if (r == true) {window.location="?page=person-form";} 
+				if (r == true) {window.location="?page=person-form";}
 				else {$("#file_no").val("").focus();}
 			}
 			else{
@@ -106,7 +106,7 @@ else{
 				});
 			}
 		});
-		
+
 		//update assessment
 		$("#update_assessment").click(function(){
 			if(file_no == ""){
@@ -119,7 +119,7 @@ else{
 			}
 			else if($("#a").hasClass("text-danger")){
 				var r = confirm("No Data for ["+file_no+"], Add new Data?");
-				if (r == true) {window.location="?page=person-form";} 
+				if (r == true) {window.location="?page=person-form";}
 				else {$("#file_no").val("").focus();}
 			}
 			else{
@@ -140,7 +140,7 @@ else{
 				});
 			}
 		});
-		
+
 		//save_legal_doc
 		$("#save_legal_doc").click(function(){
 			var doc_1 = $("#legal_doc_1").val(),doc_2 = $("#legal_doc_2").val(),doc_3 = $("#legal_doc_3").val();
@@ -152,26 +152,26 @@ else{
 					else{alert("Data not saved !!");}
 				}
 			});
-			
+
 		});
-		
-		
+
+
 		//add whom living
 		$("#add_whom_living").click(function(){
 			var name = $("#uam_living_name").val(),case_number = $("#uam_living_case_number").val(),coo = $("#uam_living_coo").val(),dob = $("#uam_living_dob").val(),age = $("#uam_living_age").val(),sex = $('input:radio[name=ia-living-sex]:checked').val(),phone = $("#uam_living_phone").val(),relation = $("#uam_living_relationship").val(),meet = $("#uam_living_meet").val(),file_no = $("#file_no").val();
-			
+
 			var datanya = "&file_no="+file_no+"&value="+name+";"+case_number+";"+coo+";"+dob+","+age+";"+sex+";"+phone+";"+relation+";"+meet;
-			
+
 			$.ajax({url: "form/ia-action.php",data: "op=addwhomliving"+datanya,cache: false,
 				success: function(msg){
 					if(msg=="success"){
-						alert("Data has been saved !!");$("#whom_living").load("form/ia-whom-living.php?file_no="+file_no);	$(".ia-living .form-control").val("");$(".ia-living select").val("0");	
+						alert("Data has been saved !!");$("#whom_living").load("form/ia-whom-living.php?file_no="+file_no);	$(".ia-living .form-control").val("");$(".ia-living select").val("0");
 					}
 					else{alert("Data not saved !!");}
 				}
 			});
 		});
-		
+
 		//save_ia_doc
 		$("#save_ia_doc").click(function(){
 			var type_residence = $('input:radio[name=ia_type_residence]:checked').val(),
@@ -181,21 +181,21 @@ else{
 				room_7 = $("#ia_room_7:checked").length,room_8 = $("#ia_room_8:checked").length,
 				room_9 = $("#ia_room_9:checked").length,room_10 = $("#ia_room_10:checked").length,
 				room_11 = $("#ia_room_11:checked").length,room_12 = $("#ia_room_12:checked").length;
-				
+
 			var	furniture_1=$("#ia_furniture_1:checked").length,furniture_2=$("#ia_furniture_2:checked").length,
 				furniture_3=$("#ia_furniture_3:checked").length,furniture_4=$("#ia_furniture_4:checked").length,
-				furniture_5=$("#ia_furniture_5:checked").length,furniture_6=$("#ia_furniture_6:checked").length;	
-			
+				furniture_5=$("#ia_furniture_5:checked").length,furniture_6=$("#ia_furniture_6:checked").length;
+
 			var cond_1=$("#ia_living_cond_1").val(),cond_2=$("#ia_living_cond_2").val(),cond_3=$("#ia_living_cond_3").val();
-				
+
 			var room = room_1+","+room_2+","+room_3+","+room_4+","+room_5+","+room_6+","+room_7+","+room_8+","+room_9+","+room_10+","+room_11+","+room_12;
-			
+
 			var furniture= furniture_1+","+furniture_2+","+furniture_3+","+furniture_4+","+furniture_5+","+furniture_6;
-			
+
 			var living_env = type_residence+";"+room+";"+furniture;
-			
+
 			var living_cond = cond_1+";"+cond_2+";"+cond_3;
-			
+
 			var	q12 = $("#ia_q1").val()+";"+$("#ia_q2").val(),
 				q34 = $("#ia_q3").val()+";"+$("#ia_q4").val(),
 				q56 = $("#ia_q5").val()+";"+$("#ia_q6").val(),
@@ -204,7 +204,7 @@ else{
 				file_no = $("#file_no").val();
 
 			var datanya = "&file_no="+file_no+"&living_env="+living_env+"&living_cond="+living_cond+"&q12="+q12+"&q34="+q34+"&q56="+q56+"&q78="+q78+"&remarks_staff="+remarks_staff;
-			
+
 			$.ajax({url: "form/ia-action.php",data: "op=saveiadoc"+datanya, cache: false,
 				success: function(msg){
 					if(msg=="success"){
@@ -215,7 +215,7 @@ else{
 					else{alert("Data not saved !!");}
 				}
 			});
-			
+
 		});
 
 		//comment
@@ -230,8 +230,8 @@ else{
 				}
 			});
 		});
-		
-		
+
+
 	});
 }) (jQuery);
 </script>
@@ -243,8 +243,8 @@ else{
 	<div class="col-lg-2  ">
 		<div class="form-group">
 			<label>UNHCR Case Number: <span  id="a"></span></label>
-			<input class="form-control"  name="file_no" id="file_no" <?php if($edit==1){echo 'value="'.$_GET['file_no'].'" '; echo $disable;} ?> > 
-		</div>			
+			<input class="form-control"  name="file_no" id="file_no" <?php if($edit==1){echo 'value="'.$_GET['file_no'].'" '; echo $disable;} ?> >
+		</div>
 	</div>
 	<div class="col-lg-2  ">
 		<label>Date of Assessment:</label>
@@ -256,7 +256,7 @@ else{
 		<div class="form-group">
 			<label>Location:</label>
 			<input class="form-control"  id="ia_location_assessment" placeholder="be as specific as possible" value="<?php if($edit==1){echo $assessment[1];} ?>">
-		</div>			
+		</div>
 	</div>
 	<div class="col-lg-3 ">
 		<div class="form-group">
@@ -270,14 +270,14 @@ else{
 			<?php echo $button;?>
 		</div>
 	</div>
-	
+
 </div> <!-- form-ia-date -->
 <div class="col-lg-12">
 	<?php if($edit==1){
 		echo getWhoLastChange("".$data['file_no']."","ia_form");
 	}?>
 	<div class="panel-group" id="accordion">
-		
+
 		<!-- B panel -->
 		<div class="panel panel-default">
 		<div class="panel-heading">
@@ -287,7 +287,7 @@ else{
 		</div>
 		<div id="collapseTwo" class="panel-collapse collapse ">
 		<!-- panel body -->
-		<div class="panel-body"> 
+		<div class="panel-body">
 			<div class="col-lg-12">
 				<div class="form-group">
 					<label>1. Did you register in your neighbourhood/ local authorities?</label>
@@ -313,14 +313,14 @@ else{
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Current Living Condition</a>
-			</h4>			
+			</h4>
 		</div>
 		<div id="collapseThree" class="panel-collapse collapse">
 		<div class="panel-body"><!-- panel body -->
 			<div class="col-lg-12">
 			<h4 >With whom are you living now?</h4>
 			<div class="table-responsive">
-			
+
 				<div class="col-lg-6">
 					<table class="table  ia-living">
 					<tbody>
@@ -382,19 +382,19 @@ else{
 							<td><label>When did you meet this person?</label></td>
 							<td><input class="form-control" id="uam_living_meet" placeholder="When did you meet this person?"></td>
 						</tr>
-						
+
 					</tbody>
 					</table>
 				</div>
 				<div class="col-lg-6">
-				<button type="submit" class="btn btn-success" id="add_whom_living" title="Add with whom are you living now?"><i class="fa fa-plus"></i> Add</button>			
+				<button type="submit" class="btn btn-success" id="add_whom_living" title="Add with whom are you living now?"><i class="fa fa-plus"></i> Add</button>
 				</div>
 			</div>
 			<h4 > Data </h4>
 			<div id="whom_living"></div>
-	
+
 			</div>
-			
+
 			<div class="col-lg-12">
 				<h4 >Visual inspection of the UAM’s current living environment</h4>
 					<div class="col-lg-4">
@@ -513,7 +513,7 @@ else{
 							<label>Remarks from CWS staff: </label>
 							<textarea class="form-control" id="ia_remakrs_staff"><?php if($edit==1){echo $data['remarks_staff'];} ?></textarea>
 						</div>
-						
+
 						<i>Please be sure to inform the UAM of next steps and the follow up that s/he can expect.</i>
 						<br>
 					</div>
@@ -529,7 +529,7 @@ else{
 	</div>
 </div>
 <?php
-// comment 
+// comment
 if($edit==1 AND $_SESSION['group_id']==1){
 echo '<div class="col-lg-12" ><label>Comment:</label><textarea class="form-control" id="comment">'; echo Balikin($data['comment']); echo'</textarea><br><small id="t"></small></div> ';
 }

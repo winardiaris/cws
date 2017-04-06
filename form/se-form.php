@@ -1,4 +1,4 @@
-<?php 
+<?php
 $R="R6";$W="W6";
 include("form/navigasi.php");
 if(isset($_GET['a'])){
@@ -31,8 +31,8 @@ if(isset($_GET['op'])){
 		$com=explode(",",$support_system[2]);
 		$recommend=explode(";",$data['recommend']);
 		$verification=explode(";",$data['verification']);
-		
-		
+
+
 		$q = mysql_query("SELECT * FROM `person` WHERE `file_no`='".$_GET['file_no']."'") or die(mysql_error());
 		$person = mysql_fetch_array($q);
 		//
@@ -54,7 +54,7 @@ else{
 			col2a = $("#col2a"),col2b = $("#col2b"),
 			col3a = $("#col3a"),col3b = $("#col3b"),
 			col4a = $("#col4a"),col4b = $("#col4b");
-			
+
 		$(col1b).slideUp();$(col2b).slideUp();$(col3b).slideUp();$(col4b).slideUp();
 		$(col1a).click(function(){
 			if (col1b.is(':visible')) {col1b.slideUp();}
@@ -69,7 +69,7 @@ else{
 				if(col1b.is(':visible')){col1b.slideUp();col2b.slideDown();window.location="#col2a";}
 				else{col2b.slideDown();window.location="#col2a";}
 			}
-		});	
+		});
 		$(col3a).click(function(){
 			if (col3b.is(':visible')) {col3b.slideUp();}
 			else {
@@ -85,20 +85,20 @@ else{
 			}
 		});
 		var 	file_no = $("#file_no").val(),
-				doa = $("#doa").val();	
+				doa = $("#doa").val();
 			$.ajax({url:"form/se-action.php",data:"op=nextAssessment&file_no="+file_no+"&doa="+doa,cache: false,
 					success: function(s){
 						$('#nextassessment').val(s);
-					}  
+					}
         });
-		
+
 
 		//check available
 		$("#file_no").change(function(){
 			var  	file_no = $(this).val(),
 					id_data = $("input:radio[name=id_data]:checked").val(),
 					datanya = "&file_no="+file_no+"&id_data="+id_data;
-			
+
          //last assessment
 				$.ajax({url: "form/se-action.php",data: "op=lastAssessment"+datanya,cache: false,
 					success: function(s){
@@ -107,28 +107,28 @@ else{
 						$("#last_home_visit").val(d[1]);
 					}
 				});
-			
+
 			//next
 			$.ajax({url:"form/se-action.php",data:"op=nextAssessment&file_no="+file_no+"&doa="+doa,cache: false,
 					success: function(s){
 						$('#nextassessment').val(s);
-					}  
-        });	
-        
+					}
+        });
+
 			//next
 			$.ajax({url:"form/se-action.php",data:"op=getStatus&file_no="+file_no,cache: false,
 					success: function(s){
 						$('#status').val(s);
-					}  
-        });	
-			
+					}
+        });
+
 			$.ajax({url: "form/se-action.php",data: "op=check"+datanya,cache: false,
 			success: function(msg){
 				if(msg=="inuse"){
 					$("#a").addClass("text-warning").removeClass("text-success text-danger nodataperson nodata").html("<i class='fa fa-warning'></i> In use");
 				}
 				else if(msg=="avail"){
-					$("#a").addClass("text-success").removeClass("text-danger text-warning nodataperson nodata").html("<i class='fa fa-check'></i> Available");				
+					$("#a").addClass("text-success").removeClass("text-danger text-warning nodataperson nodata").html("<i class='fa fa-check'></i> Available");
 					$("#family").load("form/hr-action.php","op=getData"+datanya);
 				}
 				else if(msg=="nodataperson"){
@@ -143,19 +143,19 @@ else{
 		//next assessment
 		$("#doa").change(function(){
 			var file_no = $("#file_no").val(),
-				 doa = $(this).val();	 
+				 doa = $(this).val();
 			$.ajax({url:"form/se-action.php",data:"op=nextAssessment&file_no="+file_no+"&doa="+doa,cache: false,
 					success: function(s){
 						$('#nextassessment').val(s);
-					}  
+					}
         });
 		});
-		
+
 		//save  of assessment
 		$("#save_assessment").click(function(){
 			var file_no = $("#file_no").val();
 			var a = $("input:radio[name=id_data]:checked").val();
-			
+
 			if(file_no == ""){
 				alert("Please insert UNHCR Case Number");
 				$("#file_no").val("").focus();
@@ -166,17 +166,17 @@ else{
 			}
 			else if($("#a").hasClass("nodataperson")){
 				var r = confirm("No Data Person for ["+file_no+"], Add new Data?");
-				if (r == true) {window.location="?page=person-form";} 
+				if (r == true) {window.location="?page=person-form";}
 				else {$("#file_no").val("").focus();}
 			}
 			else if($("#a").hasClass("nodata")){
 				var r = confirm("No Data for ["+file_no+"], Add new Data?");
-				if (r == true) {window.location="?page=se-form";} 
+				if (r == true) {window.location="?page=se-form";}
 				else {$("#file_no").val("").focus();}
 			}
 			else{
 				var doa = $("#doa").val(),nextassessment=$("#nextassessment").val(),by = $("#interviewer").val(),location = $("#location").val(),last = $("#last_assessment").val(),asst = $("#assistance").val(),inter = $("#interpreter").val(),home = $("#home_visit").val(),last_visit = $("#last_home_visit").val();
-					
+
 				var datanya = "&file_no="+file_no+"&a="+a+"&doa="+doa+"&nextassessment="+nextassessment+"&value="+by+";"+location+";"+last+";"+asst+";"+inter+";"+home+";"+last_visit;
 				$.ajax({url: "form/se-action.php",data: "op=addassessment"+datanya,cache: false,
 					success: function(msg){
@@ -200,7 +200,7 @@ else{
 		//update  of assessment
 		$("#update_assessment").click(function(){
 			var file_no = $("#file_no").val(),se_id = $("#se_id").val();
-			
+
 			if(file_no == ""){
 				alert("Please insert UNHCR Case Number");
 				$("#file_no").val("").focus();
@@ -211,17 +211,17 @@ else{
 			}
 			else if($("#a").hasClass("nodataperson")){
 				var r = confirm("No Data Person for ["+file_no+"], Add new Data?");
-				if (r == true) {window.location="?page=person-form";} 
+				if (r == true) {window.location="?page=person-form";}
 				else {$("#file_no").val("").focus();}
 			}
 			else if($("#a").hasClass("nodata")){
 				var r = confirm("No Data for ["+file_no+"], Add new Data?");
-				if (r == true) {window.location="?page=se-form";} 
+				if (r == true) {window.location="?page=se-form";}
 				else {$("#file_no").val("").focus();}
 			}
 			else{
 				var doa = $("#doa").val(),nextassessment = $("#nextassessment").val(),by = $("#interviewer").val(),location = $("#location").val(),last = $("#last_assessment").val(),asst = $("#assistance").val(),inter = $("#interpreter").val(),home = $("#home_visit").val(),last_visit = $("#last_home_visit").val();
-					
+
 				var datanya = "&se_id="+se_id+"&file_no="+file_no+"&doa="+doa+"&nextassessment="+nextassessment+"&value="+by+";"+location+";"+last+";"+asst+";"+inter+";"+home+";"+last_visit;
 				$.ajax({url: "form/se-action.php",data: "op=updateassessment"+datanya,cache: false,
 					success: function(msg){
@@ -237,14 +237,14 @@ else{
 				});
 			}
 		});
-		
+
 		//save background information
 		$("#save_back").click(function(){
 				var file_no = $("#file_no").val(),
 					se_id= $("#se_id").val(),
 					back1 = $("#back1").val(),
 					back2 = $("#back2").val();
-					
+
 				var datanya = "&se_id="+se_id+"&file_no="+file_no+"&value="+back1+";"+back2;
 				$.ajax({url: "form/se-action.php",data: "op=saveback"+datanya,cache: false,
 					success: function(msg){
@@ -257,20 +257,20 @@ else{
 					}
 				});
 		});
-		
+
 		//save living condition A. General
 		$("#save_living_a").click(function(){
 			var file_no = $("#file_no").val(),
 				se_id= $("#se_id").val(),
 				room_1 = $("#room_1:checked").length,room_2 = $("#room_2:checked").length,room_3 = $("#room_3:checked").length,room_4 = $("#room_4:checked").length,room_5 = $("#room_5:checked").length,room_6 = $("#room_6:checked").length,room_7 = $("#room_7:checked").length,room_8 = $("#room_8:checked").length,room_9 = $("#room_9:checked").length,room_10 = $("#room_10:checked").length,room_11 = $("#room_11:checked").length;
-				
+
 			var	furni_1=$("#furni_1:checked").length,furni_2=$("#furni_2:checked").length,furni_3=$("#furni_3:checked").length,furni_4=$("#furni_4:checked").length,furni_5=$("#furni_5:checked").length,furni_6=$("#furni_6:checked").length,furni_7=$("#furni_7:checked").length,furni_8=$("#furni_8:checked").length,furni_9=$("#furni_9:checked").length,furni_10=$("#furni_10:checked").length,furni_11=$("#furni_11:checked").length,furni_12=$("#furni_12:checked").length,furni_13=$("#furni_13:checked").length,furni_14=$("#furni_14:checked").length,furni_15=$("#furni_15:checked").length,furni_16=$("#furni_16:checked").length,furni_17=$("#furni_17:checked").length,furni_18=$("#furni_18:checked").length,furni_19=$("#furni_19:checked").length,furni_20=$("#furni_20:checked").length,furni_21=$("#furni_21:checked").length;
-			
+
 			var room=room_1+","+room_2+","+room_3+","+room_4+","+room_5+","+room_6+","+room_7+","+room_8+","+room_9+","+room_10+","+room_11;
 			var	furni=furni_1+","+furni_2+","+furni_3+","+furni_4+","+furni_5+","+furni_6+","+furni_7+","+furni_8+","+furni_9+","+furni_10+","+furni_11+","+furni_12+","+furni_13+","+furni_14+","+furni_15+","+furni_16+","+furni_17+","+furni_18+","+furni_19+","+furni_20+","+furni_21;
 			var living_env = room+";"+furni;
 			var living_cond = $("#living_cond1").val()+";"+$("#living_cond2").val()+";"+$("#living_cond3").val()+";"+$("#notes").val();
-			
+
 			var sec_1=$("#sec_1:checked").length,
 				sec_2=$("#sec_2:checked").length,
 				sec_3=$("#sec_3:checked").length,
@@ -284,11 +284,11 @@ else{
 			var	sec = sec_1+","+sec_2+","+sec_3+","+sec_4+","+sec_5;
 			var neig = neig_1+","+neig_2+","+neig_3+","+neig_4+","+neig_5;
 			var sec_neigh = sec+";"+neig;
-			
+
 			var phnn = $("#police").val()+";"+$("#health").val()+";"+$("#notes2").val()+";"+$("#person_living").val();
-			
+
 			var datanya = "&se_id="+se_id+"&file_no="+file_no+"&living_env="+living_env+"&living_cond="+living_cond+"&sec_neigh="+sec_neigh+"&phnn="+phnn;
-			
+
 				$.ajax({url: "form/se-action.php",data: "op=savelivinga"+datanya,cache: false,
 					success: function(msg){
 						if(msg=="success"){
@@ -299,10 +299,10 @@ else{
 						else{alert("Data not saved !!");}
 					}
 				});
-			
-			
+
+
 		});
-		
+
 		//save living condition B. PERSON WITH SPECIFIC NEEDS
 		$("#save_living_b").click(function(){
 			var file_no = $("#file_no").val(),
@@ -320,8 +320,8 @@ else{
 			var child = u_minor+","+u_minor_text+","+separated+","+separated_text+","+remarks_child+","+child_1+","+child_2+","+child_3;
 			var child_protect = child+";"+protect;
 			var datanya = "&se_id="+se_id+"&file_no="+file_no+"&vulne="+vulne+"&child_protect="+child_protect;
-			
-			
+
+
 				$.ajax({url: "form/se-action.php",data: "op=savelivingb"+datanya,cache: false,
 					success: function(msg){
 						if(msg=="success"){
@@ -330,14 +330,14 @@ else{
 							$("#collapseTwo").removeClass("in");
 							$("#collapseThree").addClass("in");
 							$("#col3b").slideDown().trigger("click");
-							
-							
+
+
 						}
 						else{alert("Data not saved !!");}
 					}
 				});
 		});
-		
+
 		//Financial And Other Support System Available To The Person Of Concern
 		//Support System
 		$("#save_support").click(function(){
@@ -358,15 +358,15 @@ else{
 				com2 = $("#support_comment_2").val(),
 				com = com1+","+com2,
 				datanya = "&se_id="+se_id+"&file_no="+file_no+"&support="+house+";"+expe+";"+com;
-				
+
 				$.ajax({url: "form/se-action.php",data: "op=savefinanciala"+datanya,cache: false,
 					success: function(msg){
 						if(msg=="success"){
 							alert("Data has been saved !!");
 							$("#col3b").slideUp();
 							$("#col4b").slideDown().trigger("click");
-							
-							
+
+
 						}
 						else{alert("Data not saved !!");}
 					}
@@ -380,7 +380,7 @@ else{
 				anr = $('input:radio[name=radioanr]:checked').val(),
 				final_remarks = $("#final_remarks").val(),
 				datanya = "&se_id="+se_id+"&file_no="+file_no+"&recommend="+ahr+";"+ar+";"+anr+";"+final_remarks;
-				
+
 				$.ajax({url: "form/se-action.php",data: "op=savefinancialb"+datanya,cache: false,
 					success: function(msg){
 						if(msg=="success"){
@@ -393,7 +393,7 @@ else{
 					}
 				});
 		});
-		
+
 		//verified
 		$("#save_verification").click(function(){
 			var	file_no = $("#file_no").val(), se_id = $("#se_id").val(),
@@ -411,10 +411,10 @@ else{
 						else{alert("Data not saved !!");}
 					}
 				});
-				
-				
+
+
 		});
-		
+
 		//comment
 		$("#comment").change(function(){
 			var	file_no = $("#file_no").val(),comments = $(this).val(),se_id=$("#se_id").val();
@@ -427,7 +427,7 @@ else{
 				}
 			});
 		});
-		
+
 	});
 }) (jQuery);
 </script>
@@ -486,7 +486,7 @@ else{
 					<label>Assistance receiving since <i>(if any)</i>:</label>
 					<input class="form-control" id="assistance" value="<?php if($edit==1){echo $assessment[3];} ?>">
 				</div>
-			</div>			 
+			</div>
 			<div class="col-lg-4">
 				<div class="form-group">
 					<label>Interpreter:</label>
@@ -514,8 +514,8 @@ else{
 		</div>
 			</div>
 		</div>
-		
-		
+
+
 		<!-- A panel -->
 		<div class="panel panel-default">
 		<div class="panel-heading">
@@ -539,7 +539,7 @@ else{
 				</div>
 			</li>
 			</ol>
-		
+
     </div>
       <div class="panel-footer">
 				<button class="btn btn-success" id="save_back"><i class="fa fa-save"></i> Save</button>
@@ -752,7 +752,7 @@ else{
 				</div>
 			</div>
 			</div>
-			
+
 		</div>
 		</div>
 		</div><!-- panel panel-default -->
@@ -778,7 +778,7 @@ else{
 						<textarea class="form-control" rows="5" id="house_4"><?php if($edit==1){echo $household[3];} ?></textarea>
 					</div>
 					</div>
-					
+
 					<div class="col-lg-6">
 					<div class="well well-sm ">
 						<h4>Approximate monthly expenditure</h4><br>
@@ -801,7 +801,7 @@ else{
 							<button id="save_support"class="btn btn-success"><i class="fa fa-save"></i> Save</button>
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 			<div class="panel panel-primary">
@@ -843,7 +843,7 @@ else{
 						<br>
 						<button class="btn btn-success" id="save_recommend"><i class="fa fa-save" ></i> Save</button>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
@@ -887,12 +887,12 @@ else{
 			</div>
 		</div>
 		</div>
-		
+
 	</div><!-- panel-group -->
 </div>
 
 <?php
-// comment 
+// comment
 if($edit==1 AND $_SESSION['group_id']==1){
 echo '<div class="col-lg-12" ><label>Comment:</label><textarea class="form-control" id="comment">'; echo Balikin($data['comment']); echo'</textarea><br><small id="t"></small></div> ';
 }

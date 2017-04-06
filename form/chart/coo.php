@@ -26,11 +26,11 @@ $(document).ready(function () {
 		$name1 =  explode(",",substr($name,1,strlen($name)));
 		//echo $str1;
 		$qry2 = mysql_query("SELECT $str1 FROM `person` WHERE `person`.`active`='1'")or die(mysql_error());
-		$c = mysql_num_fields($qry2);	
+		$c = mysql_num_fields($qry2);
 		$data = mysql_fetch_array($qry2);
 		for($i=0;$i<$c;$i++){
 			$data2 .=",\n\t\t [".$i.",".$data[$i]."]";
-			$label .=",\n\t\t[".$i.",'".$name1[$i]."']";	
+			$label .=",\n\t\t[".$i.",'".$name1[$i]."']";
 		}
 		print( "var data = [".substr($data2,1,strlen($data2))."\n];\n\n");
 		print( "var ticks = [".substr($label,1,strlen($label))."\n];\n\n");
@@ -56,7 +56,7 @@ $(document).ready(function () {
         };
      $.plot($("#chart"), dataset, options);
 
-   
+
 });
 
 
